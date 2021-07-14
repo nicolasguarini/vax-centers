@@ -57,7 +57,8 @@ public class UIStartMenu implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == btnCentriVaccinali){
-            System.out.println("Bottone Centri Vaccinali");
+            frame.dispose();
+            new UICentriVaccinali();
         }
         if(e.getSource() == btnCittadini){
             System.out.println("Bottone Cittadini");
