@@ -1,4 +1,4 @@
-package centrivaccinali;
+package centrivaccinali.UI;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 public class UICentriVaccinali implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../resources/images/logo.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
     JFrame frame = new JFrame();
     JLabel labelTitle = new JLabel("CENTRI VACCINALI");
     JButton btnRegistraCentroVaccinale = new JButton("REGISTRA CENTRO VACCINALE");
@@ -30,6 +30,7 @@ public class UICentriVaccinali implements ActionListener {
         btnRegistraCentroVaccinale.setBackground(new Color(232, 47, 125));
         btnRegistraCentroVaccinale.setForeground(Color.WHITE);
         btnRegistraCentroVaccinale.setBorder(border);
+        btnRegistraCentroVaccinale.addActionListener(this);
 
         btnRegistraVaccinato.setBounds(btnRegistraCentroVaccinale.getX()+325, btnRegistraCentroVaccinale.getY(), 300, 65);
         btnRegistraVaccinato.setFocusable(false);
@@ -67,6 +68,8 @@ public class UICentriVaccinali implements ActionListener {
         if(e.getSource() == btnIndietro){
             frame.dispose();
             new UIStartMenu();
+        } else if(e.getSource() == btnRegistraCentroVaccinale){
+            new UIRegistraCentroVaccinale();
         }
     }
 }

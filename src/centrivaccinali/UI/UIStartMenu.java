@@ -1,4 +1,4 @@
-package centrivaccinali;
+package centrivaccinali.UI;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -11,7 +11,7 @@ import java.util.Objects;
 public class UIStartMenu implements ActionListener {
     JFrame frame = new JFrame();
     JLabel logo = new JLabel();
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../resources/images/logo.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
     JButton btnCentriVaccinali = new JButton("CENTRI VACCINALI");
     JButton btnCittadini = new JButton("CITTADINI");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
@@ -59,8 +59,7 @@ public class UIStartMenu implements ActionListener {
         if(e.getSource() == btnCentriVaccinali){
             frame.dispose();
             new UICentriVaccinali();
-        }
-        if(e.getSource() == btnCittadini){
+        } else if(e.getSource() == btnCittadini){
             System.out.println("Bottone Cittadini");
         }
     }
