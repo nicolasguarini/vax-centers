@@ -122,7 +122,7 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         this.setVisible(true);
     }
 
-    void registra(){
+    private void registra(){
         String nome = tfNomeCentroVaccinale.getText();
         String qualificatore = qualificatoreIndirizzo.getSelectedItem().toString();
         String nomeIndirizzo = tfNomeIndirizzo.getText();
@@ -138,11 +138,8 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
 
         CentroVaccinale centroVaccinale = new CentroVaccinale(nome, indirizzo, tipologiaCentro);
 
-        if(CentriVaccinali.registraCentroVaccinale(centroVaccinale) == -1){
-            JOptionPane.showMessageDialog(this, "Errore nella registrazione del centro vaccinale");
-        }else{
-            this.dispose();
-        }
+        CentriVaccinali.registraCentroVaccinale(centroVaccinale);
+        this.dispose();
     }
     @Override
     public void actionPerformed(ActionEvent e) {

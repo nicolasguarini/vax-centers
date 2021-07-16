@@ -1,8 +1,10 @@
 package centrivaccinali;
 
+import java.io.Serializable;
 import java.util.Base64;
 
-public class CentroVaccinale {
+public class CentroVaccinale implements Serializable {
+    private static final long serialVersionUID = 4756400710762104818L;
     private String nome;
     private Indirizzo indirizzo;
     private String tipologia;
@@ -18,6 +20,11 @@ public class CentroVaccinale {
 
     private void generaIdCentro(){
         idCentro = Base64.getEncoder().encodeToString((nome + indirizzo.toString() + tipologia).getBytes());
+    }
+
+    @Override
+    public String toString(){
+        return nome + " " + indirizzo + " " + tipologia;
     }
 
     public String getIdCentro(){ return idCentro; }

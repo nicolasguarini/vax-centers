@@ -1,6 +1,9 @@
 package centrivaccinali;
 
-public class Indirizzo {
+import java.io.Serializable;
+
+public class Indirizzo implements Serializable {
+    private static final long serialVersionUID = -1709094232830800244L;
     private String qualificatore;
     private String nome;
     private String numeroCivico;

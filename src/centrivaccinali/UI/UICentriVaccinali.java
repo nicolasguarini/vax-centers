@@ -1,5 +1,8 @@
 package centrivaccinali.UI;
 
+import centrivaccinali.CentriVaccinali;
+import centrivaccinali.CentroVaccinale;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -38,6 +41,7 @@ public class UICentriVaccinali implements ActionListener {
         btnRegistraVaccinato.setBackground(new Color(232, 47, 125));
         btnRegistraVaccinato.setForeground(Color.WHITE);
         btnRegistraVaccinato.setBorder(border);
+        btnRegistraVaccinato.addActionListener(this);
 
         btnIndietro.setBounds(550, btnRegistraCentroVaccinale.getY() + 85, 150, 50);
         btnIndietro.setFocusable(false);
