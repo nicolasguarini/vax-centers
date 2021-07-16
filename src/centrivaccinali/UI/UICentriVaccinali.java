@@ -20,9 +20,11 @@ public class UICentriVaccinali implements ActionListener {
     JButton btnIndietro = new JButton("INDIETRO");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
-    public UICentriVaccinali(){ setupFrame(); }
+    public UICentriVaccinali() {
+        setupFrame();
+    }
 
-    private void setupFrame(){
+    private void setupFrame() {
         labelTitle.setBounds(430, 165, 500, 100);
         labelTitle.setFont(new Font("Montserrat", Font.BOLD, 40));
         labelTitle.setHorizontalTextPosition(JLabel.CENTER);
@@ -35,7 +37,8 @@ public class UICentriVaccinali implements ActionListener {
         btnRegistraCentroVaccinale.setBorder(border);
         btnRegistraCentroVaccinale.addActionListener(this);
 
-        btnRegistraVaccinato.setBounds(btnRegistraCentroVaccinale.getX()+325, btnRegistraCentroVaccinale.getY(), 300, 65);
+        btnRegistraVaccinato.setBounds(btnRegistraCentroVaccinale.getX() + 325, btnRegistraCentroVaccinale.getY(), 300,
+                65);
         btnRegistraVaccinato.setFocusable(false);
         btnRegistraVaccinato.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnRegistraVaccinato.setBackground(new Color(232, 47, 125));
@@ -68,12 +71,14 @@ public class UICentriVaccinali implements ActionListener {
     }
 
     @Override
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == btnIndietro){
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == btnIndietro) {
             frame.dispose();
             new UIStartMenu();
-        } else if(e.getSource() == btnRegistraCentroVaccinale){
+        } else if (e.getSource() == btnRegistraCentroVaccinale) {
             new UIRegistraCentroVaccinale();
+        } else if (e.getSource() == btnRegistraVaccinato) {
+            new UIRegistraVaccinato();
         }
     }
 }
