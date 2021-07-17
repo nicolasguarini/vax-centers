@@ -1,23 +1,27 @@
 package centrivaccinali.UI;
 
+import centrivaccinali.CentriVaccinali;
+import centrivaccinali.CentroVaccinale;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 import java.util.Objects;
 
 public class UIRegistraVaccinato extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
-    JTextField tfNomeCentroVaccinale = new JTextField();
+    JComboBox selectCentroVaccinale = new JComboBox(getCentriArray());
     JTextField tfNomeVaccinato = new JTextField();
     JTextField tfCognomeVaccinato = new JTextField();
     JTextField tfCodiceFiscaleVaccinato = new JTextField();
     JTextField tfDataSomministrazioneVaccino= new JTextField();
     JTextField tfIDVaccinazione = new JTextField();
 
-    JComboBox NomeVaccino = new JComboBox(new String[] { "Pfizer", "AstraZeneca", "Moderna", "J&J" });
+    JComboBox selectNomeVaccino = new JComboBox(new String[] { "Pfizer", "AstraZeneca", "Moderna", "J&J" });
     JButton btnRegistra = new JButton("REGISTRA");
     JButton btnAnnulla = new JButton("ANNULLA");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
@@ -31,13 +35,13 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         this.setIconImage(img.getImage());
 
         //CREAZIONE LABEL PER OGNI SEZIONE
-        JLabel labelNomeCentroVaccinale = new JLabel("Nome centro vaccinale:");
+        JLabel labelNomeCentroVaccinale = new JLabel("Centro vaccinale:");
         labelNomeCentroVaccinale.setFont(new Font("Helvetica", Font.BOLD, 15));
 
-        JLabel labelNomeVaccinato = new JLabel("Nome vaccinato:");
+        JLabel labelNomeVaccinato = new JLabel("Nome:");
         labelNomeVaccinato.setFont(new Font("Helvetica", Font.BOLD, 15));
 
-        JLabel labelCognomeVaccinato = new JLabel("Cognome vaccinato:");
+        JLabel labelCognomeVaccinato = new JLabel("Cognome:");
         labelCognomeVaccinato.setFont(new Font("Helvetica", Font.BOLD, 15));
 
         JLabel labelCodiceFiscaleVaccinato= new JLabel("Codice fiscale:");
@@ -53,24 +57,24 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         labelIDVaccinazione.setFont(new Font("Helvetica", Font.BOLD, 15));
 
         //IMPOSTAZIONI DEI TEXTFIELD
-        tfNomeCentroVaccinale.setPreferredSize(new Dimension(150, 30));
-        tfNomeCentroVaccinale.setFont(new Font("Helvetica", Font.PLAIN, 15));
+        selectCentroVaccinale.setPreferredSize(new Dimension(400, 30));
+        selectCentroVaccinale.setFont(new Font("Helvetica", Font.PLAIN, 15));
 
         tfNomeVaccinato.setPreferredSize(new Dimension(150, 30));
         tfNomeVaccinato.setFont(new Font("Helvetica", Font.PLAIN, 15));
 
-        tfCognomeVaccinato.setPreferredSize(new Dimension(50, 30));
+        tfCognomeVaccinato.setPreferredSize(new Dimension(150, 30));
         tfCognomeVaccinato.setFont(new Font("Helvetica", Font.PLAIN, 15));
 
         tfCodiceFiscaleVaccinato.setPreferredSize(new Dimension(150, 30));
         tfCodiceFiscaleVaccinato.setFont(new Font("Helvetica", Font.PLAIN, 15));
 
-        tfDataSomministrazioneVaccino.setPreferredSize(new Dimension(50, 30));
+        tfDataSomministrazioneVaccino.setPreferredSize(new Dimension(100, 30));
         tfDataSomministrazioneVaccino.setFont(new Font("Helvetica", Font.PLAIN, 15));
 
-        NomeVaccino.setPreferredSize(new Dimension(50, 30));
-        NomeVaccino.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        NomeVaccino.setSelectedIndex(0);
+        selectNomeVaccino.setPreferredSize(new Dimension(100, 30));
+        selectNomeVaccino.setFont(new Font("Helvetica", Font.PLAIN, 15));
+        selectNomeVaccino.setSelectedIndex(0);
 
         tfIDVaccinazione.setPreferredSize(new Dimension(100, 30));
         tfIDVaccinazione.setFont(new Font("Helvetica", Font.PLAIN, 15));
@@ -93,7 +97,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
 
         JPanel panelRegistrazioneVaccinati1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panelRegistrazioneVaccinati1.add(labelNomeCentroVaccinale);
-        panelRegistrazioneVaccinati1.add(tfNomeCentroVaccinale);
+        panelRegistrazioneVaccinati1.add(selectCentroVaccinale);
 
         JPanel panelRegistrazioneVaccinati2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panelRegistrazioneVaccinati2.add(labelNomeVaccinato);
@@ -111,7 +115,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         panelRegistrazioneVaccinati4.add(labelDataSomministrazioneVaccino);
         panelRegistrazioneVaccinati4.add(tfDataSomministrazioneVaccino);
         panelRegistrazioneVaccinati4.add(labelNomeVaccino);
-        panelRegistrazioneVaccinati4.add(NomeVaccino);
+        panelRegistrazioneVaccinati4.add(selectNomeVaccino);
 
         JPanel panelBottoni = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelBottoni.add(btnRegistra);
@@ -131,6 +135,15 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     void registra(){
         //TODO: creare la funzione registra con validazione dell'input
         // PRENOTATO DA GUARO
+    }
+
+    String[] getCentriArray(){
+        LinkedList<CentroVaccinale> centri = CentriVaccinali.getCentriVaccinali();
+        String[] arCentri = new String[centri.size()];
+        for(int i = 0; i<centri.size(); i++){
+            arCentri[i] = centri.get(i).getNome() + ", " + centri.get(i).getIndirizzo().toString();
+        }
+        return arCentri;
     }
 
     @Override

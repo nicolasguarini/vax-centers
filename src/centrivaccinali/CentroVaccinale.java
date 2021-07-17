@@ -28,4 +28,6 @@ public class CentroVaccinale implements Serializable {
     }
 
     public String getIdCentro(){ return idCentro; }
+    public String getNome(){return nome;}
+    public Indirizzo getIndirizzo(){return indirizzo;}
 }
