@@ -3,6 +3,9 @@ package centrivaccinali.UI;
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
+
+import cittadini.UI.UICittadini;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -60,7 +63,8 @@ public class UIStartMenu implements ActionListener {
             frame.dispose();
             new UICentriVaccinali();
         } else if(e.getSource() == btnCittadini){
-            System.out.println("Bottone Cittadini");
+            frame.dispose();
+            new UICittadini();
         }
     }
 }
