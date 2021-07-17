@@ -25,7 +25,6 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     public UIRegistraVaccinato() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new GridLayout(0, 1, 10, 10));
-        this.setLocationRelativeTo(null);
         this.setSize(750, 200);
         this.setTitle("Registra Vaccinato");
         this.setResizable(false);
@@ -124,12 +123,14 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         this.add(panelRegistrazioneVaccinati4);
         this.add(panelBottoni);
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
 
     void registra(){
         //TODO: creare la funzione registra con validazione dell'input
+        // PRENOTATO DA GUARO
     }
 
     @Override

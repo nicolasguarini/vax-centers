@@ -29,7 +29,6 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
     public UIRegistraCentroVaccinale(){
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new GridLayout(0, 1, 10, 10));
-        this.setLocationRelativeTo(null);
         this.setSize(720, 200);
         this.setTitle("Registra Centro Vaccinale");
         this.setResizable(false);
@@ -119,6 +118,7 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         this.add(panelBottoni);
 
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
