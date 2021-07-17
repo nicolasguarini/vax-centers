@@ -139,9 +139,11 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
 
     String[] getCentriArray(){
         LinkedList<CentroVaccinale> centri = CentriVaccinali.getCentriVaccinali();
-        String[] arCentri = new String[centri.size()];
-        for(int i = 0; i<centri.size(); i++){
-            arCentri[i] = centri.get(i).getNome() + ", " + centri.get(i).getIndirizzo().toString();
+        int size = centri.size();
+        String[] arCentri = new String[size];
+        for(int i = 0; i < size; i++){
+            CentroVaccinale centro = centri.get(i);
+            arCentri[i] = centro.getNome() + ", " + centro.getIndirizzo().toString();
         }
         return arCentri;
     }
