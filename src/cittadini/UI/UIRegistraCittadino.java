@@ -78,9 +78,9 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         String NomeUtente = tfNomeUtente.getText();
         String PasswordUtente = tfPasswordUtente.getText();
         if (tfNomeUtente.getText().equals("") || tfPasswordUtente.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "ERRORE: devi inserire i dati");
+            JOptionPane.showMessageDialog(this, "ERRORE: devi inserire i dati");
         } else {
-            JOptionPane.showMessageDialog(null, "Registrazione effettuata");
+            JOptionPane.showMessageDialog(this, "Registrazione effettuata");
             this.dispose();
         }
     }

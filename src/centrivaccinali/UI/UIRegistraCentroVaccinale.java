@@ -130,16 +130,21 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         String comune = tfComune.getText();
         String provincia = tfProvincia.getText();
         String CAP = tfCAP.getText();
-        Indirizzo indirizzo = new Indirizzo(qualificatore, nomeIndirizzo, civico, comune, provincia, CAP);
         String tipologiaCentro  = tipologiaCentroVaccinale.getSelectedItem().toString();
 
-        //TODO: validazione input. se l'input non è valido mostrare un messaggio di errore con scritto qual è il problmea (JOptionPane.showMessageDialog(this, "messaggio");)
-        // NB: non se l'input non è valido non bisogna eseguire il codice sottostante per ovvie ragioni
+        if(validaDati(nome, nomeIndirizzo, civico, comune, provincia, CAP)){
+            Indirizzo indirizzo = new Indirizzo(qualificatore, nomeIndirizzo, civico, comune, provincia, CAP);
+            CentroVaccinale centroVaccinale = new CentroVaccinale(nome, indirizzo, tipologiaCentro);
 
-        CentroVaccinale centroVaccinale = new CentroVaccinale(nome, indirizzo, tipologiaCentro);
+            CentriVaccinali.registraCentroVaccinale(centroVaccinale);
+        }
 
-        CentriVaccinali.registraCentroVaccinale(centroVaccinale);
         this.dispose();
+    }
+
+    boolean validaDati(String nome, String nomeIndirizzo, String civico, String comune, String provincia, String CAP){
+        //TODO: ritornare true se tutti i dati sono validi altrimenti false (comunicare anche cosa non va bene con un messaggio di avviso)
+        return true;
     }
     @Override
     public void actionPerformed(ActionEvent e) {

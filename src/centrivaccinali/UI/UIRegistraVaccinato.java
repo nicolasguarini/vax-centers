@@ -2,6 +2,7 @@ package centrivaccinali.UI;
 
 import centrivaccinali.CentriVaccinali;
 import centrivaccinali.CentroVaccinale;
+import centrivaccinali.Vaccinazione;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -9,6 +10,10 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.Objects;
 
@@ -19,6 +24,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     JTextField tfCognomeVaccinato = new JTextField();
     JTextField tfCodiceFiscaleVaccinato = new JTextField();
     JTextField tfDataSomministrazioneVaccino= new JTextField();
+
     JTextField tfIDVaccinazione = new JTextField();
 
     JComboBox selectNomeVaccino = new JComboBox(new String[] { "Pfizer", "AstraZeneca", "Moderna", "J&J" });
@@ -132,9 +138,27 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     }
 
 
-    void registra(){
-        //TODO: creare la funzione registra con validazione dell'input
-        // PRENOTATO DA GUARO
+    void registra() throws ParseException {
+        CentroVaccinale centroVaccinale = CentriVaccinali.getCentriVaccinali().get(selectCentroVaccinale.getSelectedIndex());
+        String nome = tfNomeVaccinato.getText();
+        String cognome = tfCognomeVaccinato.getText();
+        String cf = tfCodiceFiscaleVaccinato.getText();
+        String idVaccinazione = tfIDVaccinazione.getText();
+        String nomeVaccino = selectNomeVaccino.getSelectedItem().toString();
+        String strData = tfDataSomministrazioneVaccino.getText();
+
+        if(validaDati(nome, cognome, cf, idVaccinazione, nomeVaccino, strData){
+            Date data = new SimpleDateFormat("dd/MM/yyyy").parse(tfDataSomministrazioneVaccino.getText());
+            Vaccinazione vaccinazione = new Vaccinazione(nome, cognome, cf, idVaccinazione, data, centroVaccinale, nomeVaccino);
+            CentriVaccinali.registraVaccinazione(vaccinazione);
+        }
+
+        this.dispose();
+    }
+
+    boolean validaDati(String nome, String cognome, String cf, String idVaccinazione, String nomeVaccino, String data){
+        //TODO: ritornare true se tutti i dati sono validi altrimenti false
+        return true;
     }
 
     String[] getCentriArray(){
@@ -151,7 +175,12 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnRegistra) {
-            registra();
+            try{
+                registra();
+            }catch(Exception exception){
+                JOptionPane.showMessageDialog(this,"Errore: " + exception.getMessage());
+            }
+
         } else if (e.getSource() == btnAnnulla) {
             this.dispose();
         }
