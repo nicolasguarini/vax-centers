@@ -19,7 +19,7 @@ public class CentriVaccinali {
     }
 
     public static void registraVaccinazione(Vaccinazione vaccinazione){
-
+        //TODO: implementare logica di registrazione vaccinazioni su file
     }
 
     static void serializzaCentriVaccinali(LinkedList<CentroVaccinale> centriVaccinali){

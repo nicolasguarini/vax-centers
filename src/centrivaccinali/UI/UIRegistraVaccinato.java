@@ -147,7 +147,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         String nomeVaccino = selectNomeVaccino.getSelectedItem().toString();
         String strData = tfDataSomministrazioneVaccino.getText();
 
-        if(validaDati(nome, cognome, cf, idVaccinazione, nomeVaccino, strData){
+        if(validaDati(nome, cognome, cf, idVaccinazione, nomeVaccino, strData)){
             Date data = new SimpleDateFormat("dd/MM/yyyy").parse(tfDataSomministrazioneVaccino.getText());
             Vaccinazione vaccinazione = new Vaccinazione(nome, cognome, cf, idVaccinazione, data, centroVaccinale, nomeVaccino);
             CentriVaccinali.registraVaccinazione(vaccinazione);
