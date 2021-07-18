@@ -13,7 +13,7 @@ public class UILoginCittadino extends JFrame implements ActionListener {
     JTextField tfNomeUtente = new JTextField();
     JPasswordField tfPasswordUtente = new JPasswordField();
 
-    JButton btnLogin = new JButton("REGISTRA");
+    JButton btnLogin = new JButton("LOGIN");
     JButton btnAnnulla = new JButton("ANNULLA");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
@@ -78,11 +78,13 @@ public class UILoginCittadino extends JFrame implements ActionListener {
         String NomeUtente = tfNomeUtente.getText();
         String PasswordUtente = tfPasswordUtente.getText();
         if (tfNomeUtente.getText().equals("") || tfPasswordUtente.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "ERRORE: devi inserire i dati");
+            JOptionPane.showMessageDialog(this, "Uno o più campi sono vuoti", "ERRORE", JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Login effettuato");
             this.dispose();
+            //TODO: Creare schermata successiva al login dell'utente
         }
+
     }
 
     @Override

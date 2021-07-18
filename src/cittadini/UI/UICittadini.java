@@ -87,7 +87,7 @@ public class UICittadini implements ActionListener {
         } else if (e.getSource() == btnConsultaCentri) {
             // TODO: Creare visualizzazione dei centri vaccinali
         } else if (e.getSource() == btnRegistrati) {
-            // TODO: Creare gui per registrazione funzionante
+            new UIRegistraCittadino();
         } else if (e.getSource() == btnLogIn) {
             new UILoginCittadino();
         }
