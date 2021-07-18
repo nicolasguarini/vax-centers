@@ -76,36 +76,36 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         btnAnnulla.setBorder(border);
         btnAnnulla.addActionListener(this);
 
-        JPanel panelRegistrazioneVaccinati1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelRegistrazioneVaccinati1.add(labelNomeCittadino);
-        panelRegistrazioneVaccinati1.add(tfNomeCittadino);
-        panelRegistrazioneVaccinati1.add(labelCognomeCittadino);
-        panelRegistrazioneVaccinati1.add(tfCognomeCittadino);
+        JPanel panelRegistrazioneCittadino1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelRegistrazioneCittadino1.add(labelNomeCittadino);
+        panelRegistrazioneCittadino1.add(tfNomeCittadino);
+        panelRegistrazioneCittadino1.add(labelCognomeCittadino);
+        panelRegistrazioneCittadino1.add(tfCognomeCittadino);
 
-        JPanel panelRegistrazioneVaccinati2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelRegistrazioneVaccinati2.add(labelCodiceFiscaleCittadino);
-        panelRegistrazioneVaccinati2.add(tfCodiceFiscaleCittadino);
-        panelRegistrazioneVaccinati2.add(labelEmail);
-        panelRegistrazioneVaccinati2.add(tfEmail);
+        JPanel panelRegistrazioneCittadino2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelRegistrazioneCittadino2.add(labelCodiceFiscaleCittadino);
+        panelRegistrazioneCittadino2.add(tfCodiceFiscaleCittadino);
+        panelRegistrazioneCittadino2.add(labelEmail);
+        panelRegistrazioneCittadino2.add(tfEmail);
 
-        JPanel panelRegistrazioneVaccinati3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelRegistrazioneVaccinati3.add(labelNomeUtente);
-        panelRegistrazioneVaccinati3.add(tfNomeUtente);
-        panelRegistrazioneVaccinati3.add(labelPasswordUtente);
-        panelRegistrazioneVaccinati3.add(tfPasswordUtente);
+        JPanel panelRegistrazioneCittadino3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelRegistrazioneCittadino3.add(labelNomeUtente);
+        panelRegistrazioneCittadino3.add(tfNomeUtente);
+        panelRegistrazioneCittadino3.add(labelPasswordUtente);
+        panelRegistrazioneCittadino3.add(tfPasswordUtente);
 
-        JPanel panelRegistrazioneVaccinati4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelRegistrazioneVaccinati4.add(labelIDVaccinazione);
-        panelRegistrazioneVaccinati4.add(tfIDVaccinazione);
+        JPanel panelRegistrazioneCittadino4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelRegistrazioneCittadino4.add(labelIDVaccinazione);
+        panelRegistrazioneCittadino4.add(tfIDVaccinazione);
 
         JPanel panelBottoni = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelBottoni.add(btnRegistra);
         panelBottoni.add(btnAnnulla);
 
-        this.add(panelRegistrazioneVaccinati1);
-        this.add(panelRegistrazioneVaccinati2);
-        this.add(panelRegistrazioneVaccinati3);
-        this.add(panelRegistrazioneVaccinati4);
+        this.add(panelRegistrazioneCittadino1);
+        this.add(panelRegistrazioneCittadino2);
+        this.add(panelRegistrazioneCittadino3);
+        this.add(panelRegistrazioneCittadino4);
         this.add(panelBottoni);
         this.pack();
         this.setLocationRelativeTo(null);
