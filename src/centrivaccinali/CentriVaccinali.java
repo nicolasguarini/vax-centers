@@ -4,7 +4,6 @@ import centrivaccinali.UI.UIStartMenu;
 
 import java.io.*;
 import java.util.LinkedList;
-import java.util.List;
 
 
 public class CentriVaccinali {
@@ -19,7 +18,23 @@ public class CentriVaccinali {
     }
 
     public static void registraVaccinazione(Vaccinazione vaccinazione){
-        //TODO: implementare logica di registrazione vaccinazioni su file
+        String nomeCentroVaccinale = vaccinazione.getNomeCentroVaccinale();
+        LinkedList<Vaccinazione> vaccinazioni = getVaccinazioni(nomeCentroVaccinale);
+        vaccinazioni.add(vaccinazione);
+        serializzaVaccinazioni(vaccinazioni, nomeCentroVaccinale);
+    }
+
+    static void serializzaVaccinazioni(LinkedList<Vaccinazione> vaccinazioni, String nomeCentroVaccinale){
+        final String filepath = "./data/Vaccinazioni_" + nomeCentroVaccinale + ".txt";
+        try{
+            FileOutputStream fileOutputStream = new FileOutputStream(filepath);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(vaccinazioni);
+            objectOutputStream.close();
+            System.out.println("Oggetto serializzato correttamente");
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     static void serializzaCentriVaccinali(LinkedList<CentroVaccinale> centriVaccinali){
@@ -35,13 +50,34 @@ public class CentriVaccinali {
         }
     }
 
+    public static LinkedList<Vaccinazione> getVaccinazioni(String nomeCentroVaccinale){
+        final String filepath = "./data/Vaccinazioni_" + nomeCentroVaccinale + ".txt";
+        LinkedList<Vaccinazione> vaccinazioni = new LinkedList<>();
+
+        try{
+            File fileVaccinazioni = new File(filepath);
+            if(fileVaccinazioni.createNewFile()){
+                System.out.println("File created: " + fileVaccinazioni.getName());
+            }else{
+                System.out.println("File already exist");
+                FileInputStream fileInputStream = new FileInputStream(fileVaccinazioni);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                vaccinazioni = (LinkedList<Vaccinazione>) objectInputStream.readObject();
+            }
+        }catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+        return vaccinazioni;
+    }
+
     public static LinkedList<CentroVaccinale> getCentriVaccinali(){
-        LinkedList<CentroVaccinale> centriVaccinali = new LinkedList<CentroVaccinale>();
+        LinkedList<CentroVaccinale> centriVaccinali = new LinkedList<>();
 
         try{
             File fileCentriVaccinali = new File("./data/CentriVaccinali.dati.txt");
             if(fileCentriVaccinali.createNewFile()) {
-                System.out.println("File creaded: " + fileCentriVaccinali.getName());
+                System.out.println("File created: " + fileCentriVaccinali.getName());
             }else{
                 System.out.println("File already exists");
                 FileInputStream fileInputStream = new FileInputStream(fileCentriVaccinali);
