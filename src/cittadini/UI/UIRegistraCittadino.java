@@ -113,21 +113,29 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
     }
 
     void registra() {
-        if (tfNomeCittadino.getText().equals("") || tfCognomeCittadino.getText().equals("") || tfCodiceFiscaleCittadino.getText().equals("") 
-        || tfEmail.getText().equals("") || tfNomeUtente.getText().equals("") || tfPasswordUtente.getText().equals("") || tfIDVaccinazione.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Devi inserire tutti i dati per poterti registrare", "ERRORE", JOptionPane.INFORMATION_MESSAGE);
-        } else {
+        if (validaDati(tfNomeCittadino.getText(), tfCognomeCittadino.getText(), tfCodiceFiscaleCittadino.getText(), tfEmail.getText(), tfNomeUtente.getText(), tfPasswordUtente.getPassword().toString(), tfIDVaccinazione.getText())) {
             JOptionPane.showMessageDialog(this, "Registrazione effettuata");
             this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "I dati inseriti sono errati", "ERRORE", JOptionPane.INFORMATION_MESSAGE);
         }
 
         //TODO: Creare memorizzazione effettiva della registrazione
     }
 
+    boolean validaDati(String nomeCittadino, String cognomeCittadino, String cfCittadino, String emailCittadino, String nomeUtenteCittadino, String passwordCittadino, String idCittadino){
+        //TODO: ritornare true se tutti i dati sono validi altrimenti false (comunicare anche cosa non va bene con un messaggio di avviso)
+        return true;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnRegistra) {
-            registra();
+            try{
+                registra();
+            }catch(Exception exception){
+                JOptionPane.showMessageDialog(this,"Errore: " + exception.getMessage());
+            }
         } else if (e.getSource() == btnAnnulla) {
             this.dispose();
         }

@@ -75,22 +75,28 @@ public class UILoginCittadino extends JFrame implements ActionListener {
     }
 
     private void login() {
-        String NomeUtente = tfNomeUtente.getText();
-        String PasswordUtente = tfPasswordUtente.getText();
-        if (tfNomeUtente.getText().equals("") || tfPasswordUtente.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Uno o più campi sono vuoti", "ERRORE", JOptionPane.INFORMATION_MESSAGE);
-        } else {
+        if (validaDati(tfNomeUtente.getText(), tfPasswordUtente.getPassword().toString())) {
             JOptionPane.showMessageDialog(this, "Login effettuato");
             this.dispose();
             //TODO: Creare schermata successiva al login dell'utente
+        } else {
+            JOptionPane.showMessageDialog(this, "Uno o più campi sono errati", "ERRORE", JOptionPane.INFORMATION_MESSAGE);
         }
+    }
 
+    boolean validaDati(String nomeUtente, String passwordUtente){
+        //TODO: ritornare true se tutti i dati sono validi altrimenti false (comunicare anche cosa non va bene con un messaggio di avviso)
+        return true;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnLogin) {
-            login();
+            try{
+                login();
+            }catch(Exception exception){
+                JOptionPane.showMessageDialog(this,"Errore: " + exception.getMessage());
+            }
         } else if (e.getSource() == btnAnnulla) {
             this.dispose();
         }
