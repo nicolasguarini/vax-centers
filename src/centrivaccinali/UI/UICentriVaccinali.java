@@ -12,9 +12,9 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 public class UICentriVaccinali implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
     JFrame frame = new JFrame();
     JLabel labelTitle = new JLabel("CENTRI VACCINALI");
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
     JButton btnRegistraCentroVaccinale = new JButton("REGISTRA CENTRO VACCINALE");
     JButton btnRegistraVaccinato = new JButton("REGISTRA VACCINATO");
     JButton btnIndietro = new JButton("INDIETRO");

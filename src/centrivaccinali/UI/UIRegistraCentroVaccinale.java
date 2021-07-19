@@ -102,13 +102,13 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         panelIndirizzoCentroVaccinale3.add(labelCAP);
         panelIndirizzoCentroVaccinale3.add(tfCAP);
 
-        JPanel panelBottoni = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelBottoni.add(btnRegistra);
-        panelBottoni.add(btnAnnulla);
-
         JPanel panelTipologia = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelTipologia.add(labelTipologiaCentro);
         panelTipologia.add(tipologiaCentroVaccinale);
+
+        JPanel panelBottoni = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
+        panelBottoni.add(btnRegistra);
+        panelBottoni.add(btnAnnulla);
 
         this.add(panelNomeCentroVaccinale);
         this.add(panelIndirizzoCentroVaccinale1);
@@ -149,7 +149,11 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnRegistra){
-            registra();
+            try{
+                registra();
+            }catch(Exception exception){
+                JOptionPane.showMessageDialog(this,"Errore: " + exception.getMessage());
+            }
         }else if(e.getSource() == btnAnnulla){
             this.dispose();
         }

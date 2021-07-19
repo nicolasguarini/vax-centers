@@ -24,9 +24,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     JTextField tfCognomeVaccinato = new JTextField();
     JTextField tfCodiceFiscaleVaccinato = new JTextField();
     JTextField tfDataSomministrazioneVaccino= new JTextField();
-
     JTextField tfIDVaccinazione = new JTextField();
-
     JComboBox selectNomeVaccino = new JComboBox(new String[] { "Pfizer", "AstraZeneca", "Moderna", "J&J" });
     JButton btnRegistra = new JButton("REGISTRA");
     JButton btnAnnulla = new JButton("ANNULLA");
@@ -165,8 +163,10 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         LinkedList<CentroVaccinale> centri = CentriVaccinali.getCentriVaccinali();
         int size = centri.size();
         String[] arCentri = new String[size];
+        CentroVaccinale centro;
+
         for(int i = 0; i < size; i++){
-            CentroVaccinale centro = centri.get(i);
+            centro = centri.get(i);
             arCentri[i] = centro.getNome() + ", " + centro.getIndirizzo().toString();
         }
         return arCentri;
@@ -180,7 +180,6 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
             }catch(Exception exception){
                 JOptionPane.showMessageDialog(this,"Errore: " + exception.getMessage());
             }
-
         } else if (e.getSource() == btnAnnulla) {
             this.dispose();
         }
