@@ -133,73 +133,41 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         String tipologiaCentro  = tipologiaCentroVaccinale.getSelectedItem().toString();
 
         if(validaDati(nome, nomeIndirizzo, civico, comune, provincia, CAP)){
-            //Pongo la prima lettera delle stringhe maiuscola + provincia tutta maiuscola
-            Indirizzo indirizzo = new Indirizzo(qualificatore, Character.toUpperCase(nomeIndirizzo.charAt(0)) + nomeIndirizzo.substring(1, nomeIndirizzo.length()).toLowerCase(), civico, Character.toUpperCase(comune.charAt(0)) + comune.substring(1, comune.length()).toLowerCase(), provincia.toUpperCase(), CAP);
-            CentroVaccinale centroVaccinale = new CentroVaccinale(Character.toUpperCase(nome.charAt(0)) + nome.substring(1, nome.length()).toLowerCase(), indirizzo, tipologiaCentro);
+            Indirizzo indirizzo = new Indirizzo(qualificatore, Character.toUpperCase(nomeIndirizzo.charAt(0)) + nomeIndirizzo.substring(1).toLowerCase(), civico, Character.toUpperCase(comune.charAt(0)) + comune.substring(1).toLowerCase(), provincia.toUpperCase(), CAP);
+            CentroVaccinale centroVaccinale = new CentroVaccinale(Character.toUpperCase(nome.charAt(0)) + nome.substring(1).toLowerCase(), indirizzo, tipologiaCentro);
 
             CentriVaccinali.registraCentroVaccinale(centroVaccinale);
+            this.dispose();
         }
-
-        this.dispose();
     }
 
     boolean validaDati(String nome, String nomeIndirizzo, String civico, String comune, String provincia, String CAP){
+        //PER LE ALTRE VALIDAZIONI TENERE QUESTA COME ESEMPIO CHE E' ON POINT
         String messaggio = "";
 
-        String[] datiCentroVaccinale = {nome, nomeIndirizzo, comune, provincia, civico, CAP}; //0 nome, 1 nomeIndirizzo, 2 comune, 3 provincia, 4 civico, 5 CAP
-
-        for(int i = 0; i < datiCentroVaccinale.length; i++)
-        {
-            if(!datiCentroVaccinale[i].isEmpty() && datiCentroVaccinale[i] != null) { //controllo dato non sia vuoto
-                for (char c : datiCentroVaccinale[i].toCharArray()) {
-                    if (Character.isDigit(c)) { //controllo che ogni carattere sia o meno una cifra
-                        if (i < 4) { // da posizione 0 a 4 le stringhe devono essere solo alfabetiche
-                            messaggio +=datiCentroVaccinale[i] + " contiene cifre: reinserire i dati\n";
-                            break;
-                        }
-                    } else {
-                        if (i >= 4) { //posizioni 4 e 5 devono essere solo cifre
-                            messaggio +=datiCentroVaccinale[i] + " deve contenere solo cifre: reinserire i dati\n";
-                            break;
-                        }
-                    }
-                }
-                switch (i) //controllo che provincia, civico e CAP abbiano la lunghezza corretta
-                {
-                    case 3: //Provincia
-                        if (datiCentroVaccinale[i].length() != 2) {
-                            messaggio +=datiCentroVaccinale[i] + " è una provincia, pertanto richiede solo due lettere (es: VA)\n";
-                        }
-                        break;
-                    case 4: //Civico
-                        if (datiCentroVaccinale[i].length() > 3) {
-                            messaggio +=datiCentroVaccinale[i] + " è un civico, ricontrollare i dati inseriti\n";
-                        }
-                        break;
-                    case 5: //CAP
-                        if (datiCentroVaccinale[i].length() != 5) {
-                            messaggio +=datiCentroVaccinale[i] + " è una CAP, pertanto deve contenere esattamente 5 cifre\n";
-                        }
-                        break;
-                }
-            }else{
-                messaggio +="Uno o più dati inseriti sono vuoti\n";
-                break;
-            }
+        if(nome.equals("") || nomeIndirizzo.equals("") || civico.equals("") || comune.equals("") || provincia.equals("") || CAP.equals("")){
+            JOptionPane.showMessageDialog(this, "Inserisci tutti i dati!");
+            return false;
         }
+
+        if(nome.matches(".*\\d.*")) messaggio += "Il nome non può contenere cifre! \n";
+        if(nomeIndirizzo.matches(".*\\d.*")) messaggio += "L'indirizzo non può contenere cifre! \n";
+        if(comune.matches(".*\\d.*")) messaggio += "Il comune non può contenere cifre! \n";
+        if(provincia.matches(".*\\d.*")) messaggio += "La sigla provincia non può contenere cifre (es: VA)! \n";
+        if(!CAP.matches("^[0-9]*$")) messaggio += "Il CAP deve contenere solo cifre (es: 21020)! \n";
+        if(CAP.length() != 5) messaggio += "Il CAP deve essere di 5 cifre! \n";
+        if(provincia.length() != 2) messaggio += "La sigla provincia deve essere di 2 lettere! \n";
+
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
             return false;
         }else return true;
     }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnRegistra){
-            try{
-                registra();
-            }catch(Exception exception){
-                JOptionPane.showMessageDialog(this,"Errore: " + exception.getMessage());
-            }
+            registra();
         }else if(e.getSource() == btnAnnulla){
             this.dispose();
         }
