@@ -133,8 +133,9 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         String tipologiaCentro  = tipologiaCentroVaccinale.getSelectedItem().toString();
 
         if(validaDati(nome, nomeIndirizzo, civico, comune, provincia, CAP)){
-            Indirizzo indirizzo = new Indirizzo(qualificatore, nomeIndirizzo, civico, comune, provincia, CAP);
-            CentroVaccinale centroVaccinale = new CentroVaccinale(nome, indirizzo, tipologiaCentro);
+            //Pongo la prima lettera delle stringhe maiuscola + provincia tutta maiuscola
+            Indirizzo indirizzo = new Indirizzo(qualificatore, Character.toUpperCase(nomeIndirizzo.charAt(0)) + nomeIndirizzo.substring(1, nomeIndirizzo.length()).toLowerCase(), civico, Character.toUpperCase(comune.charAt(0)) + comune.substring(1, comune.length()).toLowerCase(), provincia.toUpperCase(), CAP);
+            CentroVaccinale centroVaccinale = new CentroVaccinale(Character.toUpperCase(nome.charAt(0)) + nome.substring(1, nome.length()).toLowerCase(), indirizzo, tipologiaCentro);
 
             CentriVaccinali.registraCentroVaccinale(centroVaccinale);
         }
@@ -143,14 +144,49 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
     }
 
     boolean validaDati(String nome, String nomeIndirizzo, String civico, String comune, String provincia, String CAP){
-        //TODO: ritornare true se tutti i dati sono validi altrimenti false (comunicare anche cosa non va bene con un messaggio di avviso)
-        // 1) controllare che TUTTI i campi NON siano vuoti, in tal caso RITORNARE SUBITO FALSE senza continuare con ulteriori controlli
-        // 2) controllare ogni dato e se c'è qualcosa che non va aggiungere alla stringa messaggio il motivo seguito da '\n'
-        // 3) se la stringa messaggio è vuota (-> non ci sono problemi) si ritorna true, altrimenti false
         String messaggio = "";
 
-        // ...
+        String[] datiCentroVaccinale = {nome, nomeIndirizzo, comune, provincia, civico, CAP}; //0 nome, 1 nomeIndirizzo, 2 comune, 3 provincia, 4 civico, 5 CAP
 
+        for(int i = 0; i < datiCentroVaccinale.length; i++)
+        {
+            if(!datiCentroVaccinale[i].isEmpty() && datiCentroVaccinale[i] != null) { //controllo dato non sia vuoto
+                for (char c : datiCentroVaccinale[i].toCharArray()) {
+                    if (Character.isDigit(c)) { //controllo che ogni carattere sia o meno una cifra
+                        if (i < 4) { // da posizione 0 a 4 le stringhe devono essere solo alfabetiche
+                            messaggio +=datiCentroVaccinale[i] + " contiene cifre: reinserire i dati\n";
+                            break;
+                        }
+                    } else {
+                        if (i >= 4) { //posizioni 4 e 5 devono essere solo cifre
+                            messaggio +=datiCentroVaccinale[i] + " deve contenere solo cifre: reinserire i dati\n";
+                            break;
+                        }
+                    }
+                }
+                switch (i) //controllo che provincia, civico e CAP abbiano la lunghezza corretta
+                {
+                    case 3: //Provincia
+                        if (datiCentroVaccinale[i].length() != 2) {
+                            messaggio +=datiCentroVaccinale[i] + " è una provincia, pertanto richiede solo due lettere (es: VA)\n";
+                        }
+                        break;
+                    case 4: //Civico
+                        if (datiCentroVaccinale[i].length() > 3) {
+                            messaggio +=datiCentroVaccinale[i] + " è un civico, ricontrollare i dati inseriti\n";
+                        }
+                        break;
+                    case 5: //CAP
+                        if (datiCentroVaccinale[i].length() != 5) {
+                            messaggio +=datiCentroVaccinale[i] + " è una CAP, pertanto deve contenere esattamente 5 cifre\n";
+                        }
+                        break;
+                }
+            }else{
+                messaggio +="Uno o più dati inseriti sono vuoti\n";
+                break;
+            }
+        }
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
             return false;
