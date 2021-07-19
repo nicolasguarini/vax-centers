@@ -1,11 +1,15 @@
 package cittadini.UI;
 
+import cittadini.Cittadini;
+import cittadini.Cittadino;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
 public class UIRegistraCittadino extends JFrame implements ActionListener {
@@ -112,20 +116,39 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    void registra() {
-        if (validaDati(tfNomeCittadino.getText(), tfCognomeCittadino.getText(), tfCodiceFiscaleCittadino.getText(), tfEmail.getText(), tfNomeUtente.getText(), tfPasswordUtente.getPassword().toString(), tfIDVaccinazione.getText())) {
-            JOptionPane.showMessageDialog(this, "Registrazione effettuata");
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "I dati inseriti sono errati", "ERRORE", JOptionPane.INFORMATION_MESSAGE);
-        }
+    void registra() throws NoSuchAlgorithmException {
+        String nome = tfNomeCittadino.getText();
+        String cognome = tfCognomeCittadino.getText();
+        String email = tfEmail.getText();
+        String cf = tfCodiceFiscaleCittadino.getText();
+        String username = tfNomeUtente.getText();
+        String password = tfPasswordUtente.getPassword().toString();
+        String idVaccinazione = tfIDVaccinazione.getText();
 
-        //TODO: Creare memorizzazione effettiva della registrazione
+        if (validaDati(nome, cognome, cf, email, username, password, idVaccinazione)){
+            Cittadino cittadino = new Cittadino(nome, cognome, email, cf, username, Cittadini.sha256(password), idVaccinazione);
+            Cittadini.registraCittadino(cittadino);
+            this.dispose();
+        }
     }
 
-    boolean validaDati(String nomeCittadino, String cognomeCittadino, String cfCittadino, String emailCittadino, String nomeUtenteCittadino, String passwordCittadino, String idCittadino){
+
+    boolean validaDati(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione){
         //TODO: ritornare true se tutti i dati sono validi altrimenti false (comunicare anche cosa non va bene con un messaggio di avviso)
-        return true;
+        // 1) controllare che TUTTI i campi NON siano vuoti, in tal caso RITORNARE SUBITO FALSE senza continuare con ulteriori controlli
+        // 2) controllare ogni dato e se c'è qualcosa che non va aggiungere alla stringa messaggio il motivo seguito da '\n'
+        // 3) se la stringa messaggio è vuota (-> non ci sono problemi) si ritorna true, altrimenti false
+        String messaggio = "";
+
+        // ...
+
+        if(!Cittadini.checkUsername(username))
+            messaggio += "L'username esiste già \n";
+
+        if(!messaggio.equals("")){
+            JOptionPane.showMessageDialog(this, messaggio);
+            return false;
+        }else return true;
     }
 
     @Override
@@ -134,8 +157,9 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
             try{
                 registra();
             }catch(Exception exception){
-                JOptionPane.showMessageDialog(this,"Errore: " + exception.getMessage());
+                exception.printStackTrace();
             }
+
         } else if (e.getSource() == btnAnnulla) {
             this.dispose();
         }

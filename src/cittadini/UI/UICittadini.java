@@ -1,6 +1,8 @@
 package cittadini.UI;
 
 import centrivaccinali.UI.*;
+import cittadini.Cittadini;
+import cittadini.Cittadino;
 
 import javax.swing.*;
 import javax.swing.border.Border;

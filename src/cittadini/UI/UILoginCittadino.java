@@ -86,17 +86,23 @@ public class UILoginCittadino extends JFrame implements ActionListener {
 
     boolean validaDati(String nomeUtente, String passwordUtente){
         //TODO: ritornare true se tutti i dati sono validi altrimenti false (comunicare anche cosa non va bene con un messaggio di avviso)
-        return true;
+        // 1) controllare che TUTTI i campi NON siano vuoti, in tal caso RITORNARE SUBITO FALSE senza continuare con ulteriori controlli
+        // 2) controllare ogni dato e se c'è qualcosa che non va aggiungere alla stringa messaggio il motivo seguito da '\n'
+        // 3) se la stringa messaggio è vuota (-> non ci sono problemi) si ritorna true, altrimenti false
+        String messaggio = "";
+
+        // ...
+
+        if(!messaggio.equals("")){
+            JOptionPane.showMessageDialog(this, messaggio);
+            return false;
+        }else return true;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnLogin) {
-            try{
-                login();
-            }catch(Exception exception){
-                JOptionPane.showMessageDialog(this,"Errore: " + exception.getMessage());
-            }
+            login();
         } else if (e.getSource() == btnAnnulla) {
             this.dispose();
         }
