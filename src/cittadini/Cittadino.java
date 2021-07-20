@@ -20,4 +20,6 @@ public class Cittadino implements Serializable {
     }
 
     public String getUsername(){return username;}
+    public String getEmail(){return email;}
+    public String getPassword(){return password;}
 }

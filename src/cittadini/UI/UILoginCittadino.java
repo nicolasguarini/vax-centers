@@ -1,11 +1,15 @@
 package cittadini.UI;
 
+import cittadini.Cittadini;
+import cittadini.Cittadino;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class UILoginCittadino extends JFrame implements ActionListener {
@@ -75,23 +79,27 @@ public class UILoginCittadino extends JFrame implements ActionListener {
     }
 
     private void login() {
-        if (validaDati(tfNomeUtente.getText(), tfPasswordUtente.getPassword().toString())) {
-            JOptionPane.showMessageDialog(this, "Login effettuato");
-            this.dispose();
-            //TODO: Creare schermata successiva al login dell'utente
-        } else {
-            JOptionPane.showMessageDialog(this, "Uno o più campi sono errati", "ERRORE", JOptionPane.INFORMATION_MESSAGE);
+        String nomeUtente = tfNomeUtente.getText();
+        String password = new String(tfPasswordUtente.getPassword());
+        String passwordHashed = Cittadini.sha256(password);
+        if (validaDati(nomeUtente, password)) {
+            for(Cittadino i : Cittadini.getCittadini()){
+                if(i.getUsername().equals(nomeUtente) && i.getPassword().equals(passwordHashed)){
+                    System.out.println("Loggato " + i.getUsername());
+                    //TODO: new UIUtenteLoggato(i);
+                    this.dispose();
+                }
+            }
+
+            JOptionPane.showMessageDialog(this, "Nome utente o password non corretti\n");
         }
     }
 
-    boolean validaDati(String nomeUtente, String passwordUtente){
-        //TODO: ritornare true se tutti i dati sono validi altrimenti false (comunicare anche cosa non va bene con un messaggio di avviso)
-        // 1) controllare che TUTTI i campi NON siano vuoti, in tal caso RITORNARE SUBITO FALSE senza continuare con ulteriori controlli
-        // 2) controllare ogni dato e se c'è qualcosa che non va aggiungere alla stringa messaggio il motivo seguito da '\n'
-        // 3) se la stringa messaggio è vuota (-> non ci sono problemi) si ritorna true, altrimenti false
+    boolean validaDati(String nomeUtente, String password){
         String messaggio = "";
 
-        // ...
+        if(nomeUtente.equals("") || password.equals(""))
+            messaggio += "Inserisci tutti i dati \n";
 
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);

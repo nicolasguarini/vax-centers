@@ -1,6 +1,9 @@
 package cittadini;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.Base64;
 import java.util.LinkedList;
 
 public class Cittadini {
@@ -44,14 +47,28 @@ public class Cittadini {
     }
 
     public static String sha256(String password) {
-        //TODO: criptare una stringa in sha-256  (NB due stringhe uguali devono dare LO STESSO hash!! FARE DELLE PROVE PER VERIFICARLO)
-        return password;
+        String encoded = "";
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+            encoded = Base64.getEncoder().encodeToString(hash);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return encoded;
     }
 
     public static boolean checkUsername(String username){
-        LinkedList<Cittadino> cittadini = getCittadini();
-        for(Cittadino i : cittadini)
+        for(Cittadino i : getCittadini())
             if(i.getUsername().equals(username)) return false;
+
+        return true;
+    }
+
+    public static boolean checkEmail(String email){
+        for(Cittadino i : getCittadini())
+            if(i.getEmail().equals(email)) return false;
 
         return true;
     }

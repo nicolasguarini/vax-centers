@@ -9,7 +9,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class UIRegistraCittadino extends JFrame implements ActionListener {
@@ -116,13 +116,13 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    void registra() throws NoSuchAlgorithmException {
+    void registra(){
         String nome = tfNomeCittadino.getText();
         String cognome = tfCognomeCittadino.getText();
         String email = tfEmail.getText();
         String cf = tfCodiceFiscaleCittadino.getText();
         String username = tfNomeUtente.getText();
-        String password = tfPasswordUtente.getPassword().toString();
+        String password = new String(tfPasswordUtente.getPassword());
         String idVaccinazione = tfIDVaccinazione.getText();
 
         if (validaDati(nome, cognome, cf, email, username, password, idVaccinazione)){
@@ -143,14 +143,14 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
 
         if(nome.matches(".*\\d.*")) messaggio += "Il nome non può contenere cifre! \n";
         if(cognome.matches(".*\\d.*")) messaggio += "Il cognome non può contenere cifre! \n";
-        if(!cf.matches("([A-Za-z]{6})([0-9]{2})([A-Za-z]{1})([0-9]{2})([A-Za-z]{1})([0-9]{3})([A-Za-z]{1})")) messaggio += "Il codice fiscale inserito non rispetta il formato corretto! \n";
-        if(!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) messaggio += "Email non valida! \n";
+        if(!cf.matches("([A-Za-z]{6})([0-9]{2})([A-Za-z])([0-9]{2})([A-Za-z])([0-9]{3})([A-Za-z])")) messaggio += "Il codice fiscale inserito non rispetta il formato corretto! \n";
+        if(!email.matches("^[\\w-]+@([\\w-]+\\.)+[\\w-]{2,4}$")) messaggio += "Email non valida! \n";
         if(!username.matches("^[a-z0-9_-]{3,15}$")) messaggio += "L'username deve essere compreso tra 3 e 15 caratteri alfanumerici! \n";
-        if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$")) messaggio += "La password deve contenere 6 caratteri, un carattere maiuscolo, minuscolo e nessuno spazio! \n";
+        if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$")) messaggio += "La password deve contenere 6 caratteri, \nun carattere maiuscolo, minuscolo, un numero e nessuno spazio! \n";
         if(!idVaccinazione.matches("[0-9]{16}")) messaggio += "L'id della vaccinazione deve contenere 16 cifre! \n";
 
         if(!Cittadini.checkUsername(username)) messaggio += "L'username esiste già \n";
-        //TODO: Controllare se esista già una email registrata.
+        if(!Cittadini.checkEmail(email)) messaggio += "L'email esiste già \n";
         
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
@@ -161,12 +161,7 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnRegistra) {
-            try{
-                registra();
-            }catch(Exception exception){
-                exception.printStackTrace();
-            }
-
+            registra();
         } else if (e.getSource() == btnAnnulla) {
             this.dispose();
         }
