@@ -134,17 +134,24 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
 
 
     boolean validaDati(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione){
-        //TODO: ritornare true se tutti i dati sono validi altrimenti false (comunicare anche cosa non va bene con un messaggio di avviso)
-        // 1) controllare che TUTTI i campi NON siano vuoti, in tal caso RITORNARE SUBITO FALSE senza continuare con ulteriori controlli
-        // 2) controllare ogni dato e se c'è qualcosa che non va aggiungere alla stringa messaggio il motivo seguito da '\n'
-        // 3) se la stringa messaggio è vuota (-> non ci sono problemi) si ritorna true, altrimenti false
         String messaggio = "";
 
-        // ...
+        if(nome.equals("") || cognome.equals("") || cf.equals("") || email.equals("") || username.equals("") || password.equals("") || idVaccinazione.equals("")){
+            JOptionPane.showMessageDialog(this, "Inserisci tutti i dati!");
+            return false;
+        }
 
-        if(!Cittadini.checkUsername(username))
-            messaggio += "L'username esiste già \n";
+        if(nome.matches(".*\\d.*")) messaggio += "Il nome non può contenere cifre! \n";
+        if(cognome.matches(".*\\d.*")) messaggio += "Il cognome non può contenere cifre! \n";
+        if(!cf.matches("([A-Za-z]{6})([0-9]{2})([A-Za-z]{1})([0-9]{2})([A-Za-z]{1})([0-9]{3})([A-Za-z]{1})")) messaggio += "Il codice fiscale inserito non rispetta il formato corretto! \n";
+        if(!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) messaggio += "Email non valida! \n";
+        if(!username.matches("^[a-z0-9_-]{3,15}$")) messaggio += "L'username deve essere compreso tra 3 e 15 caratteri alfanumerici! \n";
+        if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$")) messaggio += "La password deve contenere 6 caratteri, un carattere maiuscolo, minuscolo e nessuno spazio! \n";
+        if(!idVaccinazione.matches("[0-9]{16}")) messaggio += "L'id della vaccinazione deve contenere 16 cifre! \n";
 
+        if(!Cittadini.checkUsername(username)) messaggio += "L'username esiste già \n";
+        //TODO: Controllare se esista già una email registrata.
+        
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
             return false;
