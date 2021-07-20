@@ -153,10 +153,8 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         if(nome.matches(".*\\d.*")) messaggio += "Il nome non può contenere cifre! \n";
         if(nomeIndirizzo.matches(".*\\d.*")) messaggio += "L'indirizzo non può contenere cifre! \n";
         if(comune.matches(".*\\d.*")) messaggio += "Il comune non può contenere cifre! \n";
-        if(provincia.matches(".*\\d.*")) messaggio += "La sigla provincia non può contenere cifre (es: VA)! \n";
-        if(!CAP.matches("^[0-9]*$")) messaggio += "Il CAP deve contenere solo cifre (es: 21020)! \n";
-        if(CAP.length() != 5) messaggio += "Il CAP deve essere di 5 cifre! \n";
-        if(provincia.length() != 2) messaggio += "La sigla provincia deve essere di 2 lettere! \n";
+        if(!provincia.matches("[A-Za-z]{2}")) messaggio += "La sigla provincia deve essere lunga 2 caratteri (es: VA)! \n";
+        if(!CAP.matches("[0-9]{5}")) messaggio += "Il CAP deve contenere 5 cifre (es: 21020)! \n";
 
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);

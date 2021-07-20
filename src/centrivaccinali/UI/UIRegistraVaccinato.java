@@ -13,6 +13,10 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.Objects;
@@ -145,23 +149,42 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         String nomeVaccino = selectNomeVaccino.getSelectedItem().toString();
         String strData = tfDataSomministrazioneVaccino.getText();
 
-        if(validaDati(nome, cognome, cf, idVaccinazione, nomeVaccino, strData)){
+        if(validaDati(nome, cognome, cf, idVaccinazione, strData)){
             Date data = new SimpleDateFormat("dd/MM/yyyy").parse(tfDataSomministrazioneVaccino.getText());
-            Vaccinazione vaccinazione = new Vaccinazione(nome, cognome, cf, idVaccinazione, data, centroVaccinale, nomeVaccino);
+            Vaccinazione vaccinazione = new Vaccinazione(nome, cognome, cf.toUpperCase(), idVaccinazione, data, centroVaccinale, nomeVaccino);
             CentriVaccinali.registraVaccinazione(vaccinazione);
         }
 
         this.dispose();
     }
 
-    boolean validaDati(String nome, String cognome, String cf, String idVaccinazione, String nomeVaccino, String data){
-        //TODO: ritornare true se tutti i dati sono validi altrimenti false (comunicare anche cosa non va bene con un messaggio di avviso)
-        // 1) controllare che TUTTI i campi NON siano vuoti, in tal caso RITORNARE SUBITO FALSE senza continuare con ulteriori controlli
-        // 2) controllare ogni dato e se c'è qualcosa che non va aggiungere alla stringa messaggio il motivo seguito da '\n'
-        // 3) se la stringa messaggio è vuota (-> non ci sono problemi) si ritorna true, altrimenti false
+    boolean validaDati(String nome, String cognome, String cf, String idVaccinazione, String data){
         String messaggio = "";
+        LocalDate data1 = LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));;
+        LocalDate dataAttuale = LocalDate.now();
+        String[] dataInserita = data.split("/");
 
-        // ...
+        if(nome.equals("") || cognome.equals("") || cf.equals("") || idVaccinazione.equals("") || data.equals("")){
+            JOptionPane.showMessageDialog(this, "Inserisci tutti i dati!");
+            return false;
+        }
+
+        if(nome.matches(".*\\d.*")) messaggio += "Il nome non può contenere cifre! \n";
+        if(cognome.matches(".*\\d.*")) messaggio += "Il cognome non può contenere cifre! \n";
+        if(!cf.matches("([A-Za-z]{6})([0-9]{2})([A-Za-z]{1})([0-9]{2})([A-Za-z]{1})([0-9]{3})([A-Za-z]{1})")) messaggio += "Il codice fiscale inserito non rispetta il formato corretto! \n";
+        if(!data.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})")) messaggio += "Inserire una data valida (gg/mm/aaaa)! \n";
+        if(!idVaccinazione.matches("[0-9]{16}")) messaggio += "L'id della vaccinazione deve contenere 16 cifre! \n";
+
+        //Controllo validità data
+        if((Integer.parseInt(dataInserita[0]) >= 1 && Integer.parseInt(dataInserita[0]) <= 31) && (Integer.parseInt(dataInserita[1]) >= 1 && Integer.parseInt(dataInserita[1]) <= 12) && (Integer.parseInt(dataInserita[2]) <= dataAttuale.get(ChronoField.YEAR_OF_ERA))) {
+            if (data1.compareTo(dataAttuale) > 0) {
+                messaggio += "La data inserita e' una data futura rispetto a quella odierna! \n";
+            }
+        }
+        else
+        {
+            messaggio += "La data inserita non e' corretta! \n";
+        }
 
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
