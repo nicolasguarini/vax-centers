@@ -1,8 +1,6 @@
 package cittadini.UI;
 
 import centrivaccinali.UI.*;
-import cittadini.Cittadini;
-import cittadini.Cittadino;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -87,7 +85,7 @@ public class UICittadini implements ActionListener {
             frame.dispose();
             new UIStartMenu();
         } else if (e.getSource() == btnConsultaCentri) {
-            // TODO: Creare visualizzazione dei centri vaccinali
+            new UICercaCentriVaccinali();
         } else if (e.getSource() == btnRegistrati) {
             new UIRegistraCittadino();
         } else if (e.getSource() == btnLogIn) {
