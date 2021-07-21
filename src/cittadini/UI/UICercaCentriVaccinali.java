@@ -10,6 +10,7 @@ public class UICercaCentriVaccinali extends JFrame {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
     JButton btnCercaPerNome = new JButton("CERCA");
     JButton btnCercaPerComuneETipologia = new JButton("CERCA");
+    JButton btnVisualizzaTutti = new JButton("VISUALIZZA TUTTI");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
     public UICercaCentriVaccinali(){
@@ -49,14 +50,24 @@ public class UICercaCentriVaccinali extends JFrame {
         panelCercaPerComuneETipologia.add(cbTipologie);
         panelCercaPerComuneETipologia.add(btnCercaPerComuneETipologia);
 
+        JPanel panelVisualizzaTutti = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        btnVisualizzaTutti.setPreferredSize(new Dimension(200, 35));
+        btnVisualizzaTutti.setFocusable(false);
+        btnVisualizzaTutti.setFont(new Font("Montserrat", Font.BOLD, 15));
+        btnVisualizzaTutti.setBackground(new Color(232, 47, 125));
+        btnVisualizzaTutti.setForeground(Color.WHITE);
+        btnVisualizzaTutti.setBorder(border);
+        panelVisualizzaTutti.add(btnVisualizzaTutti);
+
         this.setTitle("Cerca Centri Vaccinali");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setLayout(new GridLayout(0, 1, 10, 10));
+        this.setLayout(new GridLayout(0, 1, 15, 15));
         this.setIconImage(img.getImage());
         this.setResizable(false);
 
         this.add(panelCercaPerNome);
         this.add(panelCercaPerComuneETipologia);
+        this.add(panelVisualizzaTutti);
 
         this.pack();
         this.setLocationRelativeTo(null);
