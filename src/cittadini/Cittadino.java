@@ -25,4 +25,5 @@ public class Cittadino implements Serializable {
     public String getPassword(){return password;}
     public String getIdVaccinazione(){return idVaccinazione;}
     public String getCF(){return cf;}
+    public String getNome(){return nome;}
 }

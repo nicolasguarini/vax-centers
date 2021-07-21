@@ -20,6 +20,8 @@ public class Indirizzo implements Serializable {
         this.CAP = CAP;
     }
 
+    public String getComune(){return comune;}
+
     public String toString(){
         return qualificatore + " " + nome + " " + numeroCivico + ", " + comune + " (" + provincia + ") " + CAP;
     }

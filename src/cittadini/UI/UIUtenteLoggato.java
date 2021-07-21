@@ -1,6 +1,6 @@
 package cittadini.UI;
 
-import centrivaccinali.UI.*;
+import cittadini.Cittadino;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 public class UIUtenteLoggato extends JFrame implements ActionListener {
-    String nomeUtente;
+    Cittadino cittadinoLoggato;
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
     
     JButton btnVisualizzaCentri = new JButton("VISUALIZZA CENTRI");
@@ -20,13 +20,13 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
     JButton btnLogout = new JButton("LOGOUT");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
-    public UIUtenteLoggato(String nomeUtente) {
-        this.nomeUtente = nomeUtente;
+    public UIUtenteLoggato(Cittadino cittadinoLoggato) {
+        this.cittadinoLoggato = cittadinoLoggato;
         setupFrame();
     }
 
     private void setupFrame() {
-        JLabel labelTitolo = new JLabel("Ciao, " + nomeUtente);
+        JLabel labelTitolo = new JLabel("Ciao, " + cittadinoLoggato.getNome());
         labelTitolo.setBounds(430, 165, 500, 100);
         labelTitolo.setFont(new Font("Montserrat", Font.BOLD, 40));
         labelTitolo.setHorizontalTextPosition(JLabel.CENTER);
@@ -56,7 +56,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         btnLogout.addActionListener(this);
 
         this.setTitle("Home - area personale");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setSize(1280, 720);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
@@ -78,11 +78,9 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
             int Risposta = JOptionPane.showConfirmDialog(null, "Sei sicuro di fare logout?", "Conferma", JOptionPane.YES_NO_OPTION);
             if (Risposta == JOptionPane.YES_OPTION) {
                 this.dispose();
-                new UICittadini();
             }
-            
         } else if (e.getSource() == btnVisualizzaCentri) {
-            //TODO: Visualizzare centri
+            new UICercaCentriVaccinali();
         } else if (e.getSource() == btnSegnalaEventi) {
             //TODO: Segnalare eventi avversi
         }
