@@ -149,7 +149,6 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$")) messaggio += "La password deve contenere 6 caratteri, \nun carattere maiuscolo, minuscolo, un numero e nessuno spazio! \n";
         if(!idVaccinazione.matches("[0-9]{16}")) messaggio += "L'id della vaccinazione deve contenere 16 cifre! \n";
 
-        // TODO: il check dell'email e del cf non fungono, capire il perchè
         if(!Cittadini.checkUsername(username)) messaggio += "L'username esiste già \n";
         if(!Cittadini.checkEmail(email)) messaggio += "L'email esiste già \n";
         if(!Cittadini.checkIdVaccinazione(idVaccinazione)) messaggio += "L'identificatore della vaccinazione esiste già \n";
