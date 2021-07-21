@@ -22,7 +22,7 @@ public class Cittadini {
                 System.out.println("File created: " + fileCittadini.getName());
                 serializzaCittadini(new LinkedList<Cittadino>());
             }else{
-                System.out.println("File already exist");
+                //System.out.println("File already exist");
                 FileInputStream fileInputStream = new FileInputStream(fileCittadini);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 cittadini = (LinkedList<Cittadino>) objectInputStream.readObject();
@@ -61,14 +61,14 @@ public class Cittadini {
 
     public static boolean checkUsername(String username){
         for(Cittadino i : getCittadini())
-            if(i.getUsername().equals(username)) return false;
+            if(i.getUsername().equalsIgnoreCase(username)) return false;
 
         return true;
     }
 
     public static boolean checkEmail(String email){
         for(Cittadino i : getCittadini())
-            if(i.getEmail().equals(email)) return false;
+            if (i.getEmail().equalsIgnoreCase(email)) return false;
 
         return true;
     }
@@ -82,7 +82,7 @@ public class Cittadini {
 
     public static boolean checkCF(String cf){
         for(Cittadino i : getCittadini())
-            if(i.getCF().equals(cf)) return false;
+            if(i.getCF().equalsIgnoreCase(cf)) return false;
 
         return true;
     }

@@ -126,13 +126,13 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         String idVaccinazione = tfIDVaccinazione.getText();
 
         if (validaDati(nome, cognome, cf, email, username, password, idVaccinazione)){
-            Cittadino cittadino = new Cittadino(Character.toUpperCase(nome.charAt(0)) + nome.substring(1).toLowerCase(), Character.toUpperCase(cognome.charAt(0)) + cognome.substring(1).toLowerCase(), email, cf.toUpperCase(), username, Cittadini.sha256(password), idVaccinazione);
+            Cittadino cittadino = new Cittadino(Character.toUpperCase(nome.charAt(0)) + nome.substring(1).toLowerCase(), Character.toUpperCase(cognome.charAt(0)) + cognome.substring(1).toLowerCase(), cf.toUpperCase(), email, username, Cittadini.sha256(password), idVaccinazione);
             Cittadini.registraCittadino(cittadino);
             this.dispose();
         }
     }
 
-
+//
     boolean validaDati(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione){
         String messaggio = "";
 
@@ -152,7 +152,7 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         if(!Cittadini.checkUsername(username)) messaggio += "L'username esiste già \n";
         if(!Cittadini.checkEmail(email)) messaggio += "L'email esiste già \n";
         if(!Cittadini.checkIdVaccinazione(idVaccinazione)) messaggio += "L'identificatore della vaccinazione esiste già \n";
-        if(!Cittadini.checkCF(cf.toUpperCase())) messaggio += "Il codice fiscale esiste già \n";
+        if(!Cittadini.checkCF(cf)) messaggio += "Il codice fiscale esiste già \n";
         
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
