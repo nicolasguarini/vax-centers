@@ -72,4 +72,18 @@ public class Cittadini {
 
         return true;
     }
+
+    public static boolean checkIdVaccinazione(String idVaccinazione){
+        for(Cittadino i : getCittadini())
+            if(i.getIdVaccinazione().equals(idVaccinazione)) return false;
+
+        return true;
+    }
+
+    public static boolean checkCF(String cf){
+        for(Cittadino i : getCittadini())
+            if(i.getCF().equals(cf)) return false;
+
+        return true;
+    }
 }

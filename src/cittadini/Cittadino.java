@@ -3,6 +3,7 @@ package cittadini;
 import java.io.Serializable;
 
 public class Cittadino implements Serializable {
+    private static final long serialVersionUID = -3712425753326956399L;
     String nome, cognome, cf, email, username, password, idVaccinazione;
 
     public Cittadino(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione){
@@ -22,4 +23,6 @@ public class Cittadino implements Serializable {
     public String getUsername(){return username;}
     public String getEmail(){return email;}
     public String getPassword(){return password;}
+    public String getIdVaccinazione(){return idVaccinazione;}
+    public String getCF(){return cf;}
 }

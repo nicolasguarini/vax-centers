@@ -126,7 +126,7 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         String idVaccinazione = tfIDVaccinazione.getText();
 
         if (validaDati(nome, cognome, cf, email, username, password, idVaccinazione)){
-            Cittadino cittadino = new Cittadino(nome, cognome, email, cf, username, Cittadini.sha256(password), idVaccinazione);
+            Cittadino cittadino = new Cittadino(Character.toUpperCase(nome.charAt(0)) + nome.substring(1).toLowerCase(), Character.toUpperCase(cognome.charAt(0)) + cognome.substring(1).toLowerCase(), email, cf.toUpperCase(), username, Cittadini.sha256(password), idVaccinazione);
             Cittadini.registraCittadino(cittadino);
             this.dispose();
         }
@@ -145,12 +145,15 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         if(cognome.matches(".*\\d.*")) messaggio += "Il cognome non può contenere cifre! \n";
         if(!cf.matches("([A-Za-z]{6})([0-9]{2})([A-Za-z])([0-9]{2})([A-Za-z])([0-9]{3})([A-Za-z])")) messaggio += "Il codice fiscale inserito non rispetta il formato corretto! \n";
         if(!email.matches("^[\\w-]+@([\\w-]+\\.)+[\\w-]{2,4}$")) messaggio += "Email non valida! \n";
-        if(!username.matches("^[a-z0-9_-]{3,15}$")) messaggio += "L'username deve essere compreso tra 3 e 15 caratteri alfanumerici! \n";
+        if(!username.matches("^[a-zA-Z0-9_-]{3,15}$")) messaggio += "L'username deve essere compreso tra 3 e 15 caratteri alfanumerici! \n";
         if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$")) messaggio += "La password deve contenere 6 caratteri, \nun carattere maiuscolo, minuscolo, un numero e nessuno spazio! \n";
         if(!idVaccinazione.matches("[0-9]{16}")) messaggio += "L'id della vaccinazione deve contenere 16 cifre! \n";
 
+        // TODO: il check dell'email e del cf non fungono, capire il perchè
         if(!Cittadini.checkUsername(username)) messaggio += "L'username esiste già \n";
         if(!Cittadini.checkEmail(email)) messaggio += "L'email esiste già \n";
+        if(!Cittadini.checkIdVaccinazione(idVaccinazione)) messaggio += "L'identificatore della vaccinazione esiste già \n";
+        if(!Cittadini.checkCF(cf.toUpperCase())) messaggio += "Il codice fiscale esiste già \n";
         
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
