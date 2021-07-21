@@ -74,8 +74,13 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnLogout) {
-            this.dispose();
-            new UICittadini();
+            UIManager.put("OptionPane.yesButtonText", "Sì");
+            int Risposta = JOptionPane.showConfirmDialog(null, "Sei sicuro di fare logout?", "Conferma", JOptionPane.YES_NO_OPTION);
+            if (Risposta == JOptionPane.YES_OPTION) {
+                this.dispose();
+                new UICittadini();
+            }
+            
         } else if (e.getSource() == btnVisualizzaCentri) {
             //TODO: Visualizzare centri
         } else if (e.getSource() == btnSegnalaEventi) {
