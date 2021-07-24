@@ -50,7 +50,7 @@ public class UIVisualizzaCentriVaccinali extends JFrame {
         messaggio += "Indirizzo: " + centroVaccinale.getIndirizzo() + "\n";
         messaggio += "Tipologia: " + centroVaccinale.getTipologia() + "\n";
         messaggio += "Numero segnalazioni eventi avversi: " + CentriVaccinali.getNumSegnalazioniEventiAvversi(centroVaccinale) + "\n";
-        messaggio += "Severità media eventi avversi: " + CentriVaccinali.getSeveritaMediaEventiAvversi(centroVaccinale) + "\n";
+        messaggio += "Severita' media eventi avversi: " + CentriVaccinali.getSeveritaMediaEventiAvversi(centroVaccinale) + "\n";
         JOptionPane.showMessageDialog(this, messaggio);
     }
 

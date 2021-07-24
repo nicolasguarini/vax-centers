@@ -1,6 +1,5 @@
 package cittadini.UI;
 
-import centrivaccinali.CentriVaccinali;
 import centrivaccinali.EventoAvverso;
 import cittadini.Cittadini;
 import cittadini.Cittadino;
@@ -13,24 +12,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-public class UISegnalaEventiAvversi extends JFrame implements ActionListener {
+public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
     Cittadino utenteLoggato;
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
     JTextField tfNomeEventoAvverso = new JTextField();
-    JTextArea taNoteAggiuntive = new JTextArea(5, 20);
+    JTextArea taNoteAggiuntive = new JTextArea(3, 20);
     JComboBox cbSeverita = new JComboBox(new String[]{"1", "2", "3", "4", "5"});
 
     JButton btnSegnala = new JButton("SEGNALA");
     JButton btnAnnulla = new JButton("ANNULLA");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
-    public UISegnalaEventiAvversi(Cittadino utenteLoggato){
+    public UISegnalaEventoAvverso(Cittadino utenteLoggato){
         this.utenteLoggato = utenteLoggato;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setLayout(new GridLayout(0, 1, 10, 10));
+        this.setLayout(new GridLayout(0, 1));
         this.setLocationRelativeTo(null);
-        this.setSize(720, 200);
-        this.setTitle("Login cittadino");
+        this.setTitle("Segnala Evento Avverso");
         this.setResizable(false);
         this.setIconImage(img.getImage());
 
@@ -38,29 +36,18 @@ public class UISegnalaEventiAvversi extends JFrame implements ActionListener {
         labelNomeEventoAvverso.setFont(new Font("Helvetica", Font.BOLD, 15));
         tfNomeEventoAvverso.setPreferredSize(new Dimension(150, 30));
         tfNomeEventoAvverso.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        JPanel panelNomeEventoAvverso = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelNomeEventoAvverso.add(labelNomeEventoAvverso);
-        panelNomeEventoAvverso.add(tfNomeEventoAvverso);
 
         JLabel labelSeverita = new JLabel("Severità: ");
         labelSeverita.setFont(new Font("Helvetica", Font.BOLD, 15));
-        cbSeverita.setPreferredSize(new Dimension(400, 30));
+        cbSeverita.setPreferredSize(new Dimension(50, 30));
         cbSeverita.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        JPanel panelSeverita = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelSeverita.add(labelSeverita);
-        panelSeverita.add(cbSeverita);
 
         JLabel labelNoteAggiuntive = new JLabel("Note aggiuntive: ");
         labelNoteAggiuntive.setFont(new Font("Helvetica", Font.BOLD, 15));
-        //taNoteAggiuntive.setSize(250, 200);
         taNoteAggiuntive.setLineWrap(true);
         taNoteAggiuntive.setFont(new Font("Helvetica", Font.PLAIN, 15));
         JScrollPane scrollPane = new JScrollPane(taNoteAggiuntive);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-
-        JPanel panelNoteAggiuntive = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelNoteAggiuntive.add(labelNoteAggiuntive);
-        panelNoteAggiuntive.add(scrollPane);
 
         btnSegnala.setPreferredSize(new Dimension(200, 50));
         btnSegnala.setFocusable(false);
@@ -77,6 +64,18 @@ public class UISegnalaEventiAvversi extends JFrame implements ActionListener {
         btnAnnulla.setForeground(Color.WHITE);
         btnAnnulla.setBorder(border);
         btnAnnulla.addActionListener(this);
+
+        JPanel panelNomeEventoAvverso = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelNomeEventoAvverso.add(labelNomeEventoAvverso);
+        panelNomeEventoAvverso.add(tfNomeEventoAvverso);
+
+        JPanel panelSeverita = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelSeverita.add(labelSeverita);
+        panelSeverita.add(cbSeverita);
+
+        JPanel panelNoteAggiuntive = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelNoteAggiuntive.add(labelNoteAggiuntive);
+        panelNoteAggiuntive.add(scrollPane);
 
         JPanel panelBottoni = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panelBottoni.add(btnSegnala);
@@ -104,9 +103,10 @@ public class UISegnalaEventiAvversi extends JFrame implements ActionListener {
 
         if(validaDati(nome, noteAggiuntive)){
             Cittadini.registraEventoAvverso(utenteLoggato, new EventoAvverso(nome, severita, noteAggiuntive));
+            UIManager.put("OptionPane.yesButtonText", "Si");
             int risposta = JOptionPane.showConfirmDialog(null, "Evento registrato, desidera segnalarne un altro?", "Evento registrato", JOptionPane.YES_NO_OPTION);
             if(risposta == JOptionPane.YES_OPTION)
-                new UISegnalaEventiAvversi(utenteLoggato);
+                new UISegnalaEventoAvverso(utenteLoggato);
             this.dispose();
         }
     }

@@ -67,7 +67,7 @@ public class CentriVaccinali {
         for(Vaccinazione v : vaccinazioni){
             for(EventoAvverso e : v.getEventiAvversi()){
                 countEventiAvversi += 1;
-                countEventiAvversi += e.severita;
+                sommaSeverita += e.severita;
             }
         }
 

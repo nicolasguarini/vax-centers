@@ -101,6 +101,7 @@ public class Cittadini {
         for(Vaccinazione i : vaccinazioniCentroVaccinale){
             if(i.getCf().equals(cittadino.cf)){
                 i.getEventiAvversi().add(eventoAvverso);
+                break;
             }
         }
         CentriVaccinali.serializzaVaccinazioni(vaccinazioniCentroVaccinale, nomeCentroVaccinale);

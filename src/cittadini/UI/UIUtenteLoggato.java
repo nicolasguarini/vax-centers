@@ -74,7 +74,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnLogout) {
-            UIManager.put("OptionPane.yesButtonText", "Sì");
+            UIManager.put("OptionPane.yesButtonText", "Si");
             int risposta = JOptionPane.showConfirmDialog(null, "Sei sicuro di fare logout?", "Conferma", JOptionPane.YES_NO_OPTION);
             if (risposta == JOptionPane.YES_OPTION) {
                 this.dispose();
@@ -82,7 +82,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         } else if (e.getSource() == btnVisualizzaCentri) {
             new UICercaCentriVaccinali();
         } else if (e.getSource() == btnSegnalaEventi) {
-            new UISegnalaEventiAvversi(cittadinoLoggato);
+            new UISegnalaEventoAvverso(cittadinoLoggato);
         }
     }
 }
