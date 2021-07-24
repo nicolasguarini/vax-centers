@@ -24,7 +24,7 @@ public class CentriVaccinali {
         serializzaVaccinazioni(vaccinazioni, nomeCentroVaccinale);
     }
 
-    static void serializzaVaccinazioni(LinkedList<Vaccinazione> vaccinazioni, String nomeCentroVaccinale){
+    public static void serializzaVaccinazioni(LinkedList<Vaccinazione> vaccinazioni, String nomeCentroVaccinale){
         final String filepath = "./data/Vaccinazioni_" + nomeCentroVaccinale + ".dati.txt";
         try{
             FileOutputStream fileOutputStream = new FileOutputStream(filepath);

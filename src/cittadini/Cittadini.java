@@ -2,6 +2,7 @@ package cittadini;
 
 import centrivaccinali.CentriVaccinali;
 import centrivaccinali.CentroVaccinale;
+import centrivaccinali.EventoAvverso;
 import centrivaccinali.Vaccinazione;
 
 import java.io.*;
@@ -88,10 +89,21 @@ public class Cittadini {
         LinkedList<Vaccinazione> vaccinazioni = CentriVaccinali.getVaccinazioni(centroVaccinale.getNome());
         for(Vaccinazione i : vaccinazioni){
             if(i.getIdVaccinazione().equals(idVaccinazione))
-                return false;
+                return true;
         }
 
-        return true;
+        return false;
+    }
+
+    public static void registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso){
+        String nomeCentroVaccinale = cittadino.getCentroVaccinale().getNome();
+        LinkedList<Vaccinazione> vaccinazioniCentroVaccinale = CentriVaccinali.getVaccinazioni(nomeCentroVaccinale);
+        for(Vaccinazione i : vaccinazioniCentroVaccinale){
+            if(i.getCf().equals(cittadino.cf)){
+                i.getEventiAvversi().add(eventoAvverso);
+            }
+        }
+        CentriVaccinali.serializzaVaccinazioni(vaccinazioniCentroVaccinale, nomeCentroVaccinale);
     }
 
     public static boolean checkCF(String cf){

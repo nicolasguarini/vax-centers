@@ -137,16 +137,17 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         String username = tfNomeUtente.getText();
         String password = new String(tfPasswordUtente.getPassword());
         String idVaccinazione = tfIDVaccinazione.getText();
+        CentroVaccinale centroVaccinale = CentriVaccinali.getCentriVaccinali().get(selectCentroVaccinale.getSelectedIndex());
 
-        if (validaDati(nome, cognome, cf, email, username, password, idVaccinazione)){
-            Cittadino cittadino = new Cittadino(Character.toUpperCase(nome.charAt(0)) + nome.substring(1).toLowerCase(), Character.toUpperCase(cognome.charAt(0)) + cognome.substring(1).toLowerCase(), cf.toUpperCase(), email, username, Cittadini.sha256(password), idVaccinazione);
+        if (validaDati(nome, cognome, cf, email, username, password, idVaccinazione, centroVaccinale)){
+            Cittadino cittadino = new Cittadino(Character.toUpperCase(nome.charAt(0)) + nome.substring(1).toLowerCase(), Character.toUpperCase(cognome.charAt(0)) + cognome.substring(1).toLowerCase(), cf.toUpperCase(), email, username, Cittadini.sha256(password), idVaccinazione, centroVaccinale);
             Cittadini.registraCittadino(cittadino);
             this.dispose();
         }
     }
 
 //
-    boolean validaDati(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione){
+    boolean validaDati(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione, CentroVaccinale centroVaccinale){
         String messaggio = "";
 
         if(nome.equals("") || cognome.equals("") || cf.equals("") || email.equals("") || username.equals("") || password.equals("") || idVaccinazione.equals("")){
@@ -165,7 +166,7 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         if(!Cittadini.checkUsername(username)) messaggio += "L'username esiste già \n";
         if(!Cittadini.checkEmail(email)) messaggio += "L'email esiste già \n";
         if(!Cittadini.checkIdVaccinazioneGiaRegistrata(idVaccinazione)) messaggio += "L'id vaccinazione è già stato registrato! \n";
-        if(!Cittadini.checkIdVaccinazioneEsistente(idVaccinazione, CentriVaccinali.getCentriVaccinali().get(selectCentroVaccinale.getSelectedIndex()))) messaggio += "La vaccinazione non esiste nel centro selezionato \n";
+        if(!Cittadini.checkIdVaccinazioneEsistente(idVaccinazione, centroVaccinale)) messaggio += "La vaccinazione non esiste nel centro selezionato \n";
         if(!Cittadini.checkCF(cf)) messaggio += "Il codice fiscale esiste già \n";
         
         if(!messaggio.equals("")){

@@ -1,12 +1,15 @@
 package cittadini;
 
+import centrivaccinali.CentroVaccinale;
+
 import java.io.Serializable;
 
 public class Cittadino implements Serializable {
     private static final long serialVersionUID = -3712425753326956399L;
     String nome, cognome, cf, email, username, password, idVaccinazione;
+    CentroVaccinale centroVaccinale;
 
-    public Cittadino(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione){
+    public Cittadino(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione, CentroVaccinale centroVaccinale){
         this.nome = nome;
         this.cognome = cognome;
         this.cf = cf;
@@ -14,6 +17,7 @@ public class Cittadino implements Serializable {
         this.password = password;
         this.email = email;
         this.idVaccinazione = idVaccinazione;
+        this.centroVaccinale = centroVaccinale;
     }
 
     public String toString(){ //DEBUG
@@ -26,4 +30,5 @@ public class Cittadino implements Serializable {
     public String getIdVaccinazione(){return idVaccinazione;}
     public String getCF(){return cf;}
     public String getNome(){return nome;}
+    public CentroVaccinale getCentroVaccinale(){return centroVaccinale;}
 }

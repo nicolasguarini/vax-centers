@@ -32,9 +32,10 @@ public class Vaccinazione implements Serializable {
 
     public String getNomeCentroVaccinale(){ return centroVaccinale.getNome(); }
     public String getIdVaccinazione(){return id;}
+    public String getCf(){return cf;}
 
     @Override
     public String toString(){ //a scopo di debug - si può togliere in produzione
-        return nome + " " + cognome + " " + cf + " " + id + " " + nomeVaccino + " " + data + " " + centroVaccinale.getNome();
+        return nome + " " + cognome + " " + cf + " " + id + " " + nomeVaccino + " " + data + " " + centroVaccinale.getNome() + eventiAvversi.toString();
     }
 }

@@ -12,4 +12,6 @@ public class EventoAvverso implements Serializable {
         this.severita = severita;
         this.noteAggiuntive = noteAggiuntive;
     }
+
+    public String toString(){return nome;}
 }
