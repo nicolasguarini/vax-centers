@@ -5,30 +5,26 @@ import centrivaccinali.CentroVaccinale;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class UIVisualizzaCentriVaccinali extends JFrame {
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
+
     public UIVisualizzaCentriVaccinali(LinkedList<CentroVaccinale> centriVaccinali){
-        JPanel p = new JPanel();
+        this.setIconImage(img.getImage());
+        this.setTitle("Risultati ricerca");
 
         JButton bottoni[] = new JButton[centriVaccinali.size()];
+        JPanel p = new JPanel(new GridLayout(bottoni.length, 2, 10,10));
         JLabel labelCentroVaccinale;
-
-        p.setLayout(new GridLayout(bottoni.length, 2, 10,10));
 
         for(int i = 0; i<bottoni.length; i++){
             CentroVaccinale c = CentriVaccinali.getCentriVaccinali().get(i);
             labelCentroVaccinale = new JLabel(c.getNome() + ", " + c.getComune());
             labelCentroVaccinale.setFont(new Font("Helvetica", Font.PLAIN, 15));
             bottoni[i] = new JButton("Info");
-            bottoni[i].addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    infoCentroVaccinale(c);
-                }
-            });
+            bottoni[i].addActionListener(e -> infoCentroVaccinale(c));
 
             p.add(labelCentroVaccinale);
             p.add(bottoni[i]);
@@ -39,8 +35,8 @@ public class UIVisualizzaCentriVaccinali extends JFrame {
 
         this.getContentPane().add(scroll);
         this.setSize(500, 250);
+        this.pack();
         this.setLocationRelativeTo(null);
-
         this.setVisible(true);
     }
 
