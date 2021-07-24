@@ -1,5 +1,7 @@
 package cittadini.UI;
 
+import centrivaccinali.CentriVaccinali;
+import centrivaccinali.CentroVaccinale;
 import cittadini.Cittadini;
 import cittadini.Cittadino;
 
@@ -9,7 +11,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Objects;
 
 public class UIRegistraCittadino extends JFrame implements ActionListener {
@@ -21,6 +23,7 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
     JTextField tfNomeUtente = new JTextField();
     JPasswordField tfPasswordUtente = new JPasswordField();
     JTextField tfIDVaccinazione = new JTextField();
+    JComboBox selectCentroVaccinale = new JComboBox(getCentriArray());
 
     JButton btnRegistra = new JButton("REGISTRATI");
     JButton btnAnnulla = new JButton("ANNULLA");
@@ -48,6 +51,11 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         labelPasswordUtente.setFont(new Font("Helvetica", Font.BOLD, 15));
         JLabel labelIDVaccinazione = new JLabel("ID vaccinazione:");
         labelIDVaccinazione.setFont(new Font("Helvetica", Font.BOLD, 15));
+        JLabel labelSelezionaCentroVaccinale = new JLabel("Centro vaccinale: ");
+        labelSelezionaCentroVaccinale.setFont(new Font("Helvetica", Font.BOLD, 15));
+
+        selectCentroVaccinale.setPreferredSize(new Dimension(400, 30));
+        selectCentroVaccinale.setFont(new Font("Helvetica", Font.PLAIN, 15));
 
         tfNomeCittadino.setPreferredSize(new Dimension(150, 30));
         tfNomeCittadino.setFont(new Font("Helvetica", Font.PLAIN, 15));
@@ -98,6 +106,10 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         panelRegistrazioneCittadino3.add(labelPasswordUtente);
         panelRegistrazioneCittadino3.add(tfPasswordUtente);
 
+        JPanel panelCentroVaccinale = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelCentroVaccinale.add(labelSelezionaCentroVaccinale);
+        panelCentroVaccinale.add(selectCentroVaccinale);
+
         JPanel panelRegistrazioneCittadino4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panelRegistrazioneCittadino4.add(labelIDVaccinazione);
         panelRegistrazioneCittadino4.add(tfIDVaccinazione);
@@ -110,6 +122,7 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         this.add(panelRegistrazioneCittadino2);
         this.add(panelRegistrazioneCittadino3);
         this.add(panelRegistrazioneCittadino4);
+        this.add(panelCentroVaccinale);
         this.add(panelBottoni);
         this.pack();
         this.setLocationRelativeTo(null);
@@ -151,13 +164,25 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
 
         if(!Cittadini.checkUsername(username)) messaggio += "L'username esiste già \n";
         if(!Cittadini.checkEmail(email)) messaggio += "L'email esiste già \n";
-        if(!Cittadini.checkIdVaccinazione(idVaccinazione)) messaggio += "L'identificatore della vaccinazione esiste già \n";
+        if(!Cittadini.checkIdVaccinazioneGiaRegistrata(idVaccinazione)) messaggio += "L'id vaccinazione è già stato registrato! \n";
+        if(!Cittadini.checkIdVaccinazioneEsistente(idVaccinazione, CentriVaccinali.getCentriVaccinali().get(selectCentroVaccinale.getSelectedIndex()))) messaggio += "La vaccinazione non esiste nel centro selezionato \n";
         if(!Cittadini.checkCF(cf)) messaggio += "Il codice fiscale esiste già \n";
         
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
             return false;
         }else return true;
+    }
+
+    String[] getCentriArray(){
+        LinkedList<CentroVaccinale> centriVaccinali = CentriVaccinali.getCentriVaccinali();
+        String[] centriArray = new String[centriVaccinali.size()];
+
+        for(int i = 0; i<centriVaccinali.size(); i++){
+            centriArray[i] = centriVaccinali.get(i).getNome() + ", " + centriVaccinali.get(i).getIndirizzo();
+        }
+
+        return centriArray;
     }
 
     @Override

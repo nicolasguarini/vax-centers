@@ -20,6 +20,7 @@ public class Vaccinazione implements Serializable {
     }
 
     public String getNomeCentroVaccinale(){ return centroVaccinale.getNome(); }
+    public String getIdVaccinazione(){return id;}
 
     @Override
     public String toString(){ //a scopo di debug - si può togliere in produzione

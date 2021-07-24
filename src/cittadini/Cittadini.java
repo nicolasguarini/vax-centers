@@ -1,5 +1,9 @@
 package cittadini;
 
+import centrivaccinali.CentriVaccinali;
+import centrivaccinali.CentroVaccinale;
+import centrivaccinali.Vaccinazione;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -73,9 +77,19 @@ public class Cittadini {
         return true;
     }
 
-    public static boolean checkIdVaccinazione(String idVaccinazione){
+    public static boolean checkIdVaccinazioneGiaRegistrata(String idVaccinazione){
         for(Cittadino i : getCittadini())
             if(i.getIdVaccinazione().equals(idVaccinazione)) return false;
+
+        return true;
+    }
+
+    public static boolean checkIdVaccinazioneEsistente(String idVaccinazione, CentroVaccinale centroVaccinale){
+        LinkedList<Vaccinazione> vaccinazioni = CentriVaccinali.getVaccinazioni(centroVaccinale.getNome());
+        for(Vaccinazione i : vaccinazioni){
+            if(i.getIdVaccinazione().equals(idVaccinazione))
+                return false;
+        }
 
         return true;
     }
