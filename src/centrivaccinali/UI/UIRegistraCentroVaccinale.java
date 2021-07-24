@@ -134,7 +134,7 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
 
         if(validaDati(nome, nomeIndirizzo, civico, comune, provincia, CAP)){
             Indirizzo indirizzo = new Indirizzo(qualificatore, nomeIndirizzo, civico, Character.toUpperCase(comune.charAt(0)) + comune.substring(1).toLowerCase(), provincia.toUpperCase(), CAP);
-            CentroVaccinale centroVaccinale = new CentroVaccinale(Character.toUpperCase(nome.charAt(0)) + nome.substring(1).toLowerCase(), indirizzo, tipologiaCentro);
+            CentroVaccinale centroVaccinale = new CentroVaccinale(nome, indirizzo, tipologiaCentro);
 
             CentriVaccinali.registraCentroVaccinale(centroVaccinale);
             this.dispose();
@@ -155,6 +155,7 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         if(comune.matches(".*\\d.*")) messaggio += "Il comune non può contenere cifre! \n";
         if(!provincia.matches("[A-Za-z]{2}")) messaggio += "La sigla provincia deve essere lunga 2 caratteri (es: VA)! \n";
         if(!CAP.matches("[0-9]{5}")) messaggio += "Il CAP deve contenere 5 cifre (es: 21020)! \n";
+        //TODO: controllare che non esiste un altro centro vaccinale con lo stesso nome
 
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);

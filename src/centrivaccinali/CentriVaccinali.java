@@ -25,7 +25,7 @@ public class CentriVaccinali {
     }
 
     static void serializzaVaccinazioni(LinkedList<Vaccinazione> vaccinazioni, String nomeCentroVaccinale){
-        final String filepath = "./data/Vaccinazioni_" + nomeCentroVaccinale + ".txt";
+        final String filepath = "./data/Vaccinazioni_" + nomeCentroVaccinale + ".dati.txt";
         try{
             FileOutputStream fileOutputStream = new FileOutputStream(filepath);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -50,14 +50,42 @@ public class CentriVaccinali {
         }
     }
 
+    public static int getNumSegnalazioniEventiAvversi(CentroVaccinale centroVaccinale){
+        LinkedList<Vaccinazione> vaccinazioni = getVaccinazioni(centroVaccinale.getNome());
+        int count = 0;
+        for(Vaccinazione v : vaccinazioni){
+            count += v.getEventiAvversi().size();
+        }
+        return count;
+    }
+
+    public static double getSeveritaMediaEventiAvversi(CentroVaccinale centroVaccinale){
+        LinkedList<Vaccinazione> vaccinazioni = getVaccinazioni(centroVaccinale.getNome());
+        int countEventiAvversi = 0;
+        int sommaSeverita = 0;
+
+        for(Vaccinazione v : vaccinazioni){
+            for(EventoAvverso e : v.getEventiAvversi()){
+                countEventiAvversi += 1;
+                countEventiAvversi += e.severita;
+            }
+        }
+
+        if(countEventiAvversi == 0)
+            return 0;
+        else
+            return sommaSeverita/countEventiAvversi;
+    }
+
     public static LinkedList<Vaccinazione> getVaccinazioni(String nomeCentroVaccinale){
-        final String filepath = "./data/Vaccinazioni_" + nomeCentroVaccinale + ".txt";
+        final String filepath = "./data/Vaccinazioni_" + nomeCentroVaccinale + ".dati.txt";
         LinkedList<Vaccinazione> vaccinazioni = new LinkedList<>();
 
         try{
             File fileVaccinazioni = new File(filepath);
             if(fileVaccinazioni.createNewFile()){
                 System.out.println("File created: " + fileVaccinazioni.getName());
+                serializzaVaccinazioni(new LinkedList<Vaccinazione>(), nomeCentroVaccinale);
             }else{
                 System.out.println("File already exist");
                 FileInputStream fileInputStream = new FileInputStream(fileVaccinazioni);
@@ -78,6 +106,7 @@ public class CentriVaccinali {
             File fileCentriVaccinali = new File("./data/CentriVaccinali.dati.txt");
             if(fileCentriVaccinali.createNewFile()) {
                 System.out.println("File created: " + fileCentriVaccinali.getName());
+                serializzaCentriVaccinali(new LinkedList<CentroVaccinale>());
             }else{
                 System.out.println("File already exists");
                 FileInputStream fileInputStream = new FileInputStream(fileCentriVaccinali);

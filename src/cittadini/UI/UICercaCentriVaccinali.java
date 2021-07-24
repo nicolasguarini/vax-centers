@@ -114,6 +114,7 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnVisualizzaTutti){
             new UIVisualizzaCentriVaccinali(CentriVaccinali.getCentriVaccinali());
+            this.dispose();
         }else if(e.getSource() == btnCercaPerNome){
             String nome = tfCercaPerNome.getText();
             if(!nome.equals("")){
