@@ -1,12 +1,14 @@
 package centrivaccinali;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Vaccinazione implements Serializable {
+    @Serial
     private static final long serialVersionUID = 5737449378412827456L;
+
     String nome, cognome, cf, id, nomeVaccino;
     Date data;
     CentroVaccinale centroVaccinale;
@@ -22,20 +24,10 @@ public class Vaccinazione implements Serializable {
         this.data = data;
     }
 
-    public void setEventiAvversi(LinkedList<EventoAvverso> eventiAvversi){
-        this.eventiAvversi = eventiAvversi;
-    }
-
     public LinkedList<EventoAvverso> getEventiAvversi(){
         return eventiAvversi;
     }
-
     public String getNomeCentroVaccinale(){ return centroVaccinale.getNome(); }
     public String getIdVaccinazione(){return id;}
     public String getCf(){return cf;}
-
-    @Override
-    public String toString(){ //a scopo di debug - si può togliere in produzione
-        return nome + " " + cognome + " " + cf + " " + id + " " + nomeVaccino + " " + data + " " + centroVaccinale.getNome() + eventiAvversi.toString();
-    }
 }

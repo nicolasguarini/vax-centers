@@ -17,11 +17,65 @@ public class CentriVaccinali {
         serializzaCentriVaccinali(centriVaccinali);
     }
 
+    public static LinkedList<CentroVaccinale> getCentriVaccinali(){
+        LinkedList<CentroVaccinale> centriVaccinali = new LinkedList<>();
+
+        try{
+            File fileCentriVaccinali = new File("./data/CentriVaccinali.dati.txt");
+            if(fileCentriVaccinali.createNewFile()) {
+                serializzaCentriVaccinali(new LinkedList<>());
+            }else{
+                System.out.println("File already exists");
+                FileInputStream fileInputStream = new FileInputStream(fileCentriVaccinali);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                centriVaccinali = (LinkedList<CentroVaccinale>) objectInputStream.readObject();
+            }
+        }catch(IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+        return centriVaccinali;
+    }
+
+    static void serializzaCentriVaccinali(LinkedList<CentroVaccinale> centriVaccinali){
+        final String filepath = "./data/CentriVaccinali.dati.txt";
+        try{
+            FileOutputStream fileOutputStream = new FileOutputStream(filepath);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(centriVaccinali);
+            objectOutputStream.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public static void registraVaccinazione(Vaccinazione vaccinazione){
         String nomeCentroVaccinale = vaccinazione.getNomeCentroVaccinale();
         LinkedList<Vaccinazione> vaccinazioni = getVaccinazioni(nomeCentroVaccinale);
         vaccinazioni.add(vaccinazione);
         serializzaVaccinazioni(vaccinazioni, nomeCentroVaccinale);
+    }
+
+    public static LinkedList<Vaccinazione> getVaccinazioni(String nomeCentroVaccinale){
+        final String filepath = "./data/Vaccinazioni_" + nomeCentroVaccinale + ".dati.txt";
+        LinkedList<Vaccinazione> vaccinazioni = new LinkedList<>();
+
+        try{
+            File fileVaccinazioni = new File(filepath);
+            if(fileVaccinazioni.createNewFile()){
+                System.out.println("File created: " + fileVaccinazioni.getName());
+                serializzaVaccinazioni(new LinkedList<Vaccinazione>(), nomeCentroVaccinale);
+            }else{
+                System.out.println("File already exist");
+                FileInputStream fileInputStream = new FileInputStream(fileVaccinazioni);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                vaccinazioni = (LinkedList<Vaccinazione>) objectInputStream.readObject();
+            }
+        }catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+        return vaccinazioni;
     }
 
     public static void serializzaVaccinazioni(LinkedList<Vaccinazione> vaccinazioni, String nomeCentroVaccinale){
@@ -37,17 +91,13 @@ public class CentriVaccinali {
         }
     }
 
-    static void serializzaCentriVaccinali(LinkedList<CentroVaccinale> centriVaccinali){
-        final String filepath = "./data/CentriVaccinali.dati.txt";
-        try{
-            FileOutputStream fileOutputStream = new FileOutputStream(filepath);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(centriVaccinali);
-            objectOutputStream.close();
-            System.out.println("Oggetto serializzato correttamente");
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+    public static boolean checkCentroVaccinale(String nomeCentroVaccinale){
+        LinkedList<CentroVaccinale> centriVaccinali = getCentriVaccinali();
+        for(CentroVaccinale v : centriVaccinali)
+            if(v.getNome().equalsIgnoreCase(nomeCentroVaccinale))
+                return true;
+
+        return false;
     }
 
     public static int getNumSegnalazioniEventiAvversi(CentroVaccinale centroVaccinale){
@@ -74,49 +124,6 @@ public class CentriVaccinali {
         if(countEventiAvversi == 0)
             return 0;
         else
-            return sommaSeverita/countEventiAvversi;
-    }
-
-    public static LinkedList<Vaccinazione> getVaccinazioni(String nomeCentroVaccinale){
-        final String filepath = "./data/Vaccinazioni_" + nomeCentroVaccinale + ".dati.txt";
-        LinkedList<Vaccinazione> vaccinazioni = new LinkedList<>();
-
-        try{
-            File fileVaccinazioni = new File(filepath);
-            if(fileVaccinazioni.createNewFile()){
-                System.out.println("File created: " + fileVaccinazioni.getName());
-                serializzaVaccinazioni(new LinkedList<Vaccinazione>(), nomeCentroVaccinale);
-            }else{
-                System.out.println("File already exist");
-                FileInputStream fileInputStream = new FileInputStream(fileVaccinazioni);
-                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                vaccinazioni = (LinkedList<Vaccinazione>) objectInputStream.readObject();
-            }
-        }catch (IOException | ClassNotFoundException e){
-            e.printStackTrace();
-        }
-
-        return vaccinazioni;
-    }
-
-    public static LinkedList<CentroVaccinale> getCentriVaccinali(){
-        LinkedList<CentroVaccinale> centriVaccinali = new LinkedList<>();
-
-        try{
-            File fileCentriVaccinali = new File("./data/CentriVaccinali.dati.txt");
-            if(fileCentriVaccinali.createNewFile()) {
-                System.out.println("File created: " + fileCentriVaccinali.getName());
-                serializzaCentriVaccinali(new LinkedList<CentroVaccinale>());
-            }else{
-                System.out.println("File already exists");
-                FileInputStream fileInputStream = new FileInputStream(fileCentriVaccinali);
-                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                centriVaccinali = (LinkedList<CentroVaccinale>) objectInputStream.readObject();
-            }
-        }catch(IOException | ClassNotFoundException e){
-            e.printStackTrace();
-        }
-
-        return centriVaccinali;
+            return (double) sommaSeverita/countEventiAvversi;
     }
 }

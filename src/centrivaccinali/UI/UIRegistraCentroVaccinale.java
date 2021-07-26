@@ -12,6 +12,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
+/**
+ * La classe <code>UIRegistraCentroVaccinale</code> si occupa di gestire il form di registrazione di un nuovo centro vaccinale, validando i dati e inviandoli al backend che li processerà
+ *
+ * @see CentriVaccinali
+ *
+ * @author Nicolas Guarini
+ * @author Domenico Rizzo
+ * @author Redon Kokaj
+ */
 public class UIRegistraCentroVaccinale extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
     JTextField tfNomeCentroVaccinale = new JTextField();
@@ -26,6 +35,15 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
     JButton btnAnnulla = new JButton("ANNULLA");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
+    /**
+     * Inizializza, imposta e visualizza il form di registrazione di un nuovo centro vaccinale
+     *
+     * @see CentriVaccinali
+     * @see UICentriVaccinali
+     *
+     * @author Nicolas Guarini
+     * @author Domenico Rizzo
+     */
     public UIRegistraCentroVaccinale(){
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new GridLayout(0, 1, 10, 10));
@@ -122,6 +140,15 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         this.setVisible(true);
     }
 
+    /**
+     * Preleva i dati dalle caselle di testo e dai menu a tendina,
+     * li manda al metodo {@link #validaDati} e, se sono validi, crea un'istanza di {@link CentroVaccinale} che verrà usata per registrare effettivamente il nuovo centro su file
+     *
+     * @see CentroVaccinale
+     * @see CentriVaccinali
+     *
+     * @author Nicolas Guarini
+     */
     private void registra(){
         String nome = tfNomeCentroVaccinale.getText();
         String qualificatore = qualificatoreIndirizzo.getSelectedItem().toString();
@@ -135,14 +162,25 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         if(validaDati(nome, nomeIndirizzo, civico, comune, provincia, CAP)){
             Indirizzo indirizzo = new Indirizzo(qualificatore, nomeIndirizzo, civico, Character.toUpperCase(comune.charAt(0)) + comune.substring(1).toLowerCase(), provincia.toUpperCase(), CAP);
             CentroVaccinale centroVaccinale = new CentroVaccinale(nome, indirizzo, tipologiaCentro);
-
             CentriVaccinali.registraCentroVaccinale(centroVaccinale);
             this.dispose();
         }
     }
 
+    /**
+     * Effettua una seria di controlli sui dati inseriti dall'utente, e mostra un messaggio che riassume il motivo per il quale determinati dati non sono validi
+     * @param nome Il nome del centro da registrare
+     * @param nomeIndirizzo Parte principale dell'indirizzo del centro da registrare
+     * @param civico Numero civico del centro da registrare
+     * @param comune Comune del centro da registrare
+     * @param provincia Sigla della provincia del centro da registrare
+     * @param CAP Codice di Avviamento Postale del centro da registrare
+     * @return <code>true</code> se i dati inseriti sono risultati validi, <code>false</code> se i dati inseriti non sono validi
+     *
+     * @author Redon Kokaj
+     * @author Nicolas Guarini
+     */
     boolean validaDati(String nome, String nomeIndirizzo, String civico, String comune, String provincia, String CAP){
-        //PER LE ALTRE VALIDAZIONI TENERE QUESTA COME ESEMPIO CHE E' ON POINT
         String messaggio = "";
 
         if(nome.equals("") || nomeIndirizzo.equals("") || civico.equals("") || comune.equals("") || provincia.equals("") || CAP.equals("")){
@@ -155,7 +193,7 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         if(comune.matches(".*\\d.*")) messaggio += "Il comune non può contenere cifre! \n";
         if(!provincia.matches("[A-Za-z]{2}")) messaggio += "La sigla provincia deve essere lunga 2 caratteri (es: VA)! \n";
         if(!CAP.matches("[0-9]{5}")) messaggio += "Il CAP deve contenere 5 cifre (es: 21020)! \n";
-        //TODO: controllare che non esiste un altro centro vaccinale con lo stesso nome
+        if(CentriVaccinali.checkCentroVaccinale(nome)) messaggio += "Il centro vaccinale esiste gia!";
 
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
@@ -163,6 +201,13 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         }else return true;
     }
 
+    /**
+     * Gestisce il click dei pulsanti della schermata
+     *
+     * @param e L'evento che deve venire processato
+     *
+     * @author Nicolas Guarini
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnRegistra){

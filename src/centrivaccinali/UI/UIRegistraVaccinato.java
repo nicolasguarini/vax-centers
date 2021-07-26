@@ -10,11 +10,9 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.util.Date;
@@ -42,52 +40,37 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         this.setResizable(false);
         this.setIconImage(img.getImage());
 
-        //CREAZIONE LABEL PER OGNI SEZIONE
         JLabel labelNomeCentroVaccinale = new JLabel("Centro vaccinale:");
         labelNomeCentroVaccinale.setFont(new Font("Helvetica", Font.BOLD, 15));
-
         JLabel labelNomeVaccinato = new JLabel("Nome:");
         labelNomeVaccinato.setFont(new Font("Helvetica", Font.BOLD, 15));
-
         JLabel labelCognomeVaccinato = new JLabel("Cognome:");
         labelCognomeVaccinato.setFont(new Font("Helvetica", Font.BOLD, 15));
-
         JLabel labelCodiceFiscaleVaccinato= new JLabel("Codice fiscale:");
         labelCodiceFiscaleVaccinato.setFont(new Font("Helvetica", Font.BOLD, 15));
-
         JLabel labelDataSomministrazioneVaccino = new JLabel("Data somministrazione:");
         labelDataSomministrazioneVaccino.setFont(new Font("Helvetica", Font.BOLD, 15));
-
         JLabel labelNomeVaccino = new JLabel("Nome vaccino:");
         labelNomeVaccino.setFont(new Font("Helvetica", Font.BOLD, 15));
-
         JLabel labelIDVaccinazione = new JLabel("ID vaccinazione:");
         labelIDVaccinazione.setFont(new Font("Helvetica", Font.BOLD, 15));
 
-        //IMPOSTAZIONI DEI TEXTFIELD
         selectCentroVaccinale.setPreferredSize(new Dimension(400, 30));
         selectCentroVaccinale.setFont(new Font("Helvetica", Font.PLAIN, 15));
-
         tfNomeVaccinato.setPreferredSize(new Dimension(150, 30));
         tfNomeVaccinato.setFont(new Font("Helvetica", Font.PLAIN, 15));
-
         tfCognomeVaccinato.setPreferredSize(new Dimension(150, 30));
         tfCognomeVaccinato.setFont(new Font("Helvetica", Font.PLAIN, 15));
-
         tfCodiceFiscaleVaccinato.setPreferredSize(new Dimension(150, 30));
         tfCodiceFiscaleVaccinato.setFont(new Font("Helvetica", Font.PLAIN, 15));
-
         tfDataSomministrazioneVaccino.setPreferredSize(new Dimension(100, 30));
         tfDataSomministrazioneVaccino.setFont(new Font("Helvetica", Font.PLAIN, 15));
-
         selectNomeVaccino.setPreferredSize(new Dimension(100, 30));
         selectNomeVaccino.setFont(new Font("Helvetica", Font.PLAIN, 15));
         selectNomeVaccino.setSelectedIndex(0);
-
         tfIDVaccinazione.setPreferredSize(new Dimension(100, 30));
         tfIDVaccinazione.setFont(new Font("Helvetica", Font.PLAIN, 15));
 
-        //BOTTONI REGISTRA ED ANNULLA
         btnRegistra.setPreferredSize(new Dimension(200, 50));
         btnRegistra.setFocusable(false);
         btnRegistra.setFont(new Font("Montserrat", Font.BOLD, 15));
@@ -175,16 +158,12 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         if(!data.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})")) messaggio += "Inserire una data valida (gg/mm/aaaa)! \n";
         if(!idVaccinazione.matches("[0-9]{16}")) messaggio += "L'id della vaccinazione deve contenere 16 cifre! \n";
 
-        //Controllo validità data
         if((Integer.parseInt(dataInserita[0]) >= 1 && Integer.parseInt(dataInserita[0]) <= 31) && (Integer.parseInt(dataInserita[1]) >= 1 && Integer.parseInt(dataInserita[1]) <= 12) && (Integer.parseInt(dataInserita[2]) <= dataAttuale.get(ChronoField.YEAR_OF_ERA))) {
-            if (data1.compareTo(dataAttuale) > 0) {
+            if (data1.compareTo(dataAttuale) > 0)
                 messaggio += "La data inserita e' una data futura rispetto a quella odierna! \n";
-            }
         }
         else
-        {
             messaggio += "La data inserita non e' corretta! \n";
-        }
 
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);

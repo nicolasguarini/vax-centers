@@ -11,17 +11,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-public class UIStartMenu implements ActionListener {
-    JFrame frame = new JFrame();
+public class UIStartMenu extends JFrame implements ActionListener {
     JLabel logo = new JLabel();
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
     JButton btnCentriVaccinali = new JButton("CENTRI VACCINALI");
     JButton btnCittadini = new JButton("CITTADINI");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
-    public UIStartMenu(){ setupFrame(); }
-
-    void setupFrame(){
+    public UIStartMenu(){
         logo.setIcon(img);
         logo.setBounds(538, 140, 212, 212);
         logo.setHorizontalTextPosition(JLabel.CENTER);
@@ -42,28 +39,28 @@ public class UIStartMenu implements ActionListener {
         btnCittadini.setBorder(border);
         btnCittadini.addActionListener(this);
 
-        frame.setTitle("Vax Centers");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1280,720);
-        frame.setLayout(null);
-        frame.setLocationRelativeTo(null);
-        frame.setIconImage(img.getImage());
-        frame.setResizable(false);
+        this.setTitle("Vax Centers");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(1280,720);
+        this.setLayout(null);
+        this.setLocationRelativeTo(null);
+        this.setIconImage(img.getImage());
+        this.setResizable(false);
 
-        frame.add(logo);
-        frame.add(btnCentriVaccinali);
-        frame.add(btnCittadini);
+        this.add(logo);
+        this.add(btnCentriVaccinali);
+        this.add(btnCittadini);
 
-        frame.setVisible(true);
+        this.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == btnCentriVaccinali){
-            frame.dispose();
+            this.dispose();
             new UICentriVaccinali();
         } else if(e.getSource() == btnCittadini){
-            frame.dispose();
+            this.dispose();
             new UICittadini();
         }
     }
