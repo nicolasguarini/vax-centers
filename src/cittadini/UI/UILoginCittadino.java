@@ -9,7 +9,6 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 import java.util.Objects;
 
 public class UILoginCittadino extends JFrame implements ActionListener {

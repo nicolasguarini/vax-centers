@@ -10,7 +10,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
-import java.util.Locale;
 import java.util.Objects;
 
 public class UICercaCentriVaccinali extends JFrame implements ActionListener {
@@ -21,7 +20,7 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
     JTextField tfCercaPerNome = new JTextField();
     JTextField tfCercaPerComune = new JTextField();
-    JComboBox cbTipologie = new JComboBox(new String[]{"Ospedaliero", "Aziendale", "Hub"});
+    JComboBox<String> cbTipologie = new JComboBox<>(new String[]{"Ospedaliero", "Aziendale", "Hub"});
 
     public UICercaCentriVaccinali(){
         JPanel panelCercaPerNome = new JPanel(new FlowLayout(FlowLayout.CENTER));

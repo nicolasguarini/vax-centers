@@ -29,8 +29,8 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
     JTextField tfComune = new JTextField();
     JTextField tfProvincia = new JTextField();
     JTextField tfCAP = new JTextField();
-    JComboBox qualificatoreIndirizzo = new JComboBox(new String[]{"Via", "Viale", "Piazza"});
-    JComboBox tipologiaCentroVaccinale = new JComboBox(new String[]{"Ospedaliero", "Aziendale", "Hub"});
+    JComboBox<String> qualificatoreIndirizzo = new JComboBox<>(new String[]{"Via", "Viale", "Piazza"});
+    JComboBox<String> tipologiaCentroVaccinale = new JComboBox<>(new String[]{"Ospedaliero", "Aziendale", "Hub"});
     JButton btnRegistra = new JButton("REGISTRA");
     JButton btnAnnulla = new JButton("ANNULLA");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);

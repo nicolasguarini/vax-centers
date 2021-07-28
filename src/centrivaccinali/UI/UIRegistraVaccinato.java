@@ -21,13 +21,13 @@ import java.util.Objects;
 
 public class UIRegistraVaccinato extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
-    JComboBox selectCentroVaccinale = new JComboBox(getCentriArray());
+    JComboBox<String> selectCentroVaccinale = new JComboBox<>(getCentriArray());
     JTextField tfNomeVaccinato = new JTextField();
     JTextField tfCognomeVaccinato = new JTextField();
     JTextField tfCodiceFiscaleVaccinato = new JTextField();
     JTextField tfDataSomministrazioneVaccino= new JTextField();
     JTextField tfIDVaccinazione = new JTextField();
-    JComboBox selectNomeVaccino = new JComboBox(new String[] { "Pfizer", "AstraZeneca", "Moderna", "J&J" });
+    JComboBox<String> selectNomeVaccino = new JComboBox<>(new String[] { "Pfizer", "AstraZeneca", "Moderna", "J&J" });
     JButton btnRegistra = new JButton("REGISTRA");
     JButton btnAnnulla = new JButton("ANNULLA");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);

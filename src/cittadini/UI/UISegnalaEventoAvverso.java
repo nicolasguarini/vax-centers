@@ -17,7 +17,7 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
     JTextField tfNomeEventoAvverso = new JTextField();
     JTextArea taNoteAggiuntive = new JTextArea(3, 20);
-    JComboBox cbSeverita = new JComboBox(new String[]{"1", "2", "3", "4", "5"});
+    JComboBox<String> cbSeverita = new JComboBox<String>(new String[]{"1", "2", "3", "4", "5"});
 
     JButton btnSegnala = new JButton("SEGNALA");
     JButton btnAnnulla = new JButton("ANNULLA");
@@ -37,7 +37,7 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
         tfNomeEventoAvverso.setPreferredSize(new Dimension(150, 30));
         tfNomeEventoAvverso.setFont(new Font("Helvetica", Font.PLAIN, 15));
 
-        JLabel labelSeverita = new JLabel("Severità: ");
+        JLabel labelSeverita = new JLabel("Severitï¿½: ");
         labelSeverita.setFont(new Font("Helvetica", Font.BOLD, 15));
         cbSeverita.setPreferredSize(new Dimension(50, 30));
         cbSeverita.setFont(new Font("Helvetica", Font.PLAIN, 15));
