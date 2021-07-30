@@ -87,7 +87,9 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
     public void cercaCentriVaccinali(String nome){
         LinkedList<CentroVaccinale> centriDaVisualizzare = new LinkedList<>();
         for(CentroVaccinale i : CentriVaccinali.getCentriVaccinali())
-            if(i.getNome().toLowerCase().contains(nome)) centriDaVisualizzare.add(i);
+            if(i.getNome().toLowerCase().contains(nome.toLowerCase()))
+                centriDaVisualizzare.add(i);
+
 
         if(!centriDaVisualizzare.isEmpty()){
             new UIVisualizzaCentriVaccinali(centriDaVisualizzare);
@@ -99,7 +101,7 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
     public void cercaCentriVaccinali(String comune, String tipologia){
         LinkedList<CentroVaccinale> centriDaVisualizzare = new LinkedList<>();
         for(CentroVaccinale i : CentriVaccinali.getCentriVaccinali())
-            if(i.getComune().toLowerCase().equals(comune) && i.getTipologia().equals(tipologia))
+            if(i.getComune().toLowerCase().contains(comune) && i.getTipologia().equals(tipologia))
                 centriDaVisualizzare.add(i);
 
         if(!centriDaVisualizzare.isEmpty()){
@@ -117,7 +119,7 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
         }else if(e.getSource() == btnCercaPerNome){
             String nome = tfCercaPerNome.getText();
             if(!nome.equals("")){
-                cercaCentriVaccinali(nome.toLowerCase());
+                cercaCentriVaccinali(nome);
             }else{
                 JOptionPane.showMessageDialog(this, "Inserisci il nome da ricercare");
             }

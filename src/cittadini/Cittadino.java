@@ -2,9 +2,11 @@ package cittadini;
 
 import centrivaccinali.CentroVaccinale;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Cittadino implements Serializable {
+    @Serial
     private static final long serialVersionUID = -3712425753326956399L;
     String nome, cognome, cf, email, username, password, idVaccinazione;
     CentroVaccinale centroVaccinale;

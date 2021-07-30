@@ -92,13 +92,21 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
     }
 
     boolean validaDati(String nomeEventoAvverso, String noteAggiuntive){
-        //TODO
-        return true;
+        String messaggio = "";
+
+        if(nomeEventoAvverso.equals("")) messaggio += "Inserisci il nome dell'evento avverso";
+        if(noteAggiuntive.length() > 250) messaggio += "Le note aggiuntive non possono superare i 250 caratteri";
+
+        if(!messaggio.equals("")) {
+            JOptionPane.showMessageDialog(this, messaggio);
+            return false;
+        }else
+            return true;
     }
 
     void segnalaEventoAvverso(){
         String nome = tfNomeEventoAvverso.getText();
-        int severita = Integer.parseInt(cbSeverita.getSelectedItem().toString());
+        int severita = Integer.parseInt(Objects.requireNonNull(cbSeverita.getSelectedItem()).toString());
         String noteAggiuntive = taNoteAggiuntive.getText();
 
         if(validaDati(nome, noteAggiuntive)){

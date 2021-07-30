@@ -11,16 +11,16 @@ import java.util.Objects;
 public class UIVisualizzaCentriVaccinali extends JFrame {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
 
-    public UIVisualizzaCentriVaccinali(LinkedList<CentroVaccinale> centriVaccinali){
+    public UIVisualizzaCentriVaccinali(LinkedList<CentroVaccinale> centriDaVisualizzare){
         this.setIconImage(img.getImage());
         this.setTitle("Risultati ricerca");
 
-        JButton bottoni[] = new JButton[centriVaccinali.size()];
+        JButton bottoni[] = new JButton[centriDaVisualizzare.size()];
         JPanel p = new JPanel(new GridLayout(bottoni.length, 2, 10,10));
         JLabel labelCentroVaccinale;
 
         for(int i = 0; i<bottoni.length; i++){
-            CentroVaccinale c = CentriVaccinali.getCentriVaccinali().get(i);
+            CentroVaccinale c = centriDaVisualizzare.get(i);
             labelCentroVaccinale = new JLabel(c.getNome() + ", " + c.getComune());
             labelCentroVaccinale.setFont(new Font("Helvetica", Font.PLAIN, 15));
             bottoni[i] = new JButton("Info");

@@ -24,10 +24,8 @@ public class Cittadini {
         try{
             File fileCittadini = new File("./data/Cittadini_Registrati.dati.txt");
             if(fileCittadini.createNewFile()){
-                System.out.println("File created: " + fileCittadini.getName());
-                serializzaCittadini(new LinkedList<Cittadino>());
+                serializzaCittadini(new LinkedList<>());
             }else{
-                //System.out.println("File already exist");
                 FileInputStream fileInputStream = new FileInputStream(fileCittadini);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 cittadini = (LinkedList<Cittadino>) objectInputStream.readObject();
@@ -45,7 +43,6 @@ public class Cittadini {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(cittadini);
             objectOutputStream.close();
-            System.out.println("Oggetto serializzato correttamente");
         }catch(IOException e){
             e.printStackTrace();
         }

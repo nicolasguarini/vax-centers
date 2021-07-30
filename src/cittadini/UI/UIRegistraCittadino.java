@@ -146,7 +146,6 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         }
     }
 
-//
     boolean validaDati(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione, CentroVaccinale centroVaccinale){
         String messaggio = "";
 

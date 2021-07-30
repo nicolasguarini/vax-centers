@@ -86,7 +86,6 @@ public class UILoginCittadino extends JFrame implements ActionListener {
         if (validaDati(nomeUtente, password)) {
             for(Cittadino i : Cittadini.getCittadini()){
                 if(i.getUsername().equalsIgnoreCase(nomeUtente) && i.getPassword().equals(passwordHashed)){
-                    System.out.println("Loggato " + i.getUsername());
                     loggato = true;
                     new UIUtenteLoggato(i);
                     this.dispose();
