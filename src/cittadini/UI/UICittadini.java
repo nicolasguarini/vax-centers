@@ -11,9 +11,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
-public class UICittadini implements ActionListener {
+public class UICittadini extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
-    JFrame frame = new JFrame();
+    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/cittadini.jpg")));
     JLabel labelTitle = new JLabel("PORTALE CITTADINI");
     JButton btnConsultaCentri = new JButton("CONSULTA I CENTRI");
     JButton btnRegistrati = new JButton("REGISTRATI");
@@ -26,11 +26,16 @@ public class UICittadini implements ActionListener {
     }
 
     private void setupFrame() {
-        labelTitle.setBounds(430, 165, 500, 100);
-        labelTitle.setFont(new Font("Montserrat", Font.BOLD, 40));
-        labelTitle.setHorizontalTextPosition(JLabel.CENTER);
+        JLabel labelTesto = new JLabel();
+        labelTesto.setText("PORTALE CITTADINI");
+        labelTesto.setFont(new Font("Montserrat", Font.BOLD, 32));
+		labelTesto.setBounds(55, 90, 500, 100);
 
-        btnConsultaCentri.setBounds(142, labelTitle.getY() + 100 + 50, 300, 65);
+        JLabel labelSfondo = new JLabel();
+        labelSfondo.setIcon(img2);
+		labelSfondo.setBounds(0, 0, 850, 720);
+
+        btnConsultaCentri.setBounds(60, 210, 300, 50);
         btnConsultaCentri.setFocusable(false);
         btnConsultaCentri.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnConsultaCentri.setBackground(new Color(232, 47, 125));
@@ -38,7 +43,7 @@ public class UICittadini implements ActionListener {
         btnConsultaCentri.setBorder(border);
         btnConsultaCentri.addActionListener(this);
 
-        btnRegistrati.setBounds(btnConsultaCentri.getX() + 325, btnConsultaCentri.getY(), 300, 65);
+        btnRegistrati.setBounds(60, 280, 300, 50);
         btnRegistrati.setFocusable(false);
         btnRegistrati.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnRegistrati.setBackground(new Color(232, 47, 125));
@@ -46,7 +51,7 @@ public class UICittadini implements ActionListener {
         btnRegistrati.setBorder(border);
         btnRegistrati.addActionListener(this);
 
-        btnLogIn.setBounds(btnRegistrati.getX() + 325, btnRegistrati.getY(), 300, 65);
+        btnLogIn.setBounds(60, 350, 300, 50);
         btnLogIn.setFocusable(false);
         btnLogIn.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnLogIn.setBackground(new Color(232, 47, 125));
@@ -54,7 +59,7 @@ public class UICittadini implements ActionListener {
         btnLogIn.setBorder(border);
         btnLogIn.addActionListener(this);
 
-        btnIndietro.setBounds(550, btnConsultaCentri.getY() + 85, 150, 50);
+        btnIndietro.setBounds(140, 420, 150, 50);
         btnIndietro.setFocusable(false);
         btnIndietro.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnIndietro.setBackground(new Color(232, 47, 125));
@@ -62,27 +67,37 @@ public class UICittadini implements ActionListener {
         btnIndietro.setBorder(border);
         btnIndietro.addActionListener(this);
 
-        frame.setTitle("Home - Cittadini");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1280, 720);
-        frame.setLayout(null);
-        frame.setLocationRelativeTo(null);
-        frame.setIconImage(img.getImage());
-        frame.setResizable(false);
+        JPanel panelBtn = new JPanel();
+		panelBtn.setBackground(new Color(240,255,240));
+		panelBtn.setBounds(0, 0, 425, 720);
+		panelBtn.setLayout(null);
+        panelBtn.add(labelTesto);
+        panelBtn.add(btnConsultaCentri);
+        panelBtn.add(btnRegistrati);
+        panelBtn.add(btnLogIn);
+        panelBtn.add(btnIndietro);
+		
+		JPanel panelSfondo = new JPanel();
+		panelSfondo.setBounds(425, 0, 850, 720);
+		panelSfondo.setLayout(null);
+        panelSfondo.add(labelSfondo);
 
-        frame.add(labelTitle);
-        frame.add(btnConsultaCentri);
-        frame.add(btnRegistrati);
-        frame.add(btnLogIn);
-        frame.add(btnIndietro);
-
-        frame.setVisible(true);
+		this.add(panelSfondo);
+        this.add(panelBtn);
+        this.setTitle("Home - Cittadini");
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(1280,720);
+        this.setLayout(null);
+        this.setLocationRelativeTo(null);
+        this.setIconImage(img.getImage());
+        this.setResizable(false);
+        this.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnIndietro) {
-            frame.dispose();
+            this.dispose();
             new UIStartMenu();
         } else if (e.getSource() == btnConsultaCentri) {
             new UICercaCentriVaccinali();

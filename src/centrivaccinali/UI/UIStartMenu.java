@@ -19,7 +19,6 @@ public class UIStartMenu extends JFrame implements ActionListener {
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
     public UIStartMenu(){
-        
         JLabel labelLogo = new JLabel();
         labelLogo.setIcon(img);
 		labelLogo.setBounds(535, 180, 212, 212);
@@ -58,15 +57,12 @@ public class UIStartMenu extends JFrame implements ActionListener {
 		panelInfo.setLayout(null);
         panelInfo.setBackground(Color.red);
 
-		
 		JPanel panelSfondo = new JPanel();
 		panelSfondo.setBounds(0, 0, 1280, 720);
 		panelSfondo.setLayout(null);
         panelSfondo.add(labelSfondo);
 
-	
 		this.add(panelSfondo);
-    
         this.setTitle("Vax Centers");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1280,720);
@@ -87,4 +83,5 @@ public class UIStartMenu extends JFrame implements ActionListener {
             new UICittadini();
         }
     }
+    
 }

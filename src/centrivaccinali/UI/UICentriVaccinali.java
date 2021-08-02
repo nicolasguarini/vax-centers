@@ -16,8 +16,8 @@ import java.util.Objects;
  * @author Redon Kokaj
  */
 public class UICentriVaccinali extends JFrame implements ActionListener {
-    JLabel labelTitle = new JLabel("CENTRI VACCINALI");
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
+    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/centri.jpg")));
     JButton btnRegistraCentroVaccinale = new JButton("REGISTRA CENTRO VACCINALE");
     JButton btnRegistraVaccinato = new JButton("REGISTRA VACCINATO");
     JButton btnIndietro = new JButton("INDIETRO");
@@ -33,11 +33,17 @@ public class UICentriVaccinali extends JFrame implements ActionListener {
      * @author Nicolas Guarini
      */
     public UICentriVaccinali() {
-        labelTitle.setBounds(430, 165, 500, 100);
-        labelTitle.setFont(new Font("Montserrat", Font.BOLD, 40));
-        labelTitle.setHorizontalTextPosition(JLabel.CENTER);
 
-        btnRegistraCentroVaccinale.setBounds(315, labelTitle.getY() + 100 + 50, 300, 65);
+        JLabel labelTesto = new JLabel();
+        labelTesto.setText("CENTRI VACCINALI");
+        labelTesto.setFont(new Font("Montserrat", Font.BOLD, 32));
+		labelTesto.setBounds(60, 90, 300, 100);
+
+        JLabel labelSfondo = new JLabel();
+        labelSfondo.setIcon(img2);
+		labelSfondo.setBounds(0, 0, 850, 720);
+
+        btnRegistraCentroVaccinale.setBounds(60, 210, 300, 50);
         btnRegistraCentroVaccinale.setFocusable(false);
         btnRegistraCentroVaccinale.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnRegistraCentroVaccinale.setBackground(new Color(232, 47, 125));
@@ -45,7 +51,7 @@ public class UICentriVaccinali extends JFrame implements ActionListener {
         btnRegistraCentroVaccinale.setBorder(border);
         btnRegistraCentroVaccinale.addActionListener(this);
 
-        btnRegistraVaccinato.setBounds(btnRegistraCentroVaccinale.getX() + 325, btnRegistraCentroVaccinale.getY(), 300, 65);
+        btnRegistraVaccinato.setBounds(60, 280, 300, 50);
         btnRegistraVaccinato.setFocusable(false);
         btnRegistraVaccinato.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnRegistraVaccinato.setBackground(new Color(232, 47, 125));
@@ -53,7 +59,7 @@ public class UICentriVaccinali extends JFrame implements ActionListener {
         btnRegistraVaccinato.setBorder(border);
         btnRegistraVaccinato.addActionListener(this);
 
-        btnIndietro.setBounds(550, btnRegistraCentroVaccinale.getY() + 85, 150, 50);
+        btnIndietro.setBounds(140, 350, 150, 50);
         btnIndietro.setFocusable(false);
         btnIndietro.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnIndietro.setBackground(new Color(232, 47, 125));
@@ -61,14 +67,25 @@ public class UICentriVaccinali extends JFrame implements ActionListener {
         btnIndietro.setBorder(border);
         btnIndietro.addActionListener(this);
 
-        this.add(labelTitle);
-        this.add(btnRegistraCentroVaccinale);
-        this.add(btnRegistraVaccinato);
-        this.add(btnIndietro);
+        JPanel panelBtn = new JPanel();
+		panelBtn.setBackground(new Color(240,255,240));
+		panelBtn.setBounds(850, 0, 425, 720);
+		panelBtn.setLayout(null);
+        panelBtn.add(labelTesto);
+        panelBtn.add(btnRegistraCentroVaccinale);
+        panelBtn.add(btnRegistraVaccinato);
+        panelBtn.add(btnIndietro);
+		
+		JPanel panelSfondo = new JPanel();
+		panelSfondo.setBounds(0, 0, 850, 720);
+		panelSfondo.setLayout(null);
+        panelSfondo.add(labelSfondo);
 
-        this.setTitle("Home - Centri Vaccinali");
+		this.add(panelSfondo);
+        this.add(panelBtn);
+        this.setTitle("Home - Centri vaccinali");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(1280, 720);
+        this.setSize(1280,720);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
         this.setIconImage(img.getImage());
