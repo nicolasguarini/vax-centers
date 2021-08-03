@@ -3,8 +3,15 @@ package cittadini.UI;
 import centrivaccinali.CentriVaccinali;
 import centrivaccinali.CentroVaccinale;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.Objects;
 

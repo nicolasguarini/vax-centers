@@ -1,9 +1,14 @@
 package centrivaccinali.UI;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
@@ -99,7 +104,7 @@ public class UICentriVaccinali extends JFrame implements ActionListener {
      *     Nello specifico, apre la schermata relativa al bottone cliccato dall'utente
      * </p>
      *
-     * @param e l'evento che deve venire processato
+     * @param e l'evento che deve essere processato
      *
      * @see UICentriVaccinali
      *

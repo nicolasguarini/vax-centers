@@ -5,7 +5,12 @@ import centrivaccinali.CentroVaccinale;
 import centrivaccinali.EventoAvverso;
 import centrivaccinali.Vaccinazione;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Base64;
