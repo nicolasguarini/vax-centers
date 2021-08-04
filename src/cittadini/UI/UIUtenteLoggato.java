@@ -19,11 +19,16 @@ import java.util.Objects;
 public class UIUtenteLoggato extends JFrame implements ActionListener {
     Cittadino cittadinoLoggato;
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
-    
-    JButton btnVisualizzaCentri = new JButton("VISUALIZZA CENTRI");
-    JButton btnSegnalaEventi = new JButton("SEGNALA EVENTI AVVERSI");
+    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/login.jpg")));
+    ImageIcon img3 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/centriicon.png")));
+    ImageIcon img4 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/eventiicon.png")));
+    ImageIcon img5 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/userinfo.png")));
+    JButton btnVisualizzaCentri = new JButton();
+    JButton btnSegnalaEventi = new JButton();
+    JButton btnInfo = new JButton();
     JButton btnLogout = new JButton("LOGOUT");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+    Border border2 = new LineBorder(new Color(232, 47, 125), 2, true);
 
     public UIUtenteLoggato(Cittadino cittadinoLoggato) {
         this.cittadinoLoggato = cittadinoLoggato;
@@ -31,34 +36,67 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
     }
 
     private void setupFrame() {
-        JLabel labelTitolo = new JLabel("Ciao, " + cittadinoLoggato.getNome());
-        labelTitolo.setBounds(430, 165, 500, 100);
-        labelTitolo.setFont(new Font("Montserrat", Font.BOLD, 40));
-        labelTitolo.setHorizontalTextPosition(JLabel.CENTER);
+       
+        JLabel labelTesto = new JLabel("Ciao, " + cittadinoLoggato.getNome());
+        labelTesto.setBounds(160, 40, 500, 100);
+        labelTesto.setFont(new Font("Montserrat", Font.BOLD, 40));
+        labelTesto.setHorizontalTextPosition(JLabel.CENTER);
 
-        btnVisualizzaCentri.setBounds(315, labelTitolo.getY() + 100 + 50, 300, 65);
+        JLabel labelTestoCentri = new JLabel();
+        labelTestoCentri.setText("Visualizza centri");
+        labelTestoCentri.setFont(new Font("Montserrat", Font.BOLD, 15));
+		labelTestoCentri.setBounds(177, 445, 300, 100);
+
+        JLabel labelTestoEventi = new JLabel();
+        labelTestoEventi.setText("Segnala eventi avversi");
+        labelTestoEventi.setFont(new Font("Montserrat", Font.BOLD, 15));
+		labelTestoEventi.setBounds(553, 445, 300, 100);
+
+        JLabel labelTestoUtente = new JLabel();
+        labelTestoUtente.setText("Informazioni profilo");
+        labelTestoUtente.setFont(new Font("Montserrat", Font.BOLD, 15));
+		labelTestoUtente.setBounds(965, 445, 300, 100);
+
+        btnVisualizzaCentri.setBounds(190, 327, 100, 107);
+        btnVisualizzaCentri.setIcon(img3);
         btnVisualizzaCentri.setFocusable(false);
-        btnVisualizzaCentri.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnVisualizzaCentri.setBackground(new Color(232, 47, 125));
-        btnVisualizzaCentri.setForeground(Color.WHITE);
-        btnVisualizzaCentri.setBorder(border);
+        btnVisualizzaCentri.setBorder(border2);
         btnVisualizzaCentri.addActionListener(this);
 
-        btnSegnalaEventi.setBounds(btnVisualizzaCentri.getX() + 325, btnVisualizzaCentri.getY(), 300, 65);
+        btnSegnalaEventi.setBounds(590, 327, 100, 107);
+        btnSegnalaEventi.setIcon(img4);
         btnSegnalaEventi.setFocusable(false);
-        btnSegnalaEventi.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnSegnalaEventi.setBackground(new Color(232, 47, 125));
-        btnSegnalaEventi.setForeground(Color.WHITE);
-        btnSegnalaEventi.setBorder(border);
+        btnSegnalaEventi.setBorder(border2);
         btnSegnalaEventi.addActionListener(this);
 
-        btnLogout.setBounds(550, btnVisualizzaCentri.getY() + 85, 150, 50);
+        btnInfo.setBounds(990, 327, 100, 107);
+        btnInfo.setIcon(img5);
+        btnInfo.setFocusable(false);
+        btnInfo.setBackground(new Color(232, 47, 125));
+        btnInfo.setBorder(border2);
+        btnInfo.addActionListener(this);
+
+        btnLogout.setBounds(975, 75, 150, 50);
         btnLogout.setFocusable(false);
         btnLogout.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnLogout.setBackground(new Color(232, 47, 125));
         btnLogout.setForeground(Color.WHITE);
         btnLogout.setBorder(border);
         btnLogout.addActionListener(this);
+
+        JLabel labelSfondo = new JLabel();
+        labelSfondo.add(labelTesto);
+        labelSfondo.setIcon(img2);
+		labelSfondo.setBounds(0, 0, 1280, 720);
+        labelSfondo.add(btnSegnalaEventi);
+        labelSfondo.add(btnVisualizzaCentri);
+        labelSfondo.add(btnInfo);
+        labelSfondo.add(btnLogout);
+        labelSfondo.add(labelTestoCentri);
+        labelSfondo.add(labelTestoEventi);
+        labelSfondo.add(labelTestoUtente);
 
         this.setTitle("Home - area personale");
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -67,12 +105,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setIconImage(img.getImage());
         this.setResizable(false);
-
-        this.add(labelTitolo);
-        this.add(btnVisualizzaCentri);
-        this.add(btnSegnalaEventi);
-        this.add(btnLogout);
-
+        this.add(labelSfondo);
         this.setVisible(true);
     }
 
