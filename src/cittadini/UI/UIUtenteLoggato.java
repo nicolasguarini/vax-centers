@@ -121,6 +121,8 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
             new UICercaCentriVaccinali();
         } else if (e.getSource() == btnSegnalaEventi) {
             new UISegnalaEventoAvverso(cittadinoLoggato);
+        } else if (e.getSource() == btnInfo){
+            new UIInfoUtente(cittadinoLoggato);
         }
     }
 }
