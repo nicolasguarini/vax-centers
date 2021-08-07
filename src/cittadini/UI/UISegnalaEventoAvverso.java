@@ -51,7 +51,7 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
         tfNomeEventoAvverso.setPreferredSize(new Dimension(150, 30));
         tfNomeEventoAvverso.setFont(new Font("Helvetica", Font.PLAIN, 15));
 
-        JLabel labelSeverita = new JLabel("Severit�: ");
+        JLabel labelSeverita = new JLabel("Severita': ");
         labelSeverita.setFont(new Font("Helvetica", Font.BOLD, 15));
         cbSeverita.setPreferredSize(new Dimension(50, 30));
         cbSeverita.setFont(new Font("Helvetica", Font.PLAIN, 15));

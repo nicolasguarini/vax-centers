@@ -117,6 +117,7 @@ public class CentriVaccinali {
         LinkedList<Vaccinazione> vaccinazioni = getVaccinazioni(centroVaccinale.getNome());
         int countEventiAvversi = 0;
         int sommaSeverita = 0;
+        double severitaMedia;
 
         for(Vaccinazione v : vaccinazioni){
             for(EventoAvverso e : v.getEventiAvversi()){
@@ -127,7 +128,9 @@ public class CentriVaccinali {
 
         if(countEventiAvversi == 0)
             return 0;
-        else
-            return (double) sommaSeverita/countEventiAvversi;
+        else{
+            severitaMedia = (double) sommaSeverita/countEventiAvversi;
+            return Math.floor(severitaMedia * 100) / 100;
+        }
     }
 }
