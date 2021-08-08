@@ -82,7 +82,7 @@ public class CentriVaccinali {
         return vaccinazioni;
     }
 
-    public static void serializzaVaccinazioni(LinkedList<Vaccinazione> vaccinazioni, String nomeCentroVaccinale){
+    public static void serializzaVaccinazioni(LinkedList<Vaccinazione> vaccinazioni, String nomeCentroVaccinale){ //O(n)
         final String filepath = "./data/Vaccinazioni_" + nomeCentroVaccinale + ".dati.txt";
         try{
             FileOutputStream fileOutputStream = new FileOutputStream(filepath);
@@ -95,7 +95,7 @@ public class CentriVaccinali {
         }
     }
 
-    public static boolean checkCentroVaccinale(String nomeCentroVaccinale){
+    public static boolean checkCentroVaccinale(String nomeCentroVaccinale){ //TODO: trasferire questo check di merda nella classe dove viene utilizzato. Qui non c'entra niente e fa solo confusione
         LinkedList<CentroVaccinale> centriVaccinali = getCentriVaccinali();
         for(CentroVaccinale v : centriVaccinali)
             if(v.getNome().equalsIgnoreCase(nomeCentroVaccinale))

@@ -66,7 +66,7 @@ public class Cittadini {
         return encoded;
     }
 
-    public static boolean checkUsername(String username){
+    public static boolean checkUsername(String username){ //TODO: trasferire tutti questi check di merda nella classe dove vengono usati, qui non c'entrano niente e fanno solo confusione
         for(Cittadino i : getCittadini())
             if(i.getUsername().equalsIgnoreCase(username)) return false;
 
@@ -97,6 +97,13 @@ public class Cittadini {
         return false;
     }
 
+    public static boolean checkCF(String cf){
+        for(Cittadino i : getCittadini())
+            if(i.getCF().equalsIgnoreCase(cf)) return false;
+
+        return true;
+    }
+
     public static void registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso){
         String nomeCentroVaccinale = cittadino.getCentroVaccinale().getNome();
         LinkedList<Vaccinazione> vaccinazioniCentroVaccinale = CentriVaccinali.getVaccinazioni(nomeCentroVaccinale);
@@ -107,12 +114,5 @@ public class Cittadini {
             }
         }
         CentriVaccinali.serializzaVaccinazioni(vaccinazioniCentroVaccinale, nomeCentroVaccinale);
-    }
-
-    public static boolean checkCF(String cf){
-        for(Cittadino i : getCittadini())
-            if(i.getCF().equalsIgnoreCase(cf)) return false;
-
-        return true;
     }
 }
