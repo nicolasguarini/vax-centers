@@ -10,15 +10,12 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -42,93 +39,125 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     JButton btnRegistra = new JButton("REGISTRA");
     JButton btnAnnulla = new JButton("ANNULLA");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+    Font font1 = new Font("Light", Font.PLAIN, 18);
+    Font font2 = new Font("Light", Font.PLAIN, 30);
 
     public UIRegistraVaccinato() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setLayout(new GridLayout(0, 1, 10, 10));
-        this.setSize(750, 200);
+        this.setLayout(null);
+        this.setSize(650, 630);
         this.setTitle("Registra Vaccinato");
         this.setResizable(false);
         this.setIconImage(img.getImage());
 
-        JLabel labelNomeCentroVaccinale = new JLabel("Centro vaccinale:");
-        labelNomeCentroVaccinale.setFont(new Font("Helvetica", Font.BOLD, 15));
-        JLabel labelNomeVaccinato = new JLabel("Nome:");
-        labelNomeVaccinato.setFont(new Font("Helvetica", Font.BOLD, 15));
-        JLabel labelCognomeVaccinato = new JLabel("Cognome:");
-        labelCognomeVaccinato.setFont(new Font("Helvetica", Font.BOLD, 15));
-        JLabel labelCodiceFiscaleVaccinato= new JLabel("Codice fiscale:");
-        labelCodiceFiscaleVaccinato.setFont(new Font("Helvetica", Font.BOLD, 15));
-        JLabel labelDataSomministrazioneVaccino = new JLabel("Data somministrazione:");
-        labelDataSomministrazioneVaccino.setFont(new Font("Helvetica", Font.BOLD, 15));
-        JLabel labelNomeVaccino = new JLabel("Nome vaccino:");
-        labelNomeVaccino.setFont(new Font("Helvetica", Font.BOLD, 15));
-        JLabel labelIDVaccinazione = new JLabel("ID vaccinazione:");
-        labelIDVaccinazione.setFont(new Font("Helvetica", Font.BOLD, 15));
+        JLabel labelRegistraVaccinato = new JLabel("Registra vaccinato");
+        labelRegistraVaccinato.setFont(font2);
+        labelRegistraVaccinato.setForeground(new Color(0, 0, 0));
+        labelRegistraVaccinato.setBounds(50, 28, 500, 50);
 
-        selectCentroVaccinale.setPreferredSize(new Dimension(400, 30));
-        selectCentroVaccinale.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        tfNomeVaccinato.setPreferredSize(new Dimension(150, 30));
-        tfNomeVaccinato.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        tfCognomeVaccinato.setPreferredSize(new Dimension(150, 30));
-        tfCognomeVaccinato.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        tfCodiceFiscaleVaccinato.setPreferredSize(new Dimension(150, 30));
-        tfCodiceFiscaleVaccinato.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        tfDataSomministrazioneVaccino.setPreferredSize(new Dimension(100, 30));
-        tfDataSomministrazioneVaccino.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        selectNomeVaccino.setPreferredSize(new Dimension(100, 30));
-        selectNomeVaccino.setFont(new Font("Helvetica", Font.PLAIN, 15));
+        JLabel labelNomeCentroVaccinale = new JLabel("Centro vaccinale");
+        labelNomeCentroVaccinale.setFont(font1);
+        labelNomeCentroVaccinale.setForeground(new Color(167, 164, 164));
+        labelNomeCentroVaccinale.setBounds(50, 90, 150, 50);
+
+        JLabel labelNomeVaccinato = new JLabel("Nome");
+        labelNomeVaccinato.setFont(font1);
+        labelNomeVaccinato.setForeground(new Color(167, 164, 164));
+        labelNomeVaccinato.setBounds(50, 190, 150, 50);
+        
+        JLabel labelCognomeVaccinato = new JLabel("Cognome");
+        labelCognomeVaccinato.setFont(font1);
+        labelCognomeVaccinato.setForeground(new Color(167, 164, 164));
+        labelCognomeVaccinato.setBounds(360, 190, 150, 50);
+        
+        JLabel labelCodiceFiscaleVaccinato = new JLabel("Codice fiscale");
+        labelCodiceFiscaleVaccinato.setFont(font1);
+        labelCodiceFiscaleVaccinato.setForeground(new Color(167, 164, 164));
+        labelCodiceFiscaleVaccinato.setBounds(50, 290, 150, 50);
+        
+        JLabel labelDataSomministrazioneVaccino = new JLabel("Data somministrazione");
+        labelDataSomministrazioneVaccino.setFont(font1);
+        labelDataSomministrazioneVaccino.setForeground(new Color(167, 164, 164));
+        labelDataSomministrazioneVaccino.setBounds(50, 390, 200, 50);
+        
+        JLabel labelIDVaccinazione = new JLabel("ID vaccinazione");
+        labelIDVaccinazione.setFont(font1);
+        labelIDVaccinazione.setForeground(new Color(167, 164, 164));
+        labelIDVaccinazione.setBounds(360, 290, 150, 50);
+
+        JLabel labelNomeVaccino = new JLabel("Nome vaccino");
+        labelNomeVaccino.setFont(font1);
+        labelNomeVaccino.setForeground(new Color(167, 164, 164));
+        labelNomeVaccino.setBounds(360, 390, 150, 50);
+        
+        selectCentroVaccinale.setPreferredSize(new Dimension(530, 30));
+        selectCentroVaccinale.setFont(font1);
+        selectCentroVaccinale.setBounds(50,136,530,30);
+
+        tfNomeVaccinato.setPreferredSize(new Dimension(220, 30));
+        tfNomeVaccinato.setFont(font1);
+        tfNomeVaccinato.setBounds(50, 236, 220, 30);
+
+        tfCognomeVaccinato.setPreferredSize(new Dimension(220, 30));
+        tfCognomeVaccinato.setFont(font1);
+        tfCognomeVaccinato.setBounds(360, 236, 220, 30);
+
+        tfCodiceFiscaleVaccinato.setPreferredSize(new Dimension(220, 30));
+        tfCodiceFiscaleVaccinato.setFont(font1);
+        tfCodiceFiscaleVaccinato.setBounds(50, 336, 220, 30);
+
+        tfIDVaccinazione.setPreferredSize(new Dimension(220, 30));
+        tfIDVaccinazione.setFont(font1);
+        tfIDVaccinazione.setBounds(360, 336, 220, 30);
+
+        tfDataSomministrazioneVaccino.setPreferredSize(new Dimension(220, 30));
+        tfDataSomministrazioneVaccino.setFont(font1);
+        tfDataSomministrazioneVaccino.setBounds(50, 436, 220, 30);
+        
+        selectNomeVaccino.setPreferredSize(new Dimension(220, 30));
+        selectNomeVaccino.setFont(font1);
         selectNomeVaccino.setSelectedIndex(0);
-        tfIDVaccinazione.setPreferredSize(new Dimension(100, 30));
-        tfIDVaccinazione.setFont(new Font("Helvetica", Font.PLAIN, 15));
+        selectNomeVaccino.setBounds(360, 436, 220, 30);
 
-        btnRegistra.setPreferredSize(new Dimension(200, 50));
+        btnRegistra.setPreferredSize(new Dimension(150, 40));
         btnRegistra.setFocusable(false);
         btnRegistra.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnRegistra.setBackground(new Color(232, 47, 125));
         btnRegistra.setForeground(Color.WHITE);
         btnRegistra.setBorder(border);
         btnRegistra.addActionListener(this);
-        btnAnnulla.setPreferredSize(new Dimension(200, 50));
+        btnRegistra.setBounds(170, 501, 150, 40);
+        
+        btnAnnulla.setPreferredSize(new Dimension(150, 40));
         btnAnnulla.setFocusable(false);
         btnAnnulla.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnAnnulla.setBackground(new Color(232, 47, 125));
         btnAnnulla.setForeground(Color.WHITE);
         btnAnnulla.setBorder(border);
         btnAnnulla.addActionListener(this);
+        btnAnnulla.setBounds(330, 501, 150, 40);
 
-        JPanel panelRegistrazioneVaccinati1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelRegistrazioneVaccinati1.add(labelNomeCentroVaccinale);
-        panelRegistrazioneVaccinati1.add(selectCentroVaccinale);
-
-        JPanel panelRegistrazioneVaccinati2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelRegistrazioneVaccinati2.add(labelNomeVaccinato);
-        panelRegistrazioneVaccinati2.add(tfNomeVaccinato);
-        panelRegistrazioneVaccinati2.add(labelCognomeVaccinato);
-        panelRegistrazioneVaccinati2.add(tfCognomeVaccinato);
-
-        JPanel panelRegistrazioneVaccinati3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelRegistrazioneVaccinati3.add(labelCodiceFiscaleVaccinato);
-        panelRegistrazioneVaccinati3.add(tfCodiceFiscaleVaccinato);
-        panelRegistrazioneVaccinati3.add(labelIDVaccinazione);
-        panelRegistrazioneVaccinati3.add(tfIDVaccinazione);
-
-        JPanel panelRegistrazioneVaccinati4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelRegistrazioneVaccinati4.add(labelDataSomministrazioneVaccino);
-        panelRegistrazioneVaccinati4.add(tfDataSomministrazioneVaccino);
-        panelRegistrazioneVaccinati4.add(labelNomeVaccino);
-        panelRegistrazioneVaccinati4.add(selectNomeVaccino);
-
-        JPanel panelBottoni = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelBottoni.add(btnRegistra);
-        panelBottoni.add(btnAnnulla);
-
-        this.add(panelRegistrazioneVaccinati1);
-        this.add(panelRegistrazioneVaccinati2);
-        this.add(panelRegistrazioneVaccinati3);
-        this.add(panelRegistrazioneVaccinati4);
-        this.add(panelBottoni);
-        this.pack();
+        JLabel labelSfondo = new JLabel();
+		labelSfondo.setBounds(0, 0, 650, 580);
+        labelSfondo.add(labelRegistraVaccinato);
+        labelSfondo.add(labelNomeCentroVaccinale);
+        labelSfondo.add(labelNomeVaccinato);
+        labelSfondo.add(labelCognomeVaccinato);
+        labelSfondo.add(labelCodiceFiscaleVaccinato);
+        labelSfondo.add(labelIDVaccinazione);
+        labelSfondo.add(labelDataSomministrazioneVaccino);
+        labelSfondo.add(labelNomeVaccino);
+        labelSfondo.add(selectCentroVaccinale);
+        labelSfondo.add(tfNomeVaccinato);
+        labelSfondo.add(tfCognomeVaccinato);
+        labelSfondo.add(tfCodiceFiscaleVaccinato);
+        labelSfondo.add(tfIDVaccinazione);
+        labelSfondo.add(tfDataSomministrazioneVaccino);
+        labelSfondo.add(selectNomeVaccino);
+        labelSfondo.add(btnRegistra);
+        labelSfondo.add(btnAnnulla);
+        
+        this.add(labelSfondo);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
