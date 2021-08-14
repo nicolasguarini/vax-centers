@@ -8,16 +8,13 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
@@ -26,64 +23,72 @@ public class UILoginCittadino extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
     JTextField tfNomeUtente = new JTextField();
     JPasswordField tfPasswordUtente = new JPasswordField();
-
     JButton btnLogin = new JButton("LOGIN");
     JButton btnAnnulla = new JButton("ANNULLA");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+    Font font1 = new Font("Light", Font.PLAIN, 18);
+    Font font2 = new Font("Light", Font.PLAIN, 30);
 
     public UILoginCittadino() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setLayout(new GridLayout(0, 1, 10, 10));
-        this.setLocationRelativeTo(null);
-        this.setSize(720, 200);
+        this.setLayout(null);
+        this.setSize(470, 430);
         this.setTitle("Login cittadino");
         this.setResizable(false);
         this.setIconImage(img.getImage());
 
-        JLabel labelNomeUtente = new JLabel("Nome utente:");
-        labelNomeUtente.setFont(new Font("Helvetica", Font.BOLD, 15));
+        JLabel labelLoginCittadino = new JLabel("Login cittadino");
+        labelLoginCittadino.setFont(font2);
+        labelLoginCittadino.setForeground(new Color(0, 0, 0));
+        labelLoginCittadino.setBounds(50, 28, 500, 50);
 
-        JLabel labelPasswordUtente = new JLabel("Password:");
-        labelPasswordUtente.setFont(new Font("Helvetica", Font.BOLD, 15));
+        JLabel labelNomeUtente = new JLabel("Nome utente");
+        labelNomeUtente.setFont(font1);
+        labelNomeUtente.setForeground(new Color(167, 164, 164));
+        labelNomeUtente.setBounds(50, 90, 150, 50);
+        
+        JLabel labelPassword = new JLabel("Password");
+        labelPassword.setFont(font1);
+        labelPassword.setForeground(new Color(167, 164, 164));
+        labelPassword.setBounds(50, 190, 150, 50);
+        
+        tfNomeUtente.setPreferredSize(new Dimension(220, 30));
+        tfNomeUtente.setFont(font1);
+        tfNomeUtente.setBounds(50, 136, 350, 30);
 
-        tfNomeUtente.setPreferredSize(new Dimension(150, 30));
-        tfNomeUtente.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        tfPasswordUtente.setPreferredSize(new Dimension(150, 30));
-        tfPasswordUtente.setFont(new Font("Helvetica", Font.PLAIN, 15));
+        tfPasswordUtente.setPreferredSize(new Dimension(220, 30));
+        tfPasswordUtente.setFont(font1);
+        tfPasswordUtente.setBounds(50, 236, 350, 30);
 
-        btnLogin.setPreferredSize(new Dimension(200, 50));
+        btnLogin.setPreferredSize(new Dimension(150, 40));
         btnLogin.setFocusable(false);
         btnLogin.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnLogin.setBackground(new Color(232, 47, 125));
         btnLogin.setForeground(Color.WHITE);
         btnLogin.setBorder(border);
         btnLogin.addActionListener(this);
-
-        btnAnnulla.setPreferredSize(new Dimension(200, 50));
+        btnLogin.setBounds(50, 316, 170, 40);
+        
+        btnAnnulla.setPreferredSize(new Dimension(150, 40));
         btnAnnulla.setFocusable(false);
         btnAnnulla.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnAnnulla.setBackground(new Color(232, 47, 125));
         btnAnnulla.setForeground(Color.WHITE);
         btnAnnulla.setBorder(border);
         btnAnnulla.addActionListener(this);
+        btnAnnulla.setBounds(230, 316, 170, 40);
 
-        JPanel panelNomeUtente = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelNomeUtente.add(labelNomeUtente);
-        panelNomeUtente.add(tfNomeUtente);
-
-        JPanel panelPassword = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelPassword.add(labelPasswordUtente);
-        panelPassword.add(tfPasswordUtente);
-
-        JPanel panelBottoni = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelBottoni.add(btnLogin);
-        panelBottoni.add(btnAnnulla);
-
-        this.add(panelNomeUtente);
-        this.add(panelPassword);
-        this.add(panelBottoni);
-
-        this.pack();
+        JLabel labelSfondo = new JLabel();
+		labelSfondo.setBounds(0, 0, 470, 450);
+        labelSfondo.add(labelLoginCittadino);
+        labelSfondo.add(labelNomeUtente);
+        labelSfondo.add(labelPassword);
+        labelSfondo.add(tfNomeUtente);
+        labelSfondo.add(tfPasswordUtente);
+        labelSfondo.add(btnLogin);
+        labelSfondo.add(btnAnnulla);
+        
+        this.add(labelSfondo);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }

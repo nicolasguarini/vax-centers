@@ -73,7 +73,6 @@ public class UICentriVaccinali extends JFrame implements ActionListener {
         btnIndietro.addActionListener(this);
 
         JPanel panelBtn = new JPanel();
-		panelBtn.setBackground(new Color(240,255,240));
 		panelBtn.setBounds(850, 0, 425, 720);
 		panelBtn.setLayout(null);
         panelBtn.add(labelTesto);

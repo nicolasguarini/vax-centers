@@ -97,7 +97,7 @@ public class UIInfoUtente extends JFrame implements ActionListener {
         TestoEmail.setForeground(new Color(167, 164, 164));
         TestoEmail.setFont(font1);
 
-        JLabel TestoUsername = new JLabel("Username");
+        JLabel TestoUsername = new JLabel("Nome utente");
         TestoUsername.setBounds(261, 282, 120, 50);
         TestoUsername.setForeground(new Color(167, 164, 164));
         TestoUsername.setFont(font1);
