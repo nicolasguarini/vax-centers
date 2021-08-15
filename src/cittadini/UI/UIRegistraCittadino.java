@@ -11,16 +11,13 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
@@ -36,107 +33,139 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
     JPasswordField tfPasswordUtente = new JPasswordField();
     JTextField tfIDVaccinazione = new JTextField();
     JComboBox selectCentroVaccinale = new JComboBox(getCentriArray());
-
     JButton btnRegistra = new JButton("REGISTRATI");
     JButton btnAnnulla = new JButton("ANNULLA");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+    Font font1 = new Font("Light", Font.PLAIN, 18);
+    Font font2 = new Font("Light", Font.PLAIN, 30);
 
     public UIRegistraCittadino() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setLayout(new GridLayout(0, 1, 10, 10));
-        this.setSize(750, 200);
-        this.setTitle("Registra cittadino");
+        this.setLayout(null);
+        this.setSize(650, 710);
+        this.setTitle("Registrazione cittadino");
         this.setResizable(false);
         this.setIconImage(img.getImage());
 
-        JLabel labelNomeCittadino = new JLabel("Nome:");
-        labelNomeCittadino.setFont(new Font("Helvetica", Font.BOLD, 15));
-        JLabel labelCognomeCittadino = new JLabel("Cognome:");
-        labelCognomeCittadino.setFont(new Font("Helvetica", Font.BOLD, 15));
-        JLabel labelCodiceFiscaleCittadino = new JLabel("Codice fiscale:");
-        labelCodiceFiscaleCittadino.setFont(new Font("Helvetica", Font.BOLD, 15));
-        JLabel labelEmail = new JLabel("Email:");
-        labelEmail.setFont(new Font("Helvetica", Font.BOLD, 15));
-        JLabel labelNomeUtente = new JLabel("Nome utente:");
-        labelNomeUtente.setFont(new Font("Helvetica", Font.BOLD, 15));
-        JLabel labelPasswordUtente = new JLabel("Password:");
-        labelPasswordUtente.setFont(new Font("Helvetica", Font.BOLD, 15));
-        JLabel labelIDVaccinazione = new JLabel("ID vaccinazione:");
-        labelIDVaccinazione.setFont(new Font("Helvetica", Font.BOLD, 15));
-        JLabel labelSelezionaCentroVaccinale = new JLabel("Centro vaccinale: ");
-        labelSelezionaCentroVaccinale.setFont(new Font("Helvetica", Font.BOLD, 15));
+        JLabel labelRegistraVaccinato = new JLabel("Registrazione cittadino");
+        labelRegistraVaccinato.setFont(font2);
+        labelRegistraVaccinato.setForeground(new Color(0, 0, 0));
+        labelRegistraVaccinato.setBounds(50, 28, 500, 50);
 
-        selectCentroVaccinale.setPreferredSize(new Dimension(400, 30));
-        selectCentroVaccinale.setFont(new Font("Helvetica", Font.PLAIN, 15));
+        JLabel labelNomeCentroVaccinale = new JLabel("Nome centro vaccinale");
+        labelNomeCentroVaccinale.setFont(font1);
+        labelNomeCentroVaccinale.setForeground(new Color(167, 164, 164));
+        labelNomeCentroVaccinale.setBounds(50, 90, 300, 50);
 
-        tfNomeCittadino.setPreferredSize(new Dimension(150, 30));
-        tfNomeCittadino.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        tfCognomeCittadino.setPreferredSize(new Dimension(150, 30));
-        tfCognomeCittadino.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        tfCodiceFiscaleCittadino.setPreferredSize(new Dimension(150, 30));
-        tfCodiceFiscaleCittadino.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        tfEmail.setPreferredSize(new Dimension(100, 30));
-        tfEmail.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        tfNomeUtente.setPreferredSize(new Dimension(100, 30));
-        tfNomeUtente.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        tfPasswordUtente.setPreferredSize(new Dimension(100, 30));
-        tfPasswordUtente.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        tfIDVaccinazione.setPreferredSize(new Dimension(100, 30));
-        tfIDVaccinazione.setFont(new Font("Helvetica", Font.PLAIN, 15));
+        JLabel labelNome = new JLabel("Nome");
+        labelNome.setFont(font1);
+        labelNome.setForeground(new Color(167, 164, 164));
+        labelNome.setBounds(50, 190, 150, 50);
+        
+        JLabel labelCognome = new JLabel("Cognome");
+        labelCognome.setFont(font1);
+        labelCognome.setForeground(new Color(167, 164, 164));
+        labelCognome.setBounds(360, 190, 150, 50);
+        
+        JLabel labelCF = new JLabel("Codice fiscale");
+        labelCF.setFont(font1);
+        labelCF.setForeground(new Color(167, 164, 164));
+        labelCF.setBounds(50, 290, 150, 50);
+        
+        JLabel labelEmail = new JLabel("Email");
+        labelEmail.setFont(font1);
+        labelEmail.setForeground(new Color(167, 164, 164));
+        labelEmail.setBounds(360, 290, 200, 50);
+        
+        JLabel labelNomeUtente = new JLabel("Nome utente");
+        labelNomeUtente.setFont(font1);
+        labelNomeUtente.setForeground(new Color(167, 164, 164));
+        labelNomeUtente.setBounds(50, 390, 150, 50);
 
-        btnRegistra.setPreferredSize(new Dimension(200, 50));
+        JLabel labelPassword = new JLabel("Password");
+        labelPassword.setFont(font1);
+        labelPassword.setForeground(new Color(167, 164, 164));
+        labelPassword.setBounds(360, 390, 150, 50);
+
+        JLabel labelIDVaccinazione = new JLabel("ID vaccinazione");
+        labelIDVaccinazione.setFont(font1);
+        labelIDVaccinazione.setForeground(new Color(167, 164, 164));
+        labelIDVaccinazione.setBounds(50, 490, 300, 50);
+        
+        selectCentroVaccinale.setPreferredSize(new Dimension(530, 30));
+        selectCentroVaccinale.setFont(font1);
+        selectCentroVaccinale.setBounds(50, 136, 530, 30);
+
+        tfNomeCittadino.setPreferredSize(new Dimension(220, 30));
+        tfNomeCittadino.setFont(font1);
+        tfNomeCittadino.setBounds(50, 236, 220, 30);
+
+        tfCognomeCittadino.setPreferredSize(new Dimension(220, 30));
+        tfCognomeCittadino.setFont(font1);
+        tfCognomeCittadino.setBounds(360, 236, 220, 30);
+
+        tfCodiceFiscaleCittadino.setPreferredSize(new Dimension(220, 30));
+        tfCodiceFiscaleCittadino.setFont(font1);
+        tfCodiceFiscaleCittadino.setBounds(50, 336, 220, 30);
+
+        tfEmail.setPreferredSize(new Dimension(220, 30));
+        tfEmail.setFont(font1);
+        tfEmail.setBounds(360, 336, 220, 30);
+
+        tfNomeUtente.setPreferredSize(new Dimension(220, 30));
+        tfNomeUtente.setFont(font1);
+        tfNomeUtente.setBounds(50, 436, 220, 30);
+
+        tfPasswordUtente.setPreferredSize(new Dimension(220, 30));
+        tfPasswordUtente.setFont(font1);
+        tfPasswordUtente.setBounds(360, 436, 220, 30);
+
+        tfIDVaccinazione.setPreferredSize(new Dimension(220, 30));
+        tfIDVaccinazione.setFont(font1);
+        tfIDVaccinazione.setBounds(50, 536, 530, 30);
+
+        btnRegistra.setPreferredSize(new Dimension(150, 40));
         btnRegistra.setFocusable(false);
         btnRegistra.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnRegistra.setBackground(new Color(232, 47, 125));
         btnRegistra.setForeground(Color.WHITE);
         btnRegistra.setBorder(border);
         btnRegistra.addActionListener(this);
-
-        btnAnnulla.setPreferredSize(new Dimension(200, 50));
+        btnRegistra.setBounds(170, 601, 150, 40);
+        
+        btnAnnulla.setPreferredSize(new Dimension(150, 40));
         btnAnnulla.setFocusable(false);
         btnAnnulla.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnAnnulla.setBackground(new Color(232, 47, 125));
         btnAnnulla.setForeground(Color.WHITE);
         btnAnnulla.setBorder(border);
         btnAnnulla.addActionListener(this);
+        btnAnnulla.setBounds(330, 601, 150, 40);
 
-        JPanel panelRegistrazioneCittadino1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelRegistrazioneCittadino1.add(labelNomeCittadino);
-        panelRegistrazioneCittadino1.add(tfNomeCittadino);
-        panelRegistrazioneCittadino1.add(labelCognomeCittadino);
-        panelRegistrazioneCittadino1.add(tfCognomeCittadino);
-
-        JPanel panelRegistrazioneCittadino2 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelRegistrazioneCittadino2.add(labelCodiceFiscaleCittadino);
-        panelRegistrazioneCittadino2.add(tfCodiceFiscaleCittadino);
-        panelRegistrazioneCittadino2.add(labelEmail);
-        panelRegistrazioneCittadino2.add(tfEmail);
-
-        JPanel panelRegistrazioneCittadino3 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelRegistrazioneCittadino3.add(labelNomeUtente);
-        panelRegistrazioneCittadino3.add(tfNomeUtente);
-        panelRegistrazioneCittadino3.add(labelPasswordUtente);
-        panelRegistrazioneCittadino3.add(tfPasswordUtente);
-
-        JPanel panelCentroVaccinale = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelCentroVaccinale.add(labelSelezionaCentroVaccinale);
-        panelCentroVaccinale.add(selectCentroVaccinale);
-
-        JPanel panelRegistrazioneCittadino4 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelRegistrazioneCittadino4.add(labelIDVaccinazione);
-        panelRegistrazioneCittadino4.add(tfIDVaccinazione);
-
-        JPanel panelBottoni = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        panelBottoni.add(btnRegistra);
-        panelBottoni.add(btnAnnulla);
-
-        this.add(panelRegistrazioneCittadino1);
-        this.add(panelRegistrazioneCittadino2);
-        this.add(panelRegistrazioneCittadino3);
-        this.add(panelRegistrazioneCittadino4);
-        this.add(panelCentroVaccinale);
-        this.add(panelBottoni);
-        this.pack();
+        JLabel labelSfondo = new JLabel();
+		labelSfondo.setBounds(0, 0, 650, 710);
+        labelSfondo.add(labelRegistraVaccinato);
+        labelSfondo.add(labelNomeCentroVaccinale);
+        labelSfondo.add(labelNome);
+        labelSfondo.add(labelCognome);
+        labelSfondo.add(labelCF);
+        labelSfondo.add(labelIDVaccinazione);
+        labelSfondo.add(labelEmail);
+        labelSfondo.add(labelNomeUtente);
+        labelSfondo.add(labelPassword);
+        labelSfondo.add(labelIDVaccinazione);
+        labelSfondo.add(selectCentroVaccinale);
+        labelSfondo.add(tfNomeCittadino);
+        labelSfondo.add(tfCognomeCittadino);
+        labelSfondo.add(tfCodiceFiscaleCittadino);
+        labelSfondo.add(tfNomeUtente);
+        labelSfondo.add(tfEmail);
+        labelSfondo.add(tfPasswordUtente);
+        labelSfondo.add(tfIDVaccinazione);
+        labelSfondo.add(btnRegistra);
+        labelSfondo.add(btnAnnulla);
+        
+        this.add(labelSfondo);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
