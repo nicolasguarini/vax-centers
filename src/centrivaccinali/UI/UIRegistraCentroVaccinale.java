@@ -190,13 +190,13 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
      */
     private void registra(){
         String nome = tfNomeCentroVaccinale.getText();
-        String qualificatore = qualificatoreIndirizzo.getSelectedItem().toString();
+        String qualificatore = Objects.requireNonNull(qualificatoreIndirizzo.getSelectedItem()).toString();
         String nomeIndirizzo = tfNomeIndirizzo.getText();
         String civico = tfCivico.getText();
         String comune = tfComune.getText();
         String provincia = tfProvincia.getText();
         String CAP = tfCAP.getText();
-        String tipologiaCentro  = tipologiaCentroVaccinale.getSelectedItem().toString();
+        String tipologiaCentro  = Objects.requireNonNull(tipologiaCentroVaccinale.getSelectedItem()).toString();
 
         if(validaDati(nome, nomeIndirizzo, civico, comune, provincia, CAP)){
             Indirizzo indirizzo = new Indirizzo(qualificatore, nomeIndirizzo, civico, Character.toUpperCase(comune.charAt(0)) + comune.substring(1).toLowerCase(), provincia.toUpperCase(), CAP);

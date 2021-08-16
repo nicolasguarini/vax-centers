@@ -15,6 +15,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
+/**
+ * La classe <code>UIStartMenu</code> si occupa di gestire il menu iniziale del programma, dove l'utente può scegliere se entrare nella sezione dedicata ai centri vaccinali o quella dedicata ai cittadini
+ *
+ * @see centrivaccinali.CentriVaccinali
+ * @see cittadini.Cittadini
+ *
+ * @author Nicolas Guarini
+ * @author Domenico Rizzo
+ * @author Redon Kokaj
+ * @author Filippo Alzati
+ */
 public class UIStartMenu extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
     ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/home.jpg")));
@@ -22,6 +33,11 @@ public class UIStartMenu extends JFrame implements ActionListener {
     JButton btnCittadini = new JButton("CITTADINI");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
+    /**
+     * Inizializza, imposta e visualizza il menu iniziale del programma
+     *
+     * @author Domenico Rizzo
+     */
     public UIStartMenu(){
         JLabel labelLogo = new JLabel();
         labelLogo.setIcon(img);
@@ -77,6 +93,13 @@ public class UIStartMenu extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Gestisce il click dei pulsanti della schermata
+     *
+     * @param e evento che deve venire processato
+     *
+     * @author Nicolas Guarini
+     */
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == btnCentriVaccinali){

@@ -27,6 +27,15 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Objects;
 
+/**
+ * La classe <code>UIRegistraVaccinato</code> si occupa di gestire il form di registrazione a sistema di una somministrazione di vaccino, validando i dati e inviandoli al backend che li processerà
+ *
+ * @see CentriVaccinali
+ *
+ * @author Nicolas Guarini
+ * @author Domenico Rizzo
+ * @author Redon Kokaj
+ */
 public class UIRegistraVaccinato extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
     JComboBox<String> selectCentroVaccinale = new JComboBox<>(getCentriArray());
@@ -42,6 +51,16 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     Font font1 = new Font("Light", Font.PLAIN, 18);
     Font font2 = new Font("Light", Font.PLAIN, 30);
 
+    /**
+     * Inizializza, imposta e visualizza il form di registrazione di una vaccinazione
+     *
+     * @see CentriVaccinali
+     * @see UICentriVaccinali
+     *
+     * @author Domenico Rizzo
+     * @author Nicolas Guarini
+     * @author Redon Kokaj
+     */
     public UIRegistraVaccinato() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
@@ -162,14 +181,19 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-
+    /**
+     * Preleva i dati inseriti dall'utente vengono prelevati dagli elementi di input.
+     * Se i dati sono validi viene istanziato un oggetto della classe Vaccinazione che verrà poi passato per parametro al metodo {@link #validaDati} che li salverà su file
+     *
+     * @author Nicolas Guarini
+     */
     void registra() throws ParseException {
         CentroVaccinale centroVaccinale = CentriVaccinali.getCentriVaccinali().get(selectCentroVaccinale.getSelectedIndex());
         String nome = tfNomeVaccinato.getText();
         String cognome = tfCognomeVaccinato.getText();
         String cf = tfCodiceFiscaleVaccinato.getText();
         String idVaccinazione = tfIDVaccinazione.getText();
-        String nomeVaccino = selectNomeVaccino.getSelectedItem().toString();
+        String nomeVaccino = Objects.requireNonNull(selectNomeVaccino.getSelectedItem()).toString();
         String strData = tfDataSomministrazioneVaccino.getText();
 
         if(validaDati(nome, cognome, cf, idVaccinazione, strData)){
@@ -181,9 +205,20 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         this.dispose();
     }
 
+    /**
+     * Effettua una seria di controlli sui dati inseriti dall'utente, e mostra un messaggio che riassume il motivo per il quale determinati dati non sono validi
+     * @param nome nome del vaccinato
+     * @param cognome cognome del vaccinato
+     * @param cf codice fiscale del vaccinato
+     * @param idVaccinazione id univoco della vaccinazione appena effettuata
+     * @param data data della somministrazione del vaccino
+     * @return <code>true</code> se i dati sono risultati validi; <code>false</code> se i dati non sono risultati validi
+     *
+     * @author Redon Kokaj
+     */
     boolean validaDati(String nome, String cognome, String cf, String idVaccinazione, String data){
         String messaggio = "";
-        LocalDate data1 = LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));;
+        LocalDate data1 = LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         LocalDate dataAttuale = LocalDate.now();
         String[] dataInserita = data.split("/");
 
@@ -224,6 +259,13 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         return arCentri;
     }
 
+    /**
+     * Gestisce il click dei pulsanti della schermata
+     *
+     * @param e evento che deve venire processato
+     *
+     * @author Nicolas Guarini
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnRegistra) {
