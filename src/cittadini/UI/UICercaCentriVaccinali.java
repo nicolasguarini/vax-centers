@@ -9,15 +9,12 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
@@ -25,72 +22,101 @@ import java.util.Objects;
 
 public class UICercaCentriVaccinali extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
-    JButton btnCercaPerNome = new JButton("CERCA");
-    JButton btnCercaPerComuneETipologia = new JButton("CERCA");
+    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/cerca.png")));
+    JButton btnCercaPerNome = new JButton();
+    JButton btnCercaPerComuneETipologia = new JButton();
     JButton btnVisualizzaTutti = new JButton("VISUALIZZA TUTTI");
+    JButton btnAnnulla = new JButton("ANNULLA");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
     JTextField tfCercaPerNome = new JTextField();
     JTextField tfCercaPerComune = new JTextField();
     JComboBox<String> cbTipologie = new JComboBox<>(new String[]{"Ospedaliero", "Aziendale", "Hub"});
+    Font font1 = new Font("Light", Font.PLAIN, 18);
+    Font font2 = new Font("Light", Font.PLAIN, 30);
 
     public UICercaCentriVaccinali(){
-        JPanel panelCercaPerNome = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JLabel labelCercaPerNome = new JLabel("Cerca per nome: ");
-        labelCercaPerNome.setFont(new Font("Helvetica", Font.BOLD, 15));
-        tfCercaPerNome.setPreferredSize(new Dimension(150, 30));
-        tfCercaPerNome.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        btnCercaPerNome.setPreferredSize(new Dimension(100, 30));
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.setLayout(null);
+        this.setSize(460, 390);
+        this.setTitle("Cerca centro vaccinale");
+        this.setResizable(false);
+        this.setIconImage(img.getImage());
+
+        JLabel labelCercaCentro = new JLabel("Cerca centro vaccinale");
+        labelCercaCentro.setFont(font2);
+        labelCercaCentro.setForeground(new Color(0, 0, 0));
+        labelCercaCentro.setBounds(40, 25, 500, 50);
+
+        JLabel labelCercaNome = new JLabel("Cerca per nome");
+        labelCercaNome.setFont(font1);
+        labelCercaNome.setForeground(new Color(167, 164, 164));
+        labelCercaNome.setBounds(40, 80, 150, 50);
+        
+        JLabel labelCercaComuneTipologia = new JLabel("Cerca per comune e tipologia");
+        labelCercaComuneTipologia.setFont(font1);
+        labelCercaComuneTipologia.setForeground(new Color(167, 164, 164));
+        labelCercaComuneTipologia.setBounds(40, 160, 300, 50);
+        
+        tfCercaPerNome.setPreferredSize(new Dimension(220, 30));
+        tfCercaPerNome.setFont(font1);
+        tfCercaPerNome.setBounds(40, 118, 315, 30);
+
+        tfCercaPerComune.setPreferredSize(new Dimension(220, 30));
+        tfCercaPerComune.setFont(font1);
+        tfCercaPerComune.setBounds(40, 198, 185, 30);
+
+        cbTipologie.setPreferredSize(new Dimension(220, 30));
+        cbTipologie.setFont(font1);
+        cbTipologie.setBounds(230, 198, 125, 30);
+
+        btnCercaPerNome.setPreferredSize(new Dimension(50, 30));
+        btnCercaPerNome.setIcon(img2);
+        btnCercaPerNome.setBounds(360, 118, 50, 30);
+        btnCercaPerNome.addActionListener(this);
         btnCercaPerNome.setFocusable(false);
-        btnCercaPerNome.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnCercaPerNome.setBackground(new Color(232, 47, 125));
-        btnCercaPerNome.setForeground(Color.WHITE);
         btnCercaPerNome.setBorder(border);
-        panelCercaPerNome.add(labelCercaPerNome);
-        panelCercaPerNome.add(tfCercaPerNome);
-        panelCercaPerNome.add(btnCercaPerNome);
 
-        JPanel panelCercaPerComuneETipologia = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JLabel labelCercaPerComuneETipologia = new JLabel("Cerca per comune e tipologia: ");
-        labelCercaPerComuneETipologia.setFont(new Font("Helvetica", Font.BOLD, 15));
-        tfCercaPerComune.setPreferredSize(new Dimension(150, 30));
-        tfCercaPerComune.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        cbTipologie.setFont(new Font("Helvetica", Font.PLAIN, 15));
-        cbTipologie.setSelectedIndex(0);
-        btnCercaPerComuneETipologia.setPreferredSize(new Dimension(100, 30));
+        btnCercaPerComuneETipologia.setPreferredSize(new Dimension(50, 30));
+        btnCercaPerComuneETipologia.setIcon(img2);
+        btnCercaPerComuneETipologia.setBounds(360, 198, 50, 30);
+        btnCercaPerComuneETipologia.addActionListener(this);
         btnCercaPerComuneETipologia.setFocusable(false);
-        btnCercaPerComuneETipologia.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnCercaPerComuneETipologia.setBackground(new Color(232, 47, 125));
-        btnCercaPerComuneETipologia.setForeground(Color.WHITE);
         btnCercaPerComuneETipologia.setBorder(border);
-        panelCercaPerComuneETipologia.add(labelCercaPerComuneETipologia);
-        panelCercaPerComuneETipologia.add(tfCercaPerComune);
-        panelCercaPerComuneETipologia.add(cbTipologie);
-        panelCercaPerComuneETipologia.add(btnCercaPerComuneETipologia);
 
-        JPanel panelVisualizzaTutti = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        btnVisualizzaTutti.setPreferredSize(new Dimension(200, 35));
+        btnVisualizzaTutti.setPreferredSize(new Dimension(150, 40));
         btnVisualizzaTutti.setFocusable(false);
         btnVisualizzaTutti.setFont(new Font("Montserrat", Font.BOLD, 15));
         btnVisualizzaTutti.setBackground(new Color(232, 47, 125));
         btnVisualizzaTutti.setForeground(Color.WHITE);
         btnVisualizzaTutti.setBorder(border);
-        panelVisualizzaTutti.add(btnVisualizzaTutti);
-
         btnVisualizzaTutti.addActionListener(this);
-        btnCercaPerNome.addActionListener(this);
-        btnCercaPerComuneETipologia.addActionListener(this);
+        btnVisualizzaTutti.setBounds(53, 278, 170, 40);
+        
+        btnAnnulla.setPreferredSize(new Dimension(150, 40));
+        btnAnnulla.setFocusable(false);
+        btnAnnulla.setFont(new Font("Montserrat", Font.BOLD, 15));
+        btnAnnulla.setBackground(new Color(232, 47, 125));
+        btnAnnulla.setForeground(Color.WHITE);
+        btnAnnulla.setBorder(border);
+        btnAnnulla.addActionListener(this);
+        btnAnnulla.setBounds(228, 278, 170, 40);
 
-        this.setTitle("Cerca Centri Vaccinali");
-        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.setLayout(new GridLayout(0, 1, 15, 15));
-        this.setIconImage(img.getImage());
-        this.setResizable(false);
-
-        this.add(panelCercaPerNome);
-        this.add(panelCercaPerComuneETipologia);
-        this.add(panelVisualizzaTutti);
-
-        this.pack();
+        JLabel labelSfondo = new JLabel();
+		labelSfondo.setBounds(0, 0, 450, 350);
+        labelSfondo.add(labelCercaCentro);
+        labelSfondo.add(labelCercaNome);
+        labelSfondo.add(labelCercaComuneTipologia);
+        labelSfondo.add(tfCercaPerNome);
+        labelSfondo.add(tfCercaPerComune);
+        labelSfondo.add(cbTipologie);
+        labelSfondo.add(btnCercaPerNome);
+        labelSfondo.add(btnCercaPerComuneETipologia);
+        labelSfondo.add(btnVisualizzaTutti);
+        labelSfondo.add(btnAnnulla);
+        
+        this.add(labelSfondo);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -142,6 +168,8 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
             }else{
                 JOptionPane.showMessageDialog(this, "Inserisci il comune");
             }
+        }else if(e.getSource() == btnAnnulla){
+            this.dispose();
         }
     }
 }
