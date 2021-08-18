@@ -2,6 +2,7 @@ package cittadini.UI;
 
 import centrivaccinali.CentriVaccinali;
 import centrivaccinali.CentroVaccinale;
+import centrivaccinali.Vaccinazione;
 import cittadini.Cittadini;
 import cittadini.Cittadino;
 
@@ -203,16 +204,54 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$")) messaggio += "La password deve contenere 6 caratteri, \nun carattere maiuscolo, minuscolo, un numero e nessuno spazio! \n";
         if(!idVaccinazione.matches("[0-9]{16}")) messaggio += "L'id della vaccinazione deve contenere 16 cifre! \n";
 
-        if(!Cittadini.checkUsername(username)) messaggio += "L'username esiste già \n";
-        if(!Cittadini.checkEmail(email)) messaggio += "L'email esiste già \n";
-        if(!Cittadini.checkIdVaccinazioneGiaRegistrata(idVaccinazione)) messaggio += "L'id vaccinazione è già stato registrato! \n";
-        if(!Cittadini.checkIdVaccinazioneEsistente(idVaccinazione, centroVaccinale)) messaggio += "La vaccinazione non esiste nel centro selezionato \n";
-        if(!Cittadini.checkCF(cf)) messaggio += "Il codice fiscale esiste già \n";
+        if(!checkUsername(username)) messaggio += "L'username esiste già \n";
+        if(!checkEmail(email)) messaggio += "L'email esiste già \n";
+        if(!checkIdVaccinazioneGiaRegistrata(idVaccinazione)) messaggio += "L'id vaccinazione è già stato registrato! \n";
+        if(!checkIdVaccinazioneEsistente(idVaccinazione, centroVaccinale)) messaggio += "La vaccinazione non esiste nel centro selezionato \n";
+        if(!checkCF(cf)) messaggio += "Il codice fiscale esiste già \n";
         
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
             return false;
         }else return true;
+    }
+
+    boolean checkUsername(String username){
+        for(Cittadino i : Cittadini.getCittadini())
+            if(i.getUsername().equalsIgnoreCase(username)) return false;
+
+        return true;
+    }
+
+    boolean checkEmail(String email){
+        for(Cittadino i : Cittadini.getCittadini())
+            if (i.getEmail().equalsIgnoreCase(email)) return false;
+
+        return true;
+    }
+
+    boolean checkIdVaccinazioneGiaRegistrata(String idVaccinazione){
+        for(Cittadino i : Cittadini.getCittadini())
+            if(i.getIdVaccinazione().equals(idVaccinazione)) return false;
+
+        return true;
+    }
+
+    boolean checkIdVaccinazioneEsistente(String idVaccinazione, CentroVaccinale centroVaccinale){
+        LinkedList<Vaccinazione> vaccinazioni = CentriVaccinali.getVaccinazioni(centroVaccinale.getNome());
+        for(Vaccinazione i : vaccinazioni){
+            if(i.getIdVaccinazione().equals(idVaccinazione))
+                return true;
+        }
+
+        return false;
+    }
+
+    boolean checkCF(String cf){
+        for(Cittadino i : Cittadini.getCittadini())
+            if(i.getCF().equalsIgnoreCase(cf)) return false;
+
+        return true;
     }
 
     String[] getCentriArray(){

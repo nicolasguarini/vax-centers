@@ -66,44 +66,6 @@ public class Cittadini {
         return encoded;
     }
 
-    public static boolean checkUsername(String username){ //TODO: trasferire tutti questi check di merda nella classe dove vengono usati, qui non c'entrano niente e fanno solo confusione
-        for(Cittadino i : getCittadini())
-            if(i.getUsername().equalsIgnoreCase(username)) return false;
-
-        return true;
-    }
-
-    public static boolean checkEmail(String email){
-        for(Cittadino i : getCittadini())
-            if (i.getEmail().equalsIgnoreCase(email)) return false;
-
-        return true;
-    }
-
-    public static boolean checkIdVaccinazioneGiaRegistrata(String idVaccinazione){
-        for(Cittadino i : getCittadini())
-            if(i.getIdVaccinazione().equals(idVaccinazione)) return false;
-
-        return true;
-    }
-
-    public static boolean checkIdVaccinazioneEsistente(String idVaccinazione, CentroVaccinale centroVaccinale){
-        LinkedList<Vaccinazione> vaccinazioni = CentriVaccinali.getVaccinazioni(centroVaccinale.getNome());
-        for(Vaccinazione i : vaccinazioni){
-            if(i.getIdVaccinazione().equals(idVaccinazione))
-                return true;
-        }
-
-        return false;
-    }
-
-    public static boolean checkCF(String cf){
-        for(Cittadino i : getCittadini())
-            if(i.getCF().equalsIgnoreCase(cf)) return false;
-
-        return true;
-    }
-
     public static void registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso){
         String nomeCentroVaccinale = cittadino.getCentroVaccinale().getNome();
         LinkedList<Vaccinazione> vaccinazioniCentroVaccinale = CentriVaccinali.getVaccinazioni(nomeCentroVaccinale);

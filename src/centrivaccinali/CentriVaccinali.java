@@ -29,7 +29,6 @@ public class CentriVaccinali {
             if(fileCentriVaccinali.createNewFile()) {
                 serializzaCentriVaccinali(new LinkedList<>());
             }else{
-                System.out.println("File already exists");
                 FileInputStream fileInputStream = new FileInputStream(fileCentriVaccinali);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 centriVaccinali = (LinkedList<CentroVaccinale>) objectInputStream.readObject();
@@ -93,15 +92,6 @@ public class CentriVaccinali {
         }catch (IOException e){
             e.printStackTrace();
         }
-    }
-
-    public static boolean checkCentroVaccinale(String nomeCentroVaccinale){ //TODO: trasferire questo check di merda nella classe dove viene utilizzato. Qui non c'entra niente e fa solo confusione
-        LinkedList<CentroVaccinale> centriVaccinali = getCentriVaccinali();
-        for(CentroVaccinale v : centriVaccinali)
-            if(v.getNome().equalsIgnoreCase(nomeCentroVaccinale))
-                return true;
-
-        return false;
     }
 
     public static int getNumSegnalazioniEventiAvversi(CentroVaccinale centroVaccinale){
