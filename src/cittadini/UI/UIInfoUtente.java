@@ -18,8 +18,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class UIInfoUtente extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/usericon.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/usericon.png")));
     Cittadino cittadinoLoggato;
     JTextField tfNome = new JTextField();
     JTextField tfCognome = new JTextField();

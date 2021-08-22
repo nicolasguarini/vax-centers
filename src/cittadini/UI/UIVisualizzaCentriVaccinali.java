@@ -16,7 +16,7 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 public class UIVisualizzaCentriVaccinali extends JFrame {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
 
     public UIVisualizzaCentriVaccinali(LinkedList<CentroVaccinale> centriDaVisualizzare){
         this.setIconImage(img.getImage());

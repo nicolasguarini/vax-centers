@@ -20,7 +20,7 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 public class UILoginCittadino extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
     JTextField tfNomeUtente = new JTextField();
     JPasswordField tfPasswordUtente = new JPasswordField();
     JButton btnLogin = new JButton("LOGIN");

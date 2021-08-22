@@ -21,8 +21,8 @@ import java.util.Objects;
  * @author Redon Kokaj
  */
 public class UICentriVaccinali extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/centri.jpg")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/centri.jpg")));
     JButton btnRegistraCentroVaccinale = new JButton("REGISTRA CENTRO VACCINALE");
     JButton btnRegistraVaccinato = new JButton("REGISTRA VACCINATO");
     JButton btnIndietro = new JButton("INDIETRO");

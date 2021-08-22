@@ -28,7 +28,7 @@ import java.util.Objects;
 
 public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
     Cittadino utenteLoggato;
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
     JTextField tfNomeEventoAvverso = new JTextField();
     JTextArea taNoteAggiuntive = new JTextArea(3, 20);
     JComboBox<String> cbSeverita = new JComboBox<String>(new String[]{"1", "2", "3", "4", "5"});

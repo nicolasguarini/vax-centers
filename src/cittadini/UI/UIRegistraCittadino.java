@@ -25,7 +25,7 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 public class UIRegistraCittadino extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
     JTextField tfNomeCittadino = new JTextField();
     JTextField tfCognomeCittadino = new JTextField();
     JTextField tfCodiceFiscaleCittadino = new JTextField();

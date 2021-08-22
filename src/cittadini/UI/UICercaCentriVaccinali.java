@@ -21,8 +21,8 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 public class UICercaCentriVaccinali extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/cerca.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/cerca.png")));
     JButton btnCercaPerNome = new JButton();
     JButton btnCercaPerComuneETipologia = new JButton();
     JButton btnVisualizzaTutti = new JButton("VISUALIZZA TUTTI");

@@ -18,11 +18,11 @@ import java.util.Objects;
 
 public class UIUtenteLoggato extends JFrame implements ActionListener {
     Cittadino cittadinoLoggato;
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/login.jpg")));
-    ImageIcon img3 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/centriicon.png")));
-    ImageIcon img4 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/eventiicon.png")));
-    ImageIcon img5 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/userinfo.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/login.jpg")));
+    ImageIcon img3 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/centriicon.png")));
+    ImageIcon img4 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/eventiicon.png")));
+    ImageIcon img5 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/userinfo.png")));
     JButton btnVisualizzaCentri = new JButton();
     JButton btnSegnalaEventi = new JButton();
     JButton btnInfo = new JButton();

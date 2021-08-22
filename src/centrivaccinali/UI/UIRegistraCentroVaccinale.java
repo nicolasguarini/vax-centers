@@ -31,7 +31,7 @@ import java.util.Objects;
  * @author Redon Kokaj
  */
 public class UIRegistraCentroVaccinale extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
     JTextField tfNomeCentroVaccinale = new JTextField();
     JTextField tfNomeIndirizzo = new JTextField();
     JTextField tfCivico = new JTextField();

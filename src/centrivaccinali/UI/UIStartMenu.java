@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.Objects;
 
 /**
@@ -27,8 +28,8 @@ import java.util.Objects;
  * @author Filippo Alzati
  */
 public class UIStartMenu extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/home.jpg")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/home.jpg")));
     JButton btnCentriVaccinali = new JButton("CENTRI VACCINALI");
     JButton btnCittadini = new JButton("CITTADINI");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
@@ -82,6 +83,8 @@ public class UIStartMenu extends JFrame implements ActionListener {
 		panelSfondo.setLayout(null);
         panelSfondo.add(labelSfondo);
 
+        createDataDirectory();
+
 		this.add(panelSfondo);
         this.setTitle("Vax Centers");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,6 +112,18 @@ public class UIStartMenu extends JFrame implements ActionListener {
             this.dispose();
             new UICittadini();
         }
+    }
+
+    void createDataDirectory(){
+        try{
+            File dir = new File("./data");
+            if (!dir.exists()){
+                dir.mkdirs();
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
     
 }

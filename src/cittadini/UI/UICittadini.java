@@ -17,8 +17,8 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 public class UICittadini extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/logo.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("../../resources/images/cittadini.jpg")));
+    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/cittadini.jpg")));
     JButton btnConsultaCentri = new JButton("CONSULTA I CENTRI");
     JButton btnRegistrati = new JButton("REGISTRATI");
     JButton btnLogIn = new JButton("LOGIN");
