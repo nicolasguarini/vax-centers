@@ -35,10 +35,9 @@ public class UICentriVaccinali extends JFrame implements ActionListener {
      * @see UIRegistraCentroVaccinale
      * @see UIRegistraVaccinato
      *
-     * @author Nicolas Guarini
+     * @author Domenico Rizzo
      */
     public UICentriVaccinali() {
-
         JLabel labelTesto = new JLabel();
         labelTesto.setText("CENTRI VACCINALI");
         labelTesto.setFont(new Font("Montserrat", Font.BOLD, 32));

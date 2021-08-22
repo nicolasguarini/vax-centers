@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="vax-centers:jar">
+    <output-path>$PROJECT_DIR$/bin/artifacts/vax_centers_jar</output-path>
+    <root id="archive" name="vax-centers.jar">
+      <element id="module-output" name="vax-centers" />
+    </root>
+  </artifact>
+</component>
