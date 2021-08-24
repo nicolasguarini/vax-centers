@@ -116,7 +116,7 @@ public class UIStartMenu extends JFrame implements ActionListener {
 
     void createDataDirectory(){
         try{
-            File dir = new File("./data");
+            File dir = new File("data/");
             if (!dir.exists()){
                 dir.mkdirs();
             }

@@ -27,7 +27,7 @@ public class Cittadini {
         LinkedList<Cittadino> cittadini = new LinkedList<>();
 
         try{
-            File fileCittadini = new File("./data/Cittadini_Registrati.dati.txt");
+            File fileCittadini = new File("data/Cittadini_Registrati.dati.txt");
             if(fileCittadini.createNewFile()){
                 serializzaCittadini(new LinkedList<>());
             }else{
@@ -44,7 +44,7 @@ public class Cittadini {
 
     static void serializzaCittadini(LinkedList<Cittadino> cittadini){
         try{
-            FileOutputStream fileOutputStream = new FileOutputStream("./data/Cittadini_Registrati.dati.txt");
+            FileOutputStream fileOutputStream = new FileOutputStream("data/Cittadini_Registrati.dati.txt");
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(cittadini);
             objectOutputStream.close();

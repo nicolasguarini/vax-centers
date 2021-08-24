@@ -25,7 +25,7 @@ public class CentriVaccinali {
         LinkedList<CentroVaccinale> centriVaccinali = new LinkedList<>();
 
         try{
-            File fileCentriVaccinali = new File("./data/CentriVaccinali.dati.txt");
+            File fileCentriVaccinali = new File("data/CentriVaccinali.dati.txt");
             if(fileCentriVaccinali.createNewFile()) {
                 serializzaCentriVaccinali(new LinkedList<>());
             }else{
@@ -41,7 +41,7 @@ public class CentriVaccinali {
     }
 
     static void serializzaCentriVaccinali(LinkedList<CentroVaccinale> centriVaccinali){
-        final String filepath = "./data/CentriVaccinali.dati.txt";
+        final String filepath = "data/CentriVaccinali.dati.txt";
         try{
             FileOutputStream fileOutputStream = new FileOutputStream(filepath);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -60,7 +60,7 @@ public class CentriVaccinali {
     }
 
     public static LinkedList<Vaccinazione> getVaccinazioni(String nomeCentroVaccinale){
-        final String filepath = "./data/Vaccinazioni_" + nomeCentroVaccinale + ".dati.txt";
+        final String filepath = "data/Vaccinazioni_" + nomeCentroVaccinale + ".dati.txt";
         LinkedList<Vaccinazione> vaccinazioni = new LinkedList<>();
 
         try{
@@ -82,7 +82,7 @@ public class CentriVaccinali {
     }
 
     public static void serializzaVaccinazioni(LinkedList<Vaccinazione> vaccinazioni, String nomeCentroVaccinale){ //O(n)
-        final String filepath = "./data/Vaccinazioni_" + nomeCentroVaccinale + ".dati.txt";
+        final String filepath = "data/Vaccinazioni_" + nomeCentroVaccinale + ".dati.txt";
         try{
             FileOutputStream fileOutputStream = new FileOutputStream(filepath);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
