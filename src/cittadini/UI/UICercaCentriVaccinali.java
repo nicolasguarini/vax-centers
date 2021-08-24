@@ -20,6 +20,14 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.Objects;
 
+/**
+ * La classe <code>UICercaCentriVaccinali</code> si occupa di creare e gestire l'interfaccia utente della schermata per cercare i centri vaccinali
+ *
+ * @author Nicolas Guarini
+ * @author Domenico Rizzo
+ * @author Redon Kokaj
+ * @author Filippo Alzati
+ */
 public class UICercaCentriVaccinali extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
     ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/cerca.png")));
