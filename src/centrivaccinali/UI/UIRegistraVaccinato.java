@@ -190,9 +190,8 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
             Date data = new SimpleDateFormat("dd/MM/yyyy").parse(tfDataSomministrazioneVaccino.getText());
             Vaccinazione vaccinazione = new Vaccinazione(nome, cognome, cf.toUpperCase(), idVaccinazione, data, centroVaccinale, nomeVaccino);
             CentriVaccinali.registraVaccinazione(vaccinazione);
+            JOptionPane.showMessageDialog(this, "Vaccinazione registrata!\nCF: " + cf + "\n" + "Data vaccinazione: " + strData + "\n" + "ID Vaccinazione: " + idVaccinazione);
         }
-
-        JOptionPane.showMessageDialog(this, "Vaccinazione registrata!\nCF: " + cf + "\n" + "Data vaccinazione: " + strData + "\n" + "ID Vaccinazione: " + idVaccinazione);
 
         this.dispose();
     }
