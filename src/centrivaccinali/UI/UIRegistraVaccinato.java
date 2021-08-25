@@ -3,6 +3,7 @@ package centrivaccinali.UI;
 import centrivaccinali.CentriVaccinali;
 import centrivaccinali.CentroVaccinale;
 import centrivaccinali.Vaccinazione;
+import cittadini.Cittadini;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -43,7 +44,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     JTextField tfCognomeVaccinato = new JTextField();
     JTextField tfCodiceFiscaleVaccinato = new JTextField();
     JTextField tfDataSomministrazioneVaccino= new JTextField();
-    JTextField tfIDVaccinazione = new JTextField();
+    JTextField tfIDVaccinazione = new JTextField(); //TODO: da togliere
     JComboBox<String> selectNomeVaccino = new JComboBox<>(new String[] { "Pfizer", "AstraZeneca", "Moderna", "J&J" });
     JButton btnRegistra = new JButton("REGISTRA");
     JButton btnAnnulla = new JButton("ANNULLA");
@@ -125,7 +126,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         tfCodiceFiscaleVaccinato.setFont(font1);
         tfCodiceFiscaleVaccinato.setBounds(50, 336, 220, 30);
 
-        tfIDVaccinazione.setPreferredSize(new Dimension(220, 30));
+        tfIDVaccinazione.setPreferredSize(new Dimension(220, 30)); //TODO: togliere
         tfIDVaccinazione.setFont(font1);
         tfIDVaccinazione.setBounds(360, 336, 220, 30);
 
@@ -192,15 +193,17 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         String nome = tfNomeVaccinato.getText();
         String cognome = tfCognomeVaccinato.getText();
         String cf = tfCodiceFiscaleVaccinato.getText();
-        String idVaccinazione = tfIDVaccinazione.getText();
+        String idVaccinazione = generaIdVaccinazione(centroVaccinale);
         String nomeVaccino = Objects.requireNonNull(selectNomeVaccino.getSelectedItem()).toString();
         String strData = tfDataSomministrazioneVaccino.getText();
 
-        if(validaDati(nome, cognome, cf, idVaccinazione, strData)){
+        if(validaDati(nome, cognome, cf, strData)){
             Date data = new SimpleDateFormat("dd/MM/yyyy").parse(tfDataSomministrazioneVaccino.getText());
             Vaccinazione vaccinazione = new Vaccinazione(nome, cognome, cf.toUpperCase(), idVaccinazione, data, centroVaccinale, nomeVaccino);
             CentriVaccinali.registraVaccinazione(vaccinazione);
         }
+
+        JOptionPane.showMessageDialog(this, "Vaccinazione registrata!\nCF: " + cf + "\n" + "Data vaccinazione: " + strData + "\n" + "ID Vaccinazione: " + idVaccinazione);
 
         this.dispose();
     }
@@ -210,19 +213,18 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
      * @param nome nome del vaccinato
      * @param cognome cognome del vaccinato
      * @param cf codice fiscale del vaccinato
-     * @param idVaccinazione id univoco della vaccinazione appena effettuata
      * @param data data della somministrazione del vaccino
      * @return <code>true</code> se i dati sono risultati validi; <code>false</code> se i dati non sono risultati validi
      *
      * @author Redon Kokaj
      */
-    boolean validaDati(String nome, String cognome, String cf, String idVaccinazione, String data){
+    boolean validaDati(String nome, String cognome, String cf, String data){
         String messaggio = "";
         LocalDate data1 = LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         LocalDate dataAttuale = LocalDate.now();
         String[] dataInserita = data.split("/");
 
-        if(nome.equals("") || cognome.equals("") || cf.equals("") || idVaccinazione.equals("") || data.equals("")){
+        if(nome.equals("") || cognome.equals("") || cf.equals("") || data.equals("")){
             JOptionPane.showMessageDialog(this, "Inserisci tutti i dati!");
             return false;
         }
@@ -231,7 +233,6 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         if(cognome.matches(".*\\d.*")) messaggio += "Il cognome non può contenere cifre! \n";
         if(!cf.matches("([A-Za-z]{6})([0-9]{2})([A-Za-z]{1})([0-9]{2})([A-Za-z]{1})([0-9]{3})([A-Za-z]{1})")) messaggio += "Il codice fiscale inserito non rispetta il formato corretto! \n";
         if(!data.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})")) messaggio += "Inserire una data valida (gg/mm/aaaa)! \n";
-        if(!idVaccinazione.matches("[0-9]{16}")) messaggio += "L'id della vaccinazione deve contenere 16 cifre! \n";
 
         if((Integer.parseInt(dataInserita[0]) >= 1 && Integer.parseInt(dataInserita[0]) <= 31) && (Integer.parseInt(dataInserita[1]) >= 1 && Integer.parseInt(dataInserita[1]) <= 12) && (Integer.parseInt(dataInserita[2]) <= dataAttuale.get(ChronoField.YEAR_OF_ERA))) {
             if (data1.compareTo(dataAttuale) > 0)
@@ -257,6 +258,22 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
             arCentri[i] = centro.getNome() + ", " + centro.getIndirizzo().toString();
         }
         return arCentri;
+    }
+
+    String generaIdVaccinazione(CentroVaccinale centroVaccinale){
+        String idCentroVaccinale = centroVaccinale.getId();
+        String idVaccinato = "";
+        int size = Cittadini.getCittadini().size() + 1;
+        int length = String.valueOf(size).length();
+
+        for(int i = 0; i < 11 - length; i++){
+            idVaccinato += "0";
+        }
+
+        idVaccinato += String.valueOf(size);
+
+        System.out.println(idCentroVaccinale + idVaccinato); //TODO: DEBUG
+        return idCentroVaccinale + idVaccinato;
     }
 
     /**

@@ -179,7 +179,7 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         String username = tfNomeUtente.getText();
         String password = new String(tfPasswordUtente.getPassword());
         String idVaccinazione = tfIDVaccinazione.getText();
-        CentroVaccinale centroVaccinale = CentriVaccinali.getCentriVaccinali().get(selectCentroVaccinale.getSelectedIndex());
+        CentroVaccinale centroVaccinale = getCentroVaccinale(idVaccinazione);
 
         if (validaDati(nome, cognome, cf, email, username, password, idVaccinazione, centroVaccinale)){
             Cittadino cittadino = new Cittadino(Character.toUpperCase(nome.charAt(0)) + nome.substring(1).toLowerCase(), Character.toUpperCase(cognome.charAt(0)) + cognome.substring(1).toLowerCase(), cf.toUpperCase(), email, username, Cittadini.sha256(password), idVaccinazione, centroVaccinale);
@@ -204,10 +204,11 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$")) messaggio += "La password deve contenere 6 caratteri, \nun carattere maiuscolo, minuscolo, un numero e nessuno spazio! \n";
         if(!idVaccinazione.matches("[0-9]{16}")) messaggio += "L'id della vaccinazione deve contenere 16 cifre! \n";
 
+        if(centroVaccinale == null) messaggio += "L'ID vaccinazione fa riferimento a un centro vaccinale che non esiste";
         if(!checkUsername(username)) messaggio += "L'username esiste già \n";
         if(!checkEmail(email)) messaggio += "L'email esiste già \n";
         if(!checkIdVaccinazioneGiaRegistrata(idVaccinazione)) messaggio += "L'id vaccinazione è già stato registrato! \n";
-        if(!checkIdVaccinazioneEsistente(idVaccinazione, centroVaccinale)) messaggio += "La vaccinazione non esiste nel centro selezionato \n";
+        if(centroVaccinale != null && !checkIdVaccinazioneEsistente(centroVaccinale, idVaccinazione)) messaggio += "La vaccinazione non esiste\n";
         if(!checkCF(cf)) messaggio += "Il codice fiscale esiste già \n";
         
         if(!messaggio.equals("")){
@@ -237,7 +238,17 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         return true;
     }
 
-    boolean checkIdVaccinazioneEsistente(String idVaccinazione, CentroVaccinale centroVaccinale){
+    CentroVaccinale getCentroVaccinale(String idVaccinazione){
+        String idCentroVaccinale = idVaccinazione.substring(0, 5);
+        for(CentroVaccinale centroVaccinale : CentriVaccinali.getCentriVaccinali()){
+            if(centroVaccinale.getId().equals(idCentroVaccinale))
+                return centroVaccinale;
+        }
+
+        return null;
+    }
+
+    boolean checkIdVaccinazioneEsistente(CentroVaccinale centroVaccinale, String idVaccinazione){
         LinkedList<Vaccinazione> vaccinazioni = CentriVaccinali.getVaccinazioni(centroVaccinale.getNome());
         for(Vaccinazione i : vaccinazioni){
             if(i.getIdVaccinazione().equals(idVaccinazione))
@@ -245,7 +256,7 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         }
 
         return false;
-    }
+   }
 
     boolean checkCF(String cf){
         for(Cittadino i : Cittadini.getCittadini())
