@@ -44,7 +44,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     JTextField tfCognomeVaccinato = new JTextField();
     JTextField tfCodiceFiscaleVaccinato = new JTextField();
     JTextField tfDataSomministrazioneVaccino= new JTextField();
-    JTextField tfIDVaccinazione = new JTextField(); //TODO: da togliere
+    JTextField tfIDVaccinazione = new JTextField();
     JComboBox<String> selectNomeVaccino = new JComboBox<>(new String[] { "Pfizer", "AstraZeneca", "Moderna", "J&J" });
     JButton btnRegistra = new JButton("REGISTRA");
     JButton btnAnnulla = new JButton("ANNULLA");
@@ -126,7 +126,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         tfCodiceFiscaleVaccinato.setFont(font1);
         tfCodiceFiscaleVaccinato.setBounds(50, 336, 220, 30);
 
-        tfIDVaccinazione.setPreferredSize(new Dimension(220, 30)); //TODO: togliere
+        tfIDVaccinazione.setPreferredSize(new Dimension(220, 30));
         tfIDVaccinazione.setFont(font1);
         tfIDVaccinazione.setBounds(360, 336, 220, 30);
 
@@ -271,8 +271,6 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         }
 
         idVaccinato += String.valueOf(size);
-
-        System.out.println(idCentroVaccinale + idVaccinato); //TODO: DEBUG
         return idCentroVaccinale + idVaccinato;
     }
 

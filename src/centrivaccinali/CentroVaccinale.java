@@ -28,7 +28,6 @@ public class CentroVaccinale implements Serializable {
 
         id += String.valueOf(size);
 
-        System.out.println(id); //TODO: DEBUG
         return id;
     }
 
