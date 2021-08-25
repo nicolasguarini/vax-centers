@@ -33,7 +33,6 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
     JTextField tfNomeUtente = new JTextField();
     JPasswordField tfPasswordUtente = new JPasswordField();
     JTextField tfIDVaccinazione = new JTextField();
-    JComboBox selectCentroVaccinale = new JComboBox(getCentriArray());
     JButton btnRegistra = new JButton("REGISTRATI");
     JButton btnAnnulla = new JButton("ANNULLA");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
@@ -43,7 +42,7 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
     public UIRegistraCittadino() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
-        this.setSize(650, 710);
+        this.setSize(650, 610);
         this.setTitle("Registrazione cittadino");
         this.setResizable(false);
         this.setIconImage(img.getImage());
@@ -53,77 +52,68 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         labelRegistraVaccinato.setForeground(new Color(0, 0, 0));
         labelRegistraVaccinato.setBounds(50, 28, 500, 50);
 
-        JLabel labelNomeCentroVaccinale = new JLabel("Nome centro vaccinale");
-        labelNomeCentroVaccinale.setFont(font1);
-        labelNomeCentroVaccinale.setForeground(new Color(167, 164, 164));
-        labelNomeCentroVaccinale.setBounds(50, 90, 300, 50);
-
         JLabel labelNome = new JLabel("Nome");
         labelNome.setFont(font1);
         labelNome.setForeground(new Color(167, 164, 164));
-        labelNome.setBounds(50, 190, 150, 50);
+        labelNome.setBounds(50, 90, 150, 50);
         
         JLabel labelCognome = new JLabel("Cognome");
         labelCognome.setFont(font1);
         labelCognome.setForeground(new Color(167, 164, 164));
-        labelCognome.setBounds(360, 190, 150, 50);
+        labelCognome.setBounds(360, 90, 150, 50);
         
         JLabel labelCF = new JLabel("Codice fiscale");
         labelCF.setFont(font1);
         labelCF.setForeground(new Color(167, 164, 164));
-        labelCF.setBounds(50, 290, 150, 50);
+        labelCF.setBounds(50, 190, 150, 50);
         
         JLabel labelEmail = new JLabel("Email");
         labelEmail.setFont(font1);
         labelEmail.setForeground(new Color(167, 164, 164));
-        labelEmail.setBounds(360, 290, 200, 50);
+        labelEmail.setBounds(360, 190, 200, 50);
         
         JLabel labelNomeUtente = new JLabel("Nome utente");
         labelNomeUtente.setFont(font1);
         labelNomeUtente.setForeground(new Color(167, 164, 164));
-        labelNomeUtente.setBounds(50, 390, 150, 50);
+        labelNomeUtente.setBounds(50, 290, 150, 50);
 
         JLabel labelPassword = new JLabel("Password");
         labelPassword.setFont(font1);
         labelPassword.setForeground(new Color(167, 164, 164));
-        labelPassword.setBounds(360, 390, 150, 50);
+        labelPassword.setBounds(360, 290, 150, 50);
 
         JLabel labelIDVaccinazione = new JLabel("ID vaccinazione");
         labelIDVaccinazione.setFont(font1);
         labelIDVaccinazione.setForeground(new Color(167, 164, 164));
-        labelIDVaccinazione.setBounds(50, 490, 300, 50);
-        
-        selectCentroVaccinale.setPreferredSize(new Dimension(530, 30));
-        selectCentroVaccinale.setFont(font1);
-        selectCentroVaccinale.setBounds(50, 136, 530, 30);
+        labelIDVaccinazione.setBounds(50, 390, 300, 50);
 
         tfNomeCittadino.setPreferredSize(new Dimension(220, 30));
         tfNomeCittadino.setFont(font1);
-        tfNomeCittadino.setBounds(50, 236, 220, 30);
+        tfNomeCittadino.setBounds(50, 136, 220, 30);
 
         tfCognomeCittadino.setPreferredSize(new Dimension(220, 30));
         tfCognomeCittadino.setFont(font1);
-        tfCognomeCittadino.setBounds(360, 236, 220, 30);
+        tfCognomeCittadino.setBounds(360, 136, 220, 30);
 
         tfCodiceFiscaleCittadino.setPreferredSize(new Dimension(220, 30));
         tfCodiceFiscaleCittadino.setFont(font1);
-        tfCodiceFiscaleCittadino.setBounds(50, 336, 220, 30);
+        tfCodiceFiscaleCittadino.setBounds(50, 236, 220, 30);
 
         tfEmail.setPreferredSize(new Dimension(220, 30));
         tfEmail.setFont(font1);
-        tfEmail.setBounds(360, 336, 220, 30);
+        tfEmail.setBounds(360, 236, 220, 30);
 
         tfNomeUtente.setPreferredSize(new Dimension(220, 30));
         tfNomeUtente.setFont(font1);
-        tfNomeUtente.setBounds(50, 436, 220, 30);
+        tfNomeUtente.setBounds(50, 336, 220, 30);
 
         tfPasswordUtente.setPreferredSize(new Dimension(220, 30));
         tfPasswordUtente.setFont(font1);
-        tfPasswordUtente.setBounds(360, 436, 220, 30);
+        tfPasswordUtente.setBounds(360, 336, 220, 30);
 
         tfIDVaccinazione.setPreferredSize(new Dimension(220, 30));
         tfIDVaccinazione.setFont(font1);
-        tfIDVaccinazione.setBounds(50, 536, 530, 30);
+        tfIDVaccinazione.setBounds(50, 436, 530, 30);
 
         btnRegistra.setPreferredSize(new Dimension(150, 40));
         btnRegistra.setFocusable(false);
@@ -132,7 +122,7 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         btnRegistra.setForeground(Color.WHITE);
         btnRegistra.setBorder(border);
         btnRegistra.addActionListener(this);
-        btnRegistra.setBounds(170, 601, 150, 40);
+        btnRegistra.setBounds(170, 501, 150, 40);
         
         btnAnnulla.setPreferredSize(new Dimension(150, 40));
         btnAnnulla.setFocusable(false);
@@ -141,12 +131,11 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         btnAnnulla.setForeground(Color.WHITE);
         btnAnnulla.setBorder(border);
         btnAnnulla.addActionListener(this);
-        btnAnnulla.setBounds(330, 601, 150, 40);
+        btnAnnulla.setBounds(330, 501, 150, 40);
 
         JLabel labelSfondo = new JLabel();
-		labelSfondo.setBounds(0, 0, 650, 710);
+		labelSfondo.setBounds(0, 0, 650, 610);
         labelSfondo.add(labelRegistraVaccinato);
-        labelSfondo.add(labelNomeCentroVaccinale);
         labelSfondo.add(labelNome);
         labelSfondo.add(labelCognome);
         labelSfondo.add(labelCF);
@@ -155,7 +144,6 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         labelSfondo.add(labelNomeUtente);
         labelSfondo.add(labelPassword);
         labelSfondo.add(labelIDVaccinazione);
-        labelSfondo.add(selectCentroVaccinale);
         labelSfondo.add(tfNomeCittadino);
         labelSfondo.add(tfCognomeCittadino);
         labelSfondo.add(tfCodiceFiscaleCittadino);

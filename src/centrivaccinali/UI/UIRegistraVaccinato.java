@@ -44,7 +44,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     JTextField tfCognomeVaccinato = new JTextField();
     JTextField tfCodiceFiscaleVaccinato = new JTextField();
     JTextField tfDataSomministrazioneVaccino= new JTextField();
-    JTextField tfIDVaccinazione = new JTextField();
+    
     JComboBox<String> selectNomeVaccino = new JComboBox<>(new String[] { "Pfizer", "AstraZeneca", "Moderna", "J&J" });
     JButton btnRegistra = new JButton("REGISTRA");
     JButton btnAnnulla = new JButton("ANNULLA");
@@ -98,17 +98,12 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         JLabel labelDataSomministrazioneVaccino = new JLabel("Data somministrazione");
         labelDataSomministrazioneVaccino.setFont(font1);
         labelDataSomministrazioneVaccino.setForeground(new Color(167, 164, 164));
-        labelDataSomministrazioneVaccino.setBounds(50, 390, 200, 50);
+        labelDataSomministrazioneVaccino.setBounds(360, 290, 250, 50);
         
-        JLabel labelIDVaccinazione = new JLabel("ID vaccinazione");
-        labelIDVaccinazione.setFont(font1);
-        labelIDVaccinazione.setForeground(new Color(167, 164, 164));
-        labelIDVaccinazione.setBounds(360, 290, 150, 50);
-
         JLabel labelNomeVaccino = new JLabel("Nome vaccino");
         labelNomeVaccino.setFont(font1);
         labelNomeVaccino.setForeground(new Color(167, 164, 164));
-        labelNomeVaccino.setBounds(360, 390, 150, 50);
+        labelNomeVaccino.setBounds(50, 390, 150, 50);
         
         selectCentroVaccinale.setPreferredSize(new Dimension(530, 30));
         selectCentroVaccinale.setFont(font1);
@@ -126,18 +121,14 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         tfCodiceFiscaleVaccinato.setFont(font1);
         tfCodiceFiscaleVaccinato.setBounds(50, 336, 220, 30);
 
-        tfIDVaccinazione.setPreferredSize(new Dimension(220, 30));
-        tfIDVaccinazione.setFont(font1);
-        tfIDVaccinazione.setBounds(360, 336, 220, 30);
-
         tfDataSomministrazioneVaccino.setPreferredSize(new Dimension(220, 30));
         tfDataSomministrazioneVaccino.setFont(font1);
-        tfDataSomministrazioneVaccino.setBounds(50, 436, 220, 30);
+        tfDataSomministrazioneVaccino.setBounds(360, 336, 220, 30);
         
-        selectNomeVaccino.setPreferredSize(new Dimension(220, 30));
+        selectNomeVaccino.setPreferredSize(new Dimension(530, 30));
         selectNomeVaccino.setFont(font1);
         selectNomeVaccino.setSelectedIndex(0);
-        selectNomeVaccino.setBounds(360, 436, 220, 30);
+        selectNomeVaccino.setBounds(50, 436, 530, 30);
 
         btnRegistra.setPreferredSize(new Dimension(150, 40));
         btnRegistra.setFocusable(false);
@@ -164,14 +155,12 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         labelSfondo.add(labelNomeVaccinato);
         labelSfondo.add(labelCognomeVaccinato);
         labelSfondo.add(labelCodiceFiscaleVaccinato);
-        labelSfondo.add(labelIDVaccinazione);
         labelSfondo.add(labelDataSomministrazioneVaccino);
         labelSfondo.add(labelNomeVaccino);
         labelSfondo.add(selectCentroVaccinale);
         labelSfondo.add(tfNomeVaccinato);
         labelSfondo.add(tfCognomeVaccinato);
         labelSfondo.add(tfCodiceFiscaleVaccinato);
-        labelSfondo.add(tfIDVaccinazione);
         labelSfondo.add(tfDataSomministrazioneVaccino);
         labelSfondo.add(selectNomeVaccino);
         labelSfondo.add(btnRegistra);
