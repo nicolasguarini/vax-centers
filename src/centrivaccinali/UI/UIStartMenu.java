@@ -114,6 +114,11 @@ public class UIStartMenu extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Crea, se non esiste già, la directory <code>data/</code> dove verranno salvati i file di salvataggio del programma.
+     *
+     * @author Nicolas Guarini
+     */
     void createDataDirectory(){
         try{
             File dir = new File("data/");

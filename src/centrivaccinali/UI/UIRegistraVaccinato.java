@@ -235,6 +235,13 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         }else return true;
     }
 
+    /**
+     * Converte la lista dei centri vaccinali in un array
+     *
+     * @return Array contenente i centri vaccinali registrati
+     *
+     * @author Nicolas Guarini
+     */
     String[] getCentriArray(){
         LinkedList<CentroVaccinale> centri = CentriVaccinali.getCentriVaccinali();
         int size = centri.size();
@@ -248,6 +255,14 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         return arCentri;
     }
 
+    /**
+     * Genera un codice di 11 cifre che identifica il cittadino vaccinato, quindi lo concatena all'id del centro vaccinale, formando un codice di 16 cifre che identifica la vaccinazione, e graie al quale è possibile risalire sia al centro vaccinale sia al cittadino vaccinato
+     *
+     * @param centroVaccinale: il centro vaccinale dove è stata effettuata la vaccinazione
+     * @return ID completo della vaccinazione
+     *
+     * @author Nicolas Guarini
+     */
     String generaIdVaccinazione(CentroVaccinale centroVaccinale){
         String idCentroVaccinale = centroVaccinale.getId();
         String idVaccinato = "";
@@ -268,6 +283,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
      * @param e evento che deve venire processato
      *
      * @author Nicolas Guarini
+     * @author Domenico Rizzo
      */
     @Override
     public void actionPerformed(ActionEvent e) {
