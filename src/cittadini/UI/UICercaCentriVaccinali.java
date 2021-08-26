@@ -84,6 +84,7 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
         btnCercaPerNome.setFocusable(false);
         btnCercaPerNome.setBackground(new Color(232, 47, 125));
         btnCercaPerNome.setBorder(border);
+        btnCercaPerNome.setOpaque(true);
 
         btnCercaPerComuneETipologia.setPreferredSize(new Dimension(50, 30));
         btnCercaPerComuneETipologia.setIcon(img2);
@@ -92,6 +93,7 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
         btnCercaPerComuneETipologia.setFocusable(false);
         btnCercaPerComuneETipologia.setBackground(new Color(232, 47, 125));
         btnCercaPerComuneETipologia.setBorder(border);
+        btnCercaPerNome.setOpaque(true);
 
         btnVisualizzaTutti.setPreferredSize(new Dimension(150, 40));
         btnVisualizzaTutti.setFocusable(false);
@@ -101,6 +103,7 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
         btnVisualizzaTutti.setBorder(border);
         btnVisualizzaTutti.addActionListener(this);
         btnVisualizzaTutti.setBounds(53, 278, 170, 40);
+        btnVisualizzaTutti.setOpaque(true);
         
         btnAnnulla.setPreferredSize(new Dimension(150, 40));
         btnAnnulla.setFocusable(false);
@@ -110,6 +113,7 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
         btnAnnulla.setBorder(border);
         btnAnnulla.addActionListener(this);
         btnAnnulla.setBounds(228, 278, 170, 40);
+        btnAnnulla.setOpaque(true);
 
         JLabel labelSfondo = new JLabel();
 		labelSfondo.setBounds(0, 0, 450, 350);

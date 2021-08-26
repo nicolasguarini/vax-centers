@@ -32,6 +32,7 @@ public class UIVisualizzaCentriVaccinali extends JFrame {
             labelCentroVaccinale.setFont(new Font("Helvetica", Font.PLAIN, 15));
             bottoni[i] = new JButton("Info");
             bottoni[i].addActionListener(e -> infoCentroVaccinale(c));
+            bottoni[i].setOpaque(true);
 
             p.add(labelCentroVaccinale);
             p.add(bottoni[i]);

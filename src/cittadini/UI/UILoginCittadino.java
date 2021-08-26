@@ -68,6 +68,7 @@ public class UILoginCittadino extends JFrame implements ActionListener {
         btnLogin.setBorder(border);
         btnLogin.addActionListener(this);
         btnLogin.setBounds(50, 316, 170, 40);
+        btnLogin.setOpaque(true);
         
         btnAnnulla.setPreferredSize(new Dimension(150, 40));
         btnAnnulla.setFocusable(false);
@@ -77,6 +78,7 @@ public class UILoginCittadino extends JFrame implements ActionListener {
         btnAnnulla.setBorder(border);
         btnAnnulla.addActionListener(this);
         btnAnnulla.setBounds(230, 316, 170, 40);
+        btnAnnulla.setOpaque(true);
 
         JLabel labelSfondo = new JLabel();
 		labelSfondo.setBounds(0, 0, 470, 450);

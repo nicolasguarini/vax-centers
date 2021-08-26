@@ -81,6 +81,7 @@ public class UIInfoUtente extends JFrame implements ActionListener {
         btnChiudi.setForeground(Color.WHITE);
         btnChiudi.setBorder(border);
         btnChiudi.addActionListener(this);
+        btnChiudi.setOpaque(true);
 
         JLabel TestoNome = new JLabel("Nome");
         TestoNome.setBounds(40, 182, 50, 50);

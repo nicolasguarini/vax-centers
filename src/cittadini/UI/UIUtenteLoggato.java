@@ -63,6 +63,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         btnVisualizzaCentri.setBackground(new Color(232, 47, 125));
         btnVisualizzaCentri.setBorder(border2);
         btnVisualizzaCentri.addActionListener(this);
+        btnVisualizzaCentri.setOpaque(true);
 
         btnSegnalaEventi.setBounds(590, 327, 100, 107);
         btnSegnalaEventi.setIcon(img4);
@@ -70,6 +71,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         btnSegnalaEventi.setBackground(new Color(232, 47, 125));
         btnSegnalaEventi.setBorder(border2);
         btnSegnalaEventi.addActionListener(this);
+        btnSegnalaEventi.setOpaque(true);
 
         btnInfo.setBounds(990, 327, 100, 107);
         btnInfo.setIcon(img5);
@@ -77,6 +79,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         btnInfo.setBackground(new Color(232, 47, 125));
         btnInfo.setBorder(border2);
         btnInfo.addActionListener(this);
+        btnInfo.setOpaque(true);
 
         btnLogout.setBounds(975, 75, 150, 50);
         btnLogout.setFocusable(false);
@@ -85,6 +88,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         btnLogout.setForeground(Color.WHITE);
         btnLogout.setBorder(border);
         btnLogout.addActionListener(this);
+        btnLogout.setOpaque(true);
 
         JLabel labelSfondo = new JLabel();
         labelSfondo.add(labelTesto);

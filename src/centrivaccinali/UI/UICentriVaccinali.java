@@ -1,10 +1,8 @@
 package centrivaccinali.UI;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import centrivaccinali.CentriVaccinali;
+
+import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
@@ -54,6 +52,7 @@ public class UICentriVaccinali extends JFrame implements ActionListener {
         btnRegistraCentroVaccinale.setForeground(Color.WHITE);
         btnRegistraCentroVaccinale.setBorder(border);
         btnRegistraCentroVaccinale.addActionListener(this);
+        btnRegistraCentroVaccinale.setOpaque(true);
 
         btnRegistraVaccinato.setBounds(60, 280, 300, 50);
         btnRegistraVaccinato.setFocusable(false);
@@ -62,6 +61,7 @@ public class UICentriVaccinali extends JFrame implements ActionListener {
         btnRegistraVaccinato.setForeground(Color.WHITE);
         btnRegistraVaccinato.setBorder(border);
         btnRegistraVaccinato.addActionListener(this);
+        btnRegistraVaccinato.setOpaque(true);
 
         btnIndietro.setBounds(140, 350, 150, 50);
         btnIndietro.setFocusable(false);
@@ -70,6 +70,7 @@ public class UICentriVaccinali extends JFrame implements ActionListener {
         btnIndietro.setForeground(Color.WHITE);
         btnIndietro.setBorder(border);
         btnIndietro.addActionListener(this);
+        btnIndietro.setOpaque(true);
 
         JPanel panelBtn = new JPanel();
 		panelBtn.setBounds(850, 0, 425, 720);
@@ -116,7 +117,10 @@ public class UICentriVaccinali extends JFrame implements ActionListener {
         } else if (e.getSource() == btnRegistraCentroVaccinale) {
             new UIRegistraCentroVaccinale();
         } else if (e.getSource() == btnRegistraVaccinato) {
-            new UIRegistraVaccinato();
+            if(CentriVaccinali.getCentriVaccinali().size() == 0)
+                JOptionPane.showMessageDialog(this, "Devi registrare un centro vaccinale prima!");
+            else
+                new UIRegistraVaccinato();
         }
     }
 }

@@ -56,6 +56,7 @@ public class UIStartMenu extends JFrame implements ActionListener {
         btnCentriVaccinali.setForeground(Color.WHITE);
         btnCentriVaccinali.setBorder(border);
         btnCentriVaccinali.addActionListener(this);
+        btnCentriVaccinali.setOpaque(true);
 
         btnCittadini.setBounds(655, 470, 200, 50);
         btnCittadini.setFocusable(false);
@@ -64,6 +65,7 @@ public class UIStartMenu extends JFrame implements ActionListener {
         btnCittadini.setForeground(Color.WHITE);
         btnCittadini.setBorder(border);
         btnCittadini.addActionListener(this);
+        btnCittadini.setOpaque(true);
 
         JLabel labelSfondo = new JLabel();
         labelSfondo.setIcon(img2);

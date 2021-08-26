@@ -138,6 +138,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         btnRegistra.setBorder(border);
         btnRegistra.addActionListener(this);
         btnRegistra.setBounds(170, 501, 150, 40);
+        btnRegistra.setOpaque(true);
         
         btnAnnulla.setPreferredSize(new Dimension(150, 40));
         btnAnnulla.setFocusable(false);
@@ -147,6 +148,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         btnAnnulla.setBorder(border);
         btnAnnulla.addActionListener(this);
         btnAnnulla.setBounds(330, 501, 150, 40);
+        btnAnnulla.setOpaque(true);
 
         JLabel labelSfondo = new JLabel();
 		labelSfondo.setBounds(0, 0, 650, 580);

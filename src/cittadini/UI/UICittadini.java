@@ -46,6 +46,7 @@ public class UICittadini extends JFrame implements ActionListener {
         btnConsultaCentri.setForeground(Color.WHITE);
         btnConsultaCentri.setBorder(border);
         btnConsultaCentri.addActionListener(this);
+        btnConsultaCentri.setOpaque(true);
 
         btnRegistrati.setBounds(60, 280, 300, 50);
         btnRegistrati.setFocusable(false);
@@ -54,6 +55,7 @@ public class UICittadini extends JFrame implements ActionListener {
         btnRegistrati.setForeground(Color.WHITE);
         btnRegistrati.setBorder(border);
         btnRegistrati.addActionListener(this);
+        btnRegistrati.setOpaque(true);
 
         btnLogIn.setBounds(60, 350, 300, 50);
         btnLogIn.setFocusable(false);
@@ -62,6 +64,7 @@ public class UICittadini extends JFrame implements ActionListener {
         btnLogIn.setForeground(Color.WHITE);
         btnLogIn.setBorder(border);
         btnLogIn.addActionListener(this);
+        btnLogIn.setOpaque(true);
 
         btnIndietro.setBounds(140, 420, 150, 50);
         btnIndietro.setFocusable(false);
@@ -70,6 +73,7 @@ public class UICittadini extends JFrame implements ActionListener {
         btnIndietro.setForeground(Color.WHITE);
         btnIndietro.setBorder(border);
         btnIndietro.addActionListener(this);
+        btnIndietro.setOpaque(true);
 
         JPanel panelBtn = new JPanel();
 		panelBtn.setBounds(0, 0, 425, 720);

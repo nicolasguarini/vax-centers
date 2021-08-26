@@ -70,6 +70,7 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
         btnSegnala.setForeground(Color.WHITE);
         btnSegnala.setBorder(border);
         btnSegnala.addActionListener(this);
+        btnSegnala.setOpaque(true);
 
         btnAnnulla.setPreferredSize(new Dimension(200, 50));
         btnAnnulla.setFocusable(false);
@@ -78,6 +79,7 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
         btnAnnulla.setForeground(Color.WHITE);
         btnAnnulla.setBorder(border);
         btnAnnulla.addActionListener(this);
+        btnAnnulla.setOpaque(true);
 
         JPanel panelNomeEventoAvverso = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panelNomeEventoAvverso.add(labelNomeEventoAvverso);
