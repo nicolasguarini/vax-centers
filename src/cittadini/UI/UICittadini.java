@@ -1,12 +1,9 @@
 package cittadini.UI;
 
+import centrivaccinali.CentriVaccinali;
 import centrivaccinali.UI.UIStartMenu;
 
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
@@ -107,7 +104,10 @@ public class UICittadini extends JFrame implements ActionListener {
             this.dispose();
             new UIStartMenu();
         } else if (e.getSource() == btnConsultaCentri) {
-            new UICercaCentriVaccinali();
+            if(CentriVaccinali.getCentriVaccinali().size() == 0)
+                JOptionPane.showMessageDialog(this, "Nel sistema non è presente alcun centro vaccinale!");
+            else
+                new UICercaCentriVaccinali();
         } else if (e.getSource() == btnRegistrati) {
             new UIRegistraCittadino();
         } else if (e.getSource() == btnLogIn) {
