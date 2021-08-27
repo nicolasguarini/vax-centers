@@ -19,6 +19,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
+/**
+ * Si occupa di creare e gestire l'interfaccia grafica e parte della logica dietro al login di un cittadino
+ *
+ * @see UICittadini
+ * @see Cittadini
+ * @see Cittadino
+ *
+ * @author Domenico Rizzo
+ * @author Nicolas Guarini
+ * @author Redon Kokaj
+ * @author Filippo Alzati
+ */
 public class UILoginCittadino extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
     JTextField tfNomeUtente = new JTextField();
@@ -29,6 +41,11 @@ public class UILoginCittadino extends JFrame implements ActionListener {
     Font font1 = new Font("Light", Font.PLAIN, 18);
     Font font2 = new Font("Light", Font.PLAIN, 30);
 
+    /**
+     * Inizializza, imposta e visualizza la schermata di login cittadino
+     *
+     * @author Domenico Rizzo
+     */
     public UILoginCittadino() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
@@ -95,6 +112,12 @@ public class UILoginCittadino extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Confronta username e password inseriti con quelli presenti nei file di salvataggio, e quando trova un'occorrenza apre la schermata dell'area personale del cittadino
+     *
+     * @author Nicolas Guarini
+     * @author Redon Kokaj
+     */
     private void login() {
         String nomeUtente = tfNomeUtente.getText();
         String password = new String(tfPasswordUtente.getPassword());
@@ -115,6 +138,15 @@ public class UILoginCittadino extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Effettua la validazione dei dati mosrando un messaggio di errore con i relativi dettagli nel caso in cui dei dati non fossero validi
+     *
+     * @author Redon Kokaj
+     *
+     * @param nomeUtente: username inserito dall'utente
+     * @param password: password inserita dall'utente
+     * @return <code>true</code>> se tutti i dati sono validi; <code>false</code> se c'è almeno un dato non valido
+     */
     boolean validaDati(String nomeUtente, String password){
         String messaggio = "";
 
@@ -127,6 +159,13 @@ public class UILoginCittadino extends JFrame implements ActionListener {
         }else return true;
     }
 
+    /**
+     * Gestore dei click sui pulsanti della schermata
+     *
+     * @param e: evento che deve essere processato
+     *
+     * @author Nicolas Guarini
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnLogin) {

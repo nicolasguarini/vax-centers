@@ -23,6 +23,8 @@ import java.util.Objects;
 /**
  * La classe <code>UICercaCentriVaccinali</code> si occupa di creare e gestire l'interfaccia utente della schermata per cercare i centri vaccinali
  *
+ * @see centrivaccinali.UI.UICentriVaccinali
+ *
  * @author Nicolas Guarini
  * @author Domenico Rizzo
  * @author Redon Kokaj
@@ -42,6 +44,11 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
     Font font1 = new Font("Light", Font.PLAIN, 18);
     Font font2 = new Font("Light", Font.PLAIN, 30);
 
+    /**
+     * inizializza, imposta e visualizza la schermata adibita alla ricerca dei centri vaccinali
+     *
+     * @author Domenico Rizzo
+     */
     public UICercaCentriVaccinali(){
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
@@ -133,12 +140,21 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Cerca i centri vaccinali per nome. (verranno visualizzati i centri vaccinali il cui nome contiene quello passato per parametro)
+     *
+     * @see UIVisualizzaCentriVaccinali
+     *
+     * @param nome: nome del centro vaccinale da ricercare
+     *
+     * @author Nicolas Guarini
+     */
     public void cercaCentriVaccinali(String nome){
         LinkedList<CentroVaccinale> centriDaVisualizzare = new LinkedList<>();
+
         for(CentroVaccinale i : CentriVaccinali.getCentriVaccinali())
             if(i.getNome().toLowerCase().contains(nome.toLowerCase()))
                 centriDaVisualizzare.add(i);
-
 
         if(!centriDaVisualizzare.isEmpty()){
             new UIVisualizzaCentriVaccinali(centriDaVisualizzare);
@@ -147,6 +163,14 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "La ricerca non ha prodotto risultati");
     }
 
+    /**
+     * Cerca i centri vaccinali per comune e tipologia
+     *
+     * @see UIVisualizzaCentriVaccinali
+     *
+     * @param comune: comune del centro vaccinale da ricercare
+     * @param tipologia: tipologia del centro vaccinale da ricercare (ospedaliero / hub / aziendale)
+     */
     public void cercaCentriVaccinali(String comune, String tipologia){
         LinkedList<CentroVaccinale> centriDaVisualizzare = new LinkedList<>();
         for(CentroVaccinale i : CentriVaccinali.getCentriVaccinali())
@@ -160,6 +184,16 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this, "La ricerca non ha prodotto risultati");
     }
 
+    /**
+     * Gestore dei click dei pulsanti
+     *
+     * @param e: evento che deve essere processato
+     *
+     * @author Nicolas Guarini
+     * @author Domenico Rizzo
+     * @author Redon Kokaj
+     * @author Filippo Alzati
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnVisualizzaTutti){

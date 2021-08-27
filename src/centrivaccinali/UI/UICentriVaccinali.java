@@ -17,6 +17,7 @@ import java.util.Objects;
  * @author Nicolas Guarini
  * @author Domenico Rizzo
  * @author Redon Kokaj
+ * @author Filippo Alzati
  */
 public class UICentriVaccinali extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));

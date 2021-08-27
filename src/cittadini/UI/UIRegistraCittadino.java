@@ -8,7 +8,6 @@ import cittadini.Cittadino;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,6 +23,17 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.Objects;
 
+/**
+ * Si occupa di creare e gestire la schermata di registrazione di un cittadino
+ *
+ * @see UILoginCittadino
+ * @see UICittadini
+ *
+ * @author Nicolas Guarini
+ * @author Filippo Alzati
+ * @author Domenico Rizzo
+ * @author Redon Kokaj
+ */
 public class UIRegistraCittadino extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
     JTextField tfNomeCittadino = new JTextField();
@@ -39,6 +49,11 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
     Font font1 = new Font("Light", Font.PLAIN, 18);
     Font font2 = new Font("Light", Font.PLAIN, 30);
 
+    /**
+     * Inizializza, imposta e visualizza la schermata di registrazione
+     *
+     * @author Domenico Rizzo
+     */
     public UIRegistraCittadino() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
@@ -161,6 +176,11 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Preleva i dati dalle caselle di testo, e se sono validi istanzia un oggetto <code>Cittadino</code> e procederà a registrarlo
+     *
+     * @author Nicolas Guarini
+     */
     void registra(){
         String nome = tfNomeCittadino.getText();
         String cognome = tfCognomeCittadino.getText();
@@ -178,6 +198,22 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Valida i dati inseriti dall'utente mostrando un messaggio di errore nel caso in cui non siano validi
+     *
+     * @param nome: nome dell'utente da registrare
+     * @param cognome: cognome dell'utente da registrare
+     * @param cf: codice fiscale dell'utente da registrare
+     * @param email: email dell'utente da registrare
+     * @param username: username dell'utente da registrare
+     * @param password: password dell'utente da registrare
+     * @param idVaccinazione: id vaccinazione dell'utente da registrare
+     * @param centroVaccinale: centro vaccinale dove è stata effettuata la registrazione
+     * @return <code>true</code> se tutti i dati sono validi; <code>false</code> se c'è almeno un dato non valido
+     *
+     * @author Nicolas Guarini
+     * @author Redon Kokaj
+     */
     boolean validaDati(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione, CentroVaccinale centroVaccinale){
         String messaggio = "";
 
@@ -207,6 +243,14 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         }else return true;
     }
 
+    /**
+     * Controlla che l'username non sia già stato registrato da un altro utente
+     *
+     * @param username: l'username da controllare
+     * @return <code>true</code> se l'username è valido; <code>false</code> se l'username non è valido, quindi se è già esistente.
+     *
+     * @author Nicolas Guarini
+     */
     boolean checkUsername(String username){
         for(Cittadino i : Cittadini.getCittadini())
             if(i.getUsername().equalsIgnoreCase(username)) return false;
@@ -214,6 +258,14 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         return true;
     }
 
+    /**
+     * Controlla che l'email non sia già stata registrata da un altro utente
+     *
+     * @param email email da controllare
+     * @return <code>true</code> se l'email è valida; <code>false</code> se l'email non è valida, quindi se è già stata registrata
+     *
+     * @author Nicolas Guarini
+     */
     boolean checkEmail(String email){
         for(Cittadino i : Cittadini.getCittadini())
             if (i.getEmail().equalsIgnoreCase(email)) return false;
@@ -221,6 +273,14 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         return true;
     }
 
+    /**
+     * Controlla che l'id vaccinazione non sia già stata registrata da un altro utente
+     *
+     * @param idVaccinazione id vaccinazione da controllare
+     * @return <code>true</code> se l'id è valido; <code>false</code> se l'id non è valido, quini se è già stato registrato
+     *
+     * @author Nicolas Guarini
+     */
     boolean checkIdVaccinazioneGiaRegistrata(String idVaccinazione){
         for(Cittadino i : Cittadini.getCittadini())
             if(i.getIdVaccinazione().equals(idVaccinazione)) return false;
@@ -228,6 +288,14 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         return true;
     }
 
+    /**
+     * Tramite le prime 5 cifre dell'id vaccinazione risale al centro vaccinale
+     *
+     * @param idVaccinazione id vaccinazione del quale vogliamo sapere il centro vaccinale
+     * @return il centro vaccinale dove è stata effettuata la vaccinazione
+     *
+     * @author Nicolas Guarini
+     */
     CentroVaccinale getCentroVaccinale(String idVaccinazione){
         String idCentroVaccinale = idVaccinazione.substring(0, 5);
         for(CentroVaccinale centroVaccinale : CentriVaccinali.getCentriVaccinali()){
@@ -238,6 +306,15 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         return null;
     }
 
+    /**
+     * Controlla che esista una vaccinazione con l'id inserito dall'utente
+     *
+     * @param centroVaccinale centro vaccinale dove è stata effettuata la vaccinazione
+     * @param idVaccinazione id vaccinazione inserito dall'utente
+     * @return <code>true</code> se l'id è valido; <code>false</code> se l'id non è valido
+     *
+     * @author Nicolas Guarini
+     */
     boolean checkIdVaccinazioneEsistente(CentroVaccinale centroVaccinale, String idVaccinazione){
         LinkedList<Vaccinazione> vaccinazioni = CentriVaccinali.getVaccinazioni(centroVaccinale.getNome());
         for(Vaccinazione i : vaccinazioni){
@@ -248,6 +325,14 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         return false;
    }
 
+    /**
+     * Controlla che non esista un altro cittadino registrato con lo stesso codice fiscale
+     *
+     * @param cf codice fiscale da controllare
+     * @return <code>true</code> se il codice fiscale è valido; <code>false</code> se il codice fiscale non è valido.
+     *
+     * @author Nicolas Guarini
+     */
     boolean checkCF(String cf){
         for(Cittadino i : Cittadini.getCittadini())
             if(i.getCF().equalsIgnoreCase(cf)) return false;
@@ -255,17 +340,13 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         return true;
     }
 
-    String[] getCentriArray(){
-        LinkedList<CentroVaccinale> centriVaccinali = CentriVaccinali.getCentriVaccinali();
-        String[] centriArray = new String[centriVaccinali.size()];
-
-        for(int i = 0; i<centriVaccinali.size(); i++){
-            centriArray[i] = centriVaccinali.get(i).getNome() + ", " + centriVaccinali.get(i).getIndirizzo();
-        }
-
-        return centriArray;
-    }
-
+    /**
+     * Gestore dei click sui pulsanti della schermata
+     *
+     * @param e evento che deve essere processato
+     *
+     * @author Nicolas Guarini
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnRegistra) {

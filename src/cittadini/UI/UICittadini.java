@@ -13,6 +13,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
+/**
+ * Si occupa di creare e gestire l'interfaccia grafica della schermata iniziale della sezione dedicata ai cittadini
+ *
+ * @see UIRegistraCittadino
+ * @see UILoginCittadino
+ *
+ * @author Nicolas Guarini
+ * @author Domenico Rizzo
+ * @author Redon Kokaj
+ * @author Filippo Alzati
+ */
 public class UICittadini extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
     ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/cittadini.jpg")));
@@ -22,19 +33,20 @@ public class UICittadini extends JFrame implements ActionListener {
     JButton btnIndietro = new JButton("INDIETRO");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
+    /**
+     * Inizializza, imposta e visualizza la schermata iniziale della sezione <code>cittadini</code>
+     *
+     * @author Domenico Rizzo
+     */
     public UICittadini() {
-        setupFrame();
-    }
-
-    private void setupFrame() {
         JLabel labelTesto = new JLabel();
         labelTesto.setText("PORTALE CITTADINI");
         labelTesto.setFont(new Font("Montserrat", Font.BOLD, 32));
-		labelTesto.setBounds(55, 90, 500, 100);
+        labelTesto.setBounds(55, 90, 500, 100);
 
         JLabel labelSfondo = new JLabel();
         labelSfondo.setIcon(img2);
-		labelSfondo.setBounds(0, 0, 850, 720);
+        labelSfondo.setBounds(0, 0, 850, 720);
 
         btnConsultaCentri.setBounds(60, 210, 300, 50);
         btnConsultaCentri.setFocusable(false);
@@ -73,20 +85,20 @@ public class UICittadini extends JFrame implements ActionListener {
         btnIndietro.setOpaque(true);
 
         JPanel panelBtn = new JPanel();
-		panelBtn.setBounds(0, 0, 425, 720);
-		panelBtn.setLayout(null);
+        panelBtn.setBounds(0, 0, 425, 720);
+        panelBtn.setLayout(null);
         panelBtn.add(labelTesto);
         panelBtn.add(btnConsultaCentri);
         panelBtn.add(btnRegistrati);
         panelBtn.add(btnLogIn);
         panelBtn.add(btnIndietro);
-		
-		JPanel panelSfondo = new JPanel();
-		panelSfondo.setBounds(425, 0, 850, 720);
-		panelSfondo.setLayout(null);
+
+        JPanel panelSfondo = new JPanel();
+        panelSfondo.setBounds(425, 0, 850, 720);
+        panelSfondo.setLayout(null);
         panelSfondo.add(labelSfondo);
 
-		this.add(panelSfondo);
+        this.add(panelSfondo);
         this.add(panelBtn);
         this.setTitle("Home - Cittadini");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -98,6 +110,13 @@ public class UICittadini extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Gestore dei click sui pulsanti della schermata
+     *
+     * @param e: evento che deve essere processato
+     *
+     * @author: Nicolas Guarini
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnIndietro) {

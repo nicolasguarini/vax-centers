@@ -17,6 +17,16 @@ import java.util.Objects;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Si occupa di creare e gestire l'interfaccia grafica della schermata dove un utente loggato può visualizzare le informazioni relative al suo profilo
+ *
+ * @see UILoginCittadino
+ *
+ * @author Nicolas Guarini
+ * @author Filippo Alzati
+ * @author Redon Kokaj
+ * @author Domenico Rizzo
+ */
 public class UIInfoUtente extends JFrame implements ActionListener {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
     ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/usericon.png")));
@@ -31,12 +41,16 @@ public class UIInfoUtente extends JFrame implements ActionListener {
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
     Font font1 = new Font("Light", Font.PLAIN, 16);
 
+    /**
+     * Inizializza, imposta e visualizza la schermata delle informazioni del profilo di un utente loggato
+     *
+     * @param cittadinoLoggato: oggetto <code>Cittadino</code> del quale vogliamo visualizzare le informazioni
+     *
+     * @author Domenico Rizzo
+     */
     public UIInfoUtente(Cittadino cittadinoLoggato) {
         this.cittadinoLoggato = cittadinoLoggato;
-        setupFrame();
-    }
 
-    public void setupFrame() {
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new GridLayout(0, 1, 10, 10));
         this.setSize(500, 650);
@@ -115,11 +129,11 @@ public class UIInfoUtente extends JFrame implements ActionListener {
 
         JLabel labelIcona = new JLabel();
         labelIcona.setIcon(img2);
-		labelIcona.setBounds(215, 55, 75, 75);
+        labelIcona.setBounds(215, 55, 75, 75);
 
         JLabel labelSfondo = new JLabel();
         labelSfondo.add(labelIcona);
-		labelSfondo.setBounds(0, 0, 500, 650);
+        labelSfondo.setBounds(0, 0, 500, 650);
         labelSfondo.add(TestoNome);
         labelSfondo.add(TestoCognome);
         labelSfondo.add(TestoEmail);
@@ -139,6 +153,11 @@ public class UIInfoUtente extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Gestore dei click sui pulsanti della schermata
+     *
+     * @param e: evento che deve essere processato
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnChiudi) {
