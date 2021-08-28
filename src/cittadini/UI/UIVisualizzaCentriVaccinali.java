@@ -1,3 +1,8 @@
+//NICOLAS GUARINI 745508 VA
+//FILIPPO ALZATI 745495 VA
+//REDON KOKAJ 744959 VA
+//DOMENICO RIZZO 745304 VA
+
 package cittadini.UI;
 
 import centrivaccinali.CentriVaccinali;
@@ -15,9 +20,26 @@ import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.Objects;
 
+/**
+ * Si occupa di gestire la schermata di visualizzazione dei centri vaccinali
+ *
+ * @see centrivaccinali.UI.UICentriVaccinali
+ *
+ * @author Nicolas Guarini
+ * @author Domenico Rizzo
+ * @author Redon Kokaj
+ * @author Filippo Alzzati
+ * */
 public class UIVisualizzaCentriVaccinali extends JFrame {
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
 
+    /**
+     * Inizializza, imposta e visualizza la schermata di visualizzazione dei centri vaccinali
+     *
+     * @param centriDaVisualizzare lista dei centri vaccinali da visualizzare
+     *
+     * @author Domenico Rizzo
+     */
     public UIVisualizzaCentriVaccinali(LinkedList<CentroVaccinale> centriDaVisualizzare){
         this.setIconImage(img.getImage());
         this.setTitle("Risultati ricerca");
@@ -48,6 +70,15 @@ public class UIVisualizzaCentriVaccinali extends JFrame {
         this.setVisible(true);
     }
 
+    /**
+     * Mostra un popup con le informazioni rilevanti del centro vaccinale desiderato, come nome, indirizzo, tipologia, numero eventi avversi e severità media degli stessi
+     *
+     * @see UISegnalaEventoAvverso
+     *
+     * @param centroVaccinale centro vaccinale di cui si desidera visualizzare le informazioni
+     *
+     * @author Nicolas Guarini
+     */
     void infoCentroVaccinale(CentroVaccinale centroVaccinale){
         String messaggio = "";
         messaggio += "Nome: " + centroVaccinale.getNome() + "\n";

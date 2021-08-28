@@ -1,3 +1,8 @@
+//NICOLAS GUARINI 745508 VA
+//FILIPPO ALZATI 745495 VA
+//REDON KOKAJ 744959 VA
+//DOMENICO RIZZO 745304 VA
+
 package cittadini.UI;
 
 import cittadini.Cittadino;
@@ -16,6 +21,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
+/**
+ * Si occupa di gestire la schermata dell'area personale dell'utente che ha effettuato il login
+ *
+ * @see UILoginCittadino
+ *
+ * @author Nicolas Guarini
+ * @author Redon Kokaj
+ * @author Domenico Rizzo
+ * @author Filippo Alzati
+ */
 public class UIUtenteLoggato extends JFrame implements ActionListener {
     Cittadino cittadinoLoggato;
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
@@ -32,11 +47,12 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
 
     public UIUtenteLoggato(Cittadino cittadinoLoggato) {
         this.cittadinoLoggato = cittadinoLoggato;
-        setupFrame();
-    }
 
-    private void setupFrame() {
-       
+        /**
+         * Inizializza, imposta e visualizza la schermata dell'area personale dell'utente loggato
+         *
+         * @author Domenico Rizzo
+         */
         JLabel labelTesto = new JLabel("Ciao, " + cittadinoLoggato.getNome());
         labelTesto.setBounds(160, 40, 500, 100);
         labelTesto.setFont(new Font("Montserrat", Font.BOLD, 40));
@@ -45,17 +61,17 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         JLabel labelTestoCentri = new JLabel();
         labelTestoCentri.setText("Visualizza centri");
         labelTestoCentri.setFont(new Font("Montserrat", Font.BOLD, 15));
-		labelTestoCentri.setBounds(177, 445, 300, 100);
+        labelTestoCentri.setBounds(177, 445, 300, 100);
 
         JLabel labelTestoEventi = new JLabel();
         labelTestoEventi.setText("Segnala eventi avversi");
         labelTestoEventi.setFont(new Font("Montserrat", Font.BOLD, 15));
-		labelTestoEventi.setBounds(553, 445, 300, 100);
+        labelTestoEventi.setBounds(553, 445, 300, 100);
 
         JLabel labelTestoUtente = new JLabel();
         labelTestoUtente.setText("Informazioni profilo");
         labelTestoUtente.setFont(new Font("Montserrat", Font.BOLD, 15));
-		labelTestoUtente.setBounds(965, 445, 300, 100);
+        labelTestoUtente.setBounds(965, 445, 300, 100);
 
         btnVisualizzaCentri.setBounds(190, 327, 100, 107);
         btnVisualizzaCentri.setIcon(img3);
@@ -93,7 +109,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         JLabel labelSfondo = new JLabel();
         labelSfondo.add(labelTesto);
         labelSfondo.setIcon(img2);
-		labelSfondo.setBounds(0, 0, 1280, 720);
+        labelSfondo.setBounds(0, 0, 1280, 720);
         labelSfondo.add(btnSegnalaEventi);
         labelSfondo.add(btnVisualizzaCentri);
         labelSfondo.add(btnInfo);
@@ -113,6 +129,13 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Gestore dei click sui pulsanti della schermata
+     *
+     * @param e evento che deve essere gestito
+     *
+     * @author Domenico Rizzo
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnLogout) {

@@ -1,3 +1,8 @@
+//NICOLAS GUARINI 745508 VA
+//FILIPPO ALZATI 745495 VA
+//REDON KOKAJ 744959 VA
+//DOMENICO RIZZO 745304 VA
+
 package centrivaccinali;
 
 import centrivaccinali.UI.UIStartMenu;
@@ -12,7 +17,7 @@ import java.util.LinkedList;
 
 /**
  * La classe <code>CentriVaccinali</code> è la classe principale relativa alla logica della sezione dedicata ai Centri Vaccinali.
- * Mette a disposizione alle classi che gestiscono la UI una serie di metodi che effettuano operazioni comuni o fanno da "ponte" tra la UI e i file, comportandosi simbolicamente come un backend.
+ * Mette a disposizione alle altre classi una serie di metodi che effettuano operazioni comuni o fanno da "ponte" con i file, comportandosi simbolicamente come un backend.
  *
  * @author Nicolas Guarini
  * @author Domenico Rizzo
@@ -53,7 +58,7 @@ public class CentriVaccinali {
     }
 
     /**
-     * Legge da file la lista serializzata di centri vaccinali, e se il file esiste la deserializza e la ritorna, altrimenti lo crea e lo inizializza serializzandoci una lista vuota.
+     * Legge da file la lista serializzata di centri vaccinali. Se il file esiste deserializza la lista e la ritorna, altrimenti crea il file e lo inizializza serializzandoci una lista vuota.
      *
      * @return Lista dei centri vaccinali registrati. Se non è salvato alcun centro vaccinale ritornerà una lista vuota
      */

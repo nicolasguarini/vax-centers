@@ -1,3 +1,8 @@
+//NICOLAS GUARINI 745508 VA
+//FILIPPO ALZATI 745495 VA
+//REDON KOKAJ 744959 VA
+//DOMENICO RIZZO 745304 VA
+
 package cittadini.UI;
 
 import centrivaccinali.EventoAvverso;
@@ -26,6 +31,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
+/**
+ * Si occupa di creare e gesire la schermata di segnalazione evento avverso
+ *
+ * @see UILoginCittadino
+ *
+ * @author Nicolas Guarini
+ * @author Domenico Rizzo
+ * @author Filippo Alzati
+ * @author Redon Kokaj
+ */
 public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
     Cittadino utenteLoggato;
     ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
@@ -37,6 +52,13 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
     JButton btnAnnulla = new JButton("ANNULLA");
     Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
+    /**
+     * Inizializza, imposta e gestisce l'interfaccia grafica della schermata per segnalare un evento avverso
+     *
+     * @param utenteLoggato utente che deve segnalare gli eventi avversi
+     *
+     * @author Nicolas Guarini
+     */
     public UISegnalaEventoAvverso(Cittadino utenteLoggato){
         this.utenteLoggato = utenteLoggato;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -107,6 +129,16 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Valida i dati inserit dall'utente, mostrando un messaggio di errore nel caso non siano validi
+     *
+     * @param nomeEventoAvverso nome dell'evento avverso da segnalare
+     * @param noteAggiuntive note aggiuntive sull'evento avverso da segnalare
+     *
+     * @return <code>true</code> se tutti i dati sono validi; <code>false</code> se c'è almeno un dato non valido
+     *
+     * @author Redon Kokaj
+     */
     boolean validaDati(String nomeEventoAvverso, String noteAggiuntive){
         String messaggio = "";
 
@@ -120,6 +152,11 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
             return true;
     }
 
+    /**
+     * Preleva di dati dalle caselle di testo e se sono validi li registra.
+     *
+     * @author Nicolas Guarini
+     */
     void segnalaEventoAvverso(){
         String nome = tfNomeEventoAvverso.getText();
         int severita = Integer.parseInt(Objects.requireNonNull(cbSeverita.getSelectedItem()).toString());
@@ -135,6 +172,14 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Gestore dei cick sui pulsanti della schermata
+     *
+     * @param e evento che deve essere gestito
+     *
+     * @author Nicolas Guarini
+     * @author Redon Kokaj
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnSegnala){
