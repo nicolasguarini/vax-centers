@@ -40,19 +40,51 @@ import java.util.Objects;
  * @author Redon Kokaj
  */
 public class UIRegistraCittadino extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+    /**
+     * TextField dove l'utente inserirà il nome
+     */
     JTextField tfNomeCittadino = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà il cognome
+     */
     JTextField tfCognomeCittadino = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà il codice fiscale
+     */
     JTextField tfCodiceFiscaleCittadino = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà l'email
+     */
     JTextField tfEmail = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà l'username
+     */
     JTextField tfNomeUtente = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà la password
+     */
     JPasswordField tfPasswordUtente = new JPasswordField();
+
+    /**
+     * TextField dove l'utente inserirà l'id vaccinazione
+     */
     JTextField tfIDVaccinazione = new JTextField();
+
+    /**
+     * Bottone per effettuare la registrazione
+     */
     JButton btnRegistra = new JButton("REGISTRATI");
+
+    /**
+     * Bottone per annullare la registrazione
+     */
     JButton btnAnnulla = new JButton("ANNULLA");
-    Border border = new LineBorder(new Color(251, 186, 0), 2, true);
-    Font font1 = new Font("Light", Font.PLAIN, 18);
-    Font font2 = new Font("Light", Font.PLAIN, 30);
+
 
     /**
      * Inizializza, imposta e visualizza la schermata di registrazione
@@ -60,12 +92,17 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
      * @author Domenico Rizzo
      */
     public UIRegistraCittadino() {
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+        Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+        Font font1 = new Font("Light", Font.PLAIN, 18);
+        Font font2 = new Font("Light", Font.PLAIN, 30);
+
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
         this.setSize(650, 610);
         this.setTitle("Registrazione cittadino");
         this.setResizable(false);
-        this.setIconImage(img.getImage());
+        this.setIconImage(imgLogo.getImage());
 
         JLabel labelRegistraVaccinato = new JLabel("Registrazione cittadino");
         labelRegistraVaccinato.setFont(font2);

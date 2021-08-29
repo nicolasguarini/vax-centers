@@ -37,14 +37,25 @@ import java.util.Objects;
  * @author Filippo Alzati
  */
 public class UILoginCittadino extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+    /**
+     * TextField dove l'utente inserirà l'username con il quale vuole effettuare il login
+     */
     JTextField tfNomeUtente = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà la password con la quale vuole effettuare il login
+     */
     JPasswordField tfPasswordUtente = new JPasswordField();
+
+    /**
+     * Bottone per effettuare il login
+     */
     JButton btnLogin = new JButton("LOGIN");
+
+    /**
+     * Bottone per annullare il login
+     */
     JButton btnAnnulla = new JButton("ANNULLA");
-    Border border = new LineBorder(new Color(251, 186, 0), 2, true);
-    Font font1 = new Font("Light", Font.PLAIN, 18);
-    Font font2 = new Font("Light", Font.PLAIN, 30);
 
     /**
      * Inizializza, imposta e visualizza la schermata di login cittadino
@@ -52,12 +63,17 @@ public class UILoginCittadino extends JFrame implements ActionListener {
      * @author Domenico Rizzo
      */
     public UILoginCittadino() {
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+        Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+        Font font1 = new Font("Light", Font.PLAIN, 18);
+        Font font2 = new Font("Light", Font.PLAIN, 30);
+
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
         this.setSize(470, 430);
         this.setTitle("Login cittadino");
         this.setResizable(false);
-        this.setIconImage(img.getImage());
+        this.setIconImage(imgLogo.getImage());
 
         JLabel labelLoginCittadino = new JLabel("Login cittadino");
         labelLoginCittadino.setFont(font2);

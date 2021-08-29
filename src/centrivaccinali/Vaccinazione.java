@@ -21,13 +21,51 @@ import java.util.LinkedList;
  * @author Filippo Alzati
  */
 public class Vaccinazione implements Serializable {
+    /**
+     * Proprietà che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>Vaccinazione</code>
+     */
     @Serial
     private static final long serialVersionUID = 5737449378412827456L;
 
-    String nome, cognome, cf, id, nomeVaccino;
-    Date data;
-    CentroVaccinale centroVaccinale;
-    LinkedList<EventoAvverso> eventiAvversi = new LinkedList<>();
+    /**
+     * Nome del vaccinato
+     */
+    private String nome;
+
+    /**
+     * Cognome del vaccinato
+     */
+    private String cognome;
+
+    /**
+     * Codice fiscale del vaccinato
+     */
+    private String cf;
+
+    /**
+     * Identificatore di 16 cifre della vaccinazione
+     */
+    private String id;
+
+    /**
+     * Nome del vaccino somministrato
+     */
+    private String nomeVaccino;
+
+    /**
+     * Data della somministrazione
+     */
+    private Date data;
+
+    /**
+     * Centro vaccinale dove è stata effettuata la somministrazione
+     */
+    private CentroVaccinale centroVaccinale;
+
+    /**
+     * Eventi avversi segnalati dal vaccinato
+     */
+    private LinkedList<EventoAvverso> eventiAvversi = new LinkedList<>();
 
     /**
      * Costruttore che salva i parametri nelle proprietà private della classe

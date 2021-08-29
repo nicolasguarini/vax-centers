@@ -36,20 +36,55 @@ import java.util.Objects;
  * @author Redon Kokaj
  */
 public class UIRegistraCentroVaccinale extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+    /**
+     * TextField dove l'utente inserirà il nome del centro vaccinale
+     */
     JTextField tfNomeCentroVaccinale = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà il nome dell'indirizzo
+     */
     JTextField tfNomeIndirizzo = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirò il numero civico
+     */
     JTextField tfCivico = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà il comune
+     */
     JTextField tfComune = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà la provincia
+     */
     JTextField tfProvincia = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà il CAP
+     */
     JTextField tfCAP = new JTextField();
+
+    /**
+     * Select dove l'utente selezionerà il qualificatore dell'indirizzo tra "Via", "Viale" e "Piazza"
+     */
     JComboBox<String> qualificatoreIndirizzo = new JComboBox<>(new String[]{"Via", "Viale", "Piazza"});
+
+    /**
+     * Select dove l'utente selezionerà la tipologia del centro vaccinale tra "Ospedaliero", "Aziendale" e "Hub"
+     */
     JComboBox<String> tipologiaCentroVaccinale = new JComboBox<>(new String[]{"Ospedaliero", "Aziendale", "Hub"});
+
+    /**
+     * Bottone per effettuare la registrazione
+     */
     JButton btnRegistra = new JButton("REGISTRA");
+
+    /**
+     * Bottone per annullare la registrazione
+     */
     JButton btnAnnulla = new JButton("ANNULLA");
-    Border border = new LineBorder(new Color(251, 186, 0), 2, true);
-    Font font1 = new Font("Light", Font.PLAIN, 18);
-    Font font2 = new Font("Light", Font.PLAIN, 30);
 
     /**
      * Inizializza, imposta e visualizza il form di registrazione di un nuovo centro vaccinale
@@ -61,12 +96,17 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
      * @author Domenico Rizzo
      */
     public UIRegistraCentroVaccinale(){
+        Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+        Font font1 = new Font("Light", Font.PLAIN, 18);
+        Font font2 = new Font("Light", Font.PLAIN, 30);
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
         this.setSize(650, 630);
         this.setTitle("Registra centro vaccinale");
         this.setResizable(false);
-        this.setIconImage(img.getImage());
+        this.setIconImage(imgLogo.getImage());
 
         JLabel labelRegistraVaccinato = new JLabel("Registra centro vaccinale");
         labelRegistraVaccinato.setFont(font2);

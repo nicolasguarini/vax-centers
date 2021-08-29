@@ -33,18 +33,45 @@ import java.awt.event.ActionListener;
  * @author Domenico Rizzo
  */
 public class UIInfoUtente extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/usericon.png")));
+    /**
+     * Cittadino di cui si vogliono conoscere ulteriori informazioni
+     */
     Cittadino cittadinoLoggato;
+
+    /**
+     * TextField dove verrà visualizzato il nome del cittadino
+     */
     JTextField tfNome = new JTextField();
+
+    /**
+     * TextField dove verrà visualizzato il cognome del cittadino
+     */
     JTextField tfCognome = new JTextField();
+
+    /**
+     * TextField dove verrà visualizzata l'email del cittadino
+     */
     JTextField tfEmail = new JTextField();
+
+    /**
+     * TextField dove verrà visualizzato l'username del cittadino
+     */
     JTextField tfUsername= new JTextField();
+
+    /**
+     * TextField dove verrà visualizzato il codice fiscale del cittadino
+     */
     JTextField tfCF = new JTextField();
+
+    /**
+     * TextField dove verrà visualizzato l'id vaccinazione del cittadino
+     */
     JTextField tfIDvaccinazione = new JTextField();
+
+    /**
+     * Bottone per chiudere la schermata attuale
+     */
     JButton btnChiudi = new JButton("CHIUDI");
-    Border border = new LineBorder(new Color(251, 186, 0), 2, true);
-    Font font1 = new Font("Light", Font.PLAIN, 16);
 
     /**
      * Inizializza, imposta e visualizza la schermata delle informazioni del profilo di un utente loggato
@@ -56,12 +83,17 @@ public class UIInfoUtente extends JFrame implements ActionListener {
     public UIInfoUtente(Cittadino cittadinoLoggato) {
         this.cittadinoLoggato = cittadinoLoggato;
 
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+        ImageIcon imgUser = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/usericon.png")));
+        Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+        Font font1 = new Font("Light", Font.PLAIN, 16);
+
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new GridLayout(0, 1, 10, 10));
         this.setSize(500, 650);
         this.setTitle("Informazioni utente");
         this.setResizable(false);
-        this.setIconImage(img.getImage());
+        this.setIconImage(imgLogo.getImage());
 
         tfNome.setBounds(40, 231, 200, 30);
         tfNome.setFont(font1);
@@ -133,7 +165,7 @@ public class UIInfoUtente extends JFrame implements ActionListener {
         TestoIDvaccinazione.setFont(font1);
 
         JLabel labelIcona = new JLabel();
-        labelIcona.setIcon(img2);
+        labelIcona.setIcon(imgUser);
         labelIcona.setBounds(215, 55, 75, 75);
 
         JLabel labelSfondo = new JLabel();

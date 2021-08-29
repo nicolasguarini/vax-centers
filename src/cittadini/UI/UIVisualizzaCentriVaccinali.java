@@ -31,8 +31,6 @@ import java.util.Objects;
  * @author Filippo Alzzati
  * */
 public class UIVisualizzaCentriVaccinali extends JFrame {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
-
     /**
      * Inizializza, imposta e visualizza la schermata di visualizzazione dei centri vaccinali
      *
@@ -41,7 +39,9 @@ public class UIVisualizzaCentriVaccinali extends JFrame {
      * @author Domenico Rizzo
      */
     public UIVisualizzaCentriVaccinali(LinkedList<CentroVaccinale> centriDaVisualizzare){
-        this.setIconImage(img.getImage());
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+
+        this.setIconImage(imgLogo.getImage());
         this.setTitle("Risultati ricerca");
 
         JButton bottoni[] = new JButton[centriDaVisualizzare.size()];

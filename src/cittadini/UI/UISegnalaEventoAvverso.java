@@ -42,15 +42,36 @@ import java.util.Objects;
  * @author Redon Kokaj
  */
 public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
+    /**
+     * Utente loggato che deve segnalare l'evento avverso
+     */
     Cittadino utenteLoggato;
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+
+    /**
+     * TextField dove l'utente inserirà il nome dell'evento avverso
+     */
     JTextField tfNomeEventoAvverso = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà le note aggiuntive riguardo l'evento avverso
+     */
     JTextArea taNoteAggiuntive = new JTextArea(3, 20);
+
+    /**
+     * Select dove l'utente selezionerà la severità dell'evento avverso
+     */
     JComboBox<String> cbSeverita = new JComboBox<String>(new String[]{"1", "2", "3", "4", "5"});
 
+    /**
+     * Bottone per inviare la segnalazione dell'evento avverso
+     */
     JButton btnSegnala = new JButton("SEGNALA");
+
+    /**
+     * Bottone per annullare la segnalazione dell'evento avverso
+     */
     JButton btnAnnulla = new JButton("ANNULLA");
-    Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+
 
     /**
      * Inizializza, imposta e gestisce l'interfaccia grafica della schermata per segnalare un evento avverso
@@ -61,12 +82,16 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
      */
     public UISegnalaEventoAvverso(Cittadino utenteLoggato){
         this.utenteLoggato = utenteLoggato;
+
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+        Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(new GridLayout(0, 1));
         this.setLocationRelativeTo(null);
         this.setTitle("Segnala Evento Avverso");
         this.setResizable(false);
-        this.setIconImage(img.getImage());
+        this.setIconImage(imgLogo.getImage());
 
         JLabel labelNomeEventoAvverso = new JLabel("Nome Evento Avverso:");
         labelNomeEventoAvverso.setFont(new Font("Helvetica", Font.BOLD, 15));

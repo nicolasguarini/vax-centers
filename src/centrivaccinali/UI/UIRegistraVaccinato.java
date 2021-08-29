@@ -43,19 +43,45 @@ import java.util.Objects;
  * @author Redon Kokaj
  */
 public class UIRegistraVaccinato extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+    /**
+     * Select dove l'utente selezionerà il centro vaccinale dove è stata effettuata la vaccinazione tra quelli registrati
+     */
     JComboBox<String> selectCentroVaccinale = new JComboBox<>(getCentriArray());
+
+    /**
+     * TextField dove l'utente inserirà il nome del vaccinato
+     */
     JTextField tfNomeVaccinato = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà il cognome del vaccinato
+     */
     JTextField tfCognomeVaccinato = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà il codice fiscale del vaccinato
+     */
     JTextField tfCodiceFiscaleVaccinato = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà la data di somministrazione del vaccino
+     */
     JTextField tfDataSomministrazioneVaccino= new JTextField();
-    
+
+    /**
+     * Select dove l'utente selezionerà il vaccino somministrato tra "Pfizer", "AstraZeneca", "Moderna" e "J&J"
+     */
     JComboBox<String> selectNomeVaccino = new JComboBox<>(new String[] { "Pfizer", "AstraZeneca", "Moderna", "J&J" });
+
+    /**
+     * Bottone per effettuare la registrazione
+     */
     JButton btnRegistra = new JButton("REGISTRA");
+
+    /**
+     * Bottone per annullare la registrazione
+     */
     JButton btnAnnulla = new JButton("ANNULLA");
-    Border border = new LineBorder(new Color(251, 186, 0), 2, true);
-    Font font1 = new Font("Light", Font.PLAIN, 18);
-    Font font2 = new Font("Light", Font.PLAIN, 30);
 
     /**
      * Inizializza, imposta e visualizza il form di registrazione di una vaccinazione
@@ -68,12 +94,17 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
      * @author Redon Kokaj
      */
     public UIRegistraVaccinato() {
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+        Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+        Font font1 = new Font("Light", Font.PLAIN, 18);
+        Font font2 = new Font("Light", Font.PLAIN, 30);
+
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
         this.setSize(650, 630);
         this.setTitle("Registra Vaccinato");
         this.setResizable(false);
-        this.setIconImage(img.getImage());
+        this.setIconImage(imgLogo.getImage());
 
         JLabel labelRegistraVaccinato = new JLabel("Registra vaccinato");
         labelRegistraVaccinato.setFont(font2);
@@ -179,8 +210,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     }
 
     /**
-     * Preleva i dati inseriti dall'utente vengono prelevati dagli elementi di input.
-     * Se i dati sono validi viene istanziato un oggetto della classe Vaccinazione che verrà poi passato per parametro al metodo {@link #validaDati} che li salverà su file
+     * Preleva i dati inseriti dall'utente, e se sono validi viene istanziato un oggetto della classe Vaccinazione che verrà poi passato per parametro al metodo {@link #validaDati} che li salverà su file
      *
      * @author Nicolas Guarini
      */

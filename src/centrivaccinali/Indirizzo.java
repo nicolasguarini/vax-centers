@@ -19,10 +19,41 @@ import java.io.Serializable;
  * @author Filippo Alzati
  */
 public class Indirizzo implements Serializable {
+    /**
+     * Proprietà che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>Indirizzo</code>
+     */
     @Serial
     private static final long serialVersionUID = -1709094232830800244L;
 
-    private String qualificatore, nome, numeroCivico, comune, provincia, CAP;
+    /**
+     * Qualificatore dell'indirizzo
+     */
+    private String qualificatore;
+
+    /**
+     * Nome dell'indirizzo
+     */
+    private String nome;
+
+    /**
+     * Numero civico dell'indirizzo
+     */
+    private String numeroCivico;
+
+    /**
+     * Comune dell'indirizzo
+     */
+    private String comune;
+
+    /**
+     * Provincia dell'indirizzo
+     */
+    private String provincia;
+
+    /**
+     * Codice di avviamento postale (CAP) a 5 cifre dell'indirizzo
+     */
+    private String CAP;
 
     /**
      * Costruttore che salva i parametri nelle proprietà private della classe

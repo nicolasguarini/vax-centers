@@ -19,10 +19,26 @@ import java.io.Serializable;
  * @author Filippo Alzati
  */
 public class EventoAvverso implements Serializable {
+    /**
+     * Proprietà che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>EventoAvverso</code>
+     */
     @Serial
     private static final long serialVersionUID = 394107416364547627L;
-    String nome, noteAggiuntive;
-    int severita;
+
+    /**
+     * Nome dell'evento avverso
+     */
+    private String nome;
+
+    /**
+     * Note aggiuntive sull'evento avverso
+     */
+    private String noteAggiuntive;
+
+    /**
+     * Severità dell'evento avverso da 1 a 5
+     */
+    private int severita;
 
     /**
      * Costruttore che salva i parametri nelle proprietà private della classe
@@ -35,5 +51,16 @@ public class EventoAvverso implements Serializable {
         this.nome = nome;
         this.severita = severita;
         this.noteAggiuntive = noteAggiuntive;
+    }
+
+    /**
+     * Ritorna la proprietà privata <code>severita</code>
+     *
+     * @return proprietà privata <code>severita</code>
+     *
+     * @author Nicolas Guarini
+     */
+    public int getSeverita(){
+        return severita;
     }
 }

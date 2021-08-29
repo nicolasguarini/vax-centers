@@ -30,13 +30,25 @@ import java.util.Objects;
  * @author Filippo Alzati
  */
 public class UICittadini extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/cittadini.jpg")));
+    /**
+     * Bottone per consultare i centri vaccinali
+     */
     JButton btnConsultaCentri = new JButton("CONSULTA I CENTRI");
+
+    /**
+     * Bottone per effettuare la registrazione
+     */
     JButton btnRegistrati = new JButton("REGISTRATI");
+
+    /**
+     * Bottone per effettuare il login
+     */
     JButton btnLogIn = new JButton("LOGIN");
+
+    /**
+     * Bottone per tornare alla schermata iniziale
+     */
     JButton btnIndietro = new JButton("INDIETRO");
-    Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
     /**
      * Inizializza, imposta e visualizza la schermata iniziale della sezione <code>cittadini</code>
@@ -44,13 +56,17 @@ public class UICittadini extends JFrame implements ActionListener {
      * @author Domenico Rizzo
      */
     public UICittadini() {
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+        ImageIcon imgCittadini = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/cittadini.jpg")));
+        Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+
         JLabel labelTesto = new JLabel();
         labelTesto.setText("PORTALE CITTADINI");
         labelTesto.setFont(new Font("Montserrat", Font.BOLD, 32));
         labelTesto.setBounds(55, 90, 500, 100);
 
         JLabel labelSfondo = new JLabel();
-        labelSfondo.setIcon(img2);
+        labelSfondo.setIcon(imgCittadini);
         labelSfondo.setBounds(0, 0, 850, 720);
 
         btnConsultaCentri.setBounds(60, 210, 300, 50);
@@ -110,7 +126,7 @@ public class UICittadini extends JFrame implements ActionListener {
         this.setSize(1280,720);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
-        this.setIconImage(img.getImage());
+        this.setIconImage(imgLogo.getImage());
         this.setResizable(false);
         this.setVisible(true);
     }

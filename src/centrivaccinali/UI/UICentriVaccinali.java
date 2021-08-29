@@ -25,12 +25,20 @@ import java.util.Objects;
  * @author Filippo Alzati
  */
 public class UICentriVaccinali extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/centri.jpg")));
+    /**
+     * Bottone per registrare un nuovo centro vaccinale
+     */
     JButton btnRegistraCentroVaccinale = new JButton("REGISTRA CENTRO VACCINALE");
+
+    /**
+     * Bottone per registrare un nuovo vaccinato
+     */
     JButton btnRegistraVaccinato = new JButton("REGISTRA VACCINATO");
+
+    /**
+     * Bottone per tornare alla schermata principale
+     */
     JButton btnIndietro = new JButton("INDIETRO");
-    Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
     /**
      * Inizializza, imposta e visualizza la schermata principale della sezione "Centri Vaccinali"
@@ -42,13 +50,17 @@ public class UICentriVaccinali extends JFrame implements ActionListener {
      * @author Domenico Rizzo
      */
     public UICentriVaccinali() {
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+        ImageIcon imgCentriVaccinali = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/centri.jpg")));
+        Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+
         JLabel labelTesto = new JLabel();
         labelTesto.setText("CENTRI VACCINALI");
         labelTesto.setFont(new Font("Montserrat", Font.BOLD, 32));
 		labelTesto.setBounds(60, 90, 300, 100);
 
         JLabel labelSfondo = new JLabel();
-        labelSfondo.setIcon(img2);
+        labelSfondo.setIcon(imgCentriVaccinali);
 		labelSfondo.setBounds(0, 0, 850, 720);
 
         btnRegistraCentroVaccinale.setBounds(60, 210, 300, 50);
@@ -98,7 +110,7 @@ public class UICentriVaccinali extends JFrame implements ActionListener {
         this.setSize(1280,720);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
-        this.setIconImage(img.getImage());
+        this.setIconImage(imgLogo.getImage());
         this.setResizable(false);
         this.setVisible(true);
     }

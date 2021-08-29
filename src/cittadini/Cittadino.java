@@ -21,10 +21,51 @@ import java.io.Serializable;
  * @author Filippo Alzati
  */
 public class Cittadino implements Serializable {
+    /**
+     * Proprietà che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>Cittadino</code>
+     */
     @Serial
     private static final long serialVersionUID = -3712425753326956399L;
-    String nome, cognome, cf, email, username, password, idVaccinazione;
-    CentroVaccinale centroVaccinale;
+
+    /**
+     * Nome del cittadino
+     */
+    private String nome;
+
+    /**
+     * Cognome del cittadino
+     */
+    private String cognome;
+
+    /**
+     * Codice fiscale del cittadino
+     */
+    private String cf;
+
+    /**
+     * Email del cittadino
+     */
+    private String email;
+
+    /**
+     * Username del cittadino
+     */
+    private String username;
+
+    /**
+     * Password del cittadino
+     */
+    private String password;
+
+    /**
+     * ID vaccinazione
+     */
+    private String idVaccinazione;
+
+    /**
+     * Centro vaccinale dove è stata effettuata la vaccinazione
+     */
+    private CentroVaccinale centroVaccinale;
 
     /**
      * Costruttore che salva nelle proprietà private i dati passati per parametro

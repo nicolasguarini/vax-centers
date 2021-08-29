@@ -20,10 +20,30 @@ import java.io.Serializable;
  * @author Filippo Alzati
  */
 public class CentroVaccinale implements Serializable {
+    /**
+     * Proprietà che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>CentroVaccinale</code>
+     */
     @Serial
     private static final long serialVersionUID = 4756400710762104818L;
-    private String nome, tipologia;
+
+    /**
+     * Nome del centro vaccinale
+     */
+    private String nome;
+
+    /**
+     * Tipologia del centro vaccinale
+     */
+    private String tipologia;
+
+    /**
+     * Indirizzo del centro vaccinale
+     */
     private Indirizzo indirizzo;
+
+    /**
+     * Identificatore di 5 cifre del centro vaccinale
+     */
     private String id;
 
     /**

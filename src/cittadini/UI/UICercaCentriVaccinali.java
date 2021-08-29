@@ -36,31 +36,59 @@ import java.util.Objects;
  * @author Filippo Alzati
  */
 public class UICercaCentriVaccinali extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/cerca.png")));
+    /**
+     * Bottone per cercare per nome
+     */
     JButton btnCercaPerNome = new JButton();
-    JButton btnCercaPerComuneETipologia = new JButton();
-    JButton btnVisualizzaTutti = new JButton("VISUALIZZA TUTTI");
-    JButton btnAnnulla = new JButton("ANNULLA");
-    Border border = new LineBorder(new Color(251, 186, 0), 2, true);
-    JTextField tfCercaPerNome = new JTextField();
-    JTextField tfCercaPerComune = new JTextField();
-    JComboBox<String> cbTipologie = new JComboBox<>(new String[]{"Ospedaliero", "Aziendale", "Hub"});
-    Font font1 = new Font("Light", Font.PLAIN, 18);
-    Font font2 = new Font("Light", Font.PLAIN, 30);
 
     /**
-     * inizializza, imposta e visualizza la schermata adibita alla ricerca dei centri vaccinali
+     * Bottone per cercare per comune e tipologia
+     */
+    JButton btnCercaPerComuneETipologia = new JButton();
+
+    /**
+     * Bottone per visualizzare tutti i centri vaccinali
+     */
+    JButton btnVisualizzaTutti = new JButton("VISUALIZZA TUTTI");
+
+    /**
+     * Bottone per annullare la ricerca
+     */
+    JButton btnAnnulla = new JButton("ANNULLA");
+
+    /**
+     * TextField dove l'utente inserirà il nome del centro vaccinale da ricercare
+     */
+    JTextField tfCercaPerNome = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà il comune del centro vaccinale da ricercare
+     */
+    JTextField tfCercaPerComune = new JTextField();
+
+    /**
+     * Select dove l'utente selezionerà la tipologia del centro vaccinale da ricercare
+     */
+    JComboBox<String> cbTipologie = new JComboBox<>(new String[]{"Ospedaliero", "Aziendale", "Hub"});
+
+    /**
+     * Inizializza, imposta e visualizza la schermata adibita alla ricerca dei centri vaccinali
      *
      * @author Domenico Rizzo
      */
     public UICercaCentriVaccinali(){
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+        ImageIcon imgCerca = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/cerca.png")));
+        Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+        Font font1 = new Font("Light", Font.PLAIN, 18);
+        Font font2 = new Font("Light", Font.PLAIN, 30);
+
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setLayout(null);
         this.setSize(460, 390);
         this.setTitle("Cerca centro vaccinale");
         this.setResizable(false);
-        this.setIconImage(img.getImage());
+        this.setIconImage(imgLogo.getImage());
 
         JLabel labelCercaCentro = new JLabel("Cerca centro vaccinale");
         labelCercaCentro.setFont(font2);
@@ -90,7 +118,7 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
         cbTipologie.setBounds(230, 198, 125, 30);
 
         btnCercaPerNome.setPreferredSize(new Dimension(50, 30));
-        btnCercaPerNome.setIcon(img2);
+        btnCercaPerNome.setIcon(imgCerca);
         btnCercaPerNome.setBounds(360, 118, 50, 30);
         btnCercaPerNome.addActionListener(this);
         btnCercaPerNome.setFocusable(false);
@@ -99,7 +127,7 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
         btnCercaPerNome.setOpaque(true);
 
         btnCercaPerComuneETipologia.setPreferredSize(new Dimension(50, 30));
-        btnCercaPerComuneETipologia.setIcon(img2);
+        btnCercaPerComuneETipologia.setIcon(imgCerca);
         btnCercaPerComuneETipologia.setBounds(360, 198, 50, 30);
         btnCercaPerComuneETipologia.addActionListener(this);
         btnCercaPerComuneETipologia.setFocusable(false);

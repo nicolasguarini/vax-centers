@@ -32,27 +32,47 @@ import java.util.Objects;
  * @author Filippo Alzati
  */
 public class UIUtenteLoggato extends JFrame implements ActionListener {
+    /**
+     * Cittadino attualmente loggato
+     */
     Cittadino cittadinoLoggato;
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/login.jpg")));
-    ImageIcon img3 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/centriicon.png")));
-    ImageIcon img4 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/eventiicon.png")));
-    ImageIcon img5 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/userinfo.png")));
-    JButton btnVisualizzaCentri = new JButton();
-    JButton btnSegnalaEventi = new JButton();
-    JButton btnInfo = new JButton();
-    JButton btnLogout = new JButton("LOGOUT");
-    Border border = new LineBorder(new Color(251, 186, 0), 2, true);
-    Border border2 = new LineBorder(new Color(232, 47, 125), 2, true);
 
+    /**
+     * Bottone per cercare e visualizzare i centri vaccinali e i relativi dettagli
+     */
+    JButton btnVisualizzaCentri = new JButton();
+
+    /**
+     * Bottone per segnalare degli eventi avversi
+     */
+    JButton btnSegnalaEventi = new JButton();
+
+    /**
+     * Bottone per visualizzare le informazioni riguardo l'utente loggato
+     */
+    JButton btnInfo = new JButton();
+
+    /**
+     * Bottone per effettuare il logout
+     */
+    JButton btnLogout = new JButton("LOGOUT");
+
+    /**
+     * Inizializza, imposta e visualizza la schermata dell'area personale dell'utente loggato
+     *
+     * @author Domenico Rizzo
+     */
     public UIUtenteLoggato(Cittadino cittadinoLoggato) {
         this.cittadinoLoggato = cittadinoLoggato;
 
-        /**
-         * Inizializza, imposta e visualizza la schermata dell'area personale dell'utente loggato
-         *
-         * @author Domenico Rizzo
-         */
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+        ImageIcon imgLogin = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/login.jpg")));
+        ImageIcon imgCentri = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/centriicon.png")));
+        ImageIcon imgEventi = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/eventiicon.png")));
+        ImageIcon imgInfo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/userinfo.png")));
+        Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+        Border border2 = new LineBorder(new Color(232, 47, 125), 2, true);
+
         JLabel labelTesto = new JLabel("Ciao, " + cittadinoLoggato.getNome());
         labelTesto.setBounds(160, 40, 500, 100);
         labelTesto.setFont(new Font("Montserrat", Font.BOLD, 40));
@@ -74,7 +94,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         labelTestoUtente.setBounds(965, 445, 300, 100);
 
         btnVisualizzaCentri.setBounds(190, 327, 100, 107);
-        btnVisualizzaCentri.setIcon(img3);
+        btnVisualizzaCentri.setIcon(imgCentri);
         btnVisualizzaCentri.setFocusable(false);
         btnVisualizzaCentri.setBackground(new Color(232, 47, 125));
         btnVisualizzaCentri.setBorder(border2);
@@ -82,7 +102,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         btnVisualizzaCentri.setOpaque(true);
 
         btnSegnalaEventi.setBounds(590, 327, 100, 107);
-        btnSegnalaEventi.setIcon(img4);
+        btnSegnalaEventi.setIcon(imgEventi);
         btnSegnalaEventi.setFocusable(false);
         btnSegnalaEventi.setBackground(new Color(232, 47, 125));
         btnSegnalaEventi.setBorder(border2);
@@ -90,7 +110,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         btnSegnalaEventi.setOpaque(true);
 
         btnInfo.setBounds(990, 327, 100, 107);
-        btnInfo.setIcon(img5);
+        btnInfo.setIcon(imgInfo);
         btnInfo.setFocusable(false);
         btnInfo.setBackground(new Color(232, 47, 125));
         btnInfo.setBorder(border2);
@@ -108,7 +128,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
 
         JLabel labelSfondo = new JLabel();
         labelSfondo.add(labelTesto);
-        labelSfondo.setIcon(img2);
+        labelSfondo.setIcon(imgLogin);
         labelSfondo.setBounds(0, 0, 1280, 720);
         labelSfondo.add(btnSegnalaEventi);
         labelSfondo.add(btnVisualizzaCentri);
@@ -123,7 +143,7 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
         this.setSize(1280, 720);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
-        this.setIconImage(img.getImage());
+        this.setIconImage(imgLogo.getImage());
         this.setResizable(false);
         this.add(labelSfondo);
         this.setVisible(true);

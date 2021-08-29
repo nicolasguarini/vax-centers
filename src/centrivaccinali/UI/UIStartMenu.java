@@ -33,11 +33,15 @@ import java.util.Objects;
  * @author Filippo Alzati
  */
 public class UIStartMenu extends JFrame implements ActionListener {
-    ImageIcon img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
-    ImageIcon img2 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/home.jpg")));
+    /**
+     * Bottone per accedere alla sezione dedicata ai centri vaccinali
+     */
     JButton btnCentriVaccinali = new JButton("CENTRI VACCINALI");
+
+    /**
+     * Bottone per accedere alla sezione dedicata ai cittadini
+     */
     JButton btnCittadini = new JButton("CITTADINI");
-    Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
     /**
      * Inizializza, imposta e visualizza il menu iniziale del programma
@@ -45,8 +49,12 @@ public class UIStartMenu extends JFrame implements ActionListener {
      * @author Domenico Rizzo
      */
     public UIStartMenu(){
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+        ImageIcon imgHome = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/home.jpg")));
+        Border border = new LineBorder(new Color(251, 186, 0), 2, true);
+
         JLabel labelLogo = new JLabel();
-        labelLogo.setIcon(img);
+        labelLogo.setIcon(imgLogo);
 		labelLogo.setBounds(535, 180, 212, 212);
 
         JLabel labelTesto = new JLabel();
@@ -73,7 +81,7 @@ public class UIStartMenu extends JFrame implements ActionListener {
         btnCittadini.setOpaque(true);
 
         JLabel labelSfondo = new JLabel();
-        labelSfondo.setIcon(img2);
+        labelSfondo.setIcon(imgHome);
 		labelSfondo.setBounds(0, 0, 1280, 720);
         labelSfondo.add(labelTesto);
         labelSfondo.add(btnCentriVaccinali);
@@ -98,7 +106,7 @@ public class UIStartMenu extends JFrame implements ActionListener {
         this.setSize(1280,720);
         this.setLayout(null);
         this.setLocationRelativeTo(null);
-        this.setIconImage(img.getImage());
+        this.setIconImage(imgLogo.getImage());
         this.setResizable(false);
         this.setVisible(true);
     }
