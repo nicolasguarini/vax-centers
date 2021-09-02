@@ -126,7 +126,7 @@ public class Cittadini {
         String nomeCentroVaccinale = cittadino.getCentroVaccinale().getNome();
         LinkedList<Vaccinazione> vaccinazioniCentroVaccinale = CentriVaccinali.getVaccinazioni(nomeCentroVaccinale);
         for(Vaccinazione i : vaccinazioniCentroVaccinale){
-            if(i.getCf().equals(cittadino.cf)){
+            if(i.getCf().equals(cittadino.getCF())){
                 i.getEventiAvversi().add(eventoAvverso);
                 break;
             }
