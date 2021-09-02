@@ -223,7 +223,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         String nomeVaccino = Objects.requireNonNull(selectNomeVaccino.getSelectedItem()).toString();
         String strData = tfDataSomministrazioneVaccino.getText();
 
-        if(validaDati(nome, cognome, cf, strData)){
+        if(validaDati(nome, cognome, cf, strData, idVaccinazione)){
             Date data = new SimpleDateFormat("dd/MM/yyyy").parse(tfDataSomministrazioneVaccino.getText());
             Vaccinazione vaccinazione = new Vaccinazione(nome, cognome, cf.toUpperCase(), idVaccinazione, data, centroVaccinale, nomeVaccino);
             CentriVaccinali.registraVaccinazione(vaccinazione);
@@ -239,11 +239,12 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
      * @param cognome cognome del vaccinato
      * @param cf codice fiscale del vaccinato
      * @param data data della somministrazione del vaccino
+     * @param idVaccinazione id della vaccinazione
      * @return <code>true</code> se i dati sono risultati validi; <code>false</code> se i dati non sono risultati validi
      *
      * @author Redon Kokaj
      */
-    boolean validaDati(String nome, String cognome, String cf, String data){
+    boolean validaDati(String nome, String cognome, String cf, String data, String idVaccinazione){
         String messaggio = "";
         LocalDate data1 = LocalDate.parse(data, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         LocalDate dataAttuale = LocalDate.now();
@@ -258,6 +259,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         if(cognome.matches(".*\\d.*")) messaggio += "Il cognome non può contenere cifre! \n";
         if(!cf.matches("([A-Za-z]{6})([0-9]{2})([A-Za-z]{1})([0-9]{2})([A-Za-z]{1})([0-9]{3})([A-Za-z]{1})")) messaggio += "Il codice fiscale inserito non rispetta il formato corretto! \n";
         if(!data.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})")) messaggio += "Inserire una data valida (gg/mm/aaaa)! \n";
+        if(idVaccinazione.length() > 16) messaggio += "Numero massimo di vaccinazioni raggiunto";
 
         if((Integer.parseInt(dataInserita[0]) >= 1 && Integer.parseInt(dataInserita[0]) <= 31) && (Integer.parseInt(dataInserita[1]) >= 1 && Integer.parseInt(dataInserita[1]) <= 12) && (Integer.parseInt(dataInserita[2]) <= dataAttuale.get(ChronoField.YEAR_OF_ERA))) {
             if (data1.compareTo(dataAttuale) > 0)

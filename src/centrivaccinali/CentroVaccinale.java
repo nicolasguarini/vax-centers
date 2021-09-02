@@ -55,35 +55,14 @@ public class CentroVaccinale implements Serializable {
      *
      * @author Nicolas Guarini
      */
-    public CentroVaccinale(String nome, Indirizzo indirizzo, String tipologia){
+    public CentroVaccinale(String nome, Indirizzo indirizzo, String tipologia, String id){
         this.nome = nome;
         this.indirizzo = indirizzo;
         this.tipologia = tipologia;
-        id = generaId();
+        this.id = id;
     }
 
-    /**
-     * Genera un codice univoco di 5 cifre che identifica il centro vaccinale. Insieme al'ID relativo al vaccinato formerà l'ID vaccinazione
-     *
-     * @see centrivaccinali.UI.UIRegistraVaccinato
-     *
-     * @return ID numerico di 5 cifre che identfica il centro vaccinale
-     *
-     * @author Nicolas Guarini
-     */
-    String generaId(){
-        String id = "";
-        int size = CentriVaccinali.getCentriVaccinali().size() + 1;
-        int length = String.valueOf(size).length();
 
-        for(int i = 0; i < 5 - length; i++){
-            id += "0";
-        }
-
-        id += String.valueOf(size);
-
-        return id;
-    }
 
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>nome</code>

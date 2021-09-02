@@ -245,13 +245,35 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         String provincia = tfProvincia.getText();
         String CAP = tfCAP.getText();
         String tipologiaCentro  = Objects.requireNonNull(tipologiaCentroVaccinale.getSelectedItem()).toString();
+        String id = generaId();
 
-        if(validaDati(nome, nomeIndirizzo, civico, comune, provincia, CAP)){
+        if(validaDati(nome, nomeIndirizzo, civico, comune, provincia, CAP, id)){
             Indirizzo indirizzo = new Indirizzo(qualificatore, nomeIndirizzo, civico, Character.toUpperCase(comune.charAt(0)) + comune.substring(1).toLowerCase(), provincia.toUpperCase(), CAP);
-            CentroVaccinale centroVaccinale = new CentroVaccinale(nome, indirizzo, tipologiaCentro);
+            CentroVaccinale centroVaccinale = new CentroVaccinale(nome, indirizzo, tipologiaCentro, id);
             CentriVaccinali.registraCentroVaccinale(centroVaccinale);
             this.dispose();
         }
+    }
+
+    /**
+     * Genera un codice univoco di 5 cifre che identifica il centro vaccinale. Insieme al'ID relativo al vaccinato formerà l'ID vaccinazione
+     *
+     * @return ID numerico di 5 cifre che identfica il centro vaccinale
+     *
+     * @author Nicolas Guarini
+     */
+    String generaId(){
+        String id = "";
+        int size = CentriVaccinali.getCentriVaccinali().size() + 1;
+        int length = String.valueOf(size).length();
+
+        for(int i = 0; i < 5 - length; i++){
+            id += "0";
+        }
+
+        id += String.valueOf(size);
+
+        return id;
     }
 
     /**
@@ -262,12 +284,13 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
      * @param comune Comune del centro da registrare
      * @param provincia Sigla della provincia del centro da registrare
      * @param CAP Codice di Avviamento Postale del centro da registrare
+     * @param id ID di 5 cifre del centro vaccinale
      * @return <code>true</code> se i dati inseriti sono risultati validi, <code>false</code> se i dati inseriti non sono validi
      *
      * @author Redon Kokaj
      * @author Nicolas Guarini
      */
-    boolean validaDati(String nome, String nomeIndirizzo, String civico, String comune, String provincia, String CAP){
+    boolean validaDati(String nome, String nomeIndirizzo, String civico, String comune, String provincia, String CAP, String id){
         String messaggio = "";
 
         if(nome.equals("") || nomeIndirizzo.equals("") || civico.equals("") || comune.equals("") || provincia.equals("") || CAP.equals("")){
@@ -281,6 +304,7 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         if(!provincia.matches("[A-Za-z]{2}")) messaggio += "La sigla provincia deve essere lunga 2 caratteri (es: VA)! \n";
         if(!CAP.matches("[0-9]{5}")) messaggio += "Il CAP deve contenere 5 cifre (es: 21020)! \n";
         if(checkCentroVaccinale(nome)) messaggio += "Il centro vaccinale esiste gia!";
+        if(id.length() > 5) messaggio += "Numero massimo di centri vaccinali raggiunto";
 
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
