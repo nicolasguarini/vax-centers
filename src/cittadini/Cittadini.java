@@ -67,6 +67,8 @@ public class Cittadini {
                 FileInputStream fileInputStream = new FileInputStream(fileCittadini);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 cittadini = (LinkedList<Cittadino>) objectInputStream.readObject();
+                objectInputStream.close();
+                fileInputStream.close();
             }
         }catch(IOException | ClassNotFoundException e){
             e.printStackTrace();
@@ -88,6 +90,7 @@ public class Cittadini {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(cittadini);
             objectOutputStream.close();
+            fileOutputStream.close();
         }catch(IOException e){
             e.printStackTrace();
         }

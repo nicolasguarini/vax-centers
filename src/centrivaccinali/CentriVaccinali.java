@@ -73,6 +73,8 @@ public class CentriVaccinali {
                 FileInputStream fileInputStream = new FileInputStream(fileCentriVaccinali);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 centriVaccinali = (LinkedList<CentroVaccinale>) objectInputStream.readObject();
+                objectInputStream.close();
+                fileInputStream.close();
             }
         }catch(IOException | ClassNotFoundException e){
             e.printStackTrace();
@@ -95,6 +97,7 @@ public class CentriVaccinali {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(centriVaccinali);
             objectOutputStream.close();
+            fileOutputStream.close();
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -141,6 +144,8 @@ public class CentriVaccinali {
                 FileInputStream fileInputStream = new FileInputStream(fileVaccinazioni);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 vaccinazioni = (LinkedList<Vaccinazione>) objectInputStream.readObject();
+                objectInputStream.close();
+                fileInputStream.close();
             }
         }catch (IOException | ClassNotFoundException e){
             e.printStackTrace();
@@ -166,7 +171,7 @@ public class CentriVaccinali {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(vaccinazioni);
             objectOutputStream.close();
-            System.out.println("Oggetto serializzato correttamente");
+            fileOutputStream.close();
         }catch (IOException e){
             e.printStackTrace();
         }
