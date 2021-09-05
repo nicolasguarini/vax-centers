@@ -7,7 +7,6 @@ package cittadini;
 
 import centrivaccinali.CentroVaccinale;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -24,7 +23,6 @@ public class Cittadino implements Serializable {
     /**
      * Proprietà che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>Cittadino</code>
      */
-    @Serial
     private static final long serialVersionUID = -3712425753326956399L;
 
     /**

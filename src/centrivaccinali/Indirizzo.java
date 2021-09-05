@@ -5,7 +5,6 @@
 
 package centrivaccinali;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -22,7 +21,6 @@ public class Indirizzo implements Serializable {
     /**
      * Proprietà che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>Indirizzo</code>
      */
-    @Serial
     private static final long serialVersionUID = -1709094232830800244L;
 
     /**

@@ -131,7 +131,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         labelCodiceFiscaleVaccinato.setForeground(new Color(167, 164, 164));
         labelCodiceFiscaleVaccinato.setBounds(50, 290, 150, 50);
         
-        JLabel labelDataSomministrazioneVaccino = new JLabel("Data somministrazione");
+        JLabel labelDataSomministrazioneVaccino = new JLabel("Data (gg/mm/aaaa)");
         labelDataSomministrazioneVaccino.setFont(font1);
         labelDataSomministrazioneVaccino.setForeground(new Color(167, 164, 164));
         labelDataSomministrazioneVaccino.setBounds(360, 290, 250, 50);
@@ -329,8 +329,8 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         if (e.getSource() == btnRegistra) {
             try{
                 registra();
-            }catch(Exception exception){
-                JOptionPane.showMessageDialog(this,"Errore: " + exception.getMessage());
+            }catch(ParseException exception){
+                JOptionPane.showMessageDialog(this,"Errore: data non valida, inserirla nel formato corretto (gg/mm/aaaa) \n" + exception.getMessage());
             }
         } else if (e.getSource() == btnAnnulla) {
             this.dispose();

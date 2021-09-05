@@ -137,10 +137,8 @@ public class CentriVaccinali {
         try{
             File fileVaccinazioni = new File(filepath);
             if(fileVaccinazioni.createNewFile()){
-                System.out.println("File created: " + fileVaccinazioni.getName());
                 serializzaVaccinazioni(new LinkedList<Vaccinazione>(), nomeCentroVaccinale);
             }else{
-                System.out.println("File already exist");
                 FileInputStream fileInputStream = new FileInputStream(fileVaccinazioni);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 vaccinazioni = (LinkedList<Vaccinazione>) objectInputStream.readObject();
