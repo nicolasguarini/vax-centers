@@ -94,7 +94,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
      * @author Redon Kokaj
      */
     public UIRegistraVaccinato() {
-        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/logo.png")));
         Border border = new LineBorder(new Color(251, 186, 0), 2, true);
         Font font1 = new Font("Light", Font.PLAIN, 18);
         Font font2 = new Font("Light", Font.PLAIN, 30);
