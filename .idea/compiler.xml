@@ -7,6 +7,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="serverCV" />
+      </profile>
+      <profile name="Annotation profile for vax-centers" enabled="true">
+        <sourceOutputDir name="../serverCV/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../serverCV/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
         <module name="clientCV" />
       </profile>
     </annotationProcessing>
