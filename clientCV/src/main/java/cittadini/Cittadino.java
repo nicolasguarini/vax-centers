@@ -93,7 +93,7 @@ public class Cittadino implements Serializable {
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>username</code>
      *
-     * @return: username del cittadino
+     * @return  username del cittadino
      *
      * @author Nicolas Guarini
      */
@@ -102,7 +102,7 @@ public class Cittadino implements Serializable {
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>email</code>
      *
-     * @return: email del cittadino
+     * @return  email del cittadino
      *
      * @author Nicolas Guarini
      */
@@ -111,7 +111,7 @@ public class Cittadino implements Serializable {
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>password</code>
      *
-     * @return: password del cittadino (crittografata con l'algoritmo <code>SHA256</code>
+     * @return  password del cittadino (crittografata con l'algoritmo <code>SHA256</code>
      * @author Nicolas Guarini
      */
     public String getPassword(){return password;}
@@ -119,7 +119,7 @@ public class Cittadino implements Serializable {
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>idVaccinazione</code>
      *
-     * @return: id vaccinazione del cittadino
+     * @return  id vaccinazione del cittadino
      *
      * @author Nicolas Guarini
      */
@@ -128,7 +128,7 @@ public class Cittadino implements Serializable {
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>cf</code>
      *
-     * @return: codice fiscale del cittadino
+     * @return  codice fiscale del cittadino
      *
      * @author Nicolas Guarini
      */
@@ -137,7 +137,7 @@ public class Cittadino implements Serializable {
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>nome</code>
      *
-     * @return: nome del cittadino
+     * @return  nome del cittadino
      *
      * @author Nicolas Guarini
      */
@@ -146,7 +146,7 @@ public class Cittadino implements Serializable {
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>cognome</code>
      *
-     * @return: cognome del cittadino
+     * @return  cognome del cittadino
      *
      * @author Nicolas Guarini
      */
@@ -155,7 +155,7 @@ public class Cittadino implements Serializable {
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>centroVaccinale</code>
      *
-     * @return: centro vaccinale dove il cittadino ha effettuato la vaccinazione
+     * @return  centro vaccinale dove il cittadino ha effettuato la vaccinazione
      *
      * @author Nicolas Guarini
      */

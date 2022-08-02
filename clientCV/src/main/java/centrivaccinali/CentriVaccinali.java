@@ -126,7 +126,7 @@ public class CentriVaccinali {
      *
      * @param nomeCentroVaccinale: nome del centro vaccinale del quale vogliamo la lista delle vaccinazioni
      *
-     * @return: Lista di vaccinazioni per un dato centro vaccinale, oppure una lista vuota nel caso in cui non ci sono vaccinazioni registrate.
+     * @return  Lista di vaccinazioni per un dato centro vaccinale, oppure una lista vuota nel caso in cui non ci sono vaccinazioni registrate.
      *
      * @author Nicolas Guarini
      */
@@ -137,7 +137,7 @@ public class CentriVaccinali {
         try{
             File fileVaccinazioni = new File(filepath);
             if(fileVaccinazioni.createNewFile()){
-                serializzaVaccinazioni(new LinkedList<Vaccinazione>(), nomeCentroVaccinale);
+                serializzaVaccinazioni(new LinkedList<>(), nomeCentroVaccinale);
             }else{
                 FileInputStream fileInputStream = new FileInputStream(fileVaccinazioni);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -182,7 +182,7 @@ public class CentriVaccinali {
      * @see cittadini.UI.UIVisualizzaCentriVaccinali
      *
      * @param centroVaccinale: centro vaccinale riguardo al quale vogliamo sapere il numero di segnalazioni
-     * @return: numero di segnalazioni di eventi avversi per un dato centro vaccinale
+     * @return  numero di segnalazioni di eventi avversi per un dato centro vaccinale
      *
      * @author Nicolas Guarini
      */
@@ -202,7 +202,7 @@ public class CentriVaccinali {
      * @see cittadini.UI.UIVisualizzaCentriVaccinali
      *
      * @param centroVaccinale: centro vaccinale riguardo al quale vogliamo sapere la severità media degli eventi avversi segnalati
-     * @return: media aritmetica della severità di tutti gli eventi avversi segnalati per un dato centro vaccinale
+     * @return  media aritmetica della severità di tutti gli eventi avversi segnalati per un dato centro vaccinale
      */
     public static double getSeveritaMediaEventiAvversi(CentroVaccinale centroVaccinale){
         LinkedList<Vaccinazione> vaccinazioni = getVaccinazioni(centroVaccinale.getNome());

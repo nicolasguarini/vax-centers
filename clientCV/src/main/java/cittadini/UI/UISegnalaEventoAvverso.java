@@ -60,7 +60,7 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
     /**
      * Select dove l'utente selezionerà la severità dell'evento avverso
      */
-    JComboBox<String> cbSeverita = new JComboBox<String>(new String[]{"1", "2", "3", "4", "5"});
+    JComboBox<String> cbSeverita = new JComboBox<>(new String[]{"1", "2", "3", "4", "5"});
 
     /**
      * Bottone per inviare la segnalazione dell'evento avverso

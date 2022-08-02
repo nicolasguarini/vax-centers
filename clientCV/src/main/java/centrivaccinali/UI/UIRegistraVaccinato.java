@@ -304,15 +304,15 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
      */
     String generaIdVaccinazione(CentroVaccinale centroVaccinale){
         String idCentroVaccinale = centroVaccinale.getId();
-        String idVaccinato = "";
+        StringBuilder idVaccinato = new StringBuilder();
         int size = Cittadini.getCittadini().size() + 1;
         int length = String.valueOf(size).length();
 
         for(int i = 0; i < 11 - length; i++){
-            idVaccinato += "0";
+            idVaccinato.append("0");
         }
 
-        idVaccinato += String.valueOf(size);
+        idVaccinato.append(String.valueOf(size));
         return idCentroVaccinale + idVaccinato;
     }
 

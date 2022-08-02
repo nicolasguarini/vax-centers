@@ -136,7 +136,7 @@ public class UICittadini extends JFrame implements ActionListener {
      *
      * @param e: evento che deve essere processato
      *
-     * @author: Nicolas Guarini
+     * @author Nicolas Guarini
      */
     @Override
     public void actionPerformed(ActionEvent e) {

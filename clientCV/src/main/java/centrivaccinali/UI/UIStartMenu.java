@@ -138,7 +138,7 @@ public class UIStartMenu extends JFrame implements ActionListener {
         try{
             File dir = new File("data/");
             if (!dir.exists()){
-                dir.mkdirs();
+                dir.mkdirs()
             }
         }catch(Exception e){
             e.printStackTrace();

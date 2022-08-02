@@ -263,17 +263,17 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
      * @author Nicolas Guarini
      */
     String generaId(){
-        String id = "";
+        StringBuilder id = new StringBuilder();
         int size = CentriVaccinali.getCentriVaccinali().size() + 1;
         int length = String.valueOf(size).length();
 
         for(int i = 0; i < 5 - length; i++){
-            id += "0";
+            id.append("0");
         }
 
-        id += String.valueOf(size);
+        id.append(String.valueOf(size));
 
-        return id;
+        return id.toString();
     }
 
     /**

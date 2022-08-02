@@ -77,7 +77,7 @@ public class Indirizzo implements Serializable {
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>comune</code>
      *
-     * @return: comune dell'indirizzo
+     * @return  comune dell'indirizzo
      *
      * @author Nicolas Guarini
      */
@@ -86,7 +86,7 @@ public class Indirizzo implements Serializable {
     /**
      * Raggruppa in una stringa le principali informazioni dell'indirizzo
      *
-     * @return: string che contine le informazioni principali dell'indirizzo
+     * @return  string che contine le informazioni principali dell'indirizzo
      *
      * @author Nicolas Guarini
      */

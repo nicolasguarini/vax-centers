@@ -44,7 +44,7 @@ public class UIVisualizzaCentriVaccinali extends JFrame {
         this.setIconImage(imgLogo.getImage());
         this.setTitle("Risultati ricerca");
 
-        JButton bottoni[] = new JButton[centriDaVisualizzare.size()];
+        JButton[] bottoni = new JButton[centriDaVisualizzare.size()];
         JPanel p = new JPanel(new GridLayout(bottoni.length, 2, 10,10));
         JLabel labelCentroVaccinale;
 
