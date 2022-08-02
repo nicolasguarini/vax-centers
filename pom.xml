@@ -9,8 +9,8 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>server</module>
-        <module>client</module>
+        <module>src/serverCV</module>
+        <module>src/clientCV</module>
     </modules>
 
     <properties>
