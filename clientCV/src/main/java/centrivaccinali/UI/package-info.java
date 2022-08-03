@@ -1,5 +1,5 @@
 /**
- * Il package <code>centrivaccinali.UI</code> contiene le classi che gestiscono le interfacce utente delle schermate del package {@link centrivaccinali}
+ * Il package <code>centrivaccinali.serverCV.UI</code> contiene le classi che gestiscono le interfacce utente delle schermate del package {@link centrivaccinali}
  * (NB: anche la schermata iniziale del programma)
  *
  * @see centrivaccinali

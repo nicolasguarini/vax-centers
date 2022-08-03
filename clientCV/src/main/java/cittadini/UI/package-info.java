@@ -1,5 +1,5 @@
 /**
- * Il package <code>cittadini.UI</code> contiene le classi che gestiscono le interfacce utente delle schermate del package {@link cittadini}
+ * Il package <code>cittadini.serverCV.UI</code> contiene le classi che gestiscono le interfacce utente delle schermate del package {@link cittadini}
  *
  * @see cittadini
  * @see cittadini.UI.UICercaCentriVaccinali
