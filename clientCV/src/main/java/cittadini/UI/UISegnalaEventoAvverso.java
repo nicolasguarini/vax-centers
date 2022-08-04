@@ -83,7 +83,7 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
     public UISegnalaEventoAvverso(Cittadino utenteLoggato){
         this.utenteLoggato = utenteLoggato;
 
-        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/logo.png")));
         Border border = new LineBorder(new Color(251, 186, 0), 2, true);
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

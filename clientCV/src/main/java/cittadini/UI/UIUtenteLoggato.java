@@ -65,11 +65,11 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
     public UIUtenteLoggato(Cittadino cittadinoLoggato) {
         this.cittadinoLoggato = cittadinoLoggato;
 
-        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
-        ImageIcon imgLogin = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/login.jpg")));
-        ImageIcon imgCentri = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/centriicon.png")));
-        ImageIcon imgEventi = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/eventiicon.png")));
-        ImageIcon imgInfo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/userinfo.png")));
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/logo.png")));
+        ImageIcon imgLogin = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/login.jpg")));
+        ImageIcon imgCentri = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/centriicon.png")));
+        ImageIcon imgEventi = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/eventiicon.png")));
+        ImageIcon imgInfo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/userinfo.png")));
         Border border = new LineBorder(new Color(251, 186, 0), 2, true);
         Border border2 = new LineBorder(new Color(232, 47, 125), 2, true);
 

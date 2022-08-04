@@ -83,8 +83,8 @@ public class UIInfoUtente extends JFrame implements ActionListener {
     public UIInfoUtente(Cittadino cittadinoLoggato) {
         this.cittadinoLoggato = cittadinoLoggato;
 
-        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/logo.png")));
-        ImageIcon imgUser = new ImageIcon(Objects.requireNonNull(getClass().getResource("/resources/images/usericon.png")));
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/logo.png")));
+        ImageIcon imgUser = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/usericon.png")));
         Border border = new LineBorder(new Color(251, 186, 0), 2, true);
         Font font1 = new Font("Light", Font.PLAIN, 16);
 
