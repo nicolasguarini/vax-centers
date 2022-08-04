@@ -103,11 +103,13 @@ public class UIStartMenu extends JFrame implements ActionListener {
 
         switch (result){
             case OK:
-                //TODO: go to main UI page
+                this.dispose();
+                new UIDashboard();
                 break;
             case DB_CREATED:
                 JOptionPane.showMessageDialog(this, "Il database e' stato creato con successo!");
-                //TODO: go to main UI page
+                this.dispose();
+                new UIDashboard();
                 break;
             case FAILED:
                 JOptionPane.showMessageDialog(this, "Errore: impossibile connettersi al database. \nControlla che le credenziali siano corrette oppure contatta l'amministratore di sistema!");

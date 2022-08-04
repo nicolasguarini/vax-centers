@@ -11,6 +11,7 @@
     <modules>
         <module>clientCV</module>
         <module>serverCV</module>
+        <module>common</module>
     </modules>
 
     <properties>

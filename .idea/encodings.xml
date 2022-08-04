@@ -15,6 +15,8 @@
     <file url="file://$PROJECT_DIR$/clientCV/src/main/java/cittadini/UI/UISegnalaEventoAvverso.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/clientCV/src/main/java/cittadini/package-info.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/clientCV/src/main/resources" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/common/src/main/java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/common/src/main/resources" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/serverCV/src/main/java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/serverCV/src/main/resources" charset="windows-1252" />
   </component>
