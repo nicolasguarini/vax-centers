@@ -6,8 +6,10 @@
 package centrivaccinali;
 
 import centrivaccinali.UI.UIConnectToServer;
-import centrivaccinali.UI.UIStartMenu;
+import common.CentroVaccinale;
+import common.EventoAvverso;
 import common.ServerInterface;
+import common.Vaccinazione;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.util.LinkedList;
 
@@ -49,8 +52,7 @@ public class CentriVaccinali {
     /**
      * Registra un nuovo centro vaccinale compiendo fondamentalmete tre operazioni:
      *   1: Si fa restituire la lista dei centri vaccinali registrati tramite il metodo {@link #getCentriVaccinali()}.
-     *   2: Aggiunge alla lista il nuovo centro vaccinale da registrare.
-     *   3: Serializza la lista aggiornata su file tramite il metodo {@link #serializzaCentriVaccinali(LinkedList)}.
+     *   2: Aggiunge alla lista il nuovo centro vaccinale da registrare.}.
      *
      * @see centrivaccinali.UI.UIRegistraCentroVaccinale
      *
@@ -59,9 +61,12 @@ public class CentriVaccinali {
      * @author Nicolas Guarini
      */
     public static void registraCentroVaccinale(CentroVaccinale centroVaccinale){
-        LinkedList<CentroVaccinale> centriVaccinali = getCentriVaccinali();
-        centriVaccinali.add(centroVaccinale);
-        serializzaCentriVaccinali(centriVaccinali);
+        try {
+            boolean result = CentriVaccinali.server.registraCentroVaccinale(centroVaccinale);
+            System.out.println(result);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -70,44 +75,12 @@ public class CentriVaccinali {
      * @return Lista dei centri vaccinali registrati. Se non è salvato alcun centro vaccinale ritornerà una lista vuota
      */
     public static LinkedList<CentroVaccinale> getCentriVaccinali(){
-        LinkedList<CentroVaccinale> centriVaccinali = new LinkedList<>();
-
-        try{
-            File fileCentriVaccinali = new File("data/CentriVaccinali.dati.txt");
-            if(fileCentriVaccinali.createNewFile()) {
-                serializzaCentriVaccinali(new LinkedList<>());
-            }else{
-                FileInputStream fileInputStream = new FileInputStream(fileCentriVaccinali);
-                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                centriVaccinali = (LinkedList<CentroVaccinale>) objectInputStream.readObject();
-                objectInputStream.close();
-                fileInputStream.close();
-            }
-        }catch(IOException | ClassNotFoundException e){
+        try {
+            return CentriVaccinali.server.getCentriVaccinali();
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
-
-        return centriVaccinali;
-    }
-
-    /**
-     * Serializza la lista di centri vaccinali e scrive il risultato di tale operazione sul file <code>CentriVaccinali.dati.txt</code>
-     *
-     * @param centriVaccinali: lista dei centri vaccinali da serializzare
-     *
-     * @author Nicolas Guarini
-     */
-    static void serializzaCentriVaccinali(LinkedList<CentroVaccinale> centriVaccinali){
-        final String filepath = "data/CentriVaccinali.dati.txt";
-        try{
-            FileOutputStream fileOutputStream = new FileOutputStream(filepath);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(centriVaccinali);
-            objectOutputStream.close();
-            fileOutputStream.close();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+        return new LinkedList<>();
     }
 
     /**

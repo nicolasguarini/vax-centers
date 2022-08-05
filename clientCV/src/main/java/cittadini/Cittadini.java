@@ -6,8 +6,8 @@
 package cittadini;
 
 import centrivaccinali.CentriVaccinali;
-import centrivaccinali.EventoAvverso;
-import centrivaccinali.Vaccinazione;
+import common.EventoAvverso;
+import common.Vaccinazione;
 
 import java.io.File;
 import java.io.FileInputStream;

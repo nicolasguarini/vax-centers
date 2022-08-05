@@ -3,14 +3,13 @@
 //REDON KOKAJ 744959 VA
 //DOMENICO RIZZO 745304 VA
 
-package centrivaccinali;
+package common;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * Classe che modella le caratteristiche di un indirizzo
- *
- * @see centrivaccinali.UI.UIRegistraVaccinato
  *
  * @author Nicolas Guarini
  * @author Domenico Rizzo
@@ -74,6 +73,16 @@ public class Indirizzo implements Serializable {
         this.CAP = CAP;
     }
 
+    public Indirizzo(String indirizzo){
+        String[] parts = indirizzo.split(",");
+        this.qualificatore = parts[0].split(" ")[0].trim();
+        this.numeroCivico = parts[0].split(" ")[parts[0].split(" ").length - 1].trim();
+        this.comune = parts[1].trim();
+        this.provincia = parts[2].trim();
+        this.CAP = parts[3].trim();
+        this.nome = parts[0].replace(qualificatore, "").replace(numeroCivico, "").trim();
+    }
+
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>comune</code>
      *
@@ -91,6 +100,6 @@ public class Indirizzo implements Serializable {
      * @author Nicolas Guarini
      */
     public String toString(){
-        return qualificatore + " " + nome + " " + numeroCivico + ", " + comune + " (" + provincia + ") " + CAP;
+        return qualificatore + " " + nome + " " + numeroCivico + ", " + comune + ", " + provincia + ", " + CAP;
     }
 }

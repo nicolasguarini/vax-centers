@@ -5,7 +5,7 @@
 
 package cittadini.UI;
 
-import centrivaccinali.EventoAvverso;
+import common.EventoAvverso;
 import cittadini.Cittadini;
 import cittadini.Cittadino;
 

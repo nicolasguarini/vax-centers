@@ -3,15 +3,12 @@
 //REDON KOKAJ 744959 VA
 //DOMENICO RIZZO 745304 VA
 
-package centrivaccinali;
+package common;
 
 import java.io.Serializable;
 
 /**
  * Classe che modella le caratteristiche di un centro vaccinale
- *
- * @see centrivaccinali.UI.UICentriVaccinali
- * @see centrivaccinali.UI.UIRegistraCentroVaccinale
  *
  * @author Nicolas Guarini
  * @author Domenico Rizzo

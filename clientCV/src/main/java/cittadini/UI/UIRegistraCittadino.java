@@ -6,8 +6,8 @@
 package cittadini.UI;
 
 import centrivaccinali.CentriVaccinali;
-import centrivaccinali.CentroVaccinale;
-import centrivaccinali.Vaccinazione;
+import common.CentroVaccinale;
+import common.Vaccinazione;
 import cittadini.Cittadini;
 import cittadini.Cittadino;
 

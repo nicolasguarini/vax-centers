@@ -8,10 +8,10 @@
  * </p>
  *
  * @see centrivaccinali.CentriVaccinali
- * @see centrivaccinali.CentroVaccinale
- * @see centrivaccinali.EventoAvverso
- * @see centrivaccinali.Indirizzo
- * @see centrivaccinali.Vaccinazione
+ * @see common.CentroVaccinale
+ * @see common.EventoAvverso
+ * @see common.Indirizzo
+ * @see common.Vaccinazione
  *
  * @author Nicolas Guarini
  * @author Domenico Rizzo

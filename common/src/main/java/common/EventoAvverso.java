@@ -3,14 +3,12 @@
 //REDON KOKAJ 744959 VA
 //DOMENICO RIZZO 745304 VA
 
-package centrivaccinali;
+package common;
 
 import java.io.Serializable;
 
 /**
  * Modella le caratteristiche di un evento avverso segnalato da un cittadino vaccinato
- *
- * @see cittadini.UI.UISegnalaEventoAvverso
  *
  * @author Nicolas Guarini
  * @author Domenico Rizzo

@@ -3,11 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/clientCV/src/main/java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/clientCV/src/main/java/centrivaccinali/CentriVaccinali.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/clientCV/src/main/java/centrivaccinali/CentroVaccinale.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/clientCV/src/main/java/centrivaccinali/EventoAvverso.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/clientCV/src/main/java/centrivaccinali/Indirizzo.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/clientCV/src/main/java/centrivaccinali/UI/UIStartMenu.java" charset="windows-1252" />
-    <file url="file://$PROJECT_DIR$/clientCV/src/main/java/centrivaccinali/Vaccinazione.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/clientCV/src/main/java/centrivaccinali/package-info.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/clientCV/src/main/java/cittadini/Cittadini.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/clientCV/src/main/java/cittadini/Cittadino.java" charset="windows-1252" />
@@ -16,6 +12,10 @@
     <file url="file://$PROJECT_DIR$/clientCV/src/main/java/cittadini/package-info.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/clientCV/src/main/resources" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/common/src/main/java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/common/src/main/java/common/CentroVaccinale.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/common/src/main/java/common/EventoAvverso.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/common/src/main/java/common/Indirizzo.java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/common/src/main/java/common/Vaccinazione.java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/common/src/main/resources" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/serverCV/src/main/java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/serverCV/src/main/resources" charset="windows-1252" />

@@ -5,7 +5,7 @@
 
 package cittadini;
 
-import centrivaccinali.CentroVaccinale;
+import common.CentroVaccinale;
 
 import java.io.Serializable;
 

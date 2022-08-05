@@ -3,7 +3,7 @@
 //REDON KOKAJ 744959 VA
 //DOMENICO RIZZO 745304 VA
 
-package centrivaccinali;
+package common;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -11,8 +11,6 @@ import java.util.LinkedList;
 
 /**
  * Modella le caratteristiche di una vaccinazione
- *
- * @see centrivaccinali.UI.UIRegistraVaccinato
  *
  * @author Nicolas Guarini
  * @author Domenico Rizzo

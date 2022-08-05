@@ -6,8 +6,8 @@
 package centrivaccinali.UI;
 
 import centrivaccinali.CentriVaccinali;
-import centrivaccinali.CentroVaccinale;
-import centrivaccinali.Vaccinazione;
+import common.CentroVaccinale;
+import common.Vaccinazione;
 import cittadini.Cittadini;
 
 import javax.swing.ImageIcon;
