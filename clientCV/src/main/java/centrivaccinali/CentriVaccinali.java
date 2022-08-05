@@ -5,7 +5,9 @@
 
 package centrivaccinali;
 
+import centrivaccinali.UI.UIConnectToServer;
 import centrivaccinali.UI.UIStartMenu;
+import common.ServerInterface;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,6 +15,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.rmi.registry.Registry;
 import java.util.LinkedList;
 
 /**
@@ -25,6 +28,9 @@ import java.util.LinkedList;
  * @author Filippo Alzati
  */
 public class CentriVaccinali {
+    public static Registry registry;
+    public static ServerInterface server;
+
     /**
      * Il punto di avvio del programma.
      *
@@ -36,7 +42,8 @@ public class CentriVaccinali {
      * @author Redon Kokaj
      */
     public static void main(String[] args){
-        new UIStartMenu();
+        //new UIStartMenu();
+        new UIConnectToServer();
     }
 
     /**
