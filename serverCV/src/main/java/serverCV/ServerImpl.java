@@ -2,6 +2,7 @@ package serverCV;
 
 import common.*;
 
+import java.awt.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.*;
@@ -96,6 +97,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 String nomeVaccino = resultSet.getString(7);
 
                 Vaccinazione vaccinazione = new Vaccinazione(nomeVaccinato, cognomeVaccinato, cfVaccinato, idVaccinazione, dataVaccinazione, centroVaccinale, nomeVaccino);
+                vaccinazione.setEventiAvversi(getEventiAvversi(vaccinazione));
                 vaccinazioni.add(vaccinazione);
             }
 
@@ -105,6 +107,29 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
 
         return vaccinazioni;
+    }
+
+    LinkedList<EventoAvverso> getEventiAvversi(Vaccinazione vaccinazione){
+        LinkedList<EventoAvverso> eventiAvversi = new LinkedList<>();
+
+        try{
+            PreparedStatement preparedStatement = DBManager.getInstance().connection.prepareStatement("SELECT * FROM eventiavversi WHERE idvaccinazione = ?");
+            preparedStatement.setString(1, vaccinazione.getIdVaccinazione());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                String nomeEventoAvverso = resultSet.getString(1);
+                int severita = resultSet.getInt(2);
+                String noteAggiuntive = resultSet.getString(3);
+
+                EventoAvverso eventoAvverso = new EventoAvverso(nomeEventoAvverso, severita, noteAggiuntive);
+                eventiAvversi.add(eventoAvverso);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return eventiAvversi;
     }
 
     public boolean registraCittadino(Cittadino cittadino) throws RemoteException{
@@ -165,5 +190,26 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
 
         return cittadini;
+    }
+
+    public boolean registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso) throws RemoteException{
+        try{
+            PreparedStatement preparedStatement = DBManager
+                    .getInstance()
+                    .connection
+                    .prepareStatement("INSERT INTO eventiavversi(nomeeventoavverso, severita, noteaggiuntive, idvaccinazione) \n" +
+                            "VALUES(?, ?, ?, ?)");
+            preparedStatement.setString(1, eventoAvverso.getNome());
+            preparedStatement.setInt(2, eventoAvverso.getSeverita());
+            preparedStatement.setString(3, eventoAvverso.getNoteAggiuntive());
+            preparedStatement.setString(4, cittadino.getIdVaccinazione());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
 }

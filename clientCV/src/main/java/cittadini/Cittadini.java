@@ -94,14 +94,14 @@ public class Cittadini {
      *
      * @author Nicolas Guarini
      */
-    public static void registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso){
-        LinkedList<Vaccinazione> vaccinazioniCentroVaccinale = CentriVaccinali.getVaccinazioni(cittadino.getCentroVaccinale());
-        for(Vaccinazione i : vaccinazioniCentroVaccinale){
-            if(i.getCf().equals(cittadino.getCF())){
-                i.getEventiAvversi().add(eventoAvverso);
-                break;
-            }
-        }
-        //TODO: registra evento avverso
+    public static boolean registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso){
+       boolean result = false;
+       try{
+           result = CentriVaccinali.server.registraEventoAvverso(cittadino, eventoAvverso);
+       } catch (RemoteException e) {
+           e.printStackTrace();
+       }
+
+       return result;
     }
 }

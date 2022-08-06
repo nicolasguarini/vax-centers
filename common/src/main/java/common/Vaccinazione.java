@@ -97,6 +97,10 @@ public class Vaccinazione implements Serializable {
         return eventiAvversi;
     }
 
+    public void setEventiAvversi(LinkedList<EventoAvverso> eventiAvversi){
+        this.eventiAvversi = eventiAvversi;
+    }
+
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>centroVaccinale.nome</code>
      *

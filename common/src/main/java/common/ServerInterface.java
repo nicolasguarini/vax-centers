@@ -11,4 +11,5 @@ public interface ServerInterface extends Remote {
     LinkedList<Vaccinazione> getVaccinazioni(CentroVaccinale centroVaccinale) throws RemoteException;
     boolean registraCittadino(Cittadino cittadino) throws RemoteException;
     LinkedList<Cittadino> getCittadini() throws RemoteException;
+    boolean registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso) throws RemoteException;
 }

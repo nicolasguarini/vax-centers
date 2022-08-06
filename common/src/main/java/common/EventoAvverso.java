@@ -59,4 +59,8 @@ public class EventoAvverso implements Serializable {
     public int getSeverita(){
         return severita;
     }
+
+    public String getNome() {return nome;}
+
+    public String getNoteAggiuntive(){return noteAggiuntive;}
 }
