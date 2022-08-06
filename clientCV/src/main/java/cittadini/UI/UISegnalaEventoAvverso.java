@@ -188,12 +188,16 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
         String noteAggiuntive = taNoteAggiuntive.getText();
 
         if(validaDati(nome, noteAggiuntive)){
-            Cittadini.registraEventoAvverso(utenteLoggato, new EventoAvverso(nome, severita, noteAggiuntive));
-            UIManager.put("OptionPane.yesButtonText", "Si");
-            int risposta = JOptionPane.showConfirmDialog(null, "Evento registrato, desidera segnalarne un altro?", "Evento registrato", JOptionPane.YES_NO_OPTION);
-            if(risposta == JOptionPane.YES_OPTION)
-                new UISegnalaEventoAvverso(utenteLoggato);
-            this.dispose();
+            boolean result = Cittadini.registraEventoAvverso(utenteLoggato, new EventoAvverso(nome, severita, noteAggiuntive));
+            if(result){
+                UIManager.put("OptionPane.yesButtonText", "Si");
+                int risposta = JOptionPane.showConfirmDialog(null, "Evento registrato, desidera segnalarne un altro?", "Evento registrato", JOptionPane.YES_NO_OPTION);
+                if(risposta == JOptionPane.YES_OPTION)
+                    new UISegnalaEventoAvverso(utenteLoggato);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(this, "Errore durante la registrazione dell'evento avverso");
+            }
         }
     }
 
