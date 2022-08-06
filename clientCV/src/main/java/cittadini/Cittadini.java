@@ -6,6 +6,7 @@
 package cittadini;
 
 import centrivaccinali.CentriVaccinali;
+import common.CentroVaccinale;
 import common.EventoAvverso;
 import common.Vaccinazione;
 
@@ -126,14 +127,13 @@ public class Cittadini {
      * @author Nicolas Guarini
      */
     public static void registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso){
-        String nomeCentroVaccinale = cittadino.getCentroVaccinale().getNome();
-        LinkedList<Vaccinazione> vaccinazioniCentroVaccinale = CentriVaccinali.getVaccinazioni(nomeCentroVaccinale);
+        LinkedList<Vaccinazione> vaccinazioniCentroVaccinale = CentriVaccinali.getVaccinazioni(cittadino.getCentroVaccinale());
         for(Vaccinazione i : vaccinazioniCentroVaccinale){
             if(i.getCf().equals(cittadino.getCF())){
                 i.getEventiAvversi().add(eventoAvverso);
                 break;
             }
         }
-        CentriVaccinali.serializzaVaccinazioni(vaccinazioniCentroVaccinale, nomeCentroVaccinale);
+        //TODO: registra evento avverso
     }
 }

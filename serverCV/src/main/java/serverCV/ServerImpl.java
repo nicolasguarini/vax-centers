@@ -80,4 +80,31 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
         return true;
     }
+
+    public LinkedList<Vaccinazione> getVaccinazioni(CentroVaccinale centroVaccinale) throws RemoteException{
+        LinkedList<Vaccinazione> vaccinazioni = new LinkedList<>();
+
+        try{
+            PreparedStatement preparedStatement = DBManager.getInstance().connection.prepareStatement("SELECT * FROM vaccinazioni \n" +
+                    "WHERE idcentrovaccinale = ?");
+            preparedStatement.setString(1, centroVaccinale.getId());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                String idVaccinazione = resultSet.getString(1);
+                String nomeVaccinato = resultSet.getString(2);
+                String cognomeVaccinato = resultSet.getString(3);
+                String cfVaccinato = resultSet.getString(4);
+                Date dataVaccinazione = resultSet.getDate(5);
+                String nomeVaccino = resultSet.getString(7);
+
+                Vaccinazione vaccinazione = new Vaccinazione(nomeVaccinato, cognomeVaccinato, cfVaccinato, idVaccinazione, dataVaccinazione, centroVaccinale, nomeVaccino);
+                vaccinazioni.add(vaccinazione);
+            }
+        }catch (SQLException exception){
+            exception.printStackTrace();
+        }
+
+        return vaccinazioni;
+    }
 }

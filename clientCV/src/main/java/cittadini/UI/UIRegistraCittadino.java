@@ -358,7 +358,7 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
      * @author Nicolas Guarini
      */
     boolean checkIdVaccinazioneEsistente(CentroVaccinale centroVaccinale, String idVaccinazione){
-        LinkedList<Vaccinazione> vaccinazioni = CentriVaccinali.getVaccinazioni(centroVaccinale.getNome());
+        LinkedList<Vaccinazione> vaccinazioni = CentriVaccinali.getVaccinazioni(centroVaccinale);
         for(Vaccinazione i : vaccinazioni){
             if(i.getIdVaccinazione().equals(idVaccinazione))
                 return true;

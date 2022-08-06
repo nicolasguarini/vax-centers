@@ -90,9 +90,9 @@ public class CentriVaccinali {
     /**
      * Registra una nuova vaccinazione su file, mediante quattro operazioni:
      *   1: recupera il nome del centro vaccinale dove è stata effettuata l'operazione (ci interessa il nome perchè i file che contengono i dati sulle vaccinazioni sono raggruppati per centro vaccinale mediante il nome dello stesso).
-     *   2: si fa restituire la lista delle vaccinazioni per quel dato centro dal metodo {@link #getVaccinazioni(String)}.
+     *   2: si fa restituire la lista delle vaccinazioni per quel dato centro dal metodo
      *   3: aggiunge la nuova vaccinazione alla lista.
-     *   4: serializza la lista aggiornata mediante il metodo {@link #serializzaVaccinazioni(LinkedList, String)}
+     *   4: serializza la lista aggiornata mediante il metodo
      *
      * @param vaccinazione: vaccinazione da registrare
      *
@@ -110,58 +110,15 @@ public class CentriVaccinali {
         return result;
     }
 
-    /**
-     * Legge da file e deserializza la lista delle vaccinazioni relative a un dato centro vaccinale. Se il file non esiste lo crea e lo inizializza con una lista vuota.
-     *
-     * @param nomeCentroVaccinale: nome del centro vaccinale del quale vogliamo la lista delle vaccinazioni
-     *
-     * @return  Lista di vaccinazioni per un dato centro vaccinale, oppure una lista vuota nel caso in cui non ci sono vaccinazioni registrate.
-     *
-     * @author Nicolas Guarini
-     */
-    public static LinkedList<Vaccinazione> getVaccinazioni(String nomeCentroVaccinale){
-        final String filepath = "data/Vaccinazioni_" + nomeCentroVaccinale + ".dati.txt";
+    public static LinkedList<Vaccinazione> getVaccinazioni(CentroVaccinale centroVaccinale){
         LinkedList<Vaccinazione> vaccinazioni = new LinkedList<>();
-
         try{
-            File fileVaccinazioni = new File(filepath);
-            if(fileVaccinazioni.createNewFile()){
-                serializzaVaccinazioni(new LinkedList<>(), nomeCentroVaccinale);
-            }else{
-                FileInputStream fileInputStream = new FileInputStream(fileVaccinazioni);
-                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                vaccinazioni = (LinkedList<Vaccinazione>) objectInputStream.readObject();
-                objectInputStream.close();
-                fileInputStream.close();
-            }
-        }catch (IOException | ClassNotFoundException e){
+            vaccinazioni = CentriVaccinali.server.getVaccinazioni(centroVaccinale);
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
 
         return vaccinazioni;
-    }
-
-    /**
-     * Serializza una lista di vaccinazioni e scrive su file il risultato di tale operazione
-     *
-     * @see centrivaccinali.UI.UIRegistraVaccinato
-     *
-     * @param vaccinazioni: lista delle vaccinaizoni da serializzare
-     * @param nomeCentroVaccinale: nome del centro vaccinale dove sono state effettuate le vaccinazioni
-     *
-     * @author Nicolas Guarini
-     */
-    public static void serializzaVaccinazioni(LinkedList<Vaccinazione> vaccinazioni, String nomeCentroVaccinale){
-        final String filepath = "data/Vaccinazioni_" + nomeCentroVaccinale + ".dati.txt";
-        try{
-            FileOutputStream fileOutputStream = new FileOutputStream(filepath);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(vaccinazioni);
-            objectOutputStream.close();
-            fileOutputStream.close();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -176,7 +133,7 @@ public class CentriVaccinali {
      * @author Nicolas Guarini
      */
     public static int getNumSegnalazioniEventiAvversi(CentroVaccinale centroVaccinale){
-        LinkedList<Vaccinazione> vaccinazioni = getVaccinazioni(centroVaccinale.getNome());
+        LinkedList<Vaccinazione> vaccinazioni = getVaccinazioni(centroVaccinale);
         int count = 0;
         for(Vaccinazione v : vaccinazioni){
             count += v.getEventiAvversi().size();
@@ -194,7 +151,7 @@ public class CentriVaccinali {
      * @return  media aritmetica della severità di tutti gli eventi avversi segnalati per un dato centro vaccinale
      */
     public static double getSeveritaMediaEventiAvversi(CentroVaccinale centroVaccinale){
-        LinkedList<Vaccinazione> vaccinazioni = getVaccinazioni(centroVaccinale.getNome());
+        LinkedList<Vaccinazione> vaccinazioni = getVaccinazioni(centroVaccinale);
         int countEventiAvversi = 0;
         int sommaSeverita = 0;
         double severitaMedia;
