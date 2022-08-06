@@ -56,17 +56,21 @@ public class CentriVaccinali {
      *
      * @see centrivaccinali.UI.UIRegistraCentroVaccinale
      *
-     * @param centroVaccinale: centro vaccinale da registrare
+     * @param centroVaccinale : centro vaccinale da registrare
      *
      * @author Nicolas Guarini
+     * @return result
      */
-    public static void registraCentroVaccinale(CentroVaccinale centroVaccinale){
+    public static boolean registraCentroVaccinale(CentroVaccinale centroVaccinale){
+        boolean result = false;
         try {
-            boolean result = CentriVaccinali.server.registraCentroVaccinale(centroVaccinale);
+            result = CentriVaccinali.server.registraCentroVaccinale(centroVaccinale);
             System.out.println(result);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+
+        return result;
     }
 
     /**
@@ -94,11 +98,16 @@ public class CentriVaccinali {
      *
      * @author Nicolas Guarini
      */
-    public static void registraVaccinazione(Vaccinazione vaccinazione){
-        String nomeCentroVaccinale = vaccinazione.getNomeCentroVaccinale();
-        LinkedList<Vaccinazione> vaccinazioni = getVaccinazioni(nomeCentroVaccinale);
-        vaccinazioni.add(vaccinazione);
-        serializzaVaccinazioni(vaccinazioni, nomeCentroVaccinale);
+    public static boolean registraVaccinazione(Vaccinazione vaccinazione){
+        boolean result = false;
+        try{
+            result = CentriVaccinali.server.registraVaccinato(vaccinazione);
+            System.out.println(result);
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
     /**

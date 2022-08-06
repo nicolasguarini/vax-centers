@@ -123,4 +123,14 @@ public class Vaccinazione implements Serializable {
      * @author Nicolas Guarini
      */
     public String getCf(){return cf;}
+
+    public String getNomeVaccinato(){return nome;}
+
+    public String getCognomeVaccinato(){return cognome;}
+
+    public Date getDataVaccinazione(){return data;}
+
+    public CentroVaccinale getCentroVaccinale(){return centroVaccinale;}
+
+    public String getNomeVaccino(){return nomeVaccino;}
 }

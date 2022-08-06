@@ -9,6 +9,7 @@ import centrivaccinali.CentriVaccinali;
 import common.CentroVaccinale;
 import common.Vaccinazione;
 import cittadini.Cittadini;
+import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -226,11 +227,14 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
         if(validaDati(nome, cognome, cf, strData, idVaccinazione)){
             Date data = new SimpleDateFormat("dd/MM/yyyy").parse(tfDataSomministrazioneVaccino.getText());
             Vaccinazione vaccinazione = new Vaccinazione(nome, cognome, cf.toUpperCase(), idVaccinazione, data, centroVaccinale, nomeVaccino);
-            CentriVaccinali.registraVaccinazione(vaccinazione);
-            JOptionPane.showMessageDialog(this, "Vaccinazione registrata!\nCF: " + cf + "\n" + "Data vaccinazione: " + strData + "\n" + "ID Vaccinazione: " + idVaccinazione);
+            boolean result = CentriVaccinali.registraVaccinazione(vaccinazione);
+            if(result) {
+                JOptionPane.showMessageDialog(this, "Vaccinazione registrata!\nCF: " + cf + "\n" + "Data vaccinazione: " + strData + "\n" + "ID Vaccinazione: " + idVaccinazione);
+                this.dispose();
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Errore durante la registrazione della vaccinazione");
         }
-
-        this.dispose();
     }
 
     /**

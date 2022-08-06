@@ -3,13 +3,11 @@ package serverCV;
 import common.CentroVaccinale;
 import common.Indirizzo;
 import common.ServerInterface;
+import common.Vaccinazione;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.LinkedList;
 
 
@@ -24,7 +22,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                     .getInstance()
                     .connection
                     .prepareStatement("INSERT INTO centrivaccinali(idcentrovaccinale, nomecentrovaccinale, tipologia, indirizzo) \n" +
-                    "VALUES (?, ?, ?, ?)");
+                            "VALUES (?, ?, ?, ?)");
             preparedStatement.setString(1, centroVaccinale.getId());
             preparedStatement.setString(2, centroVaccinale.getNome());
             preparedStatement.setString(3, centroVaccinale.getTipologia());
@@ -46,7 +44,6 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             Statement statement = DBManager.getInstance().connection.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM centrivaccinali");
             while(resultSet.next()){
-                System.out.println("NUOVA RIGA");
                 String id = resultSet.getString(1);
                 String nome = resultSet.getString(2);
                 String tipologia = resultSet.getString(3);
@@ -57,5 +54,30 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             exception.printStackTrace();
         }
         return centriVaccinali;
+    }
+
+    public boolean registraVaccinato(Vaccinazione vaccinazione) throws RemoteException{
+        try{
+            PreparedStatement preparedStatement = DBManager
+                    .getInstance()
+                    .connection
+                    .prepareStatement("INSERT INTO vaccinazioni(idvaccinazione, nomevaccinato, cognomevaccinato, cfvaccinato, datavaccinazione, idcentrovaccinale, nomevaccino, registrato) \n" +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            preparedStatement.setString(1, vaccinazione.getIdVaccinazione());
+            preparedStatement.setString(2, vaccinazione.getNomeVaccinato());
+            preparedStatement.setString(3, vaccinazione.getCognomeVaccinato());
+            preparedStatement.setString(4, vaccinazione.getCf());
+            preparedStatement.setDate(5, new Date(vaccinazione.getDataVaccinazione().getTime()));
+            preparedStatement.setString(6, vaccinazione.getCentroVaccinale().getId());
+            preparedStatement.setString(7, vaccinazione.getNomeVaccino());
+            preparedStatement.setBoolean(8, false);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        }catch (SQLException exception){
+            exception.printStackTrace();
+            return false;
+        }
+
+        return true;
     }
 }
