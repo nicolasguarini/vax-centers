@@ -9,7 +9,7 @@ import centrivaccinali.CentriVaccinali;
 import common.CentroVaccinale;
 import common.Vaccinazione;
 import cittadini.Cittadini;
-import cittadini.Cittadino;
+import common.Cittadino;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -235,8 +235,9 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
 
         if (validaDati(nome, cognome, cf, email, username, password, idVaccinazione, centroVaccinale)){
             Cittadino cittadino = new Cittadino(Character.toUpperCase(nome.charAt(0)) + nome.substring(1).toLowerCase(), Character.toUpperCase(cognome.charAt(0)) + cognome.substring(1).toLowerCase(), cf.toUpperCase(), email, username, Cittadini.sha256(password), idVaccinazione, centroVaccinale);
-            Cittadini.registraCittadino(cittadino);
-            this.dispose();
+            boolean result = Cittadini.registraCittadino(cittadino);
+            if(result) this.dispose();
+            else JOptionPane.showMessageDialog(this, "Errore durante la registrazione del cittadino");
         }
     }
 

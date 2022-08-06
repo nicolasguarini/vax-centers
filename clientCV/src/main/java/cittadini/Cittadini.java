@@ -6,7 +6,7 @@
 package cittadini;
 
 import centrivaccinali.CentriVaccinali;
-import common.CentroVaccinale;
+import common.Cittadino;
 import common.EventoAvverso;
 import common.Vaccinazione;
 
@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.charset.StandardCharsets;
+import java.rmi.RemoteException;
 import java.security.MessageDigest;
 import java.util.Base64;
 import java.util.LinkedList;
@@ -33,20 +34,16 @@ import java.util.LinkedList;
  * @author Filippo Alzati
  */
 public class Cittadini {
-    /**
-     * Registra un nuovo cittadino compiendo tre operazioni:
-     *    1: Si fa restituire la lista dei cittadini registrati tramite il metodo {@link #getCittadini()};
-     *    2: Aggiunge alla lista il nuovo cittadino:
-     *    3: Serializza la lista aggiornata su file tramite il metodo {@link #serializzaCittadini(LinkedList)}
-     *
-     * @param cittadino cittadino da registrare
-     *
-     * @author Nicolas Guarini
-     */
-    public static void registraCittadino(Cittadino cittadino){
-        LinkedList<Cittadino> cittadini = getCittadini();
-        cittadini.add(cittadino);
-        serializzaCittadini(cittadini);
+    public static boolean registraCittadino(Cittadino cittadino){
+        boolean result = false;
+
+        try{
+            result = CentriVaccinali.server.registraCittadino(cittadino);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 
     /**
@@ -59,42 +56,13 @@ public class Cittadini {
      */
     public static LinkedList<Cittadino> getCittadini(){
         LinkedList<Cittadino> cittadini = new LinkedList<>();
-
         try{
-            File fileCittadini = new File("data/Cittadini_Registrati.dati.txt");
-            if(fileCittadini.createNewFile()){
-                serializzaCittadini(new LinkedList<>());
-            }else{
-                FileInputStream fileInputStream = new FileInputStream(fileCittadini);
-                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                cittadini = (LinkedList<Cittadino>) objectInputStream.readObject();
-                objectInputStream.close();
-                fileInputStream.close();
-            }
-        }catch(IOException | ClassNotFoundException e){
+            cittadini = CentriVaccinali.server.getCittadini();
+        } catch (RemoteException e) {
             e.printStackTrace();
         }
 
         return cittadini;
-    }
-
-    /**
-     * Serializza la lista di cittadini e scrive il risultato di tale operazione sul file <code>Cittadini_Registrati.dati.txt</code>
-     *
-     * @param cittadini lista da serializzare
-     *
-     * @author Nicolas Guarini
-     */
-    static void serializzaCittadini(LinkedList<Cittadino> cittadini){
-        try{
-            FileOutputStream fileOutputStream = new FileOutputStream("data/Cittadini_Registrati.dati.txt");
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(cittadini);
-            objectOutputStream.close();
-            fileOutputStream.close();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
     }
 
     /**

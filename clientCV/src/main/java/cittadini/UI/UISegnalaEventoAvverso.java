@@ -7,7 +7,7 @@ package cittadini.UI;
 
 import common.EventoAvverso;
 import cittadini.Cittadini;
-import cittadini.Cittadino;
+import common.Cittadino;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

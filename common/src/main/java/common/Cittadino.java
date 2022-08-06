@@ -3,7 +3,7 @@
 //REDON KOKAJ 744959 VA
 //DOMENICO RIZZO 745304 VA
 
-package cittadini;
+package common;
 
 import common.CentroVaccinale;
 
@@ -12,7 +12,6 @@ import java.io.Serializable;
 /**
  * Modella le caratteristiche di un Cittadino
  *
- * @see cittadini.UI.UIRegistraCittadino
  *
  * @author Nicolas Guarini
  * @author Domenico Rizzo

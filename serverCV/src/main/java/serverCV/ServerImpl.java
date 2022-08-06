@@ -1,9 +1,6 @@
 package serverCV;
 
-import common.CentroVaccinale;
-import common.Indirizzo;
-import common.ServerInterface;
-import common.Vaccinazione;
+import common.*;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -101,10 +98,72 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 Vaccinazione vaccinazione = new Vaccinazione(nomeVaccinato, cognomeVaccinato, cfVaccinato, idVaccinazione, dataVaccinazione, centroVaccinale, nomeVaccino);
                 vaccinazioni.add(vaccinazione);
             }
+
+            preparedStatement.close();
         }catch (SQLException exception){
             exception.printStackTrace();
         }
 
         return vaccinazioni;
+    }
+
+    public boolean registraCittadino(Cittadino cittadino) throws RemoteException{
+        try{
+            PreparedStatement preparedStatement = DBManager
+                    .getInstance()
+                    .connection
+                    .prepareStatement("UPDATE vaccinazioni \n" +
+                            "SET registrato = true,\n" +
+                            "username = ?,\n" +
+                            "email = ?,\n" +
+                            "password = ? \n" +
+                        "WHERE idvaccinazione = ?");
+            preparedStatement.setString(1, cittadino.getUsername());
+            preparedStatement.setString(2, cittadino.getEmail());
+            preparedStatement.setString(3, cittadino.getPassword());
+            preparedStatement.setString(4, cittadino.getIdVaccinazione());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+        }catch (SQLException exception){
+            exception.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public LinkedList<Cittadino> getCittadini() throws RemoteException{
+        LinkedList<Cittadino> cittadini = new LinkedList<>();
+
+        try{
+            Statement statement = DBManager.getInstance().connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM " +
+                    "(vaccinazioni JOIN centrivaccinali " +
+                    "ON vaccinazioni.idcentrovaccinale = centrivaccinali.idcentrovaccinale) " +
+                    "WHERE registrato = true");
+
+            while(resultSet.next()){
+                String idVaccinazione = resultSet.getString(1);
+                String nomeVaccinato = resultSet.getString(2);
+                String cognomeVaccinato = resultSet.getString(3);
+                String cfVaccinato = resultSet.getString(4);
+                String username = resultSet.getString(9);
+                String email = resultSet.getString(10);
+                String password = resultSet.getString(11);
+
+                String idCV = resultSet.getString(12);
+                String nomeCV = resultSet.getString(13);
+                String tipologiaCV = resultSet.getString(14);
+                Indirizzo indirizzoCV = new Indirizzo(resultSet.getString(15));
+
+                CentroVaccinale centroVaccinale = new CentroVaccinale(nomeCV, indirizzoCV, tipologiaCV, idCV);
+                Cittadino cittadino = new Cittadino(nomeVaccinato, cognomeVaccinato, cfVaccinato, email, username, password, idVaccinazione, centroVaccinale);
+                cittadini.add(cittadino);
+            }
+        }catch (SQLException exception){
+            exception.printStackTrace();
+        }
+
+        return cittadini;
     }
 }

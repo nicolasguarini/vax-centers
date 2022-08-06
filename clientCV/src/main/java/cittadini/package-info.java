@@ -6,7 +6,7 @@
  *
  * @see cittadini.UI
  * @see cittadini.Cittadini
- * @see cittadini.Cittadino
+ * @see common.Cittadino
  *
  * @author Nicolas Guarini
  * @author Domenico Rizzo

@@ -5,7 +5,7 @@
 
 package cittadini.UI;
 
-import cittadini.Cittadino;
+import common.Cittadino;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
