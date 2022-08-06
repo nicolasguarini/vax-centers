@@ -23,7 +23,7 @@ import java.util.LinkedList;
 
 /**
  * La classe <code>CentriVaccinali</code> è la classe principale relativa alla logica della sezione dedicata ai Centri Vaccinali.
- * Mette a disposizione alle altre classi una serie di metodi che effettuano operazioni comuni o fanno da "ponte" con i file, comportandosi simbolicamente come un backend.
+ * Mette a disposizione alle altre classi una serie di metodi che effettuano operazioni comuni e/o si interfacciano con il server remoto, separando la logica applictiva da quella di presentazione..
  *
  * @author Nicolas Guarini
  * @author Domenico Rizzo
@@ -37,7 +37,7 @@ public class CentriVaccinali {
     /**
      * Il punto di avvio del programma.
      *
-     * @param args: array di stringhe passate tramite parametri via riga di comando
+     * @param args array di stringhe passate tramite parametri via riga di comando
      *
      * @author Nicolas Guarini
      * @author Domenico Rizzo
@@ -45,27 +45,23 @@ public class CentriVaccinali {
      * @author Redon Kokaj
      */
     public static void main(String[] args){
-        //new UIStartMenu();
         new UIConnectToServer();
     }
 
     /**
-     * Registra un nuovo centro vaccinale compiendo fondamentalmete tre operazioni:
-     *   1: Si fa restituire la lista dei centri vaccinali registrati tramite il metodo {@link #getCentriVaccinali()}.
-     *   2: Aggiunge alla lista il nuovo centro vaccinale da registrare.}.
+     * Contatta il server remoto inviandogli il centro vaccinale da registrare e attendendo l'esito dell'operazione
      *
      * @see centrivaccinali.UI.UIRegistraCentroVaccinale
      *
-     * @param centroVaccinale : centro vaccinale da registrare
+     * @param centroVaccinale centro vaccinale da registrare
      *
      * @author Nicolas Guarini
-     * @return result
+     * @return Esito dell'operazione di inserimento nel database.
      */
     public static boolean registraCentroVaccinale(CentroVaccinale centroVaccinale){
         boolean result = false;
         try {
             result = CentriVaccinali.server.registraCentroVaccinale(centroVaccinale);
-            System.out.println(result);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -74,9 +70,10 @@ public class CentriVaccinali {
     }
 
     /**
-     * Legge da file la lista serializzata di centri vaccinali. Se il file esiste deserializza la lista e la ritorna, altrimenti crea il file e lo inizializza serializzandoci una lista vuota.
+     * Contatta il server remoto, che ritornerà la lista dei centri vaccinali presenti nel database
      *
-     * @return Lista dei centri vaccinali registrati. Se non è salvato alcun centro vaccinale ritornerà una lista vuota
+     * @author Nicolas Guarini
+     * @return Lista dei centri vaccinali registrati. Se non è presente alcun centro vaccinale ritornerà una lista vuota
      */
     public static LinkedList<CentroVaccinale> getCentriVaccinali(){
         try {
@@ -88,21 +85,17 @@ public class CentriVaccinali {
     }
 
     /**
-     * Registra una nuova vaccinazione su file, mediante quattro operazioni:
-     *   1: recupera il nome del centro vaccinale dove è stata effettuata l'operazione (ci interessa il nome perchè i file che contengono i dati sulle vaccinazioni sono raggruppati per centro vaccinale mediante il nome dello stesso).
-     *   2: si fa restituire la lista delle vaccinazioni per quel dato centro dal metodo
-     *   3: aggiunge la nuova vaccinazione alla lista.
-     *   4: serializza la lista aggiornata mediante il metodo
+     * Contatta il server remoto inviandogli l'oggetto <code>Vaccinazione</code> da registrare.
      *
-     * @param vaccinazione: vaccinazione da registrare
+     * @param vaccinazione vaccinazione da registrare
      *
      * @author Nicolas Guarini
+     * @return Esito dell'operazione di inserimento nel database.
      */
     public static boolean registraVaccinazione(Vaccinazione vaccinazione){
         boolean result = false;
         try{
             result = CentriVaccinali.server.registraVaccinato(vaccinazione);
-            System.out.println(result);
         }catch (RemoteException e){
             e.printStackTrace();
         }
@@ -110,6 +103,14 @@ public class CentriVaccinali {
         return result;
     }
 
+    /**
+     * Contatta il server remoto che ritornerà la lista delle vaccinazioni effettuate in un determinato centro vaccinale
+     *
+     * @param centroVaccinale Il centro vaccinale del quale vogliamo sapere le vaccinazioni effettuate
+     *
+     * @author Nicolas Guarini
+     * @return Lista di vaccinazioni effettuate in un dato centro vaccinale
+     */
     public static LinkedList<Vaccinazione> getVaccinazioni(CentroVaccinale centroVaccinale){
         LinkedList<Vaccinazione> vaccinazioni = new LinkedList<>();
         try{
@@ -127,7 +128,7 @@ public class CentriVaccinali {
      * @see cittadini.UI.UISegnalaEventoAvverso
      * @see cittadini.UI.UIVisualizzaCentriVaccinali
      *
-     * @param centroVaccinale: centro vaccinale riguardo al quale vogliamo sapere il numero di segnalazioni
+     * @param centroVaccinale centro vaccinale riguardo al quale vogliamo sapere il numero di segnalazioni
      * @return  numero di segnalazioni di eventi avversi per un dato centro vaccinale
      *
      * @author Nicolas Guarini
@@ -147,7 +148,7 @@ public class CentriVaccinali {
      * @see cittadini.UI.UISegnalaEventoAvverso
      * @see cittadini.UI.UIVisualizzaCentriVaccinali
      *
-     * @param centroVaccinale: centro vaccinale riguardo al quale vogliamo sapere la severità media degli eventi avversi segnalati
+     * @param centroVaccinale centro vaccinale riguardo al quale vogliamo sapere la severità media degli eventi avversi segnalati
      * @return  media aritmetica della severità di tutti gli eventi avversi segnalati per un dato centro vaccinale
      */
     public static double getSeveritaMediaEventiAvversi(CentroVaccinale centroVaccinale){
