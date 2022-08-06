@@ -14,7 +14,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         super();
     }
 
-    public boolean registraCentroVaccinale(CentroVaccinale centroVaccinale) throws RemoteException{
+    public synchronized boolean registraCentroVaccinale(CentroVaccinale centroVaccinale) throws RemoteException{
         try {
             PreparedStatement preparedStatement = DBManager
                     .getInstance()
@@ -35,7 +35,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return true;
     }
 
-    public LinkedList<CentroVaccinale> getCentriVaccinali() throws RemoteException {
+    public synchronized LinkedList<CentroVaccinale> getCentriVaccinali() throws RemoteException {
         LinkedList<CentroVaccinale> centriVaccinali = new LinkedList<>();
 
         try {
@@ -54,7 +54,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return centriVaccinali;
     }
 
-    public boolean registraVaccinato(Vaccinazione vaccinazione) throws RemoteException{
+    public synchronized boolean registraVaccinato(Vaccinazione vaccinazione) throws RemoteException{
         try{
             PreparedStatement preparedStatement = DBManager
                     .getInstance()
@@ -79,7 +79,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return true;
     }
 
-    public LinkedList<Vaccinazione> getVaccinazioni(CentroVaccinale centroVaccinale) throws RemoteException{
+    public synchronized LinkedList<Vaccinazione> getVaccinazioni(CentroVaccinale centroVaccinale) throws RemoteException{
         LinkedList<Vaccinazione> vaccinazioni = new LinkedList<>();
 
         try{
@@ -109,7 +109,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return vaccinazioni;
     }
 
-    LinkedList<EventoAvverso> getEventiAvversi(Vaccinazione vaccinazione){
+    private LinkedList<EventoAvverso> getEventiAvversi(Vaccinazione vaccinazione){
         LinkedList<EventoAvverso> eventiAvversi = new LinkedList<>();
 
         try{
@@ -132,7 +132,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return eventiAvversi;
     }
 
-    public boolean registraCittadino(Cittadino cittadino) throws RemoteException{
+    public synchronized boolean registraCittadino(Cittadino cittadino) throws RemoteException{
         try{
             PreparedStatement preparedStatement = DBManager
                     .getInstance()
@@ -157,7 +157,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return true;
     }
 
-    public LinkedList<Cittadino> getCittadini() throws RemoteException{
+    public synchronized LinkedList<Cittadino> getCittadini() throws RemoteException{
         LinkedList<Cittadino> cittadini = new LinkedList<>();
 
         try{
@@ -192,7 +192,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return cittadini;
     }
 
-    public boolean registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso) throws RemoteException{
+    public synchronized boolean registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso) throws RemoteException{
         try{
             PreparedStatement preparedStatement = DBManager
                     .getInstance()
