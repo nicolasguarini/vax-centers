@@ -12,4 +12,5 @@ public interface ServerInterface extends Remote {
     boolean registraCittadino(Cittadino cittadino) throws RemoteException;
     LinkedList<Cittadino> getCittadini() throws RemoteException;
     boolean registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso) throws RemoteException;
+    Cittadino login(String username, String password) throws RemoteException;
 }

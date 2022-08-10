@@ -143,19 +143,16 @@ public class UILoginCittadino extends JFrame implements ActionListener {
         String nomeUtente = tfNomeUtente.getText();
         String password = new String(tfPasswordUtente.getPassword());
         String passwordHashed = Cittadini.sha256(password);
-        boolean loggato = false;
 
         if (validaDati(nomeUtente, password)) {
-            for(Cittadino i : Cittadini.getCittadini()){
-                if(i.getUsername().equalsIgnoreCase(nomeUtente) && i.getPassword().equals(passwordHashed)){
-                    loggato = true;
-                    new UIUtenteLoggato(i);
-                    this.dispose();
-                }
-            }
+            Cittadino cittadino = Cittadini.login(nomeUtente, passwordHashed);
 
-            if(!loggato)
+            if(cittadino != null){
+                new UIUtenteLoggato(cittadino);
+                this.dispose();
+            }else{
                 JOptionPane.showMessageDialog(this, "Nome utente o password non corretti\n");
+            }
         }
     }
 

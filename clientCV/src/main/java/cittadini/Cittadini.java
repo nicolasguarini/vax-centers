@@ -104,4 +104,15 @@ public class Cittadini {
 
        return result;
     }
+
+    public static Cittadino login(String username, String password){
+        Cittadino cittadino = null;
+        try{
+            cittadino = CentriVaccinali.server.login(username, password);
+        }catch (RemoteException e){
+            e.printStackTrace();
+        }
+
+        return cittadino;
+    }
 }

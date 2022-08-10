@@ -212,4 +212,39 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
         return true;
     }
+
+    public synchronized Cittadino login(String username, String password) throws RemoteException{
+        Cittadino cittadino = null;
+        try{
+            PreparedStatement preparedStatement = DBManager
+                    .getInstance()
+                    .connection
+                    .prepareStatement("SELECT * FROM " +
+                            "vaccinazioni JOIN centrivaccinali ON vaccinazioni.idcentrovaccinale = centrivaccinali.idcentrovaccinale " +
+                            "WHERE registrato = true AND username = ? AND password = ?");
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                String idVaccinazione = resultSet.getString(1);
+                String nomeVaccinato = resultSet.getString(2);
+                String cognomeVaccinato = resultSet.getString(3);
+                String cfVaccinato = resultSet.getString(4);
+                String email = resultSet.getString(10);
+
+                String idCV = resultSet.getString(12);
+                String nomeCV = resultSet.getString(13);
+                String tipologiaCV = resultSet.getString(14);
+                Indirizzo indirizzoCV = new Indirizzo(resultSet.getString(15));
+
+                CentroVaccinale centroVaccinale = new CentroVaccinale(nomeCV, indirizzoCV, tipologiaCV, idCV);
+                cittadino = new Cittadino(nomeVaccinato, cognomeVaccinato, cfVaccinato, email, username, password, idVaccinazione, centroVaccinale);
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return cittadino;
+    }
 }
