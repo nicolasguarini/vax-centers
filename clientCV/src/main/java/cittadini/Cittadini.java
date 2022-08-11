@@ -125,6 +125,13 @@ public class Cittadini {
         return cittadino;
     }
 
+    /**
+     * Contatta il server remoto che controllerà se l'username è già presente all'interno del database
+     *
+     * @param username il nome utente da controllare
+     * @return <code>true</code> se l'username non è già utilizzato, <code>false</code> altrimenti
+     * @author Nicolas Guarini
+     */
     public static boolean checkUsername(String username){
         try{
             return CentriVaccinali.server.checkUsername(username);
@@ -134,6 +141,12 @@ public class Cittadini {
         }
     }
 
+    /**
+     * Contatta il server remoto che controllerà se l'email è già presente all'interno del database
+     *
+     * @param email l'email da controllare
+     * @return <code>true</code> se l'email non è già utilizzata, <code>false</code> altrimenti
+     */
     public static boolean checkEmail(String email){
         try{
             return CentriVaccinali.server.checkEmail(email);
@@ -143,6 +156,13 @@ public class Cittadini {
         }
     }
 
+    /**
+     * Contatta il server remoto che controllerà se l'id vaccinazione è già stato utilizzato per registrare un utente
+     *
+     * @param idVaccinazione l'id da controllare
+     * @return <code>true</code> se l'id vaccinazione non è già utilizzato, <code>false</code> altrimenti
+     * @author Nicolas Guarini
+     */
     public static boolean checkIdVaccinazione(String idVaccinazione){
         try{
             return CentriVaccinali.server.checkIdVaccinazione(idVaccinazione);
@@ -152,6 +172,13 @@ public class Cittadini {
         }
     }
 
+    /**
+     * Contatta il server remoto che controllerà se il codice fiscale è già stato utilizzato per registrare un utente
+     *
+     * @param cf il codice fiscale da controllare
+     * @return <code>true</code> se il codice fiscale non è già utilizzato, <code>false</code> altrimenti
+     * @author Nicolas Guarini
+     */
     public static boolean checkCF(String cf){
         try {
             return CentriVaccinali.server.checkCF(cf);
@@ -161,6 +188,13 @@ public class Cittadini {
         }
     }
 
+    /**
+     * Contatta il server remoto che controllerà se l'id vaccinazione è associato a una vaccinazione esistente
+     *
+     * @param idvaccinazione l'id vaccinazione da controllare
+     * @return <code>true</code> se la vaccinazione esiste, <code>false</code> altrimenti
+     * @author Nicolas Guarini
+     */
     public static boolean checkVaccinazioneEsistente(String idvaccinazione){
         try{
             return CentriVaccinali.server.checkVaccinazioneEsistente(idvaccinazione);
