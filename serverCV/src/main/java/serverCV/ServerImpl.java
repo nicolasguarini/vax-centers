@@ -247,4 +247,103 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
         return cittadino;
     }
+
+    public synchronized boolean checkUsername(String username) throws RemoteException{
+        try{
+            PreparedStatement preparedStatement = DBManager
+                    .getInstance()
+                    .connection
+                    .prepareStatement("SELECT * FROM vaccinazioni WHERE registrato = true AND username = ?");
+            preparedStatement.setString(1, username);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return false;
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public synchronized boolean checkEmail(String email) throws RemoteException{
+        try{
+            PreparedStatement preparedStatement = DBManager
+                    .getInstance()
+                    .connection
+                    .prepareStatement("SELECT * FROM vaccinazioni WHERE registrato = true AND email = ?");
+            preparedStatement.setString(1, email);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return false;
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public synchronized boolean checkIdVaccinazione(String idVaccinazione) throws RemoteException{
+        try{
+            PreparedStatement preparedStatement = DBManager
+                    .getInstance()
+                    .connection
+                    .prepareStatement("SELECT * FROM vaccinazioni WHERE registrato = true AND idvaccinazione = ?");
+            preparedStatement.setString(1, idVaccinazione);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return false;
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public synchronized boolean checkCF(String cf) throws RemoteException{
+        try{
+            PreparedStatement preparedStatement = DBManager
+                    .getInstance()
+                    .connection
+                    .prepareStatement("SELECT * FROM vaccinazioni WHERE registrato = true AND cfvaccinato = ?");
+            preparedStatement.setString(1, cf);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return false;
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    public synchronized boolean checkVaccinazioneEsistente(String idvaccinazione){
+        try {
+            PreparedStatement preparedStatement = DBManager
+                    .getInstance()
+                    .connection
+                    .prepareStatement("SELECT * FROM vaccinazioni WHERE registrato = false AND idvaccinazione = ?");
+            preparedStatement.setString(1, idvaccinazione);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return true;
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return false;
+    }
 }

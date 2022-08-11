@@ -13,4 +13,9 @@ public interface ServerInterface extends Remote {
     LinkedList<Cittadino> getCittadini() throws RemoteException;
     boolean registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso) throws RemoteException;
     Cittadino login(String username, String password) throws RemoteException;
+    boolean checkUsername(String username) throws RemoteException;
+    boolean checkEmail(String email) throws RemoteException;
+    boolean checkIdVaccinazione(String idVaccinazione) throws RemoteException;
+    boolean checkCF(String cf) throws RemoteException;
+    boolean checkVaccinazioneEsistente(String idvaccinazione) throws RemoteException;
 }

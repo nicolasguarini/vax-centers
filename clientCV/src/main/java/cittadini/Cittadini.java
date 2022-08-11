@@ -124,4 +124,49 @@ public class Cittadini {
 
         return cittadino;
     }
+
+    public static boolean checkUsername(String username){
+        try{
+            return CentriVaccinali.server.checkUsername(username);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean checkEmail(String email){
+        try{
+            return CentriVaccinali.server.checkEmail(email);
+        }catch(RemoteException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean checkIdVaccinazione(String idVaccinazione){
+        try{
+            return CentriVaccinali.server.checkIdVaccinazione(idVaccinazione);
+        }catch (RemoteException e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean checkCF(String cf){
+        try {
+            return CentriVaccinali.server.checkCF(cf);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public static boolean checkVaccinazioneEsistente(String idvaccinazione){
+        try{
+            return CentriVaccinali.server.checkVaccinazioneEsistente(idvaccinazione);
+        }catch (RemoteException exception){
+            exception.printStackTrace();
+            return false;
+        }
+    }
 }

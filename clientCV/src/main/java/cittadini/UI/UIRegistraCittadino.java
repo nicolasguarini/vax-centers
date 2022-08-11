@@ -274,61 +274,16 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         if(!idVaccinazione.matches("[0-9]{16}")) messaggio += "L'id della vaccinazione deve contenere 16 cifre! \n";
 
         if(centroVaccinale == null) messaggio += "L'ID vaccinazione fa riferimento a un centro vaccinale che non esiste";
-        if(!checkUsername(username)) messaggio += "L'username esiste già \n";
-        if(!checkEmail(email)) messaggio += "L'email esiste già \n";
-        if(!checkIdVaccinazioneGiaRegistrata(idVaccinazione)) messaggio += "L'id vaccinazione è già stato registrato! \n";
-        if(centroVaccinale != null && !checkIdVaccinazioneEsistente(centroVaccinale, idVaccinazione)) messaggio += "La vaccinazione non esiste\n";
-        if(!checkCF(cf)) messaggio += "Il codice fiscale esiste già \n";
-        
+        if(!Cittadini.checkUsername(username)) messaggio += "L'username esiste già \n";
+        if(!Cittadini.checkEmail(email)) messaggio += "L'email esiste già \n";
+        if(!Cittadini.checkIdVaccinazione(idVaccinazione)) messaggio += "L'id vaccinazione è già stato registrato! \n";
+        if(!Cittadini.checkCF(cf)) messaggio += "Il codice fiscale esiste già \n";
+        if(centroVaccinale != null && !Cittadini.checkVaccinazioneEsistente(idVaccinazione)) messaggio += "La vaccinazione non esiste\n";
+
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
             return false;
         }else return true;
-    }
-
-    /**
-     * Controlla che l'username non sia già stato registrato da un altro utente
-     *
-     * @param username: l'username da controllare
-     * @return <code>true</code> se l'username è valido; <code>false</code> se l'username non è valido, quindi se è già esistente.
-     *
-     * @author Nicolas Guarini
-     */
-    boolean checkUsername(String username){
-        for(Cittadino i : Cittadini.getCittadini())
-            if(i.getUsername().equalsIgnoreCase(username)) return false;
-
-        return true;
-    }
-
-    /**
-     * Controlla che l'email non sia già stata registrata da un altro utente
-     *
-     * @param email email da controllare
-     * @return <code>true</code> se l'email è valida; <code>false</code> se l'email non è valida, quindi se è già stata registrata
-     *
-     * @author Nicolas Guarini
-     */
-    boolean checkEmail(String email){
-        for(Cittadino i : Cittadini.getCittadini())
-            if (i.getEmail().equalsIgnoreCase(email)) return false;
-
-        return true;
-    }
-
-    /**
-     * Controlla che l'id vaccinazione non sia già stata registrata da un altro utente
-     *
-     * @param idVaccinazione id vaccinazione da controllare
-     * @return <code>true</code> se l'id è valido; <code>false</code> se l'id non è valido, quini se è già stato registrato
-     *
-     * @author Nicolas Guarini
-     */
-    boolean checkIdVaccinazioneGiaRegistrata(String idVaccinazione){
-        for(Cittadino i : Cittadini.getCittadini())
-            if(i.getIdVaccinazione().equals(idVaccinazione)) return false;
-
-        return true;
     }
 
     /**
@@ -347,40 +302,6 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         }
 
         return null;
-    }
-
-    /**
-     * Controlla che esista una vaccinazione con l'id inserito dall'utente
-     *
-     * @param centroVaccinale centro vaccinale dove è stata effettuata la vaccinazione
-     * @param idVaccinazione id vaccinazione inserito dall'utente
-     * @return <code>true</code> se l'id è valido; <code>false</code> se l'id non è valido
-     *
-     * @author Nicolas Guarini
-     */
-    boolean checkIdVaccinazioneEsistente(CentroVaccinale centroVaccinale, String idVaccinazione){
-        LinkedList<Vaccinazione> vaccinazioni = CentriVaccinali.getVaccinazioni(centroVaccinale);
-        for(Vaccinazione i : vaccinazioni){
-            if(i.getIdVaccinazione().equals(idVaccinazione))
-                return true;
-        }
-
-        return false;
-   }
-
-    /**
-     * Controlla che non esista un altro cittadino registrato con lo stesso codice fiscale
-     *
-     * @param cf codice fiscale da controllare
-     * @return <code>true</code> se il codice fiscale è valido; <code>false</code> se il codice fiscale non è valido.
-     *
-     * @author Nicolas Guarini
-     */
-    boolean checkCF(String cf){
-        for(Cittadino i : Cittadini.getCittadini())
-            if(i.getCF().equalsIgnoreCase(cf)) return false;
-
-        return true;
     }
 
     /**
