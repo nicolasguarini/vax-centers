@@ -10,7 +10,7 @@ import java.rmi.registry.Registry;
 public class ServerCV {
     public static final int PORT = 1099;
 
-    static ServerImpl server;
+    public static ServerImpl server;
     static Registry registry;
 
     public static void main(String[] args){
@@ -29,5 +29,9 @@ public class ServerCV {
         }
 
         return true;
+    }
+
+    public static void addListener(LogListener toAdd){
+        server.addListener(toAdd);
     }
 }

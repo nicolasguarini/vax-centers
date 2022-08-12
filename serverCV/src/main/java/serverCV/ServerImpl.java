@@ -2,16 +2,28 @@ package serverCV;
 
 import common.*;
 
-import java.awt.*;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.sql.*;
 import java.util.LinkedList;
+import java.util.List;
 
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
+    private List<LogListener> listeners = new LinkedList<>();
+
     public ServerImpl() throws RemoteException{
         super();
+    }
+
+    public void addListener(LogListener toAdd){
+        listeners.add(toAdd);
+    }
+
+    public void notifyUpdate(String message){
+        for(LogListener l : listeners){
+            l.updateLog(message);
+        }
     }
 
     public synchronized boolean registraCentroVaccinale(CentroVaccinale centroVaccinale) throws RemoteException{
@@ -27,6 +39,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             preparedStatement.setString(4, centroVaccinale.getIndirizzo().toString());
             preparedStatement.executeUpdate();
             preparedStatement.close();
+            notifyUpdate(new java.util.Date() + " -- Nuovo centro vaccinale registrato (" + centroVaccinale.getNome() + ")");
         } catch (SQLException exception) {
             exception.printStackTrace();
             return false;
@@ -48,6 +61,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 Indirizzo indirizzo = new Indirizzo(resultSet.getString(4));
                 centriVaccinali.add(new CentroVaccinale(nome, indirizzo, tipologia, id));
             }
+            notifyUpdate(new java.util.Date() + " -- Restituita lista dei centri vaccinali");
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -71,6 +85,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             preparedStatement.setBoolean(8, false);
             preparedStatement.executeUpdate();
             preparedStatement.close();
+            notifyUpdate(new java.util.Date() + " -- Nuova vaccinazione registrata (" + vaccinazione.getCf() + ")");
         }catch (SQLException exception){
             exception.printStackTrace();
             return false;
@@ -102,6 +117,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             }
 
             preparedStatement.close();
+            notifyUpdate(new java.util.Date() + " -- Restituita lista vaccinazioni");
         }catch (SQLException exception){
             exception.printStackTrace();
         }
@@ -125,6 +141,8 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 EventoAvverso eventoAvverso = new EventoAvverso(nomeEventoAvverso, severita, noteAggiuntive);
                 eventiAvversi.add(eventoAvverso);
             }
+
+            notifyUpdate(new java.util.Date() + " -- Restituita lista eventi avversi della vaccinazione " + vaccinazione.getIdVaccinazione());
         } catch (SQLException exception) {
             exception.printStackTrace();
         }
@@ -149,6 +167,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             preparedStatement.setString(4, cittadino.getIdVaccinazione());
             preparedStatement.executeUpdate();
             preparedStatement.close();
+            notifyUpdate(new java.util.Date() + " -- Nuovo cittadino registrato (" + cittadino.getCF() + ")");
         }catch (SQLException exception){
             exception.printStackTrace();
             return false;
@@ -185,6 +204,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 Cittadino cittadino = new Cittadino(nomeVaccinato, cognomeVaccinato, cfVaccinato, email, username, password, idVaccinazione, centroVaccinale);
                 cittadini.add(cittadino);
             }
+            notifyUpdate(new java.util.Date() + " -- Restituita lista cittadini registrati");
         }catch (SQLException exception){
             exception.printStackTrace();
         }
@@ -205,6 +225,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
             preparedStatement.setString(4, cittadino.getIdVaccinazione());
             preparedStatement.executeUpdate();
             preparedStatement.close();
+            notifyUpdate(new java.util.Date() + " -- Nuovo evento avverso registrato dal cittadino " + cittadino.getCF() + " (" + eventoAvverso.getNome() + ")");
         } catch (SQLException exception) {
             exception.printStackTrace();
             return false;
@@ -240,6 +261,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
                 CentroVaccinale centroVaccinale = new CentroVaccinale(nomeCV, indirizzoCV, tipologiaCV, idCV);
                 cittadino = new Cittadino(nomeVaccinato, cognomeVaccinato, cfVaccinato, email, username, password, idVaccinazione, centroVaccinale);
+                notifyUpdate(new java.util.Date() + " -- " + cittadino.getUsername() + " si è loggato");
             }
         } catch (SQLException exception) {
             exception.printStackTrace();
