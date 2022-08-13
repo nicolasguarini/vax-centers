@@ -19,5 +19,13 @@
     <file url="file://$PROJECT_DIR$/common/src/main/resources" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/serverCV/src/main/java" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/serverCV/src/main/resources" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/serverCV/src/main/resources/images/hosticon.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/serverCV/src/main/resources/images/passwordicon.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/serverCV/src/main/resources/images/porticon.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/serverCV/src/main/resources/images/prova.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/serverCV/src/main/resources/images/serverhome.jpg" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/serverCV/src/main/resources/images/usericon.png" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="windows-1252" />
   </component>
 </project>
