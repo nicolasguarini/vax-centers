@@ -19,6 +19,7 @@ public class UIStartMenu extends JFrame implements ActionListener {
     JButton btnStartServer = new JButton("AVVIA SERVER");
 
     public UIStartMenu(){
+        ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/logo.png")));
         ImageIcon imgHome = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/serverhome.jpg")));
         ImageIcon imgHostph = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/hosticon.png")));
         ImageIcon imgPortph = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/porticon.png")));
@@ -120,6 +121,7 @@ public class UIStartMenu extends JFrame implements ActionListener {
         panelSfondo.add(labelSfondo);
 
         this.setTitle("Vax Centers");
+        this.setIconImage(imgLogo.getImage());
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setSize(1280, 720);
         this.setLayout(null);
