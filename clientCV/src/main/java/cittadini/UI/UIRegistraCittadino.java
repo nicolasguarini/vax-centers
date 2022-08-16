@@ -5,9 +5,7 @@
 
 package cittadini.UI;
 
-import centrivaccinali.CentriVaccinali;
 import common.CentroVaccinale;
-import common.Vaccinazione;
 import cittadini.Cittadini;
 import common.Cittadino;
 
@@ -25,7 +23,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
 import java.util.Objects;
 
 /**
@@ -296,12 +293,7 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
      */
     CentroVaccinale getCentroVaccinale(String idVaccinazione){
         String idCentroVaccinale = idVaccinazione.substring(0, 5);
-        for(CentroVaccinale centroVaccinale : CentriVaccinali.getCentriVaccinali()){
-            if(centroVaccinale.getId().equals(idCentroVaccinale))
-                return centroVaccinale;
-        }
-
-        return null;
+        return Cittadini.getCentroVaccinaleFromId(idCentroVaccinale);
     }
 
     /**

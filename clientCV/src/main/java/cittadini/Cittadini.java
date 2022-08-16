@@ -6,6 +6,7 @@
 package cittadini;
 
 import centrivaccinali.CentriVaccinali;
+import common.CentroVaccinale;
 import common.Cittadino;
 import common.EventoAvverso;
 
@@ -201,6 +202,15 @@ public class Cittadini {
         }catch (RemoteException exception){
             exception.printStackTrace();
             return false;
+        }
+    }
+
+    public static CentroVaccinale getCentroVaccinaleFromId(String id){
+        try{
+            return CentriVaccinali.server.getCentroVaccinaleFromId(id);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

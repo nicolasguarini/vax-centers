@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
-    private List<LogListener> listeners = new LinkedList<>();
+    private final List<LogListener> listeners = new LinkedList<>();
 
     public ServerImpl() throws RemoteException{
         super();
@@ -367,5 +367,27 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         }
 
         return false;
+    }
+
+    public synchronized CentroVaccinale getCentroVaccinaleFromId(String id){
+        try{
+            PreparedStatement preparedStatement = DBManager
+                    .getInstance()
+                    .connection
+                    .prepareStatement("SELECT * FROM centrivaccinali WHERE idcentrovaccinale = ?");
+            preparedStatement.setString(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                String nome = resultSet.getString(2);
+                String tipologia = resultSet.getString(3);
+                Indirizzo indirizzo = new Indirizzo(resultSet.getString(4));
+                return new CentroVaccinale(nome, indirizzo, tipologia, id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }

@@ -18,4 +18,5 @@ public interface ServerInterface extends Remote {
     boolean checkIdVaccinazione(String idVaccinazione) throws RemoteException;
     boolean checkCF(String cf) throws RemoteException;
     boolean checkVaccinazioneEsistente(String idvaccinazione) throws RemoteException;
+    CentroVaccinale getCentroVaccinaleFromId(String id) throws RemoteException;
 }
