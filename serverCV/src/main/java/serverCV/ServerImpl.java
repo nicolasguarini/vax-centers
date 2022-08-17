@@ -195,13 +195,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 String email = resultSet.getString(10);
                 String password = resultSet.getString(11);
 
-                String idCV = resultSet.getString(12);
-                String nomeCV = resultSet.getString(13);
-                String tipologiaCV = resultSet.getString(14);
-                Indirizzo indirizzoCV = new Indirizzo(resultSet.getString(15));
-
-                CentroVaccinale centroVaccinale = new CentroVaccinale(nomeCV, indirizzoCV, tipologiaCV, idCV);
-                Cittadino cittadino = new Cittadino(nomeVaccinato, cognomeVaccinato, cfVaccinato, email, username, password, idVaccinazione, centroVaccinale);
+                Cittadino cittadino = new Cittadino(nomeVaccinato, cognomeVaccinato, cfVaccinato, email, username, password, idVaccinazione);
                 cittadini.add(cittadino);
             }
             notifyUpdate(new java.util.Date() + " -- Restituita lista cittadini registrati");
@@ -254,13 +248,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
                 String cfVaccinato = resultSet.getString(4);
                 String email = resultSet.getString(10);
 
-                String idCV = resultSet.getString(12);
-                String nomeCV = resultSet.getString(13);
-                String tipologiaCV = resultSet.getString(14);
-                Indirizzo indirizzoCV = new Indirizzo(resultSet.getString(15));
-
-                CentroVaccinale centroVaccinale = new CentroVaccinale(nomeCV, indirizzoCV, tipologiaCV, idCV);
-                cittadino = new Cittadino(nomeVaccinato, cognomeVaccinato, cfVaccinato, email, username, password, idVaccinazione, centroVaccinale);
+                cittadino = new Cittadino(nomeVaccinato, cognomeVaccinato, cfVaccinato, email, username, password, idVaccinazione);
                 notifyUpdate(new java.util.Date() + " -- " + cittadino.getUsername() + " si è loggato");
             }
         } catch (SQLException exception) {

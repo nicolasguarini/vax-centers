@@ -5,7 +5,6 @@
 
 package cittadini.UI;
 
-import common.CentroVaccinale;
 import cittadini.Cittadini;
 import common.Cittadino;
 
@@ -228,10 +227,9 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         String username = tfNomeUtente.getText();
         String password = new String(tfPasswordUtente.getPassword());
         String idVaccinazione = tfIDVaccinazione.getText();
-        CentroVaccinale centroVaccinale = getCentroVaccinale(idVaccinazione);
 
-        if (validaDati(nome, cognome, cf, email, username, password, idVaccinazione, centroVaccinale)){
-            Cittadino cittadino = new Cittadino(Character.toUpperCase(nome.charAt(0)) + nome.substring(1).toLowerCase(), Character.toUpperCase(cognome.charAt(0)) + cognome.substring(1).toLowerCase(), cf.toUpperCase(), email, username, Cittadini.sha256(password), idVaccinazione, centroVaccinale);
+        if (validaDati(nome, cognome, cf, email, username, password, idVaccinazione)){
+            Cittadino cittadino = new Cittadino(Character.toUpperCase(nome.charAt(0)) + nome.substring(1).toLowerCase(), Character.toUpperCase(cognome.charAt(0)) + cognome.substring(1).toLowerCase(), cf.toUpperCase(), email, username, Cittadini.sha256(password), idVaccinazione);
             boolean result = Cittadini.registraCittadino(cittadino);
             if(result) this.dispose();
             else JOptionPane.showMessageDialog(this, "Errore durante la registrazione del cittadino");
@@ -248,13 +246,12 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
      * @param username: username dell'utente da registrare
      * @param password: password dell'utente da registrare
      * @param idVaccinazione: id vaccinazione dell'utente da registrare
-     * @param centroVaccinale: centro vaccinale dove è stata effettuata la registrazione
      * @return <code>true</code> se tutti i dati sono validi; <code>false</code> se c'è almeno un dato non valido
      *
      * @author Nicolas Guarini
      * @author Redon Kokaj
      */
-    boolean validaDati(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione, CentroVaccinale centroVaccinale){
+    boolean validaDati(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione){
         String messaggio = "";
 
         if(nome.equals("") || cognome.equals("") || cf.equals("") || email.equals("") || username.equals("") || password.equals("") || idVaccinazione.equals("")){
@@ -270,30 +267,16 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
         if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{6,}$")) messaggio += "La password deve contenere 6 caratteri, \nun carattere maiuscolo, minuscolo, un numero e nessuno spazio! \n";
         if(!idVaccinazione.matches("[0-9]{16}")) messaggio += "L'id della vaccinazione deve contenere 16 cifre! \n";
 
-        if(centroVaccinale == null) messaggio += "L'ID vaccinazione fa riferimento a un centro vaccinale che non esiste";
         if(!Cittadini.checkUsername(username)) messaggio += "L'username esiste già \n";
         if(!Cittadini.checkEmail(email)) messaggio += "L'email esiste già \n";
         if(!Cittadini.checkIdVaccinazione(idVaccinazione)) messaggio += "L'id vaccinazione è già stato registrato! \n";
         if(!Cittadini.checkCF(cf)) messaggio += "Il codice fiscale esiste già \n";
-        if(centroVaccinale != null && !Cittadini.checkVaccinazioneEsistente(idVaccinazione)) messaggio += "La vaccinazione non esiste\n";
+        if(!Cittadini.checkVaccinazioneEsistente(idVaccinazione)) messaggio += "La vaccinazione non esiste\n";
 
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
             return false;
         }else return true;
-    }
-
-    /**
-     * Tramite le prime 5 cifre dell'id vaccinazione risale al centro vaccinale
-     *
-     * @param idVaccinazione id vaccinazione del quale vogliamo sapere il centro vaccinale
-     * @return il centro vaccinale dove è stata effettuata la vaccinazione
-     *
-     * @author Nicolas Guarini
-     */
-    CentroVaccinale getCentroVaccinale(String idVaccinazione){
-        String idCentroVaccinale = idVaccinazione.substring(0, 5);
-        return Cittadini.getCentroVaccinaleFromId(idCentroVaccinale);
     }
 
     /**

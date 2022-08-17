@@ -57,11 +57,6 @@ public class Cittadino implements Serializable {
     private final String idVaccinazione;
 
     /**
-     * Centro vaccinale dove è stata effettuata la vaccinazione
-     */
-    private final CentroVaccinale centroVaccinale;
-
-    /**
      * Costruttore che salva nelle proprietà private i dati passati per parametro
      *
      * @param nome nome del cittadino
@@ -71,11 +66,10 @@ public class Cittadino implements Serializable {
      * @param username username del cittadino
      * @param password password del cittadino (crittografata con l'algoritmo <code>SHA256</code>
      * @param idVaccinazione id vaccinazione di 16 cifre che identifica la vaccinazione effettuata dal cittadino
-     * @param centroVaccinale centro vaccinale dove è stata effettuata la vaccinazione
      *
      * @author Nicolas Guarini
      */
-    public Cittadino(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione, CentroVaccinale centroVaccinale){
+    public Cittadino(String nome, String cognome, String cf, String email, String username, String password, String idVaccinazione){
         this.nome = nome;
         this.cognome = cognome;
         this.cf = cf;
@@ -83,7 +77,6 @@ public class Cittadino implements Serializable {
         this.password = password;
         this.email = email;
         this.idVaccinazione = idVaccinazione;
-        this.centroVaccinale = centroVaccinale;
     }
 
     /**
