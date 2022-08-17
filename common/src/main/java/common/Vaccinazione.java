@@ -19,44 +19,44 @@ import java.util.LinkedList;
  */
 public class Vaccinazione implements Serializable {
     /**
-     * Proprietà che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>Vaccinazione</code>
+     * Proprieta' che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>Vaccinazione</code>
      */
     private static final long serialVersionUID = 5737449378412827456L;
 
     /**
      * Nome del vaccinato
      */
-    private String nome;
+    private final String nome;
 
     /**
      * Cognome del vaccinato
      */
-    private String cognome;
+    private final String cognome;
 
     /**
      * Codice fiscale del vaccinato
      */
-    private String cf;
+    private final String cf;
 
     /**
      * Identificatore di 16 cifre della vaccinazione
      */
-    private String id;
+    private final String id;
 
     /**
      * Nome del vaccino somministrato
      */
-    private String nomeVaccino;
+    private final String nomeVaccino;
 
     /**
      * Data della somministrazione
      */
-    private Date data;
+    private final Date data;
 
     /**
      * Centro vaccinale dove è stata effettuata la somministrazione
      */
-    private CentroVaccinale centroVaccinale;
+    private final CentroVaccinale centroVaccinale;
 
     /**
      * Eventi avversi segnalati dal vaccinato
@@ -97,21 +97,19 @@ public class Vaccinazione implements Serializable {
         return eventiAvversi;
     }
 
+    /**
+     * Permette di salvare una lista di eventi avversi nella proprieta' privata <code>eventiAvversi</code>
+     *
+     * @param eventiAvversi gli eventi avversi relativi alla vaccinazione
+     *
+     * @author Nicolas Guarini
+     */
     public void setEventiAvversi(LinkedList<EventoAvverso> eventiAvversi){
         this.eventiAvversi = eventiAvversi;
     }
 
     /**
-     * Permette di accedere a metodi e classi esterne alla proprietà privata <code>centroVaccinale.nome</code>
-     *
-     * @return nome del centro vaccinale
-     *
-     * @author Nicolas Guarini
-     */
-    public String getNomeCentroVaccinale(){ return centroVaccinale.getNome(); }
-
-    /**
-     * Permette di accedere a metodi e classi esterne alla proprietà privata <code>id</code>
+     * Permette di accedere a metodi e classi esterne alla proprieta' privata <code>id</code>
      *
      * @return id univoco vaccinazione di 16 cifre
      *
@@ -120,7 +118,7 @@ public class Vaccinazione implements Serializable {
     public String getIdVaccinazione(){return id;}
 
     /**
-     * Permette di accedere a metodi e classi esterne alla proprietà privata <code>cf</code>
+     * Permette di accedere a metodi e classi esterne alla proprieta' privata <code>cf</code>
      *
      * @return codice fiscale del vaccinato
      *
@@ -128,13 +126,48 @@ public class Vaccinazione implements Serializable {
      */
     public String getCf(){return cf;}
 
+    /**
+     * Permette di accedere a metodi e classi esterne alla proprieta' privata <code>nome</code>
+     *
+     * @return nome del vaccinato
+     *
+     * @author Nicolas Guarini
+     */
     public String getNomeVaccinato(){return nome;}
 
+    /**
+     * Permette di accedere a metodi e classi esterne alla proprieta' privata <code>cognome</code>
+     *
+     * @return cognome del vaccinato
+     *
+     * @author Nicolas Guarini
+     */
     public String getCognomeVaccinato(){return cognome;}
 
+    /**
+     * Permette di accedere a metodi e classi esterne alla proprieta' privata <code>data</code>
+     *
+     * @return data della vaccinazione
+     *
+     * @author Nicolas Guarini
+     */
     public Date getDataVaccinazione(){return data;}
 
+    /**
+     * Permette di accedere a metodi e classi esterne alla proprieta' privata <code>centroVaccinale</code>
+     *
+     * @return centro vaccinale dove e' stata effettuata la vaccinazione
+     *
+     * @author Nicolas Guarini
+     */
     public CentroVaccinale getCentroVaccinale(){return centroVaccinale;}
 
+    /**
+     * Permette di accedere a metodi e classi esterne alla proprieta' privata <code>nomeVaccino</code>
+     *
+     * @return nome del vaccino somministrato
+     *
+     * @author Nicolas Guarini
+     */
     public String getNomeVaccino(){return nomeVaccino;}
 }

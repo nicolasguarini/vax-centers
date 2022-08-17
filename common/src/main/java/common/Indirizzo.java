@@ -6,7 +6,6 @@
 package common;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 /**
  * Classe che modella le caratteristiche di un indirizzo
@@ -18,42 +17,42 @@ import java.util.Arrays;
  */
 public class Indirizzo implements Serializable {
     /**
-     * Proprietà che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>Indirizzo</code>
+     * Proprieta' che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>Indirizzo</code>
      */
     private static final long serialVersionUID = -1709094232830800244L;
 
     /**
      * Qualificatore dell'indirizzo
      */
-    private String qualificatore;
+    private final String qualificatore;
 
     /**
      * Nome dell'indirizzo
      */
-    private String nome;
+    private final String nome;
 
     /**
      * Numero civico dell'indirizzo
      */
-    private String numeroCivico;
+    private final String numeroCivico;
 
     /**
      * Comune dell'indirizzo
      */
-    private String comune;
+    private final String comune;
 
     /**
      * Provincia dell'indirizzo
      */
-    private String provincia;
+    private final String provincia;
 
     /**
      * Codice di avviamento postale (CAP) a 5 cifre dell'indirizzo
      */
-    private String CAP;
+    private final String CAP;
 
     /**
-     * Costruttore che salva i parametri nelle proprietà private della classe
+     * Costruttore che salva i parametri nelle proprieta' private della classe
      *
      * @param qualificatore: via / viale / piazza
      * @param nome: nome dell'indirizzo
@@ -73,6 +72,13 @@ public class Indirizzo implements Serializable {
         this.CAP = CAP;
     }
 
+    /**
+     * Costruttore che salva i parametri nelle proprieta' private della classe facendo il parsing di un indirizzo esistente in formato testuale
+     *
+     * @param indirizzo l'inirizzo del quale effettuare il parsing
+     *
+     * @author Nicolas Guarini
+     */
     public Indirizzo(String indirizzo){
         String[] parts = indirizzo.split(",");
         this.qualificatore = parts[0].split(" ")[0].trim();

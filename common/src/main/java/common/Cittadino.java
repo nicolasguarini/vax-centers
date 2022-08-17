@@ -5,13 +5,10 @@
 
 package common;
 
-import common.CentroVaccinale;
-
 import java.io.Serializable;
 
 /**
  * Modella le caratteristiche di un Cittadino
- *
  *
  * @author Nicolas Guarini
  * @author Domenico Rizzo
@@ -20,49 +17,49 @@ import java.io.Serializable;
  */
 public class Cittadino implements Serializable {
     /**
-     * Proprietà che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>Cittadino</code>
+     * Proprieta' che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>Cittadino</code>
      */
     private static final long serialVersionUID = -3712425753326956399L;
 
     /**
      * Nome del cittadino
      */
-    private String nome;
+    private final String nome;
 
     /**
      * Cognome del cittadino
      */
-    private String cognome;
+    private final String cognome;
 
     /**
      * Codice fiscale del cittadino
      */
-    private String cf;
+    private final String cf;
 
     /**
      * Email del cittadino
      */
-    private String email;
+    private final String email;
 
     /**
      * Username del cittadino
      */
-    private String username;
+    private final String username;
 
     /**
      * Password del cittadino
      */
-    private String password;
+    private final String password;
 
     /**
      * ID vaccinazione
      */
-    private String idVaccinazione;
+    private final String idVaccinazione;
 
     /**
      * Centro vaccinale dove è stata effettuata la vaccinazione
      */
-    private CentroVaccinale centroVaccinale;
+    private final CentroVaccinale centroVaccinale;
 
     /**
      * Costruttore che salva nelle proprietà private i dati passati per parametro
@@ -150,13 +147,4 @@ public class Cittadino implements Serializable {
      * @author Nicolas Guarini
      */
     public String getCognome(){return cognome;}
-
-    /**
-     * Permette di accedere a metodi e classi esterne alla proprietà privata <code>centroVaccinale</code>
-     *
-     * @return  centro vaccinale dove il cittadino ha effettuato la vaccinazione
-     *
-     * @author Nicolas Guarini
-     */
-    public CentroVaccinale getCentroVaccinale(){return centroVaccinale;}
 }

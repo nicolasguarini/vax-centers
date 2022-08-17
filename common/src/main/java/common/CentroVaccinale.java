@@ -24,29 +24,30 @@ public class CentroVaccinale implements Serializable {
     /**
      * Nome del centro vaccinale
      */
-    private String nome;
+    private final String nome;
 
     /**
      * Tipologia del centro vaccinale
      */
-    private String tipologia;
+    private final String tipologia;
 
     /**
      * Indirizzo del centro vaccinale
      */
-    private Indirizzo indirizzo;
+    private final Indirizzo indirizzo;
 
     /**
      * Identificatore di 5 cifre del centro vaccinale
      */
-    private String id;
+    private final String id;
 
     /**
      * Costruttore che salva i parametri nelle proprietà private della classe
      *
-     * @param nome: nome del centro vaccinale
-     * @param indirizzo: indirizzo del centro vaccinale
-     * @param tipologia: tipologia del centro vaccinale (ospedaliero / hub / aziendale)
+     * @param nome nome del centro vaccinale
+     * @param indirizzo indirizzo del centro vaccinale
+     * @param tipologia tipologia del centro vaccinale (ospedaliero / hub / aziendale)
+     * @param id codice identificativo del centro vaccinale
      *
      * @author Nicolas Guarini
      */
@@ -57,12 +58,10 @@ public class CentroVaccinale implements Serializable {
         this.id = id;
     }
 
-
-
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>nome</code>
      *
-     * @return  nome del centro vaccinale
+     * @return nome del centro vaccinale
      *
      * @author Nicolas Guarini
      */
@@ -71,7 +70,7 @@ public class CentroVaccinale implements Serializable {
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>indirizzo</code>
      *
-     * @return  indirizzo del centro vaccinale
+     * @return indirizzo del centro vaccinale
      *
      * @author Nicolas Guarini
      */
@@ -80,7 +79,7 @@ public class CentroVaccinale implements Serializable {
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>indirizzo.comune</code>
      *
-     * @return  comune del centro vaccinale
+     * @return comune del centro vaccinale
      *
      * @author Nicolas Guarini
      */
@@ -89,7 +88,7 @@ public class CentroVaccinale implements Serializable {
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>tipologia</code>
      *
-     * @return  tipologia del centro vaccinale
+     * @return tipologia del centro vaccinale
      *
      * @author Nicolas Guarini
      */
@@ -98,7 +97,7 @@ public class CentroVaccinale implements Serializable {
     /**
      * Permette di accedere a metodi e classi esterne alla proprietà privata <code>id</code>
      *
-     * @return  ID di 5 cifre del centro vaccinale
+     * @return ID di 5 cifre del centro vaccinale
      *
      * @author Nicolas Guarini
      */

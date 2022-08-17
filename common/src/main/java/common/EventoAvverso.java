@@ -17,31 +17,31 @@ import java.io.Serializable;
  */
 public class EventoAvverso implements Serializable {
     /**
-     * Proprietà che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>EventoAvverso</code>
+     * Proprieta' che permette il funzionamento dei processi di serializzazione e deserializzazione degli oggetti di tipo <code>EventoAvverso</code>
      */
     private static final long serialVersionUID = 394107416364547627L;
 
     /**
      * Nome dell'evento avverso
      */
-    private String nome;
+    private final String nome;
 
     /**
      * Note aggiuntive sull'evento avverso
      */
-    private String noteAggiuntive;
+    private final String noteAggiuntive;
 
     /**
-     * Severità dell'evento avverso da 1 a 5
+     * Severita' dell'evento avverso da 1 a 5
      */
-    private int severita;
+    private final int severita;
 
     /**
      * Costruttore che salva i parametri nelle proprietà private della classe
      *
-     * @param nome: nome dell'evento avverso
-     * @param severita: severità dell'evento avverso (da 1 a 5)
-     * @param noteAggiuntive: note aggiuntive (campo facoltativo)
+     * @param nome nome dell'evento avverso
+     * @param severita severità dell'evento avverso (da 1 a 5)
+     * @param noteAggiuntive note aggiuntive (campo facoltativo)
      */
     public EventoAvverso(String nome, int severita, String noteAggiuntive){
         this.nome = nome;
@@ -50,9 +50,9 @@ public class EventoAvverso implements Serializable {
     }
 
     /**
-     * Ritorna la proprietà privata <code>severita</code>
+     * Ritorna la proprieta' privata <code>severita</code>
      *
-     * @return proprietà privata <code>severita</code>
+     * @return proprieta' privata <code>severita</code>
      *
      * @author Nicolas Guarini
      */
@@ -60,7 +60,21 @@ public class EventoAvverso implements Serializable {
         return severita;
     }
 
+    /**
+     * Ritorna la proprieta' privata <code>nome</code>
+     *
+     * @return proprieta' privata <code>nome</code>
+     *
+     * @author Nicolas Guarini
+     */
     public String getNome() {return nome;}
 
+    /**
+     * Ritorna la proprieta' privata <code>noteAggiuntive</code>
+     *
+     * @return proprieta' privata <code>noteAggiuntive</code>
+     *
+     * @author Nicolas Guarini
+     */
     public String getNoteAggiuntive(){return noteAggiuntive;}
 }
