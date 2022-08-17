@@ -18,7 +18,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.util.Objects;
 
 /**
@@ -98,8 +97,6 @@ public class UIStartMenu extends JFrame implements ActionListener {
 		panelSfondo.setLayout(null);
         panelSfondo.add(labelSfondo);
 
-        createDataDirectory();
-
 		this.add(panelSfondo);
         this.setTitle("Vax Centers");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -128,22 +125,4 @@ public class UIStartMenu extends JFrame implements ActionListener {
             new UICittadini();
         }
     }
-
-    /**
-     * Crea, se non esiste già, la directory <code>data/</code> dove verranno salvati i file di salvataggio del programma.
-     *
-     * @author Nicolas Guarini
-     */
-    void createDataDirectory(){
-        try{
-            File dir = new File("data/");
-            if (!dir.exists()){
-                dir.mkdirs();
-            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-    }
-    
 }
