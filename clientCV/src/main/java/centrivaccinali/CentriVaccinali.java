@@ -11,19 +11,13 @@ import common.EventoAvverso;
 import common.ServerInterface;
 import common.Vaccinazione;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.util.LinkedList;
 
 /**
  * La classe <code>CentriVaccinali</code> è la classe principale relativa alla logica della sezione dedicata ai Centri Vaccinali.
- * Mette a disposizione alle altre classi una serie di metodi che effettuano operazioni comuni e/o si interfacciano con il server remoto, separando la logica applictiva da quella di presentazione..
+ * Mette a disposizione alle altre classi una serie di metodi che effettuano operazioni comuni e/o si interfacciano con il server remoto, separando la logica applicativa da quella di presentazione.
  *
  * @author Nicolas Guarini
  * @author Domenico Rizzo
@@ -31,13 +25,20 @@ import java.util.LinkedList;
  * @author Filippo Alzati
  */
 public class CentriVaccinali {
+    /**
+     *  Oggetto che permette la comunicazione tra client e server, occupandosi di stabilire e mantenere la connessione con l'oggetto remoto.
+     */
     public static Registry registry;
+
+    /**
+     * Oggetto remoto che implementa i metodi dell'interfaccia <code>ServerInterface</code> fungendo da stub per il client.
+     */
     public static ServerInterface server;
 
     /**
      * Il punto di avvio del programma.
      *
-     * @param args array di stringhe passate tramite parametri via riga di comando
+     * @param args array di stringhe passate tramite parametri da riga di comando
      *
      * @author Nicolas Guarini
      * @author Domenico Rizzo
@@ -56,7 +57,7 @@ public class CentriVaccinali {
      * @param centroVaccinale centro vaccinale da registrare
      *
      * @author Nicolas Guarini
-     * @return Esito dell'operazione di inserimento nel database.
+     * @return Esito dell'operazione d'inserimento nel database.
      */
     public static boolean registraCentroVaccinale(CentroVaccinale centroVaccinale){
         boolean result = false;
@@ -80,8 +81,8 @@ public class CentriVaccinali {
             return CentriVaccinali.server.getCentriVaccinali();
         } catch (RemoteException e) {
             e.printStackTrace();
+            return new LinkedList<>();
         }
-        return new LinkedList<>();
     }
 
     /**
@@ -90,7 +91,7 @@ public class CentriVaccinali {
      * @param vaccinazione vaccinazione da registrare
      *
      * @author Nicolas Guarini
-     * @return Esito dell'operazione di inserimento nel database.
+     * @return Esito dell'operazione d'inserimento nel database.
      */
     public static boolean registraVaccinazione(Vaccinazione vaccinazione){
         boolean result = false;
@@ -113,6 +114,7 @@ public class CentriVaccinali {
      */
     public static LinkedList<Vaccinazione> getVaccinazioni(CentroVaccinale centroVaccinale){
         LinkedList<Vaccinazione> vaccinazioni = new LinkedList<>();
+
         try{
             vaccinazioni = CentriVaccinali.server.getVaccinazioni(centroVaccinale);
         } catch (RemoteException e) {
@@ -135,10 +137,12 @@ public class CentriVaccinali {
      */
     public static int getNumSegnalazioniEventiAvversi(CentroVaccinale centroVaccinale){
         LinkedList<Vaccinazione> vaccinazioni = getVaccinazioni(centroVaccinale);
+
         int count = 0;
         for(Vaccinazione v : vaccinazioni){
             count += v.getEventiAvversi().size();
         }
+
         return count;
     }
 

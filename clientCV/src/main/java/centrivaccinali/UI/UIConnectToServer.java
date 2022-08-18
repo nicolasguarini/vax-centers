@@ -1,3 +1,8 @@
+//NICOLAS GUARINI 745508 VA
+//FILIPPO ALZATI 745495 VA
+//REDON KOKAJ 744959 VA
+//DOMENICO RIZZO 745304 VA
+
 package centrivaccinali.UI;
 
 import centrivaccinali.CentriVaccinali;
@@ -14,11 +19,35 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.util.Objects;
 
+/**
+ * La lcasse <code>UIConnectToServer</code> si occupa di creare e gestire l'interfaccia grafica della schermata iniziale che permette all'utente di collegarsi al server remoto.
+ *
+ * @author Nicolas Guarini
+ * @author Domenico Rizzo
+ */
 public class UIConnectToServer extends JFrame implements ActionListener {
+    /**
+     * TextField dove l'utente inserirà l'indirizzo del server a cui intende connettersi. <br>
+     * Default: localhost
+     */
     JTextField tfHost = new JTextField();
+
+    /**
+     * TextField dove l'utente inserirà la porta del server a cui intende connettersi. <br>
+     * Default: 1099
+     */
     JTextField tfPort = new JTextField();
+
+    /**
+     * Bottone per avviare la procedura di connessione al server remoto.
+     */
     JButton btnConnect = new JButton("CONNECT");
 
+    /**
+     * Inizializza, imposta e visualizza la schermata di connessione al server.
+     *
+     * @author Domenico Rizzo
+     */
     public UIConnectToServer(){
         ImageIcon imgHome = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/clienthome.jpg")));
         ImageIcon imgHostph = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/hosticon.png")));
@@ -99,6 +128,16 @@ public class UIConnectToServer extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Gestisce il click del pulsante della schermata. <br>
+     * Nello specifico, preleva le informazioni inserite dall'utente, le analizza, e inizializza gli oggetti necessari alla comunicazione RMI.
+     *
+     * @param e l'evento che deve essere processato
+     *
+     * @see CentriVaccinali
+     *
+     * @author Nicolas Guarini
+     */
     @Override
     public void actionPerformed(ActionEvent e){
         String port = tfPort.getText();

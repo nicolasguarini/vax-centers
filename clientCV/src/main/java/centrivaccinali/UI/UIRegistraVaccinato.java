@@ -9,7 +9,6 @@ import centrivaccinali.CentriVaccinali;
 import common.CentroVaccinale;
 import common.Vaccinazione;
 import cittadini.Cittadini;
-import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,7 +34,7 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 /**
- * La classe <code>UIRegistraVaccinato</code> si occupa di gestire il form di registrazione a sistema di una somministrazione di vaccino, validando i dati e inviandoli al backend che li processerà
+ * La classe <code>UIRegistraVaccinato</code> si occupa di gestire il form di registrazione a sistema di una somministrazione di vaccino, validando i dati e inviandoli al server che li processerà
  *
  * @see CentriVaccinali
  *
@@ -91,8 +90,6 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
      * @see UICentriVaccinali
      *
      * @author Domenico Rizzo
-     * @author Nicolas Guarini
-     * @author Redon Kokaj
      */
     public UIRegistraVaccinato() {
         ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/logo.png")));
@@ -232,8 +229,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this, "Vaccinazione registrata!\nCF: " + cf + "\n" + "Data vaccinazione: " + strData + "\n" + "ID Vaccinazione: " + idVaccinazione);
                 this.dispose();
             }
-            else
-                JOptionPane.showMessageDialog(this, "Errore durante la registrazione della vaccinazione");
+            else JOptionPane.showMessageDialog(this, "Errore durante la registrazione della vaccinazione");
         }
     }
 
@@ -261,7 +257,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
 
         if(nome.matches(".*\\d.*")) messaggio += "Il nome non può contenere cifre! \n";
         if(cognome.matches(".*\\d.*")) messaggio += "Il cognome non può contenere cifre! \n";
-        if(!cf.matches("([A-Za-z]{6})([0-9]{2})([A-Za-z]{1})([0-9]{2})([A-Za-z]{1})([0-9]{3})([A-Za-z]{1})")) messaggio += "Il codice fiscale inserito non rispetta il formato corretto! \n";
+        if(!cf.matches("([A-Za-z]{6})([0-9]{2})([A-Za-z])([0-9]{2})([A-Za-z])([0-9]{3})([A-Za-z])")) messaggio += "Il codice fiscale inserito non rispetta il formato corretto! \n";
         if(!data.matches("([0-9]{2})/([0-9]{2})/([0-9]{4})")) messaggio += "Inserire una data valida (gg/mm/aaaa)! \n";
         if(idVaccinazione.length() > 16) messaggio += "Numero massimo di vaccinazioni raggiunto";
 
@@ -299,9 +295,9 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     }
 
     /**
-     * Genera un codice di 11 cifre che identifica il cittadino vaccinato, quindi lo concatena all'id del centro vaccinale, formando un codice di 16 cifre che identifica la vaccinazione, e graie al quale è possibile risalire sia al centro vaccinale sia al cittadino vaccinato
+     * Genera un codice di 11 cifre che identifica il cittadino vaccinato, quindi lo concatena all'id del centro vaccinale, formando un codice di 16 cifre che identifica la vaccinazione, e grazie al quale è possibile risalire sia al centro vaccinale sia al cittadino vaccinato
      *
-     * @param centroVaccinale: il centro vaccinale dove è stata effettuata la vaccinazione
+     * @param centroVaccinale il centro vaccinale dove è stata effettuata la vaccinazione
      * @return ID completo della vaccinazione
      *
      * @author Nicolas Guarini
@@ -316,7 +312,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
             idVaccinato.append("0");
         }
 
-        idVaccinato.append(String.valueOf(size));
+        idVaccinato.append(size);
         return idCentroVaccinale + idVaccinato;
     }
 

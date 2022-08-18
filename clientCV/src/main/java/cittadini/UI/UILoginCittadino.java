@@ -38,12 +38,12 @@ import java.util.Objects;
  */
 public class UILoginCittadino extends JFrame implements ActionListener {
     /**
-     * TextField dove l'utente inserir� l'username con il quale vuole effettuare il login
+     * TextField dove l'utente inserirà l'username con il quale vuole effettuare il login
      */
     JTextField tfNomeUtente = new JTextField();
 
     /**
-     * TextField dove l'utente inserir� la password con la quale vuole effettuare il login
+     * TextField dove l'utente inserirà la password con la quale vuole effettuare il login
      */
     JPasswordField tfPasswordUtente = new JPasswordField();
 
@@ -134,7 +134,7 @@ public class UILoginCittadino extends JFrame implements ActionListener {
     }
 
     /**
-     * Confronta username e password inseriti con quelli presenti nei file di salvataggio, e quando trova un'occorrenza apre la schermata dell'area personale del cittadino
+     * Estrae username e password dai TextFields, crittografa la password, e contatta il server che risponderà con un oggetto <code>Cittadino</code> se il login è andato a buon fine, <code>null</code> altrimenti.
      *
      * @author Nicolas Guarini
      * @author Redon Kokaj
@@ -157,12 +157,12 @@ public class UILoginCittadino extends JFrame implements ActionListener {
     }
 
     /**
-     * Effettua la validazione dei dati mosrando un messaggio di errore con i relativi dettagli nel caso in cui dei dati non fossero validi
+     * Effettua la validazione dei dati mostrando un messaggio di errore con i relativi dettagli nel caso in cui dei dati non fossero validi
      *
      * @author Redon Kokaj
      *
-     * @param nomeUtente: username inserito dall'utente
-     * @param password: password inserita dall'utente
+     * @param nomeUtente username inserito dall'utente
+     * @param password password inserita dall'utente
      * @return <code>true</code>> se tutti i dati sono validi; <code>false</code> se c'� almeno un dato non valido
      */
     boolean validaDati(String nomeUtente, String password){
@@ -180,7 +180,7 @@ public class UILoginCittadino extends JFrame implements ActionListener {
     /**
      * Gestore dei click sui pulsanti della schermata
      *
-     * @param e: evento che deve essere processato
+     * @param e evento che deve essere processato
      *
      * @author Nicolas Guarini
      */

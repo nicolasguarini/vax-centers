@@ -81,7 +81,6 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
      */
     JButton btnAnnulla = new JButton("ANNULLA");
 
-
     /**
      * Inizializza, imposta e visualizza la schermata di registrazione
      *
@@ -215,7 +214,7 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
     }
 
     /**
-     * Preleva i dati dalle caselle di testo, e se sono validi istanzia un oggetto <code>Cittadino</code> e procederà a registrarlo
+     * Preleva i dati dalle caselle di testo, e se sono validi istanza un oggetto <code>Cittadino</code> e procederà a registrarlo
      *
      * @author Nicolas Guarini
      */
@@ -239,13 +238,13 @@ public class UIRegistraCittadino extends JFrame implements ActionListener {
     /**
      * Valida i dati inseriti dall'utente mostrando un messaggio di errore nel caso in cui non siano validi
      *
-     * @param nome: nome dell'utente da registrare
-     * @param cognome: cognome dell'utente da registrare
-     * @param cf: codice fiscale dell'utente da registrare
-     * @param email: email dell'utente da registrare
-     * @param username: username dell'utente da registrare
-     * @param password: password dell'utente da registrare
-     * @param idVaccinazione: id vaccinazione dell'utente da registrare
+     * @param nome nome dell'utente da registrare
+     * @param cognome cognome dell'utente da registrare
+     * @param cf codice fiscale dell'utente da registrare
+     * @param email email dell'utente da registrare
+     * @param username username dell'utente da registrare
+     * @param password password dell'utente da registrare
+     * @param idVaccinazione id vaccinazione dell'utente da registrare
      * @return <code>true</code> se tutti i dati sono validi; <code>false</code> se c'è almeno un dato non valido
      *
      * @author Nicolas Guarini

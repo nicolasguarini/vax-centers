@@ -6,7 +6,6 @@
 package cittadini;
 
 import centrivaccinali.CentriVaccinali;
-import common.CentroVaccinale;
 import common.Cittadino;
 import common.EventoAvverso;
 
@@ -18,7 +17,7 @@ import java.util.LinkedList;
 
 /**
  * Classe principale della sezione dedicata ai cittadini.
- * Mette a disposizione alle altre classi una serie di metodi che effettuano operazioni comuni e/o si interfacciano con il server remoto, separando la logica applictiva da quella di presentazione.
+ * Mette a disposizione alle altre classi una serie di metodi che effettuano operazioni comuni e/o si interfacciano con il server remoto, separando la logica applicativa da quella di presentazione.
  *
  * @see cittadini.UI.UICittadini
  *
@@ -32,7 +31,7 @@ public class Cittadini {
      * Contatta il server remoto chiedendo di registrare nel database un nuovo cittadino
      *
      * @param cittadino il cittadino da registrare nel database
-     * @return esito dell'operazione di inserimento
+     * @return esito dell'operazione d'inserimento
      * @author Nicolas Guarini
      */
     public static boolean registraCittadino(Cittadino cittadino){
@@ -66,7 +65,7 @@ public class Cittadini {
     }
 
     /**
-     * Effettua l'hashing della password con l'argoritmo SHA-256. Il risultato di tale procedura è un array di byte, che verrà poi salvato nel formato <code>Base64</code> per poterlo gestire facilmente (essendo una stringa)
+     * Effettua l'hashing della password con l'algoritmo SHA-256. Il risultato di tale procedura è un array di byte, che verrà poi salvato nel formato <code>Base64</code> per poterlo gestire facilmente (essendo una stringa)
      * Si tratta di una misura di sicurezza fondamentale quando si ha a che fare con delle password.
      *
      * @param password password da crittografare
@@ -202,15 +201,6 @@ public class Cittadini {
         }catch (RemoteException exception){
             exception.printStackTrace();
             return false;
-        }
-    }
-
-    public static CentroVaccinale getCentroVaccinaleFromId(String id){
-        try{
-            return CentriVaccinali.server.getCentroVaccinaleFromId(id);
-        } catch (RemoteException e) {
-            e.printStackTrace();
-            return null;
         }
     }
 }

@@ -14,5 +14,4 @@
  * @author Nicolas Guarini
  * @author Redon Kokaj
  */
-
 package cittadini.UI;

@@ -76,7 +76,7 @@ public class UIInfoUtente extends JFrame implements ActionListener {
     /**
      * Inizializza, imposta e visualizza la schermata delle informazioni del profilo di un utente loggato
      *
-     * @param cittadinoLoggato: oggetto <code>Cittadino</code> del quale vogliamo visualizzare le informazioni
+     * @param cittadinoLoggato oggetto <code>Cittadino</code> del quale vogliamo visualizzare le informazioni
      *
      * @author Domenico Rizzo
      */
@@ -193,7 +193,9 @@ public class UIInfoUtente extends JFrame implements ActionListener {
     /**
      * Gestore dei click sui pulsanti della schermata
      *
-     * @param e: evento che deve essere processato
+     * @param e evento che deve essere processato
+     *
+     * @author Domenico Rizzo
      */
     @Override
     public void actionPerformed(ActionEvent e) {

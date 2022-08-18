@@ -71,7 +71,7 @@ public class UIVisualizzaCentriVaccinali extends JFrame {
     }
 
     /**
-     * Mostra un popup con le informazioni rilevanti del centro vaccinale desiderato, come nome, indirizzo, tipologia, numero eventi avversi e severit� media degli stessi
+     * Mostra un popup con le informazioni rilevanti del centro vaccinale desiderato, come nome, indirizzo, tipologia, numero eventi avversi e severità media degli stessi
      *
      * @see UISegnalaEventoAvverso
      *
@@ -88,5 +88,4 @@ public class UIVisualizzaCentriVaccinali extends JFrame {
         messaggio += "Severita' media eventi avversi: " + CentriVaccinali.getSeveritaMediaEventiAvversi(centroVaccinale) + "\n";
         JOptionPane.showMessageDialog(this, messaggio);
     }
-
 }

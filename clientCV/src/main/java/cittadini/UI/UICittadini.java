@@ -134,7 +134,7 @@ public class UICittadini extends JFrame implements ActionListener {
     /**
      * Gestore dei click sui pulsanti della schermata
      *
-     * @param e: evento che deve essere processato
+     * @param e evento che deve essere processato
      *
      * @author Nicolas Guarini
      */

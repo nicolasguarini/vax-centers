@@ -32,7 +32,7 @@ import java.awt.event.ActionListener;
 import java.util.Objects;
 
 /**
- * Si occupa di creare e gesire la schermata di segnalazione evento avverso
+ * Si occupa di creare e gestire la schermata di segnalazione evento avverso
  *
  * @see UILoginCittadino
  *
@@ -72,13 +72,12 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
      */
     JButton btnAnnulla = new JButton("ANNULLA");
 
-
     /**
      * Inizializza, imposta e gestisce l'interfaccia grafica della schermata per segnalare un evento avverso
      *
      * @param utenteLoggato utente che deve segnalare gli eventi avversi
      *
-     * @author Nicolas Guarini
+     * @author Domenico Rizzo
      */
     public UISegnalaEventoAvverso(Cittadino utenteLoggato){
         this.utenteLoggato = utenteLoggato;
@@ -155,14 +154,14 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
     }
 
     /**
-     * Valida i dati inserit dall'utente, mostrando un messaggio di errore nel caso non siano validi
+     * Valida i dati inseriti dall'utente, mostrando un messaggio di errore nel caso non siano validi
      *
      * @param nomeEventoAvverso nome dell'evento avverso da segnalare
      * @param noteAggiuntive note aggiuntive sull'evento avverso da segnalare
      *
      * @return <code>true</code> se tutti i dati sono validi; <code>false</code> se c'è almeno un dato non valido
      *
-     * @author Redon Kokaj
+     * @author Nicolas Guarini
      */
     boolean validaDati(String nomeEventoAvverso, String noteAggiuntive){
         String messaggio = "";
@@ -202,12 +201,11 @@ public class UISegnalaEventoAvverso extends JFrame implements ActionListener {
     }
 
     /**
-     * Gestore dei cick sui pulsanti della schermata
+     * Gestore dei click sui pulsanti della schermata
      *
      * @param e evento che deve essere gestito
      *
      * @author Nicolas Guarini
-     * @author Redon Kokaj
      */
     @Override
     public void actionPerformed(ActionEvent e) {

@@ -113,7 +113,7 @@ public class UIStartMenu extends JFrame implements ActionListener {
      *
      * @param e evento che deve venire processato
      *
-     * @author Nicolas Guarini
+     * @author Domenico Rizzo
      */
     @Override
     public void actionPerformed(ActionEvent e){

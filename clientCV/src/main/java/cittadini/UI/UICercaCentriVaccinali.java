@@ -57,17 +57,17 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
     JButton btnAnnulla = new JButton("ANNULLA");
 
     /**
-     * TextField dove l'utente inserir� il nome del centro vaccinale da ricercare
+     * TextField dove l'utente inserirà il nome del centro vaccinale da ricercare
      */
     JTextField tfCercaPerNome = new JTextField();
 
     /**
-     * TextField dove l'utente inserir� il comune del centro vaccinale da ricercare
+     * TextField dove l'utente inserirà il comune del centro vaccinale da ricercare
      */
     JTextField tfCercaPerComune = new JTextField();
 
     /**
-     * Select dove l'utente selezioner� la tipologia del centro vaccinale da ricercare
+     * Select dove l'utente selezionerà la tipologia del centro vaccinale da ricercare
      */
     JComboBox<String> cbTipologie = new JComboBox<>(new String[]{"Ospedaliero", "Aziendale", "Hub"});
 
@@ -174,11 +174,11 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
     }
 
     /**
-     * Cerca i centri vaccinali per nome. (verranno visualizzati i centri vaccinali il cui nome contiene quello passato per parametro)
+     * Cerca i centri vaccinali per nome. Verranno visualizzati i centri vaccinali il cui nome contiene quello passato per parametro
      *
      * @see UIVisualizzaCentriVaccinali
      *
-     * @param nome: nome del centro vaccinale da ricercare
+     * @param nome nome del centro vaccinale da ricercare
      *
      * @author Nicolas Guarini
      */
@@ -201,8 +201,10 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
      *
      * @see UIVisualizzaCentriVaccinali
      *
-     * @param comune: comune del centro vaccinale da ricercare
-     * @param tipologia: tipologia del centro vaccinale da ricercare (ospedaliero / hub / aziendale)
+     * @param comune comune del centro vaccinale da ricercare
+     * @param tipologia tipologia del centro vaccinale da ricercare (ospedaliero / hub / aziendale)
+     *
+     * @author Nicolas Guarini
      */
     public void cercaCentriVaccinali(String comune, String tipologia){
         LinkedList<CentroVaccinale> centriDaVisualizzare = new LinkedList<>();
@@ -220,12 +222,10 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
     /**
      * Gestore dei click dei pulsanti
      *
-     * @param e: evento che deve essere processato
+     * @param e evento che deve essere processato
      *
      * @author Nicolas Guarini
      * @author Domenico Rizzo
-     * @author Redon Kokaj
-     * @author Filippo Alzati
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -241,7 +241,7 @@ public class UICercaCentriVaccinali extends JFrame implements ActionListener {
             }
         }else if(e.getSource() == btnCercaPerComuneETipologia){
             String comune = tfCercaPerComune.getText();
-            String tipologia = cbTipologie.getSelectedItem().toString();
+            String tipologia = Objects.requireNonNull(cbTipologie.getSelectedItem()).toString();
             if(!comune.equals("")){
                 cercaCentriVaccinali(comune.toLowerCase(), tipologia);
             }else{

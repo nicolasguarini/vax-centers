@@ -27,7 +27,7 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 /**
- * La classe <code>UIRegistraCentroVaccinale</code> si occupa di gestire il form di registrazione di un nuovo centro vaccinale, validando i dati e inviandoli al backend che li processerà
+ * La classe <code>UIRegistraCentroVaccinale</code> si occupa di gestire il form di registrazione di un nuovo centro vaccinale, validando i dati e inviandoli al server che li processerà
  *
  * @see CentriVaccinali
  *
@@ -92,7 +92,6 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
      * @see CentriVaccinali
      * @see UICentriVaccinali
      *
-     * @author Nicolas Guarini
      * @author Domenico Rizzo
      */
     public UIRegistraCentroVaccinale(){
@@ -229,7 +228,7 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
 
     /**
      * Preleva i dati dalle caselle di testo e dai menu a tendina,
-     * li manda al metodo {@link #validaDati} e, se sono validi, crea un'istanza di {@link CentroVaccinale} che verrà usata per registrare effettivamente il nuovo centro su file
+     * li manda al metodo {@link #validaDati} e, se sono validi, crea un'istanza di {@link CentroVaccinale} che verrà usata per registrare effettivamente il nuovo centro nel database
      *
      * @see CentroVaccinale
      * @see CentriVaccinali
@@ -259,7 +258,7 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
     /**
      * Genera un codice univoco di 5 cifre che identifica il centro vaccinale. Insieme al'ID relativo al vaccinato formerà l'ID vaccinazione
      *
-     * @return ID numerico di 5 cifre che identfica il centro vaccinale
+     * @return ID numerico di 5 cifre che identifica il centro vaccinale
      *
      * @author Nicolas Guarini
      */
@@ -272,13 +271,13 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
             id.append("0");
         }
 
-        id.append(String.valueOf(size));
-
+        id.append(size);
         return id.toString();
     }
 
     /**
      * Effettua una seria di controlli sui dati inseriti dall'utente, e mostra un messaggio che riassume il motivo per il quale determinati dati non sono validi
+     *
      * @param nome Il nome del centro da registrare
      * @param nomeIndirizzo Parte principale dell'indirizzo del centro da registrare
      * @param civico Numero civico del centro da registrare
@@ -322,6 +321,7 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
      * @return <code>true</code> se esiste già un centro vaccinale con lo stesso nome; <code>false</code> se non esiste
      */
     boolean checkCentroVaccinale(String nomeCentroVaccinale){
+        //TODO: far gestire al server sta cosa
         LinkedList<CentroVaccinale> centriVaccinali = CentriVaccinali.getCentriVaccinali();
         for(CentroVaccinale v : centriVaccinali)
             if(v.getNome().equalsIgnoreCase(nomeCentroVaccinale))
