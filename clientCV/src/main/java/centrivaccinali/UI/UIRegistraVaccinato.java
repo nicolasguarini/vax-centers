@@ -8,7 +8,6 @@ package centrivaccinali.UI;
 import centrivaccinali.CentriVaccinali;
 import common.CentroVaccinale;
 import common.Vaccinazione;
-import cittadini.Cittadini;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -322,7 +321,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     String generaIdVaccinazione(CentroVaccinale centroVaccinale){
         String idCentroVaccinale = centroVaccinale.getId();
         StringBuilder idVaccinato = new StringBuilder();
-        int size = Cittadini.getCittadini().size() + 1;
+        int size = CentriVaccinali.getVaccinazioni(centroVaccinale).size() + 1;
         int length = String.valueOf(size).length();
 
         for(int i = 0; i < 11 - length; i++){
