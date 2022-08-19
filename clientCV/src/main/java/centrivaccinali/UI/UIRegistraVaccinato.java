@@ -19,9 +19,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
@@ -226,7 +225,25 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
             Vaccinazione vaccinazione = new Vaccinazione(nome, cognome, cf.toUpperCase(), idVaccinazione, data, centroVaccinale, nomeVaccino);
             boolean result = CentriVaccinali.registraVaccinazione(vaccinazione);
             if(result) {
-                JOptionPane.showMessageDialog(this, "Vaccinazione registrata!\nCF: " + cf + "\n" + "Data vaccinazione: " + strData + "\n" + "ID Vaccinazione: " + idVaccinazione);
+                int dialogResult = JOptionPane.showOptionDialog(
+                        this,
+                        "Vaccinazione registrata!\nCF: " + cf + "\n" + "Data vaccinazione: " + strData + "\n" + "ID Vaccinazione: " + idVaccinazione,
+                            "Vaccinazione registrata!",
+                            JOptionPane.YES_NO_OPTION,
+                            JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        new String[]{"OK", "COPIA"},
+                        "COPIA"
+                );
+
+                if(dialogResult == JOptionPane.NO_OPTION){
+                    Toolkit.getDefaultToolkit()
+                            .getSystemClipboard()
+                            .setContents(
+                                    new StringSelection(idVaccinazione),
+                                    null
+                            );
+                }
                 this.dispose();
             }
             else JOptionPane.showMessageDialog(this, "Errore durante la registrazione della vaccinazione");
