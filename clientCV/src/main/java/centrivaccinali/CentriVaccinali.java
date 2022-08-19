@@ -176,6 +176,13 @@ public class CentriVaccinali {
         }
     }
 
+    /**
+     * Contatta il server remoto che ritornerà l'esito del controllo sul nome del centro vaccinale.
+     *
+     * @param nomeCentroVaccinale il nome del centro di cui si vuole controllare l'unicità del nome
+     * @return <code>true</code> se esiste già un centro con lo stesso nome, <code>false</code> altrimenti.
+     * @author Nicolas Guarini
+     */
     public static boolean checkNomeCentroVaccinale(String nomeCentroVaccinale){
         try{
             return CentriVaccinali.server.checkNomeCentroVaccinale(nomeCentroVaccinale);

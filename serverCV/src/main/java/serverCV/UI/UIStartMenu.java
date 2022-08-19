@@ -1,3 +1,8 @@
+//NICOLAS GUARINI 745508 VA
+//FILIPPO ALZATI 745495 VA
+//REDON KOKAJ 744959 VA
+//DOMENICO RIZZO 745304 VA
+
 package serverCV.UI;
 
 import serverCV.ConnectionResult;
@@ -11,13 +16,49 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
+/**
+ * La classe <code>UIStartMenu</code> si occupa di creare e gestire l'interfaccia grafica della schermata iniziale dell'applicazione server,
+ * che permette il collegamento con il database e l'instaurazione della connessione del server.
+ *
+ * @see serverCV.ServerCV
+ * @see serverCV.ServerImpl
+ * @see DBManager
+ * @see ConnectionResult
+ *
+ * @author Nicolas Guarini
+ * @author Domenico Rizzo
+ */
 public class UIStartMenu extends JFrame implements ActionListener {
+    /**
+     * TextField dove l'utente potrà inserire l'indirizzo del server Postgres (default: localhost)
+     */
     JTextField tfHost = new JTextField();
+
+    /**
+     * TextField dove l'utente potrà inserire la porta del server Postgres (default: 5432)
+     */
     JTextField tfPort = new JTextField();
+
+    /**
+     * TextField dove l'utente potrà inserire l'username per accedere al server Postgres (default: postgres)
+     */
     JTextField tfUsername = new JTextField();
+
+    /**
+     * TextField dove l'utente potrà inserire la password per accedere al server Postgres
+     */
     JTextField tfPassword = new JPasswordField();
+
+    /**
+     * Button per avviare la procedura di connessione al server Postgres
+     */
     JButton btnStartServer = new JButton("AVVIA SERVER");
 
+    /**
+     * Inizializza, imposta e visualizza la schermata iniziale dell'applicazione server.
+     *
+     * @author Domenico Rizzo
+     */
     public UIStartMenu(){
         ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/logo.png")));
         ImageIcon imgHome = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/serverhome.jpg")));
@@ -131,6 +172,11 @@ public class UIStartMenu extends JFrame implements ActionListener {
         this.add(panelSfondo);
     }
 
+    /**
+     * Gestore dei click sul pulsante della schermata. Nello specifico analizza le informazioni inserite dall'utente e avvia la procedura di connessione al server Postgres
+     * @param e l'evento da gestire
+     * @author Nicolas Guarini
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         String host = tfHost.getText();

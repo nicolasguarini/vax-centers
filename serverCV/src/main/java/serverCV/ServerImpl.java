@@ -1,3 +1,8 @@
+//NICOLAS GUARINI 745508 VA
+//FILIPPO ALZATI 745495 VA
+//REDON KOKAJ 744959 VA
+//DOMENICO RIZZO 745304 VA
+
 package serverCV;
 
 import common.*;
@@ -8,24 +13,56 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-
+/**
+ * Oggetto remoto che implementa l'interfaccia {@link ServerInterface} e che quindi effettua le query al database
+ * esponendo ai client i metodi descritti dall'interfaccia.
+ *
+ * @see ServerInterface
+ * @see DBManager
+ * @see ServerCV
+ *
+ * @author Nicolas Guarini
+ * @author Domenico Rizzo
+ */
 public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
+    /**
+     * Lista degli oggetti interessati agli aggiornamenti dei messaggi di log
+     */
     private final List<LogListener> listeners = new LinkedList<>();
 
+    /**
+     * Costruttore della classe che richiama il costruttore della superclasse
+     * @throws RemoteException superclasse comune per una serie di eccezioni relative alla comunicazione che possono verificarsi durante l'esecuzione di una chiamata al metodo remoto
+     * @author Nicolas Guarini
+     */
     public ServerImpl() throws RemoteException{
         super();
     }
 
+    /**
+     * Metodo che aggiunge un nuovo oggetto {@link LogListener} alla lista dei listeners, ovvero gli oggetti interessati agli aggiornamenti sui messaggi di log
+     * @param toAdd listener da aggiungere alla lista
+     * @author Nicolas Guarini
+     */
     public void addListener(LogListener toAdd){
         listeners.add(toAdd);
     }
 
+    /**
+     * Metodo che notifica tutti i listener di un nuovo messaggio di log
+     * @param message il messaggio oggetto dell'aggiornamento
+     * @author Nicolas Guarini
+     */
     public void notifyUpdate(String message){
         for(LogListener l : listeners){
             l.updateLog(message);
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     public synchronized boolean registraCentroVaccinale(CentroVaccinale centroVaccinale) throws RemoteException{
         try {
             PreparedStatement preparedStatement = DBManager
@@ -48,6 +85,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     public synchronized LinkedList<CentroVaccinale> getCentriVaccinali() throws RemoteException {
         LinkedList<CentroVaccinale> centriVaccinali = new LinkedList<>();
 
@@ -68,6 +109,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return centriVaccinali;
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     public synchronized boolean registraVaccinato(Vaccinazione vaccinazione) throws RemoteException{
         try{
             PreparedStatement preparedStatement = DBManager
@@ -94,6 +139,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     public synchronized LinkedList<Vaccinazione> getVaccinazioni(CentroVaccinale centroVaccinale) throws RemoteException{
         LinkedList<Vaccinazione> vaccinazioni = new LinkedList<>();
 
@@ -125,6 +174,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return vaccinazioni;
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     private LinkedList<EventoAvverso> getEventiAvversi(Vaccinazione vaccinazione){
         LinkedList<EventoAvverso> eventiAvversi = new LinkedList<>();
 
@@ -150,6 +203,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return eventiAvversi;
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     public synchronized boolean registraCittadino(Cittadino cittadino) throws RemoteException{
         try{
             PreparedStatement preparedStatement = DBManager
@@ -176,6 +233,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     public synchronized LinkedList<Cittadino> getCittadini() throws RemoteException{
         LinkedList<Cittadino> cittadini = new LinkedList<>();
 
@@ -206,6 +267,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return cittadini;
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     public synchronized boolean registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso) throws RemoteException{
         try{
             PreparedStatement preparedStatement = DBManager
@@ -228,6 +293,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     public synchronized Cittadino login(String username, String password) throws RemoteException{
         Cittadino cittadino = null;
         try{
@@ -258,6 +327,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return cittadino;
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     public synchronized boolean checkUsername(String username) throws RemoteException{
         try{
             PreparedStatement preparedStatement = DBManager
@@ -278,6 +351,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     public synchronized boolean checkEmail(String email) throws RemoteException{
         try{
             PreparedStatement preparedStatement = DBManager
@@ -298,6 +375,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     public synchronized boolean checkIdVaccinazione(String idVaccinazione) throws RemoteException{
         try{
             PreparedStatement preparedStatement = DBManager
@@ -318,6 +399,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     public synchronized boolean checkCF(String cf) throws RemoteException{
         try{
             PreparedStatement preparedStatement = DBManager
@@ -338,6 +423,10 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
     public synchronized boolean checkVaccinazioneEsistente(String idvaccinazione){
         try {
             PreparedStatement preparedStatement = DBManager
@@ -357,7 +446,11 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
         return false;
     }
 
-    public boolean checkNomeCentroVaccinale(String nomeCentroVaccinale) throws RemoteException{
+    /**
+     * {@inheritDoc}
+     * @author Nicolas Guarini
+     */
+    public synchronized boolean checkNomeCentroVaccinale(String nomeCentroVaccinale) throws RemoteException{
         try {
             PreparedStatement preparedStatement = DBManager
                     .getInstance()

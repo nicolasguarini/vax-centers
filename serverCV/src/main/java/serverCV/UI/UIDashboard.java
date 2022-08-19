@@ -1,3 +1,8 @@
+//NICOLAS GUARINI 745508 VA
+//FILIPPO ALZATI 745495 VA
+//REDON KOKAJ 744959 VA
+//DOMENICO RIZZO 745304 VA
+
 package serverCV.UI;
 
 import serverCV.LogListener;
@@ -13,13 +18,47 @@ import java.awt.event.WindowEvent;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * La classe <code>UIDashboard</code> si occupa di creare e gestire l'interfaccia grafica della schermata principale dell'applicazione server,
+ * da qui è possibile visualizzare e gestire lo stato del server e visualizzare i log delle richieste gestite da quest'ultimo.
+ *
+ * @see ServerCV
+ * @see LogListener
+ *
+ * @author Nicolas Guarini
+ * @author Domenico Rizzo
+ */
 public class UIDashboard extends JFrame implements LogListener, ActionListener {
+    /**
+     * Label che mostra all'utente lo stato corrente in cui si trova il server
+     */
     JLabel labelStatus = new JLabel("Server is starting...");
+
+    /**
+     * TextArea che mostra, all'interno di uno ScrollPane, i log delle richieste che vengono gestite dal server
+     */
     JTextArea logTextArea = new JTextArea();
-    JButton btnRestartServer = new JButton("RESTART");
-    JButton btnStopServer = new JButton("STOP");
+
+    /**
+     * ScrollPane per permettere all'utente visualizzare i log in modo pratico e compatto
+     */
     JScrollPane scrollPane;
 
+    /**
+     * Button per riavviare il server
+     */
+    JButton btnRestartServer = new JButton("RESTART");
+
+    /**
+     * Button per terminare il server
+     */
+    JButton btnStopServer = new JButton("STOP");
+
+    /**
+     * Inizializza, imposta e visualizza la schermata principale dell'applicazione server.
+     *
+     * @author Domenico Rizzo
+     */
     public UIDashboard(){
         ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/logo.png")));
         Font fontBig = new Font("Light", Font.PLAIN, 30);
@@ -84,6 +123,12 @@ public class UIDashboard extends JFrame implements LogListener, ActionListener {
         });
     }
 
+    /**
+     * Implementazione dell'interfaccia {@link LogListener} che permette l'aggiornamento della JTextArea tramite il pattern Observer
+     *
+     * @param message il messaggio da aggiungere alla lista dei log
+     * @author Nicolas Guarini
+     */
     @Override
     public void updateLog(String message) {
         System.out.println(message);
@@ -93,6 +138,12 @@ public class UIDashboard extends JFrame implements LogListener, ActionListener {
         vertical.setValue(vertical.getMaximum());
     }
 
+    /**
+     * Gestore dei click sui pulsanti della schermata. Nello specifico gestire le operazioni di riavvio e stop del server
+     *
+     * @param e l'evento da gestire
+     * @author Nicolas Guarini
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnRestartServer){
