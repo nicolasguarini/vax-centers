@@ -356,4 +356,23 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
 
         return false;
     }
+
+    public boolean checkNomeCentroVaccinale(String nomeCentroVaccinale) throws RemoteException{
+        try {
+            PreparedStatement preparedStatement = DBManager
+                    .getInstance()
+                    .connection
+                    .prepareStatement("SELECT * FROM centrivaccinali WHERE nomecentrovaccinale = ?");
+            preparedStatement.setString(1, nomeCentroVaccinale);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return true;
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+
+        return false;
+    }
 }

@@ -175,4 +175,13 @@ public class CentriVaccinali {
             return Math.floor(severitaMedia * 100) / 100;
         }
     }
+
+    public static boolean checkNomeCentroVaccinale(String nomeCentroVaccinale){
+        try{
+            return CentriVaccinali.server.checkNomeCentroVaccinale(nomeCentroVaccinale);
+        }catch (RemoteException e){
+            e.printStackTrace();
+            return true;
+        }
+    }
 }

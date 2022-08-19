@@ -23,7 +23,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
 import java.util.Objects;
 
 /**
@@ -303,31 +302,13 @@ public class UIRegistraCentroVaccinale extends JFrame implements ActionListener 
         if(comune.matches(".*\\d.*")) messaggio += "Il comune non può contenere cifre! \n";
         if(!provincia.matches("[A-Za-z]{2}")) messaggio += "La sigla provincia deve essere lunga 2 caratteri (es: VA)! \n";
         if(!CAP.matches("[0-9]{5}")) messaggio += "Il CAP deve contenere 5 cifre (es: 21020)! \n";
-        if(checkCentroVaccinale(nome)) messaggio += "Il centro vaccinale esiste gia!";
+        if(CentriVaccinali.checkNomeCentroVaccinale(nome)) messaggio += "Il centro vaccinale esiste gia!";
         if(id.length() > 5) messaggio += "Numero massimo di centri vaccinali raggiunto";
 
         if(!messaggio.equals("")){
             JOptionPane.showMessageDialog(this, messaggio);
             return false;
         }else return true;
-    }
-
-    /**
-     * Controlla se esiste già un centro vaccinale con lo stesso nome di quello passato per parametro
-     *
-     * @author Nicolas Guarini
-     *
-     * @param nomeCentroVaccinale nome del centro vaccinale da controllare
-     * @return <code>true</code> se esiste già un centro vaccinale con lo stesso nome; <code>false</code> se non esiste
-     */
-    boolean checkCentroVaccinale(String nomeCentroVaccinale){
-        //TODO: far gestire al server sta cosa
-        LinkedList<CentroVaccinale> centriVaccinali = CentriVaccinali.getCentriVaccinali();
-        for(CentroVaccinale v : centriVaccinali)
-            if(v.getNome().equalsIgnoreCase(nomeCentroVaccinale))
-                return true;
-
-        return false;
     }
 
     /**
