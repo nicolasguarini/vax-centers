@@ -5,6 +5,7 @@
 
 package serverCV.UI;
 
+import serverCV.DBManager;
 import serverCV.LogListener;
 import serverCV.ServerCV;
 
@@ -15,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Objects;
 
@@ -179,6 +181,25 @@ public class UIDashboard extends JFrame implements LogListener, ActionListener {
             }else{
                 updateLog(new Date() + " -- Error: unable to stop the server.");
                 labelStatus.setText("Unable to stop the server.");
+            }
+        }else if(e.getSource() == btnDataset){
+            if(JOptionPane.showOptionDialog(
+                    this,
+                    "Attenzione: procedere comporterà l'eliminazione di tutti i dati precedentemente contenuti nel database.\nContinuare?",
+                    "Attenzione!",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.PLAIN_MESSAGE,
+                    null,
+                    new String[]{"Continua", "Annulla"},
+                    "Annulla"
+            ) == JOptionPane.YES_OPTION) {
+                try{
+                    DBManager.getInstance().insertDataset();
+                    updateLog(new Date() + " -- Dataset importato con successo");
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    updateLog(new Date() + " -- Impossibile importare il dataset di test");
+                }
             }
         }
     }
