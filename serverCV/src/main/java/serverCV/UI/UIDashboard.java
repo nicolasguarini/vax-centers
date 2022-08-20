@@ -55,6 +55,11 @@ public class UIDashboard extends JFrame implements LogListener, ActionListener {
     JButton btnStopServer = new JButton("STOP");
 
     /**
+     * Button per generare il dataset di test
+     */
+    JButton btnDataset = new JButton("GENERA DATASET DI TEST");
+
+    /**
      * Inizializza, imposta e visualizza la schermata principale dell'applicazione server.
      *
      * @author Domenico Rizzo
@@ -86,6 +91,16 @@ public class UIDashboard extends JFrame implements LogListener, ActionListener {
         btnStopServer.setBounds(250, 90, 170, 40);
         btnStopServer.setOpaque(true);
 
+        btnDataset.setPreferredSize(new Dimension(260, 40));
+        btnDataset.setFocusable(false);
+        btnDataset.setFont(new Font("Montserrat", Font.BOLD, 15));
+        btnDataset.setBackground(new Color(232, 47, 125));
+        btnDataset.setForeground(Color.WHITE);
+        btnDataset.setBorder(new LineBorder(new Color(251, 186, 0), 2, true));
+        btnDataset.addActionListener(this);
+        btnDataset.setBounds(450, 90, 260, 40);
+        btnDataset.setOpaque(true);
+
         logTextArea.setBounds(50, 150, 1000, 500);
         logTextArea.setEditable(false);
         logTextArea.setFont(fontSmall);
@@ -103,6 +118,7 @@ public class UIDashboard extends JFrame implements LogListener, ActionListener {
         this.add(labelStatus);
         this.add(btnRestartServer);
         this.add(btnStopServer);
+        this.add(btnDataset);
 
         this.setLocationRelativeTo(null);
         this.setVisible(true);
