@@ -192,18 +192,38 @@ public class CentriVaccinali {
         }
     }
 
+    /**
+     * Metodo che ritorna l'attributo privato <code>registry</code>
+     * @return attributo privato <code>registry</code>
+     * @author Nicolas Guarini
+     */
     public static Registry getRegistry(){
         return registry;
     }
 
+    /**
+     * Metodo che ritorna l'attributo privato <code>server</code>
+     * @return attributo privato <code>server</code>
+     * @author Nicolas Guarini
+     */
     public static ServerInterface getServer(){
         return server;
     }
 
+    /**
+     * Metodo che aggiorna l'attributo privato <code>registry</code>
+     * @param registry il registry da impostare
+     * @author Nicolas Guarini
+     */
     public static void setRegistry(Registry registry){
         CentriVaccinali.registry = registry;
     }
 
+    /**
+     * Metodo che aggiorna l'attributo privato <code>server</code>
+     * @param server il server da impostare
+     * @author Nicolas Guarini
+     */
     public static void setServer(ServerInterface server){
         CentriVaccinali.server = server;
     }
