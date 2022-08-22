@@ -126,8 +126,8 @@ public class UIDashboard extends JFrame implements LogListener, ActionListener {
         this.setVisible(true);
 
         if(ServerCV.startServer()){
-            labelStatus.setText("Server is ready, listening on port " + ServerCV.PORT + "!");
-            logTextArea.append(new Date() + " -- Server listening on port " + ServerCV.PORT + "\n");
+            labelStatus.setText("Server is ready, listening on port " + ServerCV.getPort() + "!");
+            logTextArea.append(new Date() + " -- Server listening on port " + ServerCV.getPort() + "\n");
             ServerCV.addListener(this);
         }else{
             labelStatus.setText("Error: unable to start the server");
@@ -167,8 +167,8 @@ public class UIDashboard extends JFrame implements LogListener, ActionListener {
         if(e.getSource() == btnRestartServer){
             updateLog(new Date() + " -- Restarting the server");
             if(ServerCV.stopServer() && ServerCV.startServer()){
-                updateLog(new Date() + " -- Server restarted, now listening on port " + ServerCV.PORT);
-                labelStatus.setText("Server is ready, listening on port " + ServerCV.PORT + "!");
+                updateLog(new Date() + " -- Server restarted, now listening on port " + ServerCV.getPort());
+                labelStatus.setText("Server is ready, listening on port " + ServerCV.getPort() + "!");
             }else{
                 updateLog(new Date() + " -- Error: unable to restart the server.");
                 labelStatus.setText("Unable to restart the server.");

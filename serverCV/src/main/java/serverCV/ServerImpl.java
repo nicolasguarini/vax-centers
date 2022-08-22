@@ -28,7 +28,7 @@ public class ServerImpl extends UnicastRemoteObject implements ServerInterface {
     /**
      * Lista degli oggetti interessati agli aggiornamenti dei messaggi di log
      */
-    private final List<LogListener> listeners = new LinkedList<>();
+    final List<LogListener> listeners = new LinkedList<>();
 
     /**
      * Costruttore della classe che richiama il costruttore della superclasse

@@ -147,8 +147,8 @@ public class UIConnectToServer extends JFrame implements ActionListener {
         if(host.equals("")) host = "localhost";
 
         try {
-            CentriVaccinali.registry = LocateRegistry.getRegistry(host, Integer.parseInt(port));
-            CentriVaccinali.server = (ServerInterface) CentriVaccinali.registry.lookup("ServerCV");
+            CentriVaccinali.setRegistry(LocateRegistry.getRegistry(host, Integer.parseInt(port)));
+            CentriVaccinali.setServer((ServerInterface) CentriVaccinali.getRegistry().lookup("ServerCV"));
 
             this.dispose();
             new UIStartMenu();

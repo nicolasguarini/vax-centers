@@ -28,12 +28,12 @@ public class CentriVaccinali {
     /**
      *  Oggetto che permette la comunicazione tra client e server, occupandosi di stabilire e mantenere la connessione con l'oggetto remoto.
      */
-    public static Registry registry;
+    static Registry registry;
 
     /**
      * Oggetto remoto che implementa i metodi dell'interfaccia <code>ServerInterface</code> fungendo da stub per il client.
      */
-    public static ServerInterface server;
+    static ServerInterface server;
 
     /**
      * Il punto di avvio del programma.
@@ -190,5 +190,21 @@ public class CentriVaccinali {
             e.printStackTrace();
             return true;
         }
+    }
+
+    public static Registry getRegistry(){
+        return registry;
+    }
+
+    public static ServerInterface getServer(){
+        return server;
+    }
+
+    public static void setRegistry(Registry registry){
+        CentriVaccinali.registry = registry;
+    }
+
+    public static void setServer(ServerInterface server){
+        CentriVaccinali.server = server;
     }
 }

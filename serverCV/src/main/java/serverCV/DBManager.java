@@ -47,7 +47,7 @@ public class DBManager {
     /**
      * Oggetto <code>DBManager</code> necessario a implementare il pattern Singleton, rappresenta l'istanza corrente della classe.
      */
-    private static DBManager DBManagerInstance = null;
+    static DBManager DBManagerInstance = null;
 
     /**
      * Metodo che ritorna l'istanza della classe. Se non è ancora stata istanziata lo fa, altrimenti ritorna l'istanza esistente.

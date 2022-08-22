@@ -28,17 +28,17 @@ public class ServerCV {
     /**
      * Porta sulla quale ascolterà il server
      */
-    public static final int PORT = 1099;
+    static final int PORT = 1099;
 
     /**
      * Nome del servizio dell'applicazione
      */
-    public static final String REGISTRY_NAME = "ServerCV";
+    static final String REGISTRY_NAME = "ServerCV";
 
     /**
      * Oggetto che implementa l'interfaccia <code>ServerInterface</code> e che concretizza le operazioni che vengono estese ai client
      */
-    public static ServerImpl server;
+    static ServerImpl server;
 
     /**
      * Oggetto <code>Registry</code> che mette a disposizione metodi per salvare e ritornare i riferimenti degli oggetti remoti
@@ -119,5 +119,16 @@ public class ServerCV {
      */
     public static void addListener(LogListener toAdd){
         server.addListener(toAdd);
+    }
+
+    /**
+     * Metodo che ritorna la proprietà private PORT
+     *
+     * @return porta sul quale è in ascolto il server
+     *
+     * @author Nicolas Guarini
+     */
+    public static int getPort(){
+        return PORT;
     }
 }

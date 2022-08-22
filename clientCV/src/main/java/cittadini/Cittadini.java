@@ -38,7 +38,7 @@ public class Cittadini {
         boolean result = false;
 
         try{
-            result = CentriVaccinali.server.registraCittadino(cittadino);
+            result = CentriVaccinali.getServer().registraCittadino(cittadino);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -56,7 +56,7 @@ public class Cittadini {
     public static LinkedList<Cittadino> getCittadini(){
         LinkedList<Cittadino> cittadini = new LinkedList<>();
         try{
-            cittadini = CentriVaccinali.server.getCittadini();
+            cittadini = CentriVaccinali.getServer().getCittadini();
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -98,7 +98,7 @@ public class Cittadini {
     public static boolean registraEventoAvverso(Cittadino cittadino, EventoAvverso eventoAvverso){
        boolean result = false;
        try{
-           result = CentriVaccinali.server.registraEventoAvverso(cittadino, eventoAvverso);
+           result = CentriVaccinali.getServer().registraEventoAvverso(cittadino, eventoAvverso);
        } catch (RemoteException e) {
            e.printStackTrace();
        }
@@ -117,7 +117,7 @@ public class Cittadini {
     public static Cittadino login(String username, String password){
         Cittadino cittadino = null;
         try{
-            cittadino = CentriVaccinali.server.login(username, password);
+            cittadino = CentriVaccinali.getServer().login(username, password);
         }catch (RemoteException e){
             e.printStackTrace();
         }
@@ -134,7 +134,7 @@ public class Cittadini {
      */
     public static boolean checkUsername(String username){
         try{
-            return CentriVaccinali.server.checkUsername(username);
+            return CentriVaccinali.getServer().checkUsername(username);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
@@ -149,7 +149,7 @@ public class Cittadini {
      */
     public static boolean checkEmail(String email){
         try{
-            return CentriVaccinali.server.checkEmail(email);
+            return CentriVaccinali.getServer().checkEmail(email);
         }catch(RemoteException e){
             e.printStackTrace();
             return false;
@@ -165,7 +165,7 @@ public class Cittadini {
      */
     public static boolean checkIdVaccinazione(String idVaccinazione){
         try{
-            return CentriVaccinali.server.checkIdVaccinazione(idVaccinazione);
+            return CentriVaccinali.getServer().checkIdVaccinazione(idVaccinazione);
         }catch (RemoteException e){
             e.printStackTrace();
             return false;
@@ -181,7 +181,7 @@ public class Cittadini {
      */
     public static boolean checkCF(String cf){
         try {
-            return CentriVaccinali.server.checkCF(cf);
+            return CentriVaccinali.getServer().checkCF(cf);
         } catch (RemoteException e) {
             e.printStackTrace();
             return false;
@@ -197,7 +197,7 @@ public class Cittadini {
      */
     public static boolean checkVaccinazioneEsistente(String idvaccinazione){
         try{
-            return CentriVaccinali.server.checkVaccinazioneEsistente(idvaccinazione);
+            return CentriVaccinali.getServer().checkVaccinazioneEsistente(idvaccinazione);
         }catch (RemoteException exception){
             exception.printStackTrace();
             return false;
