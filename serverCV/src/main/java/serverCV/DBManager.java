@@ -130,7 +130,7 @@ public class DBManager {
                 "    idVaccinazione VARCHAR(16) PRIMARY KEY NOT NULL,\n" +
                 "    nomeVaccinato VARCHAR(50) NOT NULL, \n" +
                 "    cognomeVaccinato VARCHAR(50)NOT NULL, \n" +
-                "    cfVaccinato VARCHAR(16) NOT NULL,\n" +
+                "    cfVaccinato VARCHAR(16) UNIQUE NOT NULL,\n" +
                 "    dataVaccinazione DATE NOT NULL,\n" +
                 "    idCentroVaccinale VARCHAR(5) NOT NULL,\n" +
                 "    nomeVaccino VARCHAR(50) NOT NULL,\n" +

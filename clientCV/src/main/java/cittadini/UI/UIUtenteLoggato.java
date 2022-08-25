@@ -60,6 +60,8 @@ public class UIUtenteLoggato extends JFrame implements ActionListener {
     /**
      * Inizializza, imposta e visualizza la schermata dell'area personale dell'utente loggato
      *
+     * @param cittadinoLoggato utente che ha effettuato con successo il login
+     *
      * @author Domenico Rizzo
      */
     public UIUtenteLoggato(Cittadino cittadinoLoggato) {

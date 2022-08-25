@@ -67,7 +67,7 @@ public class UIRegistraVaccinato extends JFrame implements ActionListener {
     JTextField tfDataSomministrazioneVaccino= new JTextField();
 
     /**
-     * Select dove l'utente selezionerà il vaccino somministrato tra "Pfizer", "AstraZeneca", "Moderna" e "J&J"
+     * Select dove l'utente selezionerà il vaccino somministrato tra "Pfizer", "AstraZeneca", "Moderna" e "JJ"
      */
     JComboBox<String> selectNomeVaccino = new JComboBox<>(new String[] { "Pfizer", "AstraZeneca", "Moderna", "J&J" });
 
