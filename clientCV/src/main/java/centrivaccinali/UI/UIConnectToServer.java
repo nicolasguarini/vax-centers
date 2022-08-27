@@ -53,6 +53,7 @@ public class UIConnectToServer extends JFrame implements ActionListener {
         ImageIcon imgHostph = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/hosticon.png")));
         ImageIcon imgPortph = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/porticon.png")));
         ImageIcon imgLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/logo100px.png")));
+        ImageIcon imgLogo1 = new ImageIcon(Objects.requireNonNull(getClass().getResource("/images/logo.png")));
         Border border = new LineBorder(new Color(251, 186, 0), 2, true);
         Font fontSmall = new Font("Light", Font.PLAIN, 16);
 
@@ -121,6 +122,7 @@ public class UIConnectToServer extends JFrame implements ActionListener {
         this.setSize(1280, 720);
         this.setLayout(null);
         this.setResizable(false);
+        this.setIconImage(imgLogo1.getImage());
 
         this.add(labelSfondo);
 
