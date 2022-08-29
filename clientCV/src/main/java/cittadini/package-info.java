@@ -1,3 +1,6 @@
+//NICOLAS GUARINI 745508 VA
+//DOMENICO RIZZO 745304 VA
+
 /**
  * Il package <code>cittadini</code> contiene le classi che contengono le utilities e che modellano la realtà d'interesse della sezione "Cittadini"
  * <p>
@@ -10,7 +13,6 @@
  *
  * @author Nicolas Guarini
  * @author Domenico Rizzo
- * @author Redon Kokaj
  */
 
 package cittadini;

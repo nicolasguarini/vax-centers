@@ -1,3 +1,6 @@
+//NICOLAS GUARINI 745508 VA
+//DOMENICO RIZZO 745304 VA
+
 /**
  * Il package <code>centrivaccinali</code> contiene le classi che contengono le utilities e che modellano la realtà di interesse della sezione "Centri Vaccinali"
  * <p>
@@ -15,7 +18,6 @@
  *
  * @author Nicolas Guarini
  * @author Domenico Rizzo
- * @author Redon Kokaj
 */
 
 package centrivaccinali;

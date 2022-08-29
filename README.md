@@ -96,3 +96,8 @@ Non dimenticare di dare una stella al progetto!
 <br> ```git push origin feature/AmazingFeature```
 
 5. Apri una pull request
+
+## Autori
+
+- GUARINI NICOLAS 745508 VA - [nicolasguarini.it](https://nicolasguarini.it) - [nguarini@studenti.uninsubria.it](mailto:nguarini@studenti.uninsubria.it)
+- RIZZO DOMENICO 745304 VA

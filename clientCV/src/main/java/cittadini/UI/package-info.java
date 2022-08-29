@@ -1,3 +1,6 @@
+//NICOLAS GUARINI 745508 VA
+//DOMENICO RIZZO 745304 VA
+
 /**
  * Il package <code>cittadini.serverCV.UI</code> contiene le classi che gestiscono le interfacce utente delle schermate del package {@link cittadini}
  *
@@ -12,6 +15,5 @@
  *
  * @author Domenico Rizzo
  * @author Nicolas Guarini
- * @author Redon Kokaj
  */
 package cittadini.UI;

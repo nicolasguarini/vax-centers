@@ -1,3 +1,6 @@
+//NICOLAS GUARINI 745508 VA
+//DOMENICO RIZZO 745304 VA
+
 /**
  * Il package <code>serverCV</code> contiene le classi necessarie per il funzionamento dell'applicazione del server, che permette di connettersi al database per avviare,
  * gestire e visualizzare i log delle chiamate che vengono effettuate dai client.
